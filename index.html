@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rafay Khan</title>
+<meta name="description" content="Rafay Khan is a product designer and product manager in Riyadh who designs and ships AI products for banking and capital markets.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rafay Khan · Product design and AI for finance">
+<meta property="og:description" content="Product designer and product manager for banking and capital markets. Led the redesign behind SAR 60B ($16B) in yearly trades.">
+<meta property="og:url" content="https://rafkhan.com/">
+<meta property="og:image" content="https://rafkhan.com/rafay.jpg">
+<meta property="og:image:alt" content="Portrait of Rafay Khan">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23181818'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='700' font-size='28' fill='%235cd1b0' text-anchor='middle'%3ERK%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Person","name":"Rafay Khan","jobTitle":"Product designer and product manager","url":"https://rafkhan.com/","image":"https://rafkhan.com/rafay.jpg","address":{"@type":"PostalAddress","addressLocality":"Riyadh","addressCountry":"SA"},"alumniOf":"University of Nottingham","worksFor":"Bank Albilad","sameAs":["https://www.linkedin.com/in/rafekhan"],"knowsLanguage":["English","Arabic","Urdu"]},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What do you do?","acceptedAnswer":{"@type":"Answer","text":"I design and manage digital products for banks and capital market firms, from customer research and journey design through roadmaps, delivery and launch."}},
+{"@type":"Question","name":"Are you a designer or a product manager?","acceptedAnswer":{"@type":"Answer","text":"Both. At ANB Capital I was Principal Product Manager and UI/UX Specialist on the same platform. At Bank Albilad I own product vision, roadmaps and backlogs for enterprise lending."}},
+{"@type":"Question","name":"What AI products have you worked on?","acceptedAnswer":{"@type":"Answer","text":"AI assisted credit underwriting with automated proposal and document generation at Bank Albilad, and robo advisory and digital savings platforms at DirectFN. My MEng specialised in artificial intelligence."}},
+{"@type":"Question","name":"Which areas of finance do you know best?","acceptedAnswer":{"@type":"Answer","text":"Digital brokerage and trading, SME and corporate lending, trade finance, supply chain finance, wealth management and post trade settlement."}},
+{"@type":"Question","name":"Where are you based?","acceptedAnswer":{"@type":"Answer","text":"Riyadh, Saudi Arabia."}},
+{"@type":"Question","name":"What languages do you speak?","acceptedAnswer":{"@type":"Answer","text":"English, Arabic and Urdu."}},
+{"@type":"Question","name":"What are your qualifications?","acceptedAnswer":{"@type":"Answer","text":"An MEng in Electrical and Electronic Engineering with First Class Honours from the University of Nottingham, plus FMVA, SPMC and Bloomberg Market Concepts certifications."}},
+{"@type":"Question","name":"How can I reach you?","acceptedAnswer":{"@type":"Answer","text":"Send me a message on LinkedIn at linkedin.com/in/rafekhan."}}
+]}]}
+</script>
+<style>
+/* Layout: classic hero plus sections (type A). Floating centered nav, two column hero with portrait, then proof, benefits, tagline reveal, process, case studies, experience, FAQ, final CTA. One typeface (Geist), Geist Mono only for figures. */
+:root {
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --raised: #f2f2f2;
+  --ink: #0a0a0a;
+  --muted: #5c5c5c;
+  --line: #e4e4e4;
+  --accent: #0b7a60;
+  --accent-soft: #e3f2ec;
+  --h-from: #000000;
+  --h-to: #666666;
+  --font: "Geist", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --maxw: 1088px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #181818; --surface: #1f1f1f; --raised: #272727; --ink: #f4f4f4; --muted: #a3a3a3; --line: #313131;
+    --accent: #5cd1b0; --accent-soft: #272727; --h-from: #ffffff; --h-to: #9b9b9b; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #181818; --surface: #1f1f1f; --raised: #272727; --ink: #f4f4f4; --muted: #a3a3a3; --line: #313131;
+  --accent: #5cd1b0; --accent-soft: #272727; --h-from: #ffffff; --h-to: #9b9b9b; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+body { background: var(--bg); color: var(--ink); font: 400 16px/24px var(--font); -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+h1, h2, h3 { text-wrap: balance; }
+p, li, dd { text-wrap: pretty; }
+a { color: var(--accent); text-underline-offset: 4px; transition: color 300ms var(--ease); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+.wrap { max-width: var(--maxw); margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.skip { position: absolute; left: 16px; top: 16px; z-index: 50; padding: 8px 12px; border-radius: 8px; background: var(--ink); color: var(--bg); font-weight: 600; transform: translateY(-200%); }
+.skip:focus { transform: none; }
+.ico { width: 16px; height: 16px; flex: none; }
+
+/* buttons */
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 9999px; font: 600 16px/24px var(--font); text-decoration: none; border: 1px solid var(--line); color: var(--ink); background: var(--surface); cursor: pointer;
+  transition: transform 300ms var(--ease), background-color 300ms var(--ease), border-color 300ms var(--ease); }
+.btn:hover { transform: translateY(-2px); border-color: var(--muted); }
+.btn:active { transform: scale(0.98); }
+.btn.primary { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.btn.primary:hover { background: var(--accent); border-color: var(--accent); }
+.btn.sm { font-size: 14px; line-height: 20px; }
+.textlink { display: inline-flex; align-items: center; gap: 4px; font-weight: 600; color: var(--ink); text-decoration: none; padding: 8px 0; }
+.textlink:hover { color: var(--accent); }
+
+/* floating nav */
+.nav { position: fixed; z-index: 20; top: calc(env(safe-area-inset-top, 0px) + 16px); left: 50%; transform: translateX(-50%); width: max-content; max-width: calc(100% - 32px);
+  display: flex; align-items: center; gap: 24px; padding: 8px 8px 8px 16px; border-radius: 9999px; border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 72%, transparent); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+.logo { font: 600 14px/20px var(--font); color: var(--ink); text-decoration: none; white-space: nowrap; }
+.nav ul { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.nav ul a { display: block; padding: 4px 12px; border-radius: 9999px; color: var(--muted); text-decoration: none; font: 500 14px/20px var(--font); transition: color 300ms var(--ease), background-color 300ms var(--ease); }
+.nav ul a:hover { color: var(--ink); }
+.nav ul a[aria-current="true"] { color: var(--ink); background: var(--raised); }
+.toggle { display: none; width: 40px; height: 40px; border-radius: 9999px; border: 0; background: var(--raised); color: var(--ink); cursor: pointer; position: relative; }
+.toggle span { position: absolute; left: 12px; width: 16px; height: 2px; border-radius: 2px; background: currentColor; transition: transform 500ms var(--ease); }
+.toggle span:nth-child(1) { top: 15px; } .toggle span:nth-child(2) { top: 23px; }
+.toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(4px) rotate(45deg); }
+.toggle[aria-expanded="true"] span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
+.panel { position: fixed; inset: 0; z-index: 15; padding: calc(env(safe-area-inset-top, 0px) + 96px) max(24px, env(safe-area-inset-right, 0px)) 48px max(24px, env(safe-area-inset-left, 0px));
+  background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  opacity: 0; pointer-events: none; transition: opacity 500ms var(--ease); }
+.panel.open { opacity: 1; pointer-events: auto; }
+.panel ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.panel li { opacity: 0; transform: translateY(24px); transition: opacity 500ms var(--ease), transform 500ms var(--ease); }
+.panel.open li { opacity: 1; transform: none; }
+.panel a { display: block; padding: 8px 0; font: 600 30px/36px var(--font); color: var(--ink); text-decoration: none; }
+.panel a[aria-current="true"] { color: var(--accent); }
+@media (max-width: 860px) { .nav ul, .nav .btn { display: none; } .toggle { display: block; } .nav { gap: 16px; } }
+
+/* hero */
+main { padding-top: 64px; }
+.hero .wrap { padding-block: 96px 64px; display: grid; grid-template-columns: minmax(0, 1fr) 288px; gap: 48px; align-items: center; }
+.hero-copy { display: grid; gap: 24px; min-width: 0; }
+.eyebrow { display: inline-flex; align-items: center; gap: 8px; font: 500 14px/20px var(--font); color: var(--muted); }
+.dot { width: 8px; height: 8px; border-radius: 9999px; background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+h1 { margin: 0; max-width: 680px; font: 700 60px/1 var(--font); letter-spacing: -0.04em; padding-bottom: 4px;
+  background: linear-gradient(90deg, var(--h-from), var(--h-to)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+h1 .l { display: block; }
+.sub { margin: 0; max-width: 680px; font-size: 18px; line-height: 28px; color: var(--muted); }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; }
+.proof { display: flex; align-items: center; gap: 12px; font-size: 14px; line-height: 20px; color: var(--muted); }
+.proof strong { font: 500 14px/20px var(--mono); color: var(--ink); padding: 4px 8px; border-radius: 8px; background: var(--raised); white-space: nowrap; }
+.portrait { width: 288px; max-width: 100%; aspect-ratio: 1; height: auto; border-radius: 24px; object-fit: cover; display: block; border: 1px solid var(--line); background: var(--raised); }
+@media (max-width: 860px) {
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); padding-block: 64px 48px; gap: 32px; }
+  .portrait { width: 96px; flex: none; border-radius: 16px; }
+  h1 { font-size: 48px; }
+  h1 .l { display: inline; }
+}
+
+
+/* hero motion: portrait with a live market ticker card below it */
+.visual { width: 288px; max-width: 100%; display: flex; flex-direction: column; gap: 16px; }
+.ticker { background: color-mix(in srgb, var(--surface) 88%, transparent); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--line); border-radius: 16px; padding: 12px 16px; display: grid; gap: 8px; }
+.ticker-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.ticker-label { font: 500 12px/16px var(--font); color: var(--muted); }
+.ticker-val { font: 500 14px/20px var(--mono); color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ticker-val small { font: inherit; color: var(--accent); margin-left: 4px; }
+.ticker canvas { display: block; width: 100%; height: 48px; }
+@media (max-width: 860px) {
+  .visual { width: 100%; order: -1; display: flex; align-items: center; gap: 16px; }
+  .visual { flex-direction: row; }
+  .ticker { flex: 1; min-width: 0; }
+}
+
+
+/* starfield: one fixed canvas behind all content */
+#space { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+main, footer { position: relative; z-index: 1; }
+
+/* figures */
+.figures { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.figures li { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px; display: grid; gap: 8px; align-content: start; }
+.fig { font: 500 36px/40px var(--mono); letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+.fig small { font: 500 14px/20px var(--mono); letter-spacing: 0; color: var(--accent); margin-left: 4px; }
+.figures li > span:last-child { font-size: 14px; line-height: 20px; color: var(--muted); }
+@media (max-width: 860px) { .figures { grid-template-columns: repeat(2, minmax(0, 1fr)); } .figures li { padding: 16px; } .fig { font-size: 30px; line-height: 36px; } }
+
+/* sections */
+.section .wrap { padding-block: 96px; }
+@media (max-width: 860px) { .section .wrap { padding-block: 64px; } }
+.kicker { font: 500 14px/20px var(--font); color: var(--accent); margin: 0 0 12px; }
+h2 { margin: 0 0 16px; max-width: 680px; font: 700 36px/40px var(--font); letter-spacing: -0.03em; }
+.intro { margin: 0 0 48px; max-width: 680px; font-size: 18px; line-height: 28px; color: var(--muted); }
+@media (max-width: 860px) { h2 { font-size: 30px; line-height: 36px; } .intro { margin-bottom: 32px; } }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 860px) { .grid2, .grid3 { grid-template-columns: minmax(0, 1fr); } }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.card h3 { margin: 0; font: 600 20px/28px var(--font); letter-spacing: -0.01em; }
+.card p { margin: 0; color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 4px 0 0; margin-top: auto; }
+.chips li { font: 500 12px/16px var(--font); padding: 4px 8px; border-radius: 8px; background: var(--raised); color: var(--ink); }
+.step { font: 500 14px/20px var(--mono); color: var(--accent); }
+
+/* tagline reveal */
+.tagline .wrap { padding-block: 96px; }
+.tagline p { margin: 0; max-width: 760px; font: 600 48px/1 var(--font); letter-spacing: -0.03em; }
+.tagline .l { display: block; }
+.tagline .w { transition: opacity 500ms var(--ease); }
+.tagline.armed .w { opacity: 0.3; }
+.tagline.armed .w.on { opacity: 1; }
+@media (max-width: 860px) { .tagline p { font-size: 36px; line-height: 40px; } .tagline .l { display: inline; } }
+
+/* case studies */
+.cases { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 860px) { .cases { grid-template-columns: minmax(0, 1fr); } }
+.case { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+.case.feature { grid-column: 1 / -1; }
+.case-head { background: var(--raised); padding: 24px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px; }
+.case-head .org { font: 500 14px/20px var(--font); color: var(--muted); }
+.case-head .big { font: 500 36px/40px var(--mono); letter-spacing: -0.04em; color: var(--ink); font-variant-numeric: tabular-nums; }
+.case-head .big small { font: 500 14px/20px var(--font); letter-spacing: 0; color: var(--muted); margin-left: 8px; }
+.case-body { padding: 24px; display: flex; flex-direction: column; gap: 16px; flex: 1; }
+.case h3 { margin: 0; font: 600 20px/28px var(--font); letter-spacing: -0.01em; }
+.cs { margin: 0; display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 8px 16px; }
+.cs dt { font: 500 14px/24px var(--font); color: var(--muted); }
+.cs dd { margin: 0; }
+.case.feature .cs { grid-template-columns: 96px minmax(0, 680px); }
+@media (max-width: 480px) { .cs, .case.feature .cs { grid-template-columns: minmax(0, 1fr); gap: 0; } .cs dd { margin-bottom: 12px; } }
+.case .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+.also { margin: 32px 0 0; padding: 0; list-style: none; display: grid; gap: 12px; color: var(--muted); max-width: 680px; }
+.also li { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 12px; }
+.also li::before { content: "+"; font-family: var(--mono); color: var(--accent); }
+
+/* experience */
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.timeline > li { display: grid; grid-template-columns: 192px minmax(0, 1fr); gap: 24px; }
+@media (max-width: 640px) { .timeline > li { grid-template-columns: minmax(0, 1fr); gap: 8px; } }
+.when { font: 400 14px/20px var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 24px; }
+@media (max-width: 640px) { .when { padding-top: 0; } }
+.timeline ul { margin: 0; padding-left: 16px; color: var(--muted); display: grid; gap: 4px; }
+.timeline .org { color: var(--muted); font-weight: 500; }
+.award { align-self: flex-start; font: 500 12px/16px var(--font); color: var(--accent); background: var(--accent-soft); border-radius: 9999px; padding: 4px 8px; }
+
+/* faq */
+.faq { display: grid; gap: 8px; max-width: 800px; }
+.faq details { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 24px; font: 600 16px/24px var(--font); border-radius: 12px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary .ico { transition: transform 500ms var(--ease); color: var(--muted); }
+.faq details[open] summary .ico { transform: rotate(45deg); }
+.faq details p { margin: 0; padding: 0 24px 16px; color: var(--muted); max-width: 680px; }
+
+/* final cta */
+.cta .wrap { padding-block: 96px; }
+.cta-card { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 64px 48px; display: grid; gap: 24px; justify-items: start; }
+.cta-card h2 { margin: 0; font-size: 48px; line-height: 1; }
+.cta-card p { margin: 0; max-width: 680px; font-size: 18px; line-height: 28px; color: var(--muted); }
+@media (max-width: 860px) { .cta-card { padding: 40px 24px; } .cta-card h2 { font-size: 36px; line-height: 40px; } }
+
+footer .wrap { padding-block: 32px 48px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; color: var(--muted); font-size: 14px; line-height: 20px; }
+footer a { color: var(--muted); text-decoration: none; }
+footer a:hover { color: var(--ink); }
+
+/* scroll reveal: only sections still below the fold are held back */
+.reveal.pending { opacity: 0; transform: translateY(32px); }
+.reveal { transition: opacity 700ms var(--ease), transform 700ms var(--ease); }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal.pending { transform: none; }
+  .btn:hover, .btn:active { transform: none; }
+  .panel li { transform: none; }
+  .toggle span { transition: none; }
+}
+</style>
+</head>
+<body style="margin:0">
+
+<a class="skip" href="#main">Skip to content</a>
+<canvas id="space" aria-hidden="true"></canvas>
+
+<header class="nav" aria-label="Site">
+  <a class="logo" href="#top">Rafay Khan</a>
+  <nav aria-label="Main">
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </nav>
+  <a class="btn primary sm" href="https://www.linkedin.com/in/rafekhan" target="_blank" rel="noopener">Message me</a>
+  <button class="toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-panel" aria-label="Open menu"><span></span><span></span></button>
+</header>
+
+<div class="panel" id="menu-panel" aria-hidden="true">
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#approach">Approach</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="https://www.linkedin.com/in/rafekhan" target="_blank" rel="noopener">Message me on LinkedIn</a></li>
+  </ul>
+</div>
+
+<main id="main">
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="dot" aria-hidden="true"></span>Product design and AI for banking · Riyadh</span>
+        <h1><span class="l">I design AI products </span><span class="l">that people trust </span><span class="l">with their money.</span></h1>
+        <p class="sub">I'm a product designer and product manager for banking and capital markets. For six years I've taken products from the first customer conversation to production, from a national trading platform to AI credit underwriting.</p>
+        <div class="actions">
+          <a class="btn primary" href="https://www.linkedin.com/in/rafekhan" target="_blank" rel="noopener">Message me on LinkedIn
+            <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a>
+          <a class="textlink" href="#work">See the case studies</a>
+        </div>
+        <p class="proof"><strong>SAR 60B</strong> Yearly trades on the ANB Capital platform I redesigned</p>
+      </div>
+      <div class="visual">
+        <img class="portrait" src="rafay.jpg" alt="Portrait of Rafay Khan" width="400" height="400">
+        <div class="ticker" aria-hidden="true">
+          <div class="ticker-top"><span class="ticker-label">ANB Capital · yearly trades</span><span class="ticker-val">SAR 60B<small>+10%</small></span></div>
+          <canvas id="market"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight" aria-label="Key results">
+    <div class="wrap">
+      <ul class="figures">
+        <li><span class="fig"><span class="count" data-to="16" data-pre="$" data-suf="B">$16B</span><small>+10%</small></span><span>yearly trades after the brokerage redesign</span></li>
+        <li><span class="fig"><span class="count" data-to="1" data-dec="1" data-pre="US$" data-suf="B" data-end="US$1B+">US$1B+</span></span><span>financing target for a first to market supply chain platform</span></li>
+        <li><span class="fig"><span class="count" data-to="50" data-suf="+">50+</span></span><span>features and releases shipped at Bank Albilad</span></li>
+        <li><span class="fig"><span class="count" data-to="4">4</span></span><span>major banks running the post trade product I delivered</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section reveal" id="about">
+    <div class="wrap">
+      <p class="kicker">About</p>
+      <h2>Design thinking and product management, built for regulated finance</h2>
+      <p class="intro">Financial products fail when they're built only for the regulator or only for delight. I start from how customers and bankers actually behave, frame the problem around a metric the business cares about, and prototype until the answer works for compliance, credit risk and engineering without losing the customer.</p>
+      <div class="grid2">
+        <article class="card">
+          <h3>Design thinking</h3>
+          <p><strong>Decisions grounded in real behavior.</strong> Customer research, journey maps, wireframes and prototypes, tested with A/B experiments and usage data.</p>
+          <ul class="chips"><li>User journeys</li><li>Prototyping</li><li>Usability</li><li>A/B testing</li></ul>
+        </article>
+        <article class="card">
+          <h3>Product management</h3>
+          <p><strong>Roadmaps tied to outcomes.</strong> Vision, roadmaps and backlogs linked to north star metrics and OKRs, delivered with agile teams.</p>
+          <ul class="chips"><li>Discovery</li><li>OKRs</li><li>Story mapping</li><li>Product led growth</li></ul>
+        </article>
+        <article class="card">
+          <h3>Applied AI</h3>
+          <p><strong>Models that ship as products.</strong> GenAI and machine learning in credit underwriting, document generation, robo advice and portfolio analytics.</p>
+          <ul class="chips"><li>GenAI</li><li>Classification</li><li>Predictive analytics</li><li>AI strategy</li></ul>
+        </article>
+        <article class="card">
+          <h3>Fintech and banking</h3>
+          <p><strong>Domain depth across the bank.</strong> Corporate lending, trade finance and capital markets, backed by FMVA® and SPMC™ certifications.</p>
+          <ul class="chips"><li>Brokerage</li><li>SME lending</li><li>Trade finance</li><li>Post trade</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="tagline" id="tagline" aria-label="Tagline">
+    <div class="wrap">
+      <p><span class="l">Good financial products feel simple to customers, </span><span class="l">clear to regulators, </span><span class="l">and obvious in the numbers.</span></p>
+    </div>
+  </section>
+
+  <section class="section reveal" id="approach">
+    <div class="wrap">
+      <p class="kicker">How I work</p>
+      <h2>From a customer's problem to a product in production</h2>
+      <p class="intro">The same three steps sit behind every case study on this page.</p>
+      <div class="grid3">
+        <article class="card"><span class="step">01</span><h3>Understand and frame</h3><p>Sit with customers, relationship managers and operations. Map the journey as it really runs today, then agree one north star metric and the guardrails with risk and compliance.</p></article>
+        <article class="card"><span class="step">02</span><h3>Prototype and test</h3><p>Wireframe and prototype fast, test with real users, and let A/B tests and behavior data decide what ships.</p></article>
+        <article class="card"><span class="step">03</span><h3>Ship and measure</h3><p>Deliver in agile increments, track the KPIs we committed to, and keep improving after launch.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="work">
+    <div class="wrap">
+      <p class="kicker">Selected work</p>
+      <h2>Case studies</h2>
+      <p class="intro">Each one pairs the problem with what I did and the result it produced.</p>
+      <div class="cases">
+        <article class="case feature">
+          <div class="case-head"><span class="org">ANB Capital · 2022 to 2023</span><span class="big">SAR 60B<small>yearly trades, up 10%</small></span></div>
+          <div class="case-body">
+            <h3>Redesigning a retail brokerage around the investor</h3>
+            <dl class="cs">
+              <dt>Challenge</dt><dd>A retail trading platform whose onboarding, order entry and portfolio views had grown piece by piece, with service requests that took hours.</dd>
+              <dt>What I did</dt><dd>Mapped the full investor journey and redesigned it end to end as product and UX lead. I added analytics and insights features and used A/B tests and behavior data to steer each iteration.</dd>
+              <dt>Outcome</dt><dd>Internet trade value grew 10% to SAR 60B ($16B) a year, and service times fell from hours to minutes.</dd>
+            </dl>
+            <div class="links">
+              <a class="btn sm" href="https://n.anbcapital.com.sa/neo/web/" target="_blank" rel="noopener">Web platform <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a>
+              <a class="btn sm" href="https://apps.apple.com/sa/app/anb-capital/id6473738840?platform=iphone" target="_blank" rel="noopener">App Store <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a>
+              <a class="btn sm" href="https://play.google.com/store/apps/details?id=com.directfn.mobile.anb_prod&amp;hl=en" target="_blank" rel="noopener">Google Play <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a>
+            </div>
+          </div>
+        </article>
+        <article class="case">
+          <div class="case-head"><span class="org">Bank Albilad · 2023 to now</span><span class="big">GenAI<small>underwriting</small></span></div>
+          <div class="case-body">
+            <h3>AI loan origination</h3>
+            <dl class="cs">
+              <dt>Challenge</dt><dd>Enterprise loan proposals were slow to assemble and hard to keep consistent.</dd>
+              <dt>What I did</dt><dd>Own the vision and roadmap for intelligent credit underwriting with automated proposal and document generation, aligning credit, regulatory and technology teams.</dd>
+              <dt>Outcome</dt><dd>Higher customer satisfaction and faster turnaround across enterprise lending.</dd>
+            </dl>
+          </div>
+        </article>
+        <article class="case">
+          <div class="case-head"><span class="org">Bank Albilad · 2023 to now</span><span class="big">US$1B+<small>target</small></span></div>
+          <div class="case-body">
+            <h3>First to market supply chain financing</h3>
+            <dl class="cs">
+              <dt>Challenge</dt><dd>Corporate clients and their suppliers had no digital way to finance invoices with the bank.</dd>
+              <dt>What I did</dt><dd>Built the product and go to market plan from zero, inside a 40 project corporate innovation portfolio.</dd>
+              <dt>Outcome</dt><dd>Launched first to market, targeting more than US$1B in financing.</dd>
+            </dl>
+          </div>
+        </article>
+        <article class="case">
+          <div class="case-head"><span class="org">Bank Albilad</span><span class="big">25%<small>shorter waits</small></span></div>
+          <div class="case-body">
+            <h3>Digital trade finance journeys</h3>
+            <dl class="cs">
+              <dt>Challenge</dt><dd>Documentary trade finance ran on paper and long queues.</dd>
+              <dt>What I did</dt><dd>Designed digital channel features around the corporate customer's journey, driven by usage data.</dd>
+              <dt>Outcome</dt><dd>Wait times down 25%, one full time role of manual work removed, and a carbon footprint cut in half.</dd>
+            </dl>
+          </div>
+        </article>
+        <article class="case">
+          <div class="case-head"><span class="org">DirectFN · 2020 to 2023</span><span class="big">4 banks<small>live</small></span></div>
+          <div class="case-body">
+            <h3>Post trade settlement and clearing</h3>
+            <dl class="cs">
+              <dt>Challenge</dt><dd>Large banks needed one clearing and settlement product line for capital markets.</dd>
+              <dt>What I did</dt><dd>Led the product line from requirements to rollout.</dd>
+              <dt>Outcome</dt><dd>Live at SNB, Riyad Bank, BSF and Bank Albilad.</dd>
+            </dl>
+          </div>
+        </article>
+      </div>
+      <ul class="also">
+        <li>AI assisted robo advisory and digital savings platforms for top tier banks.</li>
+        <li>Portfolio attribution analytics for buy side firms in line with CFA standards, turning annual reviews into an instant automated report.</li>
+        <li>Fully automated margin lending that removed manual processing.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section reveal" id="experience">
+    <div class="wrap">
+      <p class="kicker">Experience</p>
+      <h2>Where I've worked and studied</h2>
+      <p class="intro">Six years across a Saudi bank, a capital markets technology firm and one of the Kingdom's brokerages.</p>
+      <ol class="timeline">
+        <li>
+          <div class="when">Jul 2023 to now</div>
+          <article class="card">
+            <span class="award">Excellence Award, Corporate Banking</span>
+            <h3>Assistant Manager, Product Development and Delivery <span class="org">· Bank Albilad</span></h3>
+            <ul>
+              <li>Own product vision, strategy, roadmaps and backlogs across enterprise lending.</li>
+              <li>Shipped 50+ features spanning AI, lending, cross selling and regulatory work.</li>
+              <li>Corporate Banking Strategy Champion since Jan 2025, building go to market plans for embedded finance.</li>
+            </ul>
+          </article>
+        </li>
+        <li>
+          <div class="when">Jan 2022 to Jun 2023</div>
+          <article class="card">
+            <h3>Principal Product Manager and UI/UX Specialist <span class="org">· ANB Capital, via DirectFN</span></h3>
+            <ul>
+              <li>Led the brokerage redesign that grew trading to $16B a year.</li>
+              <li>Used A/B testing and behavior analysis to guide design iterations.</li>
+            </ul>
+          </article>
+        </li>
+        <li>
+          <div class="when">Sep 2020 to Jun 2023</div>
+          <article class="card">
+            <h3>Manager, AI and Innovation Strategy <span class="org">· DirectFN</span></h3>
+            <ul>
+              <li>Owned strategy and delivery of a large retail brokerage mobile app.</li>
+              <li>Started as Innovation Management Lead, building robo advisory, quant and post trade products.</li>
+            </ul>
+          </article>
+        </li>
+        <li>
+          <div class="when">Jul 2020</div>
+          <article class="card">
+            <h3>MEng Electrical and Electronic Engineering, First Class Honours <span class="org">· University of Nottingham</span></h3>
+            <p>Specialised in artificial intelligence, with a thesis on AI based spectroscopic analysis for cancer diagnostics.</p>
+          </article>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section reveal" id="faq">
+    <div class="wrap">
+      <p class="kicker">FAQ</p>
+      <h2>Questions people ask me</h2>
+      <p class="intro">Quick answers before you reach out.</p>
+      <div class="faq">
+        <details><summary>What do you do?<svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg></summary><p>I design and manage digital products for banks and capital market firms, from customer research and journey design through roadmaps, delivery and launch.</p></details>
+        <details><summary>Are you a designer or a product manager?<svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg></summary><p>Both. At ANB Capital I was Principal Product Manager and UI/UX Specialist on the same platform. At Bank Albilad I own product vision, roadmaps and backlogs for enterprise lending.</p></details>
+        <details><summary>What AI products have you worked on?<svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg></summary><p>AI assisted credit underwriting with automated proposal and document generation at Bank Albilad, and robo advisory and digital savings platforms at DirectFN. My MEng specialised in artificial intelligence.</p></details>
+        <details><summary>Which areas of finance do you know best?<svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg></summary><p>Digital brokerage and trading, SME and corporate lending, trade finance, supply chain finance, wealth management and post trade settlement.</p></details>
+        <details><summary>Where are you based?<svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg></summary><p>Riyadh, Saudi Arabia.</p></details>
+        <details><summary>What languages do you speak?<svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg></summary><p>English, Arabic and Urdu.</p></details>
+        <details><summary>What are your qualifications?<svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg></summary><p>An MEng in Electrical and Electronic Engineering with First Class Honours from the University of Nottingham, plus FMVA®, SPMC™ and Bloomberg Market Concepts certifications.</p></details>
+        <details><summary>How can I reach you?<svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg></summary><p>Send me a message on <a href="https://www.linkedin.com/in/rafekhan" target="_blank" rel="noopener">LinkedIn</a>.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta reveal" id="contact">
+    <div class="wrap">
+      <div class="cta-card">
+        <h2>Building a financial product people should trust?</h2>
+        <p>I'm open to senior product and design leadership roles in fintech and AI, and to advising teams building financial products.</p>
+        <a class="btn primary" href="https://www.linkedin.com/in/rafekhan" target="_blank" rel="noopener">Message me on LinkedIn
+          <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year">2026</span> Rafay Khan · Riyadh</span>
+    <span>No cookies or tracking on this site.</span>
+    <a href="#top">Back to top</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  document.getElementById('year').textContent = new Date().getFullYear();
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasIO = 'IntersectionObserver' in window;
+
+  // mobile menu
+  var toggle = document.getElementById('menu-toggle');
+  var panel = document.getElementById('menu-panel');
+  var items = panel.querySelectorAll('li');
+  var step = Math.min(60, Math.floor(400 / items.length));
+  function setMenu(open) {
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    panel.setAttribute('aria-hidden', String(!open));
+    panel.classList.toggle('open', open);
+    items.forEach(function (li, i) { li.style.transitionDelay = open && !reduce ? (i * step) + 'ms' : '0ms'; });
+  }
+  toggle.addEventListener('click', function () { setMenu(toggle.getAttribute('aria-expanded') !== 'true'); });
+  panel.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+
+
+
+  // starfield: stars twinkle softly, sparkle near the pointer, and drift with scroll
+  (function () {
+    var cv = document.getElementById('space'); if (!cv || !cv.getContext) return;
+    var ctx = cv.getContext('2d'), stars = [], w = 0, h = 0, d = 1, star = '#ffffff', dark = true;
+    var mx = -9999, my = -9999, sy = window.scrollY, boost = 0;
+    function readColors() {
+      var cs = getComputedStyle(document.documentElement);
+      star = cs.getPropertyValue('--ink').trim();
+      dark = cs.colorScheme === 'dark' || cs.getPropertyValue('color-scheme').trim() === 'dark';
+    }
+    function build() {
+      var r = cv.getBoundingClientRect(); w = r.width; h = r.height; d = Math.min(window.devicePixelRatio || 1, 2);
+      cv.width = w * d; cv.height = h * d; ctx.setTransform(d, 0, 0, d, 0, 0);
+      var n = Math.round(w * h / 5200); stars = [];
+      for (var i = 0; i < n; i++) stars.push({ x: Math.random() * w, y: Math.random() * h, z: 0.2 + Math.random() * 0.8,
+        r: Math.random() < 0.08 ? 1.4 : 0.6 + Math.random() * 0.6, ph: Math.random() * 6.283, sp: 0.6 + Math.random() * 1.6, glow: 0 });
+    }
+    function draw(t) {
+      ctx.clearRect(0, 0, w, h);
+      var base = dark ? 0.55 : 0.28, off = sy;
+      for (var i = 0; i < stars.length; i++) {
+        var s = stars[i];
+        var y = ((s.y - off * s.z * 0.15) % h + h) % h;
+        var dx = s.x - mx, dy = y - my, near = Math.max(0, 1 - Math.sqrt(dx * dx + dy * dy) / 140);
+        s.glow = Math.max(near, s.glow * 0.94, Math.min(1, boost * s.z * (0.5 + 0.5 * Math.sin(s.ph))));
+        var tw = reduce ? 0.7 : 0.55 + 0.45 * Math.sin(t / 1000 * s.sp + s.ph);
+        var a = Math.min(1, base * s.z * tw + s.glow * 0.9), rad = s.r * (1 + s.glow * 1.2);
+        ctx.globalAlpha = a; ctx.fillStyle = star;
+        ctx.beginPath(); ctx.arc(s.x, y, rad, 0, 6.283); ctx.fill();
+        if (s.glow > 0.35) {
+          var L = rad * 2 + s.glow * 6; ctx.globalAlpha = a * 0.7; ctx.strokeStyle = star; ctx.lineWidth = 0.8;
+          ctx.beginPath(); ctx.moveTo(s.x - L, y); ctx.lineTo(s.x + L, y); ctx.moveTo(s.x, y - L); ctx.lineTo(s.x, y + L); ctx.stroke();
+        }
+      }
+      ctx.globalAlpha = 1;
+    }
+    readColors(); build(); draw(0);
+    window.addEventListener('resize', function () { build(); draw(performance.now()); });
+    if (window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () { readColors(); draw(performance.now()); });
+    new MutationObserver(function () { readColors(); draw(performance.now()); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    if (reduce) { window.addEventListener('scroll', function () { sy = window.scrollY; requestAnimationFrame(function () { draw(0); }); }, { passive: true }); return; }
+    window.addEventListener('pointermove', function (e) { mx = e.clientX; my = e.clientY; }, { passive: true });
+    document.addEventListener('pointerleave', function () { mx = my = -9999; });
+    var lastY = sy;
+    window.addEventListener('scroll', function () { sy = window.scrollY; }, { passive: true });
+    function frame(t) {
+      if (document.hidden) return;
+      var v = Math.abs(sy - lastY); lastY = sy; boost = Math.max(boost * 0.9, Math.min(1, v / 60));
+      draw(t); requestAnimationFrame(frame);
+    }
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) requestAnimationFrame(frame); });
+    requestAnimationFrame(frame);
+  })();
+
+  // hero market line: draws in, then ticks forward; static when motion is reduced
+  (function () {
+    var cv = document.getElementById('market'); if (!cv || !cv.getContext) return;
+    var ctx = cv.getContext('2d'), pts = [], N = 48, v = 40, seed = 7;
+    function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+    function next() { v += (rnd() - 0.44) * 12; v = Math.max(8, Math.min(92, v)); return v; }
+    for (var i = 0; i < N; i++) pts.push(next());
+    var colors = {};
+    function readColors() { var cs = getComputedStyle(document.documentElement); colors.line = cs.getPropertyValue('--accent').trim(); colors.grid = cs.getPropertyValue('--line').trim(); }
+    readColors();
+    if (window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () { readColors(); draw(); });
+    new MutationObserver(function () { readColors(); draw(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    var progress = reduce ? 1 : 0, shift = 0, w = 0, h = 0;
+    function size() { var r = cv.getBoundingClientRect(), d = window.devicePixelRatio || 1; w = r.width; h = r.height; cv.width = w * d; cv.height = h * d; ctx.setTransform(d, 0, 0, d, 0, 0); }
+    function draw() {
+      if (!w) return;
+      ctx.clearRect(0, 0, w, h);
+      ctx.strokeStyle = colors.grid; ctx.lineWidth = 1; ctx.setLineDash([2, 4]);
+      ctx.beginPath(); ctx.moveTo(0, h / 2); ctx.lineTo(w, h / 2); ctx.stroke(); ctx.setLineDash([]);
+      var step = w / (N - 2), count = Math.max(2, Math.floor((N - 1) * progress));
+      var xy = function (i) { return [(i - shift) * step, h - 4 - (pts[i] / 100) * (h - 8)]; };
+      ctx.beginPath();
+      for (var i = 0; i <= count; i++) { var p = xy(i); i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]); }
+      ctx.strokeStyle = colors.line; ctx.lineWidth = 2; ctx.lineJoin = 'round'; ctx.stroke();
+      ctx.lineTo(xy(count)[0], h); ctx.lineTo(xy(0)[0], h); ctx.closePath();
+      ctx.globalAlpha = 0.12; ctx.fillStyle = colors.line; ctx.fill(); ctx.globalAlpha = 1;
+      var e = xy(count); ctx.beginPath(); ctx.arc(e[0], e[1], 3, 0, Math.PI * 2); ctx.fillStyle = colors.line; ctx.fill();
+    }
+    size(); draw();
+    window.addEventListener('resize', function () { size(); draw(); });
+    if (reduce) return;
+    var visible = true, start = null, last = null;
+    if (hasIO) new IntersectionObserver(function (en) { visible = en[0].isIntersecting; if (visible) requestAnimationFrame(frame); }).observe(cv);
+    function frame(t) {
+      if (!visible || document.hidden) { last = null; return; }
+      if (start === null) start = t;
+      var dt = last === null ? 0 : t - last; last = t;
+      if (progress < 1) { var k = Math.min(1, (t - start) / 1600); progress = 1 - Math.pow(1 - k, 4); }
+      else { shift += dt / 1400; if (shift >= 1) { shift -= 1; pts.shift(); pts.push(next()); } }
+      draw(); requestAnimationFrame(frame);
+    }
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) requestAnimationFrame(frame); });
+    requestAnimationFrame(frame);
+  })();
+
+  // key figures count up once, the first time they come into view
+  (function () {
+    var els = document.querySelectorAll('.count'); if (reduce || !hasIO) return;
+    function fmt(el, x) { var d = +(el.dataset.dec || 0); return (el.dataset.pre || '') + x.toFixed(d) + (el.dataset.suf || ''); }
+    function run(el) {
+      var to = +el.dataset.to, t0 = null, end = el.dataset.end || el.textContent;
+      function tick(t) { if (t0 === null) t0 = t; var k = Math.min(1, (t - t0) / 1400), e = 1 - Math.pow(1 - k, 4);
+        el.textContent = k < 1 ? fmt(el, to * e) : end; if (k < 1) requestAnimationFrame(tick); }
+      requestAnimationFrame(tick);
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { run(en.target); io.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -10% 0px' });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+
+  if (!hasIO) return;
+
+  // section reveals: hold back only what starts below the viewport, reveal once
+  var revealIO = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) { en.target.classList.remove('pending'); revealIO.unobserve(en.target); }
+    });
+  }, { rootMargin: '0px 0px -10% 0px' });
+  document.querySelectorAll('.reveal').forEach(function (el) {
+    if (el.getBoundingClientRect().top > window.innerHeight) el.classList.add('pending');
+    revealIO.observe(el);
+  });
+
+  // tagline: words light up one at a time as they cross a line at 60% of the viewport
+  var tag = document.getElementById('tagline');
+  tag.querySelectorAll('.l').forEach(function (line) {
+    var words = line.textContent.trim().split(/\s+/);
+    line.textContent = '';
+    words.forEach(function (w) {
+      var s = document.createElement('span'); s.className = 'w'; s.textContent = w;
+      line.appendChild(s); line.appendChild(document.createTextNode(' '));
+    });
+  });
+  var words = tag.querySelectorAll('.w');
+  if (!reduce) {
+    tag.classList.add('armed');
+    var wordIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting || en.boundingClientRect.top < 0) { en.target.classList.add('on'); wordIO.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -40% 0px' });
+    words.forEach(function (w) { wordIO.observe(w); });
+  }
+
+  // current section in the nav
+  var links = document.querySelectorAll('.nav ul a, .panel a[href^="#"]');
+  var navIO = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting) return;
+      links.forEach(function (a) {
+        if (a.getAttribute('href') === '#' + en.target.id) a.setAttribute('aria-current', 'true');
+        else a.removeAttribute('aria-current');
+      });
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  ['about', 'approach', 'work', 'experience', 'faq'].forEach(function (id) { navIO.observe(document.getElementById(id)); });
+})();
+</script>
+</body>
+</html>
