@@ -12,7 +12,7 @@
 <meta property="og:image" content="https://rafkhan.com/rafay.jpg">
 <meta property="og:image:alt" content="Portrait of Rafay Khan">
 <meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23181818'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='700' font-size='28' fill='%235cd1b0' text-anchor='middle'%3ERK%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23181818'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='700' font-size='28' fill='%23d97757' text-anchor='middle'%3ERK%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
@@ -39,8 +39,8 @@
   --ink: #0a0a0a;
   --muted: #5c5c5c;
   --line: #e4e4e4;
-  --accent: #0b7a60;
-  --accent-soft: #e3f2ec;
+  --accent: #c15f3c;
+  --accent-soft: #fbece5;
   --h-from: #000000;
   --h-to: #666666;
   --font: "Geist", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
@@ -51,12 +51,12 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #181818; --surface: #1f1f1f; --raised: #272727; --ink: #f4f4f4; --muted: #a3a3a3; --line: #313131;
-    --accent: #5cd1b0; --accent-soft: #272727; --h-from: #ffffff; --h-to: #9b9b9b; color-scheme: dark;
+    --accent: #e5896a; --accent-soft: #272727; --h-from: #ffffff; --h-to: #9b9b9b; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #181818; --surface: #1f1f1f; --raised: #272727; --ink: #f4f4f4; --muted: #a3a3a3; --line: #313131;
-  --accent: #5cd1b0; --accent-soft: #272727; --h-from: #ffffff; --h-to: #9b9b9b; color-scheme: dark;
+  --accent: #e5896a; --accent-soft: #272727; --h-from: #ffffff; --h-to: #9b9b9b; color-scheme: dark;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 96px; }
@@ -547,11 +547,11 @@ footer a:hover { color: var(--ink); }
 
 
 
-  // starfield: stars twinkle softly, sparkle near the pointer, and drift with scroll
+  // starfield: fixed stars twinkle softly and sparkle near the pointer
   (function () {
     var cv = document.getElementById('space'); if (!cv || !cv.getContext) return;
     var ctx = cv.getContext('2d'), stars = [], w = 0, h = 0, d = 1, star = '#ffffff', dark = true;
-    var mx = -9999, my = -9999, sy = window.scrollY, boost = 0;
+    var mx = -9999, my = -9999;
     function readColors() {
       var cs = getComputedStyle(document.documentElement);
       star = cs.getPropertyValue('--ink').trim();
@@ -566,12 +566,12 @@ footer a:hover { color: var(--ink); }
     }
     function draw(t) {
       ctx.clearRect(0, 0, w, h);
-      var base = dark ? 0.55 : 0.28, off = sy;
+      var base = dark ? 0.55 : 0.28;
       for (var i = 0; i < stars.length; i++) {
         var s = stars[i];
-        var y = ((s.y - off * s.z * 0.15) % h + h) % h;
+        var y = s.y;
         var dx = s.x - mx, dy = y - my, near = Math.max(0, 1 - Math.sqrt(dx * dx + dy * dy) / 140);
-        s.glow = Math.max(near, s.glow * 0.94, Math.min(1, boost * s.z * (0.5 + 0.5 * Math.sin(s.ph))));
+        s.glow = Math.max(near, s.glow * 0.94);
         var tw = reduce ? 0.7 : 0.55 + 0.45 * Math.sin(t / 1000 * s.sp + s.ph);
         var a = Math.min(1, base * s.z * tw + s.glow * 0.9), rad = s.r * (1 + s.glow * 1.2);
         ctx.globalAlpha = a; ctx.fillStyle = star;
@@ -587,14 +587,11 @@ footer a:hover { color: var(--ink); }
     window.addEventListener('resize', function () { build(); draw(performance.now()); });
     if (window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () { readColors(); draw(performance.now()); });
     new MutationObserver(function () { readColors(); draw(performance.now()); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-    if (reduce) { window.addEventListener('scroll', function () { sy = window.scrollY; requestAnimationFrame(function () { draw(0); }); }, { passive: true }); return; }
+    if (reduce) return;
     window.addEventListener('pointermove', function (e) { mx = e.clientX; my = e.clientY; }, { passive: true });
     document.addEventListener('pointerleave', function () { mx = my = -9999; });
-    var lastY = sy;
-    window.addEventListener('scroll', function () { sy = window.scrollY; }, { passive: true });
     function frame(t) {
       if (document.hidden) return;
-      var v = Math.abs(sy - lastY); lastY = sy; boost = Math.max(boost * 0.9, Math.min(1, v / 60));
       draw(t); requestAnimationFrame(frame);
     }
     document.addEventListener('visibilitychange', function () { if (!document.hidden) requestAnimationFrame(frame); });
