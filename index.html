@@ -149,6 +149,12 @@ h1 .l { display: block; }
 #space { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
 main, footer { position: relative; z-index: 1; }
 
+
+/* smooth scrolling (Lenis) */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
 /* figures */
 .figures { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
 .figures li { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px; display: grid; gap: 8px; align-content: start; }
@@ -523,11 +529,25 @@ footer a:hover { color: var(--ink); }
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
 (function () {
   document.getElementById('year').textContent = new Date().getFullYear();
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var hasIO = 'IntersectionObserver' in window;
+
+  // smooth, weighted scrolling on desktop; native scrolling on touch and with reduced motion
+  var lenis = null;
+  if (!reduce && window.Lenis) {
+    lenis = new Lenis({ duration: 1.1, easing: function (t) { return 1 - Math.pow(1 - t, 4); }, smoothWheel: true });
+    (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(0);
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('a[href^="#"]'); if (!a || a.classList.contains('skip')) return;
+      var id = a.getAttribute('href'), el = id === '#top' ? 0 : document.querySelector(id);
+      if (el === null) return;
+      e.preventDefault(); lenis.scrollTo(el, { offset: -96 });
+    });
+  }
 
   // mobile menu
   var toggle = document.getElementById('menu-toggle');
@@ -539,6 +559,7 @@ footer a:hover { color: var(--ink); }
     toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     panel.setAttribute('aria-hidden', String(!open));
     panel.classList.toggle('open', open);
+    if (lenis) open ? lenis.stop() : lenis.start();
     items.forEach(function (li, i) { li.style.transitionDelay = open && !reduce ? (i * step) + 'ms' : '0ms'; });
   }
   toggle.addEventListener('click', function () { setMenu(toggle.getAttribute('aria-expanded') !== 'true'); });
