@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rafay Khan</title>
 <meta name="description" content="Rafay Khan is a product designer and product manager in Riyadh who designs and ships AI products for banking and capital markets.">
 <meta property="og:type" content="website">
@@ -15,7 +15,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23181818'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='700' font-size='28' fill='%2330d158' text-anchor='middle'%3ERK%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
 {"@type":"Person","name":"Rafay Khan","jobTitle":"Product designer and product manager","url":"https://rafkhan.com/","image":"https://rafkhan.com/rafay.jpg","address":{"@type":"PostalAddress","addressLocality":"Riyadh","addressCountry":"SA"},"alumniOf":"University of Nottingham","worksFor":"Bank Albilad","sameAs":["https://www.linkedin.com/in/rafekhan"],"knowsLanguage":["English","Arabic","Urdu"]},
@@ -31,192 +31,229 @@
 ]}]}
 </script>
 <style>
-/* Layout: classic hero plus sections (type A). Floating centered nav, two column hero with portrait, then proof, benefits, tagline reveal, process, case studies, experience, FAQ, final CTA. One typeface (Geist), Geist Mono only for figures. */
+/* Layout: drafting board portfolio. Grid paper ground, one framed 1200px column ruled into bands with corner ticks, serif display over a sans body, glossy black controls, image first work cards with pill tags. */
 :root {
-  --bg: #fafafa;
+  --bg: #fafaf9;
+  --paper-line: #efefed;
   --surface: #ffffff;
-  --raised: #f2f2f2;
-  --ink: #0a0a0a;
-  --muted: #5c5c5c;
-  --line: #e4e4e4;
+  --raised: #f2f2f0;
+  --ink: #111111;
+  --muted: #6b6b6b;
+  --line: #dcdcd8;
   --accent: #248a3d;
   --accent-soft: #e6f6ea;
-  --h-from: #000000;
-  --h-to: #666666;
+  --glow: rgba(48, 209, 88, 0.42);
+  --tint-a: #eef6ef; --tint-b: #f1ece1; --tint-c: #eaeef4; --tint-d: #f3eef2;
+  --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
   --font: "Geist", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
   --mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --maxw: 1088px;
+  --frame: 1200px;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #181818; --surface: #1f1f1f; --raised: #272727; --ink: #f4f4f4; --muted: #a3a3a3; --line: #313131;
-    --accent: #30d158; --accent-soft: #272727; --h-from: #ffffff; --h-to: #9b9b9b; color-scheme: dark;
+    --bg: #131313; --paper-line: #1c1c1c; --surface: #1f1f1f; --raised: #272727; --ink: #f4f4f4; --muted: #a3a3a3; --line: #313131;
+    --accent: #30d158; --accent-soft: #1d2a20; --glow: rgba(48, 209, 88, 0.22);
+    --tint-a: #1b231d; --tint-b: #24211b; --tint-c: #1c2027; --tint-d: #241e23; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #181818; --surface: #1f1f1f; --raised: #272727; --ink: #f4f4f4; --muted: #a3a3a3; --line: #313131;
-  --accent: #30d158; --accent-soft: #272727; --h-from: #ffffff; --h-to: #9b9b9b; color-scheme: dark;
+  --bg: #131313; --paper-line: #1c1c1c; --surface: #1f1f1f; --raised: #272727; --ink: #f4f4f4; --muted: #a3a3a3; --line: #313131;
+  --accent: #30d158; --accent-soft: #1d2a20; --glow: rgba(48, 209, 88, 0.22);
+  --tint-a: #1b231d; --tint-b: #24211b; --tint-c: #1c2027; --tint-d: #241e23; color-scheme: dark;
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 96px; }
-body { background: var(--bg); color: var(--ink); font: 400 16px/24px var(--font); -webkit-font-smoothing: antialiased; }
+html { scroll-padding-top: 64px; }
+body { background-color: var(--bg); background-image: linear-gradient(var(--paper-line) 1px, transparent 1px), linear-gradient(90deg, var(--paper-line) 1px, transparent 1px); background-size: 16px 16px;
+  color: var(--ink); font: 400 16px/24px var(--font); -webkit-font-smoothing: antialiased; }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
 h1, h2, h3 { text-wrap: balance; }
 p, li, dd { text-wrap: pretty; }
-a { color: var(--accent); text-underline-offset: 4px; transition: color 300ms var(--ease); }
+a { color: var(--accent); text-underline-offset: 4px; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
-.wrap { max-width: var(--maxw); margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
 .skip { position: absolute; left: 16px; top: 16px; z-index: 50; padding: 8px 12px; border-radius: 8px; background: var(--ink); color: var(--bg); font-weight: 600; transform: translateY(-200%); }
 .skip:focus { transform: none; }
 .ico { width: 16px; height: 16px; flex: none; }
-
-/* buttons */
-.btn { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 9999px; font: 600 16px/24px var(--font); text-decoration: none; border: 1px solid var(--line); color: var(--ink); background: var(--surface); cursor: pointer;
-  transition: transform 300ms var(--ease), background-color 300ms var(--ease), border-color 300ms var(--ease); }
-.btn:hover { transform: translateY(-2px); border-color: var(--muted); }
-.btn:active { transform: scale(0.98); }
-.btn.primary { background: var(--ink); border-color: var(--ink); color: var(--bg); }
-.btn.primary:hover { background: var(--accent); border-color: var(--accent); }
-.btn.sm { font-size: 14px; line-height: 20px; }
-.textlink { display: inline-flex; align-items: center; gap: 4px; font-weight: 600; color: var(--ink); text-decoration: none; padding: 8px 0; }
-.textlink:hover { color: var(--accent); }
-
-/* floating nav */
-.nav { position: fixed; z-index: 20; top: calc(env(safe-area-inset-top, 0px) + 16px); left: 50%; transform: translateX(-50%); width: max-content; max-width: calc(100% - 32px);
-  display: flex; align-items: center; gap: 24px; padding: 8px 8px 8px 16px; border-radius: 9999px; border: 1px solid var(--line);
-  background: color-mix(in srgb, var(--surface) 72%, transparent); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
-.logo { font: 600 14px/20px var(--font); color: var(--ink); text-decoration: none; white-space: nowrap; }
-.nav ul { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
-.nav ul a { display: block; padding: 4px 12px; border-radius: 9999px; color: var(--muted); text-decoration: none; font: 500 14px/20px var(--font); transition: color 300ms var(--ease), background-color 300ms var(--ease); }
-.nav ul a:hover { color: var(--ink); }
-.nav ul a[aria-current="true"] { color: var(--ink); background: var(--raised); }
-.toggle { display: none; width: 40px; height: 40px; border-radius: 9999px; border: 0; background: var(--raised); color: var(--ink); cursor: pointer; position: relative; }
-.toggle span { position: absolute; left: 12px; width: 16px; height: 2px; border-radius: 2px; background: currentColor; transition: transform 500ms var(--ease); }
-.toggle span:nth-child(1) { top: 15px; } .toggle span:nth-child(2) { top: 23px; }
-.toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(4px) rotate(45deg); }
-.toggle[aria-expanded="true"] span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
-.panel { position: fixed; inset: 0; z-index: 15; padding: calc(env(safe-area-inset-top, 0px) + 96px) max(24px, env(safe-area-inset-right, 0px)) 48px max(24px, env(safe-area-inset-left, 0px));
-  background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-  opacity: 0; pointer-events: none; transition: opacity 500ms var(--ease); }
-.panel.open { opacity: 1; pointer-events: auto; }
-.panel ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
-.panel li { opacity: 0; transform: translateY(24px); transition: opacity 500ms var(--ease), transform 500ms var(--ease); }
-.panel.open li { opacity: 1; transform: none; }
-.panel a { display: block; padding: 8px 0; font: 600 30px/36px var(--font); color: var(--ink); text-decoration: none; }
-.panel a[aria-current="true"] { color: var(--accent); }
-@media (max-width: 860px) { .nav ul, .nav .btn { display: none; } .toggle { display: block; } .nav { gap: 16px; } }
-
-/* hero */
-main { padding-top: 64px; }
-.hero .wrap { padding-block: 96px 64px; display: grid; grid-template-columns: minmax(0, 1fr) 288px; gap: 48px; align-items: center; }
-.hero-copy { display: grid; gap: 24px; min-width: 0; }
-.eyebrow { display: inline-flex; align-items: center; gap: 8px; font: 500 14px/20px var(--font); color: var(--muted); }
-.dot { width: 8px; height: 8px; border-radius: 9999px; background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
-h1 { margin: 0; max-width: 680px; font: 700 60px/1 var(--font); letter-spacing: -0.04em; padding-bottom: 4px;
-  background: linear-gradient(90deg, var(--h-from), var(--h-to)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-h1 .l { display: block; }
-.sub { margin: 0; max-width: 680px; font-size: 18px; line-height: 28px; color: var(--muted); }
-.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; }
-.proof { display: flex; align-items: center; gap: 12px; font-size: 14px; line-height: 20px; color: var(--muted); }
-.proof strong { font: 500 14px/20px var(--mono); color: var(--ink); padding: 4px 8px; border-radius: 8px; background: var(--raised); white-space: nowrap; }
-.portrait { width: 288px; max-width: 100%; aspect-ratio: 1; height: auto; border-radius: 24px; object-fit: cover; display: block; border: 1px solid var(--line); background: var(--raised); }
-@media (max-width: 860px) {
-  .hero .wrap { grid-template-columns: minmax(0, 1fr); padding-block: 64px 48px; gap: 32px; }
-  .portrait { width: 96px; flex: none; border-radius: 16px; }
-  h1 { font-size: 48px; }
-  h1 .l { display: inline; }
-}
-
-
-/* hero visual: portrait only */
-.visual { width: 288px; max-width: 100%; }
-@media (max-width: 860px) { .visual { width: auto; order: -1; } }
-
-/* live market line inside the lead figure card */
-.figures li.lead { grid-template-columns: minmax(0, 1fr); }
-.figures li.lead canvas { display: block; width: 100%; height: 64px; margin-top: 8px; }
-
-/* starfield: one fixed canvas behind all content */
 #space { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
-main, footer { position: relative; z-index: 1; }
-
-
-/* smooth scrolling (Lenis) */
+main, footer, .bar { position: relative; z-index: 1; }
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
-.lenis.lenis-stopped { overflow: hidden; }
 
-/* figures */
-.figures { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr)); gap: 16px; }
-.figures li { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px; display: grid; gap: 8px; align-content: start; }
-.fig { font: 500 36px/40px var(--mono); letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
-.fig small { font: 500 14px/20px var(--mono); letter-spacing: 0; color: var(--accent); margin-left: 4px; }
-.figures li > span:last-child { font-size: 14px; line-height: 20px; color: var(--muted); }
-@media (max-width: 860px) { .figures { grid-template-columns: repeat(2, minmax(0, 1fr)); } .figures li.lead { grid-column: 1 / -1; } .figures li { padding: 16px; } .fig { font-size: 30px; line-height: 36px; } }
+/* the framed column: every band is ruled full width, the column has side rules and corner ticks */
+.band { border-bottom: 1px solid var(--line); }
+.col { max-width: var(--frame); margin: 0 auto; border-left: 1px solid var(--line); border-right: 1px solid var(--line); position: relative; background: transparent; }
+.band > .col::before, .band > .col::after { content: ""; position: absolute; bottom: -5px; width: 8px; height: 8px; border: 1px solid var(--line); background: var(--bg); z-index: 2; }
+.band > .col::before { left: -5px; } .band > .col::after { right: -5px; }
+.pad { padding: 24px; }
+@media (max-width: 1232px) { .col { margin: 0 16px; } }
+@media (max-width: 480px) { .col { margin: 0 8px; } .pad { padding: 16px; } }
 
-/* sections */
-.section .wrap { padding-block: 96px; }
-@media (max-width: 860px) { .section .wrap { padding-block: 64px; } }
-.kicker { font: 500 14px/20px var(--font); color: var(--accent); margin: 0 0 12px; }
-h2 { margin: 0 0 16px; max-width: 680px; font: 700 36px/40px var(--font); letter-spacing: -0.03em; }
-.intro { margin: 0 0 48px; max-width: 680px; font-size: 18px; line-height: 28px; color: var(--muted); }
-@media (max-width: 860px) { h2 { font-size: 30px; line-height: 36px; } .intro { margin-bottom: 32px; } }
-.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-.grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-@media (max-width: 860px) { .grid2, .grid3 { grid-template-columns: minmax(0, 1fr); } }
-.card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
-.card h3 { margin: 0; font: 600 20px/28px var(--font); letter-spacing: -0.01em; }
-.card p { margin: 0; color: var(--muted); }
-.chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 4px 0 0; margin-top: auto; }
-.chips li { font: 500 12px/16px var(--font); padding: 4px 8px; border-radius: 8px; background: var(--raised); color: var(--ink); }
-.step { font: 500 14px/20px var(--mono); color: var(--accent); }
+/* glossy controls */
+.gloss { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 8px; font: 500 16px/24px var(--font); color: #ffffff; text-decoration: none; cursor: pointer;
+  background: linear-gradient(#3b3b3b, #0b0b0b); border: 1px solid #000000;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -1px 0 rgba(255,255,255,0.06), 0 2px 4px rgba(0,0,0,0.28), 0 8px 16px rgba(0,0,0,0.12);
+  transition: transform 300ms var(--ease), box-shadow 300ms var(--ease); }
+.gloss:hover { transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.32), 0 4px 8px rgba(0,0,0,0.3), 0 12px 24px rgba(0,0,0,0.16); }
+.gloss:active { transform: scale(0.98); }
+.gloss.sm { padding: 4px 12px; font-size: 14px; line-height: 20px; }
+.gloss .ico { width: 12px; height: 12px; opacity: 0.8; }
+.chipbtn { display: inline-flex; align-items: center; gap: 12px; padding: 8px 16px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-decoration: none; font: 500 16px/24px var(--font);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06); transition: transform 300ms var(--ease), border-color 300ms var(--ease); }
+.chipbtn:hover { transform: translateY(-2px); border-color: var(--muted); }
+.chipbtn .ico { color: var(--muted); }
+
+/* top bar */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.bar .col { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; padding: 8px 16px; }
+.seg { display: inline-flex; gap: 4px; padding: 2px; border-radius: 8px; border: 1px solid var(--line); background: var(--raised); justify-self: start; }
+.seg a { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 8px; font: 500 14px/20px var(--font); color: var(--muted); text-decoration: none; transition: color 300ms var(--ease); }
+.seg a:hover { color: var(--ink); }
+.seg a[aria-current="true"] { color: #ffffff; background: linear-gradient(#3b3b3b, #0b0b0b); box-shadow: 0 0 0 2px var(--accent), inset 0 1px 0 rgba(255,255,255,0.25); }
+.seg .ico { width: 12px; height: 12px; }
+.brand { font: 400 20px/28px var(--font); color: var(--ink); text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; }
+.bar .gloss { justify-self: end; }
+@media (max-width: 560px) { .brand { font-size: 16px; line-height: 24px; } .bar .col { gap: 8px; padding: 8px; } }
+
+/* hero */
+.hero { overflow: hidden; }
+.hero .col { min-height: 640px; display: flex; flex-direction: column; justify-content: flex-end; gap: 32px; padding: 24px 24px 24px; }
+.hero .col > .glow { position: absolute; inset: 0 0 auto 0; height: 360px; pointer-events: none; background: radial-gradient(ellipse 60% 100% at 50% 0%, var(--glow), transparent 70%); }
+.hello { margin: 0; max-width: 900px; font: 400 60px/1 var(--serif); letter-spacing: -0.02em; color: var(--ink); position: relative; }
+.hello img { display: inline-block; width: 56px; height: 56px; border-radius: 9999px; object-fit: cover; vertical-align: -6px; border: 2px solid var(--surface); box-shadow: 0 2px 8px rgba(0,0,0,0.2); transform: rotate(-6deg); transition: transform 500ms var(--ease); }
+.hello img:hover { transform: rotate(0deg) scale(1.1); }
+.hero .gloss { align-self: flex-start; position: relative; }
+@media (max-width: 860px) { .hero .col { min-height: 560px; } .hello { font-size: 48px; } .hello img { width: 44px; height: 44px; } }
+.cred { margin: 0; color: var(--muted); }
+.cred b { color: var(--ink); font-weight: 500; }
+
+/* work: two column masonry of framed cards */
+.masonry { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: start; }
+.stack { display: grid; gap: 16px; min-width: 0; }
+@media (max-width: 860px) { .masonry { grid-template-columns: minmax(0, 1fr); } }
+.wcard { border: 1px solid var(--line); border-radius: 24px; background: var(--surface); padding: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition: transform 500ms var(--ease), box-shadow 500ms var(--ease); min-width: 0; }
+.wcard:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(0,0,0,0.08); }
+.shot { position: relative; border-radius: 16px; overflow: hidden; display: grid; place-items: center; padding: 48px 24px 72px; }
+.shot.tall { min-height: 560px; } .shot.mid { min-height: 400px; } .shot.short { min-height: 320px; }
+.ta { background: var(--tint-a); } .tb { background: var(--tint-b); } .tc { background: var(--tint-c); } .td { background: var(--tint-d); }
+.tags { position: absolute; left: 12px; bottom: 12px; display: flex; flex-wrap: wrap; gap: 4px; }
+.tags span { font: 500 14px/20px var(--font); padding: 2px 8px; border-radius: 8px; background: #2b2b2b; color: #ffffff; border: 1px solid #000000; box-shadow: inset 0 1px 0 rgba(255,255,255,0.15); }
+.tags .t1 { background: #ffffff; color: #111111; border-color: var(--line); }
+.cap { padding: 16px 12px 8px; display: grid; gap: 8px; }
+.cap h3 { margin: 0; font: 400 30px/36px var(--serif); letter-spacing: -0.01em; }
+.cap p { margin: 0; color: var(--muted); }
+.cap details summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: var(--ink); padding-top: 4px; }
+.cap details summary::-webkit-details-marker { display: none; }
+.cap details summary .ico { transition: transform 500ms var(--ease); }
+.cap details[open] summary .ico { transform: rotate(45deg); }
+.cs { margin: 16px 0 0; display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 8px 16px; }
+.cs dt { font: 500 14px/24px var(--font); color: var(--muted); }
+.cs dd { margin: 0; }
+@media (max-width: 480px) { .cs { grid-template-columns: minmax(0, 1fr); gap: 0; } .cs dd { margin-bottom: 12px; } }
+.links { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 8px; }
+.links .chipbtn { font-size: 14px; line-height: 20px; padding: 4px 12px; gap: 8px; }
+
+/* mockups */
+.m-phone { width: 248px; max-width: 100%; border-radius: 40px; border: 8px solid #111111; background: #fafafa; color: #111111; padding: 24px 16px 16px; display: grid; gap: 12px; box-shadow: 0 32px 64px rgba(0,0,0,0.25); transform: rotate(-4deg); }
+.m-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 12px; line-height: 16px; color: #6b6b6b; }
+.m-big { font: 500 24px/32px var(--mono); letter-spacing: -0.02em; }
+.m-up { color: #248a3d; font: 500 12px/16px var(--mono); }
+.m-phone canvas { display: block; width: 100%; height: 96px; }
+.m-pills { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.m-pill { border-radius: 9999px; padding: 8px 12px; text-align: center; font: 600 12px/16px var(--font); background: #ececec; }
+.m-pill.go { background: #30d158; color: #0b2b14; }
+.m-doc { width: 280px; max-width: 100%; border-radius: 16px; background: #ffffff; color: #111111; border: 1px solid #e4e4e4; padding: 24px; display: grid; gap: 12px; position: relative; box-shadow: 0 24px 48px rgba(0,0,0,0.16); transform: rotate(3deg); }
+.m-line { height: 8px; border-radius: 4px; background: #ececec; } .m-line.s { width: 60%; } .m-line.m { width: 80%; }
+.m-ai { display: inline-flex; align-items: center; gap: 8px; justify-self: start; font: 600 12px/16px var(--font); color: #1b6e31; background: #e6f6ea; border-radius: 9999px; padding: 4px 8px; }
+.m-ai i { width: 8px; height: 8px; border-radius: 9999px; background: #30d158; animation: pulse 1600ms var(--ease) infinite; }
+.m-bar { height: 8px; border-radius: 4px; background: #ececec; overflow: hidden; }
+.m-bar span { display: block; height: 100%; width: 82%; background: #30d158; border-radius: 4px; transform-origin: left; animation: fill 2400ms var(--ease) infinite; }
+.m-stamp { position: absolute; right: -24px; top: -16px; font: 700 12px/16px var(--font); letter-spacing: 0.08em; text-transform: uppercase; color: #0b2b14; background: #30d158; padding: 8px 12px; border-radius: 9999px; transform: rotate(10deg); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+@keyframes fill { 0% { transform: scaleX(0); } 60%, 100% { transform: scaleX(1); } }
+.m-flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.m-node { border-radius: 16px; background: #ffffff; color: #111111; border: 1px solid #e4e4e4; padding: 16px; display: grid; gap: 4px; min-width: 96px; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+.m-node b { font: 600 14px/20px var(--font); } .m-node span { font-size: 12px; line-height: 16px; color: #6b6b6b; }
+.m-node.hub { background: #111111; color: #ffffff; border-color: #000000; } .m-node.hub span { color: #30d158; }
+.m-arrow { width: 32px; height: 2px; background: #cfcfcf; position: relative; overflow: hidden; }
+.m-arrow::after { content: ""; position: absolute; inset: 0; width: 12px; background: #30d158; animation: travel 1800ms var(--ease) infinite; }
+@keyframes travel { from { transform: translateX(-12px); } to { transform: translateX(32px); } }
+.m-bars { display: flex; align-items: flex-end; gap: 12px; height: 160px; }
+.m-bars div { width: 32px; border-radius: 8px 8px 4px 4px; background: #d6d1c4; }
+.m-bars div.a { background: #111111; }
+.m-legend { display: flex; gap: 16px; font-size: 12px; line-height: 16px; color: #6b6b6b; margin-top: 12px; justify-content: center; }
+.m-legend i { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 4px; background: #d6d1c4; } .m-legend i.a { background: #111111; }
+.m-hub { display: grid; grid-template-columns: repeat(3, auto); gap: 16px 24px; align-items: center; }
+.m-hub .hub { grid-column: 2; grid-row: 1 / 3; }
+@media (max-width: 480px) { .m-hub { gap: 8px; } .m-hub .m-node { min-width: 0; padding: 12px 8px; } .m-flow .m-arrow { display: none; } }
+
+/* clients grid */
+.label-row { color: var(--muted); }
+.logos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+.logos div { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 104px; font: 600 20px/28px var(--font); letter-spacing: -0.02em; color: var(--ink); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background-color 300ms var(--ease); }
+.logos div:hover { background: var(--surface); }
+.logos div:nth-child(3n) { border-right: 0; }
+.logos div:nth-last-child(-n+3) { border-bottom: 0; }
+.logos i { width: 16px; height: 16px; border-radius: 4px; background: var(--ink); display: inline-block; }
+.logos div:nth-child(2n) i { border-radius: 9999px; }
+.logos div:nth-child(3n) i { transform: rotate(45deg); border-radius: 2px; width: 12px; height: 12px; }
+@media (max-width: 640px) { .logos { grid-template-columns: repeat(2, minmax(0, 1fr)); } .logos div { font-size: 16px; line-height: 24px; min-height: 80px; }
+  .logos div:nth-child(3n) { border-right: 1px solid var(--line); } .logos div:nth-child(2n) { border-right: 0; } .logos div:nth-last-child(-n+3) { border-bottom: 1px solid var(--line); } .logos div:nth-last-child(-n+2) { border-bottom: 0; } }
+
+/* big serif section heads */
+.head { padding: 96px 24px; text-align: center; }
+.head.left { text-align: left; padding: 64px 24px 48px; }
+.head h2 { margin: 0 auto; max-width: 760px; font: 400 60px/1 var(--serif); letter-spacing: -0.02em; }
+.head.left h2 { margin: 0; }
+.head p { margin: 16px auto 0; max-width: 560px; color: var(--muted); font-size: 18px; line-height: 28px; }
+.head.left p { margin-left: 0; }
+@media (max-width: 860px) { .head { padding: 64px 16px; } .head h2 { font-size: 48px; } }
+
+/* services cells */
+.cells { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+.cell { padding: 32px 24px; display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 24px; align-items: start; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.cell:nth-child(2n) { border-right: 0; }
+.cell:nth-last-child(-n+2) { border-bottom: 0; }
+.cell svg { width: 96px; height: 96px; display: block; }
+.cell h3 { margin: 0 0 8px; font: 400 24px/32px var(--serif); }
+.cell p { margin: 0; color: var(--muted); }
+@media (max-width: 760px) { .cells { grid-template-columns: minmax(0, 1fr); } .cell { border-right: 0; } .cell:nth-last-child(-n+2) { border-bottom: 1px solid var(--line); } .cell:last-child { border-bottom: 0; } }
+@media (max-width: 480px) { .cell { grid-template-columns: minmax(0, 1fr); } .cell svg { width: 64px; height: 64px; } }
 
 /* tagline reveal */
-.tagline .wrap { padding-block: 96px; }
-.tagline p { margin: 0; max-width: 760px; font: 600 48px/1 var(--font); letter-spacing: -0.03em; }
+.tagline { padding: 96px 24px; text-align: center; }
+.tagline p { margin: 0 auto; max-width: 760px; font: 400 48px/1 var(--serif); letter-spacing: -0.02em; }
 .tagline .l { display: block; }
 .tagline .w { transition: opacity 500ms var(--ease); }
 .tagline.armed .w { opacity: 0.3; }
 .tagline.armed .w.on { opacity: 1; }
-@media (max-width: 860px) { .tagline p { font-size: 36px; line-height: 40px; } .tagline .l { display: inline; } }
+@media (max-width: 860px) { .tagline { padding: 64px 16px; } .tagline p { font-size: 36px; line-height: 40px; } .tagline .l { display: inline; } }
 
-/* case studies */
-.cases { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-@media (max-width: 860px) { .cases { grid-template-columns: minmax(0, 1fr); } }
-.case { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
-.case.feature { grid-column: 1 / -1; }
-.case-head { background: var(--raised); padding: 24px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px; }
-.case-head .org { font: 500 14px/20px var(--font); color: var(--muted); }
-.case-head .big { font: 500 36px/40px var(--mono); letter-spacing: -0.04em; color: var(--ink); font-variant-numeric: tabular-nums; }
-.case-head .big small { font: 500 14px/20px var(--font); letter-spacing: 0; color: var(--muted); margin-left: 8px; }
-.case-body { padding: 24px; display: flex; flex-direction: column; gap: 16px; flex: 1; }
-.case h3 { margin: 0; font: 600 20px/28px var(--font); letter-spacing: -0.01em; }
-.cs { margin: 0; display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 8px 16px; }
-.cs dt { font: 500 14px/24px var(--font); color: var(--muted); }
-.cs dd { margin: 0; }
-.case.feature .cs { grid-template-columns: 96px minmax(0, 680px); }
-@media (max-width: 480px) { .cs, .case.feature .cs { grid-template-columns: minmax(0, 1fr); gap: 0; } .cs dd { margin-bottom: 12px; } }
-.case .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
-.also-title { margin: 48px 0 16px; font: 600 20px/28px var(--font); letter-spacing: -0.01em; }
-.also { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-.also li { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
-.also .tag { align-self: flex-start; font: 500 12px/16px var(--font); color: var(--accent); background: var(--accent-soft); border-radius: 9999px; padding: 4px 8px; }
-.also h4 { margin: 0; font: 600 16px/24px var(--font); }
-.also p { margin: 0; font-size: 14px; line-height: 20px; color: var(--muted); }
-@media (max-width: 860px) { .also { grid-template-columns: minmax(0, 1fr); } .also-title { margin-top: 32px; } }
+/* curiosity strip: tilted cards that run past the frame */
+.strip { display: flex; gap: 24px; overflow-x: auto; padding: 32px 24px 40px; scroll-snap-type: x mandatory; scrollbar-width: none; border-top: 1px solid var(--line); }
+.strip::-webkit-scrollbar { display: none; }
+.pc { flex: 0 0 320px; scroll-snap-align: start; border: 1px solid var(--line); border-radius: 24px; background: var(--surface); padding: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); transition: transform 500ms var(--ease); }
+.pc:nth-child(odd) { transform: rotate(-2deg); } .pc:nth-child(even) { transform: rotate(2deg); }
+.pc:hover { transform: rotate(0deg) translateY(-8px); }
+.pc .face { border-radius: 16px; padding: 24px; min-height: 280px; display: flex; flex-direction: column; gap: 8px; }
+.pc .big { font: 500 48px/1 var(--mono); letter-spacing: -0.04em; margin-bottom: auto; }
+.pc h3 { margin: 0; font: 400 24px/32px var(--serif); }
+.pc p { margin: 0; font-size: 14px; line-height: 20px; color: var(--muted); }
+@media (max-width: 480px) { .pc { flex-basis: 256px; } }
 
-/* experience */
+/* story and faq inside the frame */
+.inner { padding: 48px 24px 64px; }
+@media (max-width: 480px) { .inner { padding: 32px 16px 48px; } }
 .timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
 .timeline > li { display: grid; grid-template-columns: 192px minmax(0, 1fr); gap: 24px; }
 @media (max-width: 640px) { .timeline > li { grid-template-columns: minmax(0, 1fr); gap: 8px; } }
-.when { font: 400 14px/20px var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 24px; }
+.when { font: 400 14px/20px var(--mono); color: var(--muted); padding-top: 24px; }
 @media (max-width: 640px) { .when { padding-top: 0; } }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.card h3 { margin: 0; font: 600 18px/28px var(--font); }
+.card p { margin: 0; color: var(--muted); }
 .timeline ul { margin: 0; padding-left: 16px; color: var(--muted); display: grid; gap: 4px; }
 .timeline .org { color: var(--muted); font-weight: 500; }
 .award { align-self: flex-start; font: 500 12px/16px var(--font); color: var(--accent); background: var(--accent-soft); border-radius: 9999px; padding: 4px 8px; }
-
-/* faq */
 .faq { display: grid; gap: 8px; max-width: 800px; }
 .faq details { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
 .faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 24px; font: 600 16px/24px var(--font); border-radius: 12px; }
@@ -225,26 +262,32 @@ h2 { margin: 0 0 16px; max-width: 680px; font: 700 36px/40px var(--font); letter
 .faq details[open] summary .ico { transform: rotate(45deg); }
 .faq details p { margin: 0; padding: 0 24px 16px; color: var(--muted); max-width: 680px; }
 
-/* final cta */
-.cta .wrap { padding-block: 96px; }
-.cta-card { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 64px 48px; display: grid; gap: 24px; justify-items: start; }
-.cta-card h2 { margin: 0; font-size: 48px; line-height: 1; }
-.cta-card p { margin: 0; max-width: 680px; font-size: 18px; line-height: 28px; color: var(--muted); }
-@media (max-width: 860px) { .cta-card { padding: 40px 24px; } .cta-card h2 { font-size: 36px; line-height: 40px; } }
+/* contact split */
+.split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.split > div { padding: 32px 24px; display: grid; gap: 24px; align-content: start; }
+.split > div:first-child { border-right: 1px solid var(--line); }
+.split .lbl { color: var(--muted); }
+.socials { display: flex; gap: 8px; }
+.socials a { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,0.06); transition: transform 300ms var(--ease); }
+.socials a:hover { transform: translateY(-2px); }
+.socials svg { width: 20px; height: 20px; }
+@media (max-width: 640px) { .split { grid-template-columns: minmax(0, 1fr); } .split > div:first-child { border-right: 0; border-bottom: 1px solid var(--line); } }
 
-footer .wrap { padding-block: 32px 48px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; color: var(--muted); font-size: 14px; line-height: 20px; }
-footer a { color: var(--muted); text-decoration: none; }
-footer a:hover { color: var(--ink); }
+/* candlestick skyline footer */
+.candles { display: block; width: 100%; height: 120px; }
+.candles line { stroke: var(--muted); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.candles .up rect { fill: var(--accent); } .candles .dn rect { fill: var(--line); } .candles .dn line { stroke: var(--line); }
+.candles g { transform-box: fill-box; transform-origin: bottom; animation: bob 4s var(--ease) infinite alternate; animation-delay: var(--d); }
+@keyframes bob { from { transform: scaleY(1); } to { transform: scaleY(0.92); } }
+.fine .col { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding: 16px 24px; color: var(--muted); font-size: 14px; line-height: 20px; }
+.fine a { color: var(--muted); text-decoration: none; } .fine a:hover { color: var(--ink); }
 
-/* scroll reveal: only sections still below the fold are held back */
 .reveal.pending { opacity: 0; transform: translateY(32px); }
 .reveal { transition: opacity 700ms var(--ease), transform 700ms var(--ease); }
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
   .reveal.pending { transform: none; }
-  .btn:hover, .btn:active { transform: none; }
-  .panel li { transform: none; }
-  .toggle span { transition: none; }
+  .m-ai i, .m-bar span, .m-arrow::after, .candles g { animation: none; }
+  .gloss:hover, .chipbtn:hover, .wcard:hover, .pc:hover { transform: none; }
 }
 </style>
 </head>
@@ -253,194 +296,163 @@ footer a:hover { color: var(--ink); }
 <a class="skip" href="#main">Skip to content</a>
 <canvas id="space" aria-hidden="true"></canvas>
 
-<header class="nav" aria-label="Site">
-  <a class="logo" href="#top">Rafay Khan</a>
-  <nav aria-label="Main">
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#approach">Approach</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#faq">FAQ</a></li>
-    </ul>
-  </nav>
-  <a class="btn primary sm" href="https://www.linkedin.com/in/rafekhan" target="_blank" rel="noopener">Message me</a>
-  <button class="toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-panel" aria-label="Open menu"><span></span><span></span></button>
+<header class="bar band">
+  <div class="col">
+    <nav class="seg" aria-label="Main"><a href="#work"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M104,40H56A16,16,0,0,0,40,56v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,104,40Zm0,64H56V56h48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm0,64H152V56h48Zm-96,32H56a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,104,136Zm0,64H56V152h48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,200,136Zm0,64H152V152h48Z"/></svg>Work</a><a href="#story"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M208,24H72A32,32,0,0,0,40,56V224a8,8,0,0,0,8,8H192a8,8,0,0,0,0-16H56a16,16,0,0,1,16-16H208a8,8,0,0,0,8-8V32A8,8,0,0,0,208,24Zm-8,160H72a31.82,31.82,0,0,0-16,4.29V56A16,16,0,0,1,72,40H200Z"/></svg>Story</a></nav>
+    <a class="brand" href="#top">Rafay Khan</a>
+    <a class="gloss sm" href="https://www.linkedin.com/in/rafekhan" target="_blank" rel="noopener">Let's chat</a>
+  </div>
 </header>
 
-<div class="panel" id="menu-panel" aria-hidden="true">
-  <ul>
-    <li><a href="#about">About</a></li>
-    <li><a href="#approach">Approach</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="https://www.linkedin.com/in/rafekhan" target="_blank" rel="noopener">Message me on LinkedIn</a></li>
-  </ul>
-</div>
-
 <main id="main">
-  <section class="hero" id="top">
-    <div class="wrap">
-      <div class="hero-copy">
-        <span class="eyebrow"><span class="dot" aria-hidden="true"></span>Product design and AI for banking · Riyadh</span>
-        <h1><span class="l">I design AI products </span><span class="l">that people trust </span><span class="l">with their money.</span></h1>
-        <p class="sub">I'm a product designer and product manager for banking and capital markets. For six years I've taken products from the first customer conversation to production, from a national trading platform to AI credit underwriting.</p>
-        <div class="actions">
-          <a class="btn primary" href="https://www.linkedin.com/in/rafekhan" target="_blank" rel="noopener">Message me on LinkedIn
-            <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a>
-          <a class="textlink" href="#work">See the case studies</a>
+  <section class="hero band" id="top">
+    <div class="col">
+      <div class="glow" aria-hidden="true"></div>
+      <h1 class="hello">Hey! I'm Rafay Khan <img src="rafay.jpg" alt="Portrait of Rafay Khan" width="400" height="400">, a product designer and manager who builds AI financial products people trust with their money</h1>
+      <a class="gloss" href="https://www.linkedin.com/in/rafekhan" target="_blank" rel="noopener">Start a conversation <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,128a8,8,0,0,1-3.8,6.8l-112,72A8,8,0,0,1,72,200V56a8,8,0,0,1,12.2-6.8l112,72A8,8,0,0,1,200,128Z"/></svg></a>
+    </div>
+  </section>
+
+  <section class="band" aria-label="Background">
+    <div class="col pad"><p class="cred"><b>6 years</b> building banking and trading products in Riyadh. Corporate lending, capital markets and applied AI, across <b>SAR 60B</b> in yearly trades and <b>50+</b> shipped features.</p></div>
+  </section>
+
+  <section class="band reveal" id="work">
+    <div class="col pad">
+      <div class="masonry">
+        <div class="stack">
+          <article class="wcard">
+            <div class="shot ta tall">
+              <div class="m-phone" aria-hidden="true">
+                <div class="m-row"><span>Portfolio</span><span class="m-up">+10%</span></div>
+                <div class="m-big">SAR 60B</div>
+                <canvas id="market"></canvas>
+                <div class="m-row"><span>Watchlist</span><span>4 alerts</span></div>
+                <div class="m-pills"><span class="m-pill">Sell</span><span class="m-pill go">Buy</span></div>
+              </div>
+              <div class="tags"><span class="t1">ANB Capital</span><span>Product design</span><span>Mobile and web</span></div>
+            </div>
+            <div class="cap">
+              <h3>Redesigning a retail brokerage around the investor</h3>
+              <p>Internet trade value grew 10% to SAR 60B ($16B) a year, and service times fell from hours to minutes.</p>
+              <details><summary>Read the case study <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg></summary><dl class="cs"><dt>Challenge</dt><dd>A retail trading platform whose onboarding, order entry and portfolio views had grown piece by piece, with service requests that took hours.</dd><dt>What I did</dt><dd>Mapped the full investor journey and redesigned it end to end as product and UX lead. I added analytics and insights features and used A/B tests and behavior data to steer each iteration.</dd><dt>Outcome</dt><dd>Internet trade value grew 10% to SAR 60B ($16B) a year, and service times fell from hours to minutes.</dd></dl></details>
+              <div class="links">
+                <a class="chipbtn" href="https://n.anbcapital.com.sa/neo/web/" target="_blank" rel="noopener">Web platform <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a>
+                <a class="chipbtn" href="https://apps.apple.com/sa/app/anb-capital/id6473738840?platform=iphone" target="_blank" rel="noopener">App Store <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a>
+                <a class="chipbtn" href="https://play.google.com/store/apps/details?id=com.directfn.mobile.anb_prod&amp;hl=en" target="_blank" rel="noopener">Google Play <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a>
+              </div>
+            </div>
+          </article>
+          <article class="wcard">
+            <div class="shot tb short">
+              <div aria-hidden="true">
+                <div class="m-bars"><div style="height:144px"></div><div class="a" style="height:108px"></div><div style="height:120px"></div><div class="a" style="height:90px"></div><div style="height:136px"></div><div class="a" style="height:102px"></div></div>
+                <div class="m-legend"><span><i></i>Before</span><span><i class="a"></i>After</span></div>
+              </div>
+              <div class="tags"><span class="t1">Bank Albilad</span><span>Service design</span><span>Trade finance</span></div>
+            </div>
+            <div class="cap">
+              <h3>Digital trade finance journeys</h3>
+              <p>Customer wait times down 25%, with a carbon footprint cut in half.</p>
+              <details><summary>Read the case study <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg></summary><dl class="cs"><dt>Challenge</dt><dd>Documentary trade finance ran on paper and long queues.</dd><dt>What I did</dt><dd>Designed digital channel features around the corporate customer's journey, driven by usage data.</dd><dt>Outcome</dt><dd>Wait times down 25%, one full time role of manual work removed, and a carbon footprint cut in half.</dd></dl></details>
+            </div>
+          </article>
         </div>
-        <p class="proof"><strong>SAR 60B</strong> Yearly trades on the ANB Capital platform I redesigned</p>
-      </div>
-      <div class="visual">
-        <img class="portrait" src="rafay.jpg" alt="Portrait of Rafay Khan" width="400" height="400">
+        <div class="stack">
+          <article class="wcard">
+            <div class="shot tc mid">
+              <div class="m-doc" aria-hidden="true">
+                <span class="m-stamp">Approved</span>
+                <span class="m-ai"><i></i>AI underwriting</span>
+                <div class="m-line m"></div><div class="m-line"></div><div class="m-line s"></div>
+                <div class="m-row"><span>Credit score</span><span class="m-up">82</span></div>
+                <div class="m-bar"><span></span></div>
+                <div class="m-line"></div><div class="m-line m"></div>
+              </div>
+              <div class="tags"><span class="t1">Bank Albilad</span><span>Applied AI</span><span>Lending</span></div>
+            </div>
+            <div class="cap">
+              <h3>AI loan origination</h3>
+              <p>Intelligent underwriting with automated proposals and documents, for faster turnaround.</p>
+              <details><summary>Read the case study <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg></summary><dl class="cs"><dt>Challenge</dt><dd>Enterprise loan proposals were slow to assemble and hard to keep consistent.</dd><dt>What I did</dt><dd>Own the vision and roadmap for intelligent credit underwriting with automated proposal and document generation, aligning credit, regulatory and technology teams.</dd><dt>Outcome</dt><dd>Higher customer satisfaction and faster turnaround across enterprise lending.</dd></dl></details>
+            </div>
+          </article>
+          <article class="wcard">
+            <div class="shot td short">
+              <div class="m-flow" aria-hidden="true">
+                <div class="m-node"><b>Supplier</b><span>invoice</span></div><div class="m-arrow"></div>
+                <div class="m-node hub"><b>Bank</b><span>finances</span></div><div class="m-arrow"></div>
+                <div class="m-node"><b>Buyer</b><span>pays later</span></div>
+              </div>
+              <div class="tags"><span class="t1">Bank Albilad</span><span>Zero to one</span><span>Embedded finance</span></div>
+            </div>
+            <div class="cap">
+              <h3>First to market supply chain financing</h3>
+              <p>Launched first to market, targeting more than US$1B in financing.</p>
+              <details><summary>Read the case study <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg></summary><dl class="cs"><dt>Challenge</dt><dd>Corporate clients and their suppliers had no digital way to finance invoices with the bank.</dd><dt>What I did</dt><dd>Built the product and go to market plan from zero, inside a 40 project corporate innovation portfolio.</dd><dt>Outcome</dt><dd>Launched first to market, targeting more than US$1B in financing.</dd></dl></details>
+            </div>
+          </article>
+          <article class="wcard">
+            <div class="shot ta short">
+              <div class="m-hub" aria-hidden="true">
+                <div class="m-node" style="grid-column:1;grid-row:1"><b>SNB</b></div><div class="m-node hub"><b>Clearing</b><span>post trade</span></div><div class="m-node" style="grid-column:3;grid-row:1"><b>Riyad Bank</b></div>
+                <div class="m-node" style="grid-column:1;grid-row:2"><b>BSF</b></div><div class="m-node" style="grid-column:3;grid-row:2"><b>Bank Albilad</b></div>
+              </div>
+              <div class="tags"><span class="t1">DirectFN</span><span>Platform</span><span>Capital markets</span></div>
+            </div>
+            <div class="cap">
+              <h3>Post trade settlement and clearing</h3>
+              <p>One clearing and settlement product line, live at four major banks.</p>
+              <details><summary>Read the case study <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg></summary><dl class="cs"><dt>Challenge</dt><dd>Large banks needed one clearing and settlement product line for capital markets.</dd><dt>What I did</dt><dd>Led the product line from requirements to rollout.</dd><dt>Outcome</dt><dd>Live at SNB, Riyad Bank, BSF and Bank Albilad.</dd></dl></details>
+            </div>
+          </article>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section-tight" aria-label="Key results">
-    <div class="wrap">
-      <ul class="figures">
-        <li class="lead"><span class="fig"><span class="count" data-to="16" data-pre="$" data-suf="B">$16B</span><small>+10%</small></span><canvas id="market" aria-hidden="true"></canvas><span>yearly trades after the brokerage redesign</span></li>
-        <li><span class="fig"><span class="count" data-to="1" data-dec="1" data-pre="US$" data-suf="B" data-end="US$1B+">US$1B+</span></span><span>financing target for a first to market supply chain platform</span></li>
-        <li><span class="fig"><span class="count" data-to="50" data-suf="+">50+</span></span><span>features and releases shipped at Bank Albilad</span></li>
-        <li><span class="fig"><span class="count" data-to="4">4</span></span><span>major banks running the post trade product I delivered</span></li>
-      </ul>
+  <section class="band" aria-label="Banks and firms I've built for">
+    <div class="col">
+      <div class="pad label-row">Banks and firms I've built for:</div>
+      <div class="logos"><div><i aria-hidden="true"></i>Bank Albilad</div><div><i aria-hidden="true"></i>ANB Capital</div><div><i aria-hidden="true"></i>DirectFN</div><div><i aria-hidden="true"></i>SNB</div><div><i aria-hidden="true"></i>Riyad Bank</div><div><i aria-hidden="true"></i>BSF</div></div>
     </div>
   </section>
 
-  <section class="section reveal" id="about">
-    <div class="wrap">
-      <p class="kicker">About</p>
-      <h2>Design thinking and product management, built for regulated finance</h2>
-      <p class="intro">Financial products fail when they're built only for the regulator or only for delight. I start from how customers and bankers actually behave, frame the problem around a metric the business cares about, and prototype until the answer works for compliance, credit risk and engineering without losing the customer.</p>
-      <div class="grid2">
-        <article class="card">
-          <h3>Design thinking</h3>
-          <p><strong>Decisions grounded in real behavior.</strong> Customer research, journey maps, wireframes and prototypes, tested with A/B experiments and usage data.</p>
-          <ul class="chips"><li>User journeys</li><li>Prototyping</li><li>Usability</li><li>A/B testing</li></ul>
-        </article>
-        <article class="card">
-          <h3>Product management</h3>
-          <p><strong>Roadmaps tied to outcomes.</strong> Vision, roadmaps and backlogs linked to north star metrics and OKRs, delivered with agile teams.</p>
-          <ul class="chips"><li>Discovery</li><li>OKRs</li><li>Story mapping</li><li>Product led growth</li></ul>
-        </article>
-        <article class="card">
-          <h3>Applied AI</h3>
-          <p><strong>Models that ship as products.</strong> GenAI and machine learning in credit underwriting, document generation, robo advice and portfolio analytics.</p>
-          <ul class="chips"><li>GenAI</li><li>Classification</li><li>Predictive analytics</li><li>AI strategy</li></ul>
-        </article>
-        <article class="card">
-          <h3>Fintech and banking</h3>
-          <p><strong>Domain depth across the bank.</strong> Corporate lending, trade finance and capital markets, backed by FMVA® and SPMC™ certifications.</p>
-          <ul class="chips"><li>Brokerage</li><li>SME lending</li><li>Trade finance</li><li>Post trade</li></ul>
-        </article>
+  <section class="band reveal" id="services">
+    <div class="col">
+      <div class="head"><h2>Everything a financial product needs to be trusted</h2><p>I work across the whole product, from the first customer interview to the release that ships.</p></div>
+      <div class="cells">
+        <article class="cell"><svg viewBox="0 0 96 96" aria-hidden="true"><rect x="8" y="8" width="80" height="80" rx="24" fill="var(--tint-a)"/><circle cx="48" cy="48" r="24" fill="none" stroke="var(--line)" stroke-width="2"/><circle cx="48" cy="48" r="12" fill="none" stroke="var(--muted)" stroke-width="2"/><circle cx="48" cy="48" r="4" fill="var(--accent)"/></svg><div><h3>Product strategy</h3><p>Vision, roadmaps and backlogs tied to one north star metric, agreed early with risk, compliance and engineering.</p></div></article>
+        <article class="cell"><svg viewBox="0 0 96 96" aria-hidden="true"><rect x="8" y="8" width="80" height="80" rx="24" fill="var(--tint-b)"/><rect x="24" y="28" width="48" height="40" rx="8" fill="var(--surface)" stroke="var(--line)" stroke-width="2"/><rect x="30" y="36" width="20" height="4" rx="2" fill="var(--muted)"/><rect x="30" y="46" width="36" height="4" rx="2" fill="var(--line)"/><rect x="30" y="56" width="16" height="6" rx="3" fill="var(--accent)"/></svg><div><h3>Product design</h3><p>Research, journey maps, wireframes and prototypes, tested with real users and A/B experiments before anything ships.</p></div></article>
+        <article class="cell"><svg viewBox="0 0 96 96" aria-hidden="true"><rect x="8" y="8" width="80" height="80" rx="24" fill="var(--tint-c)"/><g stroke="var(--line)" stroke-width="2"><line x1="28" y1="32" x2="48" y2="48"/><line x1="28" y1="64" x2="48" y2="48"/><line x1="48" y1="48" x2="68" y2="32"/><line x1="48" y1="48" x2="68" y2="64"/></g><circle cx="28" cy="32" r="6" fill="var(--muted)"/><circle cx="28" cy="64" r="6" fill="var(--muted)"/><circle cx="68" cy="32" r="6" fill="var(--muted)"/><circle cx="68" cy="64" r="6" fill="var(--muted)"/><circle cx="48" cy="48" r="8" fill="var(--accent)"/></svg><div><h3>Applied AI</h3><p>GenAI and machine learning turned into products: credit underwriting, document generation, robo advice and analytics.</p></div></article>
+        <article class="cell"><svg viewBox="0 0 96 96" aria-hidden="true"><rect x="8" y="8" width="80" height="80" rx="24" fill="var(--tint-d)"/><rect x="24" y="56" width="10" height="16" rx="3" fill="var(--line)"/><rect x="40" y="44" width="10" height="28" rx="3" fill="var(--muted)"/><rect x="56" y="32" width="10" height="40" rx="3" fill="var(--accent)"/><path d="M24 36 L44 28 L60 22" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/></svg><div><h3>Delivery</h3><p>Agile teams, clear KPIs and steady releases. 50+ features shipped across lending, AI and regulatory work.</p></div></article>
       </div>
     </div>
   </section>
 
-  <section class="tagline" id="tagline" aria-label="Tagline">
-    <div class="wrap">
+  <section class="band" aria-label="Tagline">
+    <div class="col tagline" id="tagline">
       <p><span class="l">Good financial products feel simple to customers, </span><span class="l">clear to regulators, </span><span class="l">and obvious in the numbers.</span></p>
     </div>
   </section>
 
-  <section class="section reveal" id="approach">
-    <div class="wrap">
-      <p class="kicker">How I work</p>
-      <h2>From a customer's problem to a product in production</h2>
-      <p class="intro">The same three steps sit behind every case study on this page.</p>
-      <div class="grid3">
-        <article class="card"><span class="step">01</span><h3>Understand and frame</h3><p>Sit with customers, relationship managers and operations. Map the journey as it really runs today, then agree one north star metric and the guardrails with risk and compliance.</p></article>
-        <article class="card"><span class="step">02</span><h3>Prototype and test</h3><p>Wireframe and prototype fast, test with real users, and let A/B tests and behavior data decide what ships.</p></article>
-        <article class="card"><span class="step">03</span><h3>Ship and measure</h3><p>Deliver in agile increments, track the KPIs we committed to, and keep improving after launch.</p></article>
+  <section class="band reveal" id="curiosity">
+    <div class="col">
+      <div class="head left"><h2>Sharpening my edge through curiosity</h2></div>
+      <div class="strip">
+        <article class="pc"><div class="face ta"><span class="big">MEng</span><h3>AI for cancer diagnostics</h3><p>First Class Honours at Nottingham, with a thesis on AI based spectroscopic analysis.</p></div></article>
+        <article class="pc"><div class="face tb"><span class="big">CFA</span><h3>Quant analytics</h3><p>Built buy side portfolio attribution in line with CFA standards, turning annual reviews into an instant report.</p></div></article>
+        <article class="pc"><div class="face tc"><span class="big">Robo</span><h3>Robo advisory</h3><p>AI assisted advisory and digital savings platforms for top tier banks.</p></div></article>
+        <article class="pc"><div class="face td"><span class="big">FMVA</span><h3>Certifications</h3><p>FMVA®, SPMC™ and Bloomberg Market Concepts.</p></div></article>
+        <article class="pc"><div class="face ta"><span class="big">3</span><h3>Languages</h3><p>English, Arabic and Urdu, for teams and customers across the region.</p></div></article>
       </div>
     </div>
   </section>
 
-  <section class="section reveal" id="work">
-    <div class="wrap">
-      <p class="kicker">Selected work</p>
-      <h2>Case studies</h2>
-      <p class="intro">Each one pairs the problem with what I did and the result it produced.</p>
-      <div class="cases">
-        <article class="case feature">
-          <div class="case-head"><span class="org">ANB Capital · 2022 to 2023</span><span class="big">SAR 60B<small>yearly trades, up 10%</small></span></div>
-          <div class="case-body">
-            <h3>Redesigning a retail brokerage around the investor</h3>
-            <dl class="cs">
-              <dt>Challenge</dt><dd>A retail trading platform whose onboarding, order entry and portfolio views had grown piece by piece, with service requests that took hours.</dd>
-              <dt>What I did</dt><dd>Mapped the full investor journey and redesigned it end to end as product and UX lead. I added analytics and insights features and used A/B tests and behavior data to steer each iteration.</dd>
-              <dt>Outcome</dt><dd>Internet trade value grew 10% to SAR 60B ($16B) a year, and service times fell from hours to minutes.</dd>
-            </dl>
-            <div class="links">
-              <a class="btn sm" href="https://n.anbcapital.com.sa/neo/web/" target="_blank" rel="noopener">Web platform <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a>
-              <a class="btn sm" href="https://apps.apple.com/sa/app/anb-capital/id6473738840?platform=iphone" target="_blank" rel="noopener">App Store <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a>
-              <a class="btn sm" href="https://play.google.com/store/apps/details?id=com.directfn.mobile.anb_prod&amp;hl=en" target="_blank" rel="noopener">Google Play <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a>
-            </div>
-          </div>
-        </article>
-        <article class="case">
-          <div class="case-head"><span class="org">Bank Albilad · 2023 to now</span><span class="big">GenAI<small>underwriting</small></span></div>
-          <div class="case-body">
-            <h3>AI loan origination</h3>
-            <dl class="cs">
-              <dt>Challenge</dt><dd>Enterprise loan proposals were slow to assemble and hard to keep consistent.</dd>
-              <dt>What I did</dt><dd>Own the vision and roadmap for intelligent credit underwriting with automated proposal and document generation, aligning credit, regulatory and technology teams.</dd>
-              <dt>Outcome</dt><dd>Higher customer satisfaction and faster turnaround across enterprise lending.</dd>
-            </dl>
-          </div>
-        </article>
-        <article class="case">
-          <div class="case-head"><span class="org">Bank Albilad · 2023 to now</span><span class="big">US$1B+<small>target</small></span></div>
-          <div class="case-body">
-            <h3>First to market supply chain financing</h3>
-            <dl class="cs">
-              <dt>Challenge</dt><dd>Corporate clients and their suppliers had no digital way to finance invoices with the bank.</dd>
-              <dt>What I did</dt><dd>Built the product and go to market plan from zero, inside a 40 project corporate innovation portfolio.</dd>
-              <dt>Outcome</dt><dd>Launched first to market, targeting more than US$1B in financing.</dd>
-            </dl>
-          </div>
-        </article>
-        <article class="case">
-          <div class="case-head"><span class="org">Bank Albilad</span><span class="big">25%<small>shorter waits</small></span></div>
-          <div class="case-body">
-            <h3>Digital trade finance journeys</h3>
-            <dl class="cs">
-              <dt>Challenge</dt><dd>Documentary trade finance ran on paper and long queues.</dd>
-              <dt>What I did</dt><dd>Designed digital channel features around the corporate customer's journey, driven by usage data.</dd>
-              <dt>Outcome</dt><dd>Wait times down 25%, one full time role of manual work removed, and a carbon footprint cut in half.</dd>
-            </dl>
-          </div>
-        </article>
-        <article class="case">
-          <div class="case-head"><span class="org">DirectFN · 2020 to 2023</span><span class="big">4 banks<small>live</small></span></div>
-          <div class="case-body">
-            <h3>Post trade settlement and clearing</h3>
-            <dl class="cs">
-              <dt>Challenge</dt><dd>Large banks needed one clearing and settlement product line for capital markets.</dd>
-              <dt>What I did</dt><dd>Led the product line from requirements to rollout.</dd>
-              <dt>Outcome</dt><dd>Live at SNB, Riyad Bank, BSF and Bank Albilad.</dd>
-            </dl>
-          </div>
-        </article>
-      </div>
-      <h3 class="also-title">Also shipped</h3>
-      <ul class="also">
-        <li><span class="tag">DirectFN · AI</span><h4>Robo advisory and digital savings</h4><p>AI assisted advisory and savings platforms built for top tier banks.</p></li>
-        <li><span class="tag">DirectFN · Analytics</span><h4>Portfolio attribution analytics</h4><p>Buy side attribution in line with CFA standards, turning annual reviews into an instant automated report.</p></li>
-        <li><span class="tag">DirectFN · Automation</span><h4>Automated margin lending</h4><p>A fully automated margin lending flow that removed manual processing.</p></li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="section reveal" id="experience">
-    <div class="wrap">
-      <p class="kicker">Experience</p>
-      <h2>Where I've worked and studied</h2>
-      <p class="intro">Six years across a Saudi bank, a capital markets technology firm and one of the Kingdom's brokerages.</p>
-      <ol class="timeline">
+  <section class="band reveal" id="story">
+    <div class="col">
+      <div class="head left"><h2>Story</h2><p>Six years across a Saudi bank, a capital markets technology firm and one of the Kingdom's brokerages.</p></div>
+      <div class="inner" style="padding-top:0"><ol class="timeline">
         <li>
           <div class="when">Jul 2023 to now</div>
           <article class="card">
@@ -480,16 +492,14 @@ footer a:hover { color: var(--ink); }
             <p>Specialised in artificial intelligence, with a thesis on AI based spectroscopic analysis for cancer diagnostics.</p>
           </article>
         </li>
-      </ol>
+      </ol></div>
     </div>
   </section>
 
-  <section class="section reveal" id="faq">
-    <div class="wrap">
-      <p class="kicker">FAQ</p>
-      <h2>Questions people ask me</h2>
-      <p class="intro">Quick answers before you reach out.</p>
-      <div class="faq">
+  <section class="band reveal" id="faq">
+    <div class="col">
+      <div class="head left"><h2>Questions people ask me</h2></div>
+      <div class="inner" style="padding-top:0"><div class="faq">
         <details><summary>What do you do?<svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg></summary><p>I design and manage digital products for banks and capital market firms, from customer research and journey design through roadmaps, delivery and launch.</p></details>
         <details><summary>Are you a designer or a product manager?<svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg></summary><p>Both. At ANB Capital I was Principal Product Manager and UI/UX Specialist on the same platform. At Bank Albilad I own product vision, roadmaps and backlogs for enterprise lending.</p></details>
         <details><summary>What AI products have you worked on?<svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg></summary><p>AI assisted credit underwriting with automated proposal and document generation at Bank Albilad, and robo advisory and digital savings platforms at DirectFN. My MEng specialised in artificial intelligence.</p></details>
@@ -498,28 +508,21 @@ footer a:hover { color: var(--ink); }
         <details><summary>What languages do you speak?<svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg></summary><p>English, Arabic and Urdu.</p></details>
         <details><summary>What are your qualifications?<svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg></summary><p>An MEng in Electrical and Electronic Engineering with First Class Honours from the University of Nottingham, plus FMVA®, SPMC™ and Bloomberg Market Concepts certifications.</p></details>
         <details><summary>How can I reach you?<svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg></summary><p>Send me a message on <a href="https://www.linkedin.com/in/rafekhan" target="_blank" rel="noopener">LinkedIn</a>.</p></details>
-      </div>
+      </div></div>
     </div>
   </section>
 
-  <section class="cta reveal" id="contact">
-    <div class="wrap">
-      <div class="cta-card">
-        <h2>Building a financial product people should trust?</h2>
-        <p>I'm open to senior product and design leadership roles in fintech and AI, and to advising teams building financial products.</p>
-        <a class="btn primary" href="https://www.linkedin.com/in/rafekhan" target="_blank" rel="noopener">Message me on LinkedIn
-          <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a>
-      </div>
+  <section class="band" id="contact">
+    <div class="col split">
+      <div><span class="lbl">Currently open to new roles and advisory work</span><a class="chipbtn" href="https://www.linkedin.com/in/rafekhan" target="_blank" rel="noopener">Message me on LinkedIn <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a></div>
+      <div><span class="lbl">Connect on socials</span><div class="socials"><a href="https://www.linkedin.com/in/rafekhan" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"/></svg></a></div></div>
     </div>
   </section>
 </main>
 
 <footer>
-  <div class="wrap">
-    <span>© <span id="year">2026</span> Rafay Khan · Riyadh</span>
-    <span>No cookies or tracking on this site.</span>
-    <a href="#top">Back to top</a>
-  </div>
+  <div class="band"><div class="col"><svg class="candles" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true"><g class="up" style="--d:0ms"><line x1="10.0" y1="53.5" x2="10.0" y2="69.4"/><rect x="4.0" y="60.0" width="12.0" height="2.0" rx="1.5"/></g><g class="up" style="--d:120ms"><line x1="30.0" y1="53.6" x2="30.0" y2="66.7"/><rect x="24.0" y="59.6" width="12.0" height="2.0" rx="1.5"/></g><g class="dn" style="--d:240ms"><line x1="50.0" y1="53.5" x2="50.0" y2="72.0"/><rect x="44.0" y="59.6" width="12.0" height="5.3" rx="1.5"/></g><g class="up" style="--d:360ms"><line x1="70.0" y1="55.3" x2="70.0" y2="69.4"/><rect x="64.0" y="58.1" width="12.0" height="6.9" rx="1.5"/></g><g class="dn" style="--d:480ms"><line x1="90.0" y1="49.6" x2="90.0" y2="72.8"/><rect x="84.0" y="58.1" width="12.0" height="7.2" rx="1.5"/></g><g class="dn" style="--d:600ms"><line x1="110.0" y1="55.4" x2="110.0" y2="83.2"/><rect x="104.0" y="65.3" width="12.0" height="8.2" rx="1.5"/></g><g class="up" style="--d:720ms"><line x1="130.0" y1="62.4" x2="130.0" y2="76.7"/><rect x="124.0" y="69.4" width="12.0" height="4.1" rx="1.5"/></g><g class="dn" style="--d:840ms"><line x1="150.0" y1="63.1" x2="150.0" y2="80.5"/><rect x="144.0" y="69.4" width="12.0" height="8.7" rx="1.5"/></g><g class="dn" style="--d:960ms"><line x1="170.0" y1="74.1" x2="170.0" y2="85.5"/><rect x="164.0" y="78.1" width="12.0" height="5.2" rx="1.5"/></g><g class="up" style="--d:1080ms"><line x1="190.0" y1="77.5" x2="190.0" y2="92.0"/><rect x="184.0" y="83.0" width="12.0" height="2.0" rx="1.5"/></g><g class="up" style="--d:1200ms"><line x1="210.0" y1="74.5" x2="210.0" y2="89.0"/><rect x="204.0" y="81.6" width="12.0" height="2.0" rx="1.5"/></g><g class="up" style="--d:1320ms"><line x1="230.0" y1="71.7" x2="230.0" y2="85.8"/><rect x="224.0" y="77.3" width="12.0" height="4.2" rx="1.5"/></g><g class="up" style="--d:0ms"><line x1="250.0" y1="56.4" x2="250.0" y2="86.1"/><rect x="244.0" y="66.4" width="12.0" height="11.0" rx="1.5"/></g><g class="up" style="--d:120ms"><line x1="270.0" y1="56.7" x2="270.0" y2="70.2"/><rect x="264.0" y="61.2" width="12.0" height="5.2" rx="1.5"/></g><g class="dn" style="--d:240ms"><line x1="290.0" y1="58.7" x2="290.0" y2="72.6"/><rect x="284.0" y="61.2" width="12.0" height="3.2" rx="1.5"/></g><g class="dn" style="--d:360ms"><line x1="310.0" y1="55.7" x2="310.0" y2="70.5"/><rect x="304.0" y="64.5" width="12.0" height="2.0" rx="1.5"/></g><g class="up" style="--d:480ms"><line x1="330.0" y1="46.5" x2="330.0" y2="67.4"/><rect x="324.0" y="55.3" width="12.0" height="10.2" rx="1.5"/></g><g class="dn" style="--d:600ms"><line x1="350.0" y1="46.0" x2="350.0" y2="65.8"/><rect x="344.0" y="55.3" width="12.0" height="4.8" rx="1.5"/></g><g class="up" style="--d:720ms"><line x1="370.0" y1="44.3" x2="370.0" y2="62.7"/><rect x="364.0" y="49.5" width="12.0" height="10.6" rx="1.5"/></g><g class="up" style="--d:840ms"><line x1="390.0" y1="37.7" x2="390.0" y2="53.6"/><rect x="384.0" y="45.9" width="12.0" height="3.6" rx="1.5"/></g><g class="dn" style="--d:960ms"><line x1="410.0" y1="41.2" x2="410.0" y2="62.9"/><rect x="404.0" y="45.9" width="12.0" height="7.3" rx="1.5"/></g><g class="up" style="--d:1080ms"><line x1="430.0" y1="44.0" x2="430.0" y2="57.1"/><rect x="424.0" y="47.0" width="12.0" height="6.2" rx="1.5"/></g><g class="dn" style="--d:1200ms"><line x1="450.0" y1="44.5" x2="450.0" y2="62.3"/><rect x="444.0" y="47.0" width="12.0" height="7.0" rx="1.5"/></g><g class="dn" style="--d:1320ms"><line x1="470.0" y1="47.5" x2="470.0" y2="65.0"/><rect x="464.0" y="54.0" width="12.0" height="5.4" rx="1.5"/></g><g class="dn" style="--d:0ms"><line x1="490.0" y1="51.6" x2="490.0" y2="67.6"/><rect x="484.0" y="59.4" width="12.0" height="5.2" rx="1.5"/></g><g class="up" style="--d:120ms"><line x1="510.0" y1="57.8" x2="510.0" y2="70.0"/><rect x="504.0" y="60.7" width="12.0" height="3.9" rx="1.5"/></g><g class="dn" style="--d:240ms"><line x1="530.0" y1="56.6" x2="530.0" y2="75.2"/><rect x="524.0" y="60.7" width="12.0" height="4.7" rx="1.5"/></g><g class="up" style="--d:360ms"><line x1="550.0" y1="54.0" x2="550.0" y2="74.5"/><rect x="544.0" y="58.4" width="12.0" height="7.1" rx="1.5"/></g><g class="dn" style="--d:480ms"><line x1="570.0" y1="53.2" x2="570.0" y2="72.0"/><rect x="564.0" y="58.4" width="12.0" height="4.8" rx="1.5"/></g><g class="up" style="--d:600ms"><line x1="590.0" y1="56.5" x2="590.0" y2="73.1"/><rect x="584.0" y="59.4" width="12.0" height="3.8" rx="1.5"/></g><g class="dn" style="--d:720ms"><line x1="610.0" y1="55.3" x2="610.0" y2="72.3"/><rect x="604.0" y="59.4" width="12.0" height="4.7" rx="1.5"/></g><g class="dn" style="--d:840ms"><line x1="630.0" y1="59.7" x2="630.0" y2="69.1"/><rect x="624.0" y="64.1" width="12.0" height="2.4" rx="1.5"/></g><g class="dn" style="--d:960ms"><line x1="650.0" y1="59.8" x2="650.0" y2="77.6"/><rect x="644.0" y="66.5" width="12.0" height="7.2" rx="1.5"/></g><g class="up" style="--d:1080ms"><line x1="670.0" y1="65.7" x2="670.0" y2="79.3"/><rect x="664.0" y="70.7" width="12.0" height="3.0" rx="1.5"/></g><g class="up" style="--d:1200ms"><line x1="690.0" y1="54.6" x2="690.0" y2="77.3"/><rect x="684.0" y="60.5" width="12.0" height="10.2" rx="1.5"/></g><g class="up" style="--d:1320ms"><line x1="710.0" y1="48.7" x2="710.0" y2="63.7"/><rect x="704.0" y="52.2" width="12.0" height="8.3" rx="1.5"/></g><g class="up" style="--d:0ms"><line x1="730.0" y1="34.5" x2="730.0" y2="56.2"/><rect x="724.0" y="43.0" width="12.0" height="9.2" rx="1.5"/></g><g class="dn" style="--d:120ms"><line x1="750.0" y1="35.1" x2="750.0" y2="57.7"/><rect x="744.0" y="43.0" width="12.0" height="5.2" rx="1.5"/></g><g class="dn" style="--d:240ms"><line x1="770.0" y1="38.6" x2="770.0" y2="62.3"/><rect x="764.0" y="48.2" width="12.0" height="5.1" rx="1.5"/></g><g class="up" style="--d:360ms"><line x1="790.0" y1="44.8" x2="790.0" y2="56.1"/><rect x="784.0" y="50.2" width="12.0" height="3.1" rx="1.5"/></g><g class="dn" style="--d:480ms"><line x1="810.0" y1="40.5" x2="810.0" y2="62.3"/><rect x="804.0" y="50.2" width="12.0" height="8.2" rx="1.5"/></g><g class="up" style="--d:600ms"><line x1="830.0" y1="49.3" x2="830.0" y2="67.0"/><rect x="824.0" y="53.3" width="12.0" height="5.1" rx="1.5"/></g><g class="up" style="--d:720ms"><line x1="850.0" y1="46.1" x2="850.0" y2="56.7"/><rect x="844.0" y="50.4" width="12.0" height="2.9" rx="1.5"/></g><g class="up" style="--d:840ms"><line x1="870.0" y1="42.4" x2="870.0" y2="54.2"/><rect x="864.0" y="45.0" width="12.0" height="5.4" rx="1.5"/></g><g class="up" style="--d:960ms"><line x1="890.0" y1="34.0" x2="890.0" y2="51.9"/><rect x="884.0" y="42.8" width="12.0" height="2.2" rx="1.5"/></g><g class="dn" style="--d:1080ms"><line x1="910.0" y1="33.5" x2="910.0" y2="49.8"/><rect x="904.0" y="42.8" width="12.0" height="3.4" rx="1.5"/></g><g class="dn" style="--d:1200ms"><line x1="930.0" y1="42.1" x2="930.0" y2="60.4"/><rect x="924.0" y="46.2" width="12.0" height="8.7" rx="1.5"/></g><g class="dn" style="--d:1320ms"><line x1="950.0" y1="51.5" x2="950.0" y2="67.6"/><rect x="944.0" y="54.9" width="12.0" height="7.8" rx="1.5"/></g><g class="up" style="--d:0ms"><line x1="970.0" y1="57.2" x2="970.0" y2="67.6"/><rect x="964.0" y="60.2" width="12.0" height="2.4" rx="1.5"/></g><g class="up" style="--d:120ms"><line x1="990.0" y1="41.6" x2="990.0" y2="67.5"/><rect x="984.0" y="51.4" width="12.0" height="8.8" rx="1.5"/></g><g class="up" style="--d:240ms"><line x1="1010.0" y1="39.9" x2="1010.0" y2="54.5"/><rect x="1004.0" y="46.6" width="12.0" height="4.8" rx="1.5"/></g><g class="dn" style="--d:360ms"><line x1="1030.0" y1="44.4" x2="1030.0" y2="64.2"/><rect x="1024.0" y="46.6" width="12.0" height="8.3" rx="1.5"/></g><g class="up" style="--d:480ms"><line x1="1050.0" y1="40.2" x2="1050.0" y2="57.0"/><rect x="1044.0" y="49.9" width="12.0" height="5.0" rx="1.5"/></g><g class="up" style="--d:600ms"><line x1="1070.0" y1="40.3" x2="1070.0" y2="57.7"/><rect x="1064.0" y="46.1" width="12.0" height="3.7" rx="1.5"/></g><g class="dn" style="--d:720ms"><line x1="1090.0" y1="36.1" x2="1090.0" y2="51.4"/><rect x="1084.0" y="46.1" width="12.0" height="2.6" rx="1.5"/></g><g class="up" style="--d:840ms"><line x1="1110.0" y1="38.9" x2="1110.0" y2="58.0"/><rect x="1104.0" y="46.8" width="12.0" height="2.0" rx="1.5"/></g><g class="up" style="--d:960ms"><line x1="1130.0" y1="33.5" x2="1130.0" y2="55.2"/><rect x="1124.0" y="41.1" width="12.0" height="5.7" rx="1.5"/></g><g class="up" style="--d:1080ms"><line x1="1150.0" y1="27.0" x2="1150.0" y2="48.6"/><rect x="1144.0" y="31.8" width="12.0" height="9.3" rx="1.5"/></g><g class="up" style="--d:1200ms"><line x1="1170.0" y1="13.8" x2="1170.0" y2="37.1"/><rect x="1164.0" y="22.8" width="12.0" height="9.0" rx="1.5"/></g><g class="up" style="--d:1320ms"><line x1="1190.0" y1="11.1" x2="1190.0" y2="29.4"/><rect x="1184.0" y="20.0" width="12.0" height="2.8" rx="1.5"/></g></svg></div></div>
+  <div class="fine"><div class="col"><span>© <span id="year">2026</span> Rafay Khan · Riyadh</span><a href="#top">Back to top</a></div></div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
@@ -538,28 +541,9 @@ footer a:hover { color: var(--ink); }
       var a = e.target.closest('a[href^="#"]'); if (!a || a.classList.contains('skip')) return;
       var id = a.getAttribute('href'), el = id === '#top' ? 0 : document.querySelector(id);
       if (el === null) return;
-      e.preventDefault(); lenis.scrollTo(el, { offset: -96 });
+      e.preventDefault(); lenis.scrollTo(el, { offset: -64 });
     });
   }
-
-  // mobile menu
-  var toggle = document.getElementById('menu-toggle');
-  var panel = document.getElementById('menu-panel');
-  var items = panel.querySelectorAll('li');
-  var step = Math.min(60, Math.floor(400 / items.length));
-  function setMenu(open) {
-    toggle.setAttribute('aria-expanded', String(open));
-    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-    panel.setAttribute('aria-hidden', String(!open));
-    panel.classList.toggle('open', open);
-    if (lenis) open ? lenis.stop() : lenis.start();
-    items.forEach(function (li, i) { li.style.transitionDelay = open && !reduce ? (i * step) + 'ms' : '0ms'; });
-  }
-  toggle.addEventListener('click', function () { setMenu(toggle.getAttribute('aria-expanded') !== 'true'); });
-  panel.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
-
-
 
   // starfield: fixed stars twinkle softly and sparkle near the pointer
   (function () {
@@ -658,22 +642,6 @@ footer a:hover { color: var(--ink); }
     requestAnimationFrame(frame);
   })();
 
-  // key figures count up once, the first time they come into view
-  (function () {
-    var els = document.querySelectorAll('.count'); if (reduce || !hasIO) return;
-    function fmt(el, x) { var d = +(el.dataset.dec || 0); return (el.dataset.pre || '') + x.toFixed(d) + (el.dataset.suf || ''); }
-    function run(el) {
-      var to = +el.dataset.to, t0 = null, end = el.dataset.end || el.textContent;
-      function tick(t) { if (t0 === null) t0 = t; var k = Math.min(1, (t - t0) / 1400), e = 1 - Math.pow(1 - k, 4);
-        el.textContent = k < 1 ? fmt(el, to * e) : end; if (k < 1) requestAnimationFrame(tick); }
-      requestAnimationFrame(tick);
-    }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) { if (en.isIntersecting) { run(en.target); io.unobserve(en.target); } });
-    }, { rootMargin: '0px 0px -10% 0px' });
-    els.forEach(function (el) { io.observe(el); });
-  })();
-
   if (!hasIO) return;
 
   // section reveals: hold back only what starts below the viewport, reveal once
@@ -709,7 +677,7 @@ footer a:hover { color: var(--ink); }
   }
 
   // current section in the nav
-  var links = document.querySelectorAll('.nav ul a, .panel a[href^="#"]');
+  var links = document.querySelectorAll('.seg a');
   var navIO = new IntersectionObserver(function (entries) {
     entries.forEach(function (en) {
       if (!en.isIntersecting) return;
@@ -719,7 +687,7 @@ footer a:hover { color: var(--ink); }
       });
     });
   }, { rootMargin: '-45% 0px -50% 0px' });
-  ['about', 'approach', 'work', 'experience', 'faq'].forEach(function (id) { navIO.observe(document.getElementById(id)); });
+  ['work', 'story'].forEach(function (id) { navIO.observe(document.getElementById(id)); });
 })();
 </script>
 </body>
