@@ -1,14 +1,41 @@
+      <div class="notes">
+        <h2 class="notes-h">How the calculation works</h2>
+        <p>The calculator adds up everything zakat applies to on your zakat date, takes off debts that are due soon, and compares the result with the <strong>nisab</strong>: the value of 85 g of gold or 595 g of silver at the price you enter. If your net wealth is at or above the nisab, zakat is 2.5% of it for a Hijri year, or 2.577% if you keep your zakat year on the Gregorian calendar, which is 11 days longer.</p>
+        <p>Cash, crypto, gold and silver bars, and anything bought to resell count in full. Gold is valued by its pure content, so 21k counts at 87.5%. <strong>Stocks and funds</strong> depend on why you hold them. Shares you trade count at full market value. For shares you hold long term, only the company’s zakatable assets (cash, receivables and inventory) count, estimated at 25% of market value unless you have the exact figure. Many scholars hold that long-term shareholders owe nothing more when the company pays zakat itself, as companies listed on Tadawul do through ZATCA. Retirement savings count only for the amount you could withdraw today, after penalties and tax.</p>
+        <p>Stock and fund rules draw on <strong>AAOIFI Shari‘ah Standard 35 (Zakah)</strong> and resolutions of the International Islamic Fiqh Academy. Rulings last reviewed November 2026. The calculator follows mainstream contemporary positions and says where scholars differ. It is a guide, not a fatwa, so ask a scholar you trust if your situation is unusual.</p>
+        <p>Your figures are saved only in this browser and are never sent anywhere. Planning your income for next year? See upcoming payouts in the <a href="/labs/tadawul-dividends/">Tadawul dividend calendar</a>, or browse the other tools in <a href="/#labs">Labs</a>.</p>
+      </div>
+    </div>
+  </section>
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27%23181818%27/%3E%3Ctext x=%2732%27 y=%2742%27 font-family=%27Arial%27 font-weight=%27700%27 font-size=%2728%27 fill=%27%2330d158%27 text-anchor=%27middle%27%3ERK%3C/text%3E%3C/svg%3E">
-<title>Zakat Calculator · Rafay Khan</title>
-<meta name="description" content="Work out the zakat on your cash, gold, stocks, funds and retirement savings, one step at a time, with every rule explained.">
-<meta property="og:title" content="Zakat calculator for investors">
-<meta property="og:description" content="Zakat on cash, gold, stocks, funds and retirement savings, with the rulings spelled out at each step.">
+<title>Zakat Calculator for Investors: stocks, gold and cash</title>
+<meta name="description" content="Free zakat calculator for cash, gold, silver, stocks, funds and retirement savings. Every step explains the ruling, including Tadawul shares. In English.">
+<link rel="canonical" href="https://rafkhan.com/labs/zakat/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rafay Khan">
+<meta property="og:title" content="Zakat Calculator for Investors">
+<meta property="og:description" content="Zakat on cash, gold, stocks, funds and retirement savings, with the ruling spelled out at each step. Free, and nothing leaves your browser.">
 <meta property="og:url" content="https://rafkhan.com/labs/zakat/">
+<meta property="og:image" content="https://rafkhan.com/og/zakat.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Zakat Calculator for Investors by Rafay Khan">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"Zakat Calculator for Investors","alternateName":"حاسبة الزكاة للمستثمرين","url":"https://rafkhan.com/labs/zakat/","description":"Free zakat calculator for cash, gold, silver, stocks, funds and retirement savings. Every step explains the ruling, including Tadawul shares. In English.","applicationCategory":"FinanceApplication","operatingSystem":"Any","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"SAR"},"author":{"@type":"Person","name":"Rafay Khan","url":"https://rafkhan.com/","sameAs":["https://www.linkedin.com/in/rafekhan"]}},
+{"@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Rafay Khan","item":"https://rafkhan.com/"},
+{"@type":"ListItem","position":2,"name":"Labs","item":"https://rafkhan.com/#labs"},
+{"@type":"ListItem","position":3,"name":"Zakat Calculator","item":"https://rafkhan.com/labs/zakat/"}]}
+]}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
@@ -188,6 +215,7 @@ table.lines tr.zero td { color: var(--muted); }
 input:focus-visible, select:focus-visible { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
 .notes { display: grid; gap: 12px; max-width: 760px; font-size: 14px; line-height: 22px; color: var(--muted); }
 .notes p { margin: 0; }
+.notes-h { margin: 0; font: 400 24px/32px var(--serif); color: var(--ink); letter-spacing: -0.01em; }
 .notes strong { color: var(--ink); font-weight: 600; }
 .fine .col { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding: 16px 24px; color: var(--muted); font-size: 14px; line-height: 20px; }
 .fine a { color: var(--muted); text-decoration: none; } .fine a:hover { color: var(--ink); }
@@ -208,7 +236,7 @@ input:focus-visible, select:focus-visible { outline: none; border-color: var(--a
     <div class="col">
       <div class="glow" aria-hidden="true"></div>
       <div class="eyebrow"><a class="back" href="/#labs">← Labs</a><span>For investors</span><span class="tag" id="sampleTag">Example figures</span></div>
-      <h1>Zakat calculator</h1>
+      <h1>Zakat calculator for investors</h1>
       <p class="lede">Cash, gold, stocks, funds and retirement savings each follow their own rule. Fill in what applies to you and open “How this works” on any step to see the reasoning. Nothing you type leaves your browser.</p>
       <div class="toolbar">
         <button class="btn" id="clearBtn" type="button">Clear and start with my own</button>
