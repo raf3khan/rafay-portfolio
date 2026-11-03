@@ -398,14 +398,15 @@ function lookup(q){
   q = (q||"").trim(); if (!q || !DATA) return;
   const up = q.toUpperCase().replace(/^\$/,"").replace("-", ".");
   let t = DATA.stocks[up] ? up : null;
-  if (!t){
-    const m = Object.entries(DATA.stocks).find(([k,r]) => r.name.toLowerCase().includes(q.toLowerCase()));
+  if (!t && q.length >= 3 && !(DATA.skipped && DATA.skipped[up])){
+    const ql = q.toLowerCase(), all = Object.entries(DATA.stocks);
+    const m = all.find(([k,r]) => r.name.toLowerCase().startsWith(ql)) || all.find(([k,r]) => r.name.toLowerCase().includes(ql));
     if (m) t = m[0];
   }
   if (t && showUS(t)) return;
   $("status").className = "status err";
   const skip = DATA.skipped && DATA.skipped[up];
-  $("status").textContent = skip ? `${up} isn't covered: ${skip}. You can enter its figures yourself.` : `“${q}” isn't in the ${Object.keys(DATA.stocks).length} US stocks covered yet. Try a ticker like AAPL, or enter the figures yourself.`;
+  $("status").textContent = skip ? `${up} isn't covered yet (${skip.charAt(0).toLowerCase() + skip.slice(1)}). Use the Tadawul or other stock tab to enter its figures yourself.` : `“${q}” isn't in the ${Object.keys(DATA.stocks).length} US stocks covered yet. Try a ticker like AAPL, or enter the figures yourself.`;
 }
 $("find").addEventListener("submit", e => { e.preventDefault(); lookup($("q").value); });
 $("q").addEventListener("change", () => { if (DATA && DATA.stocks[$("q").value.trim().toUpperCase()]) lookup($("q").value); });
