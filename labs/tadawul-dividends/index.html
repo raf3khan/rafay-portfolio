@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27%23181818%27/%3E%3Ctext x=%2732%27 y=%2742%27 font-family=%27Arial%27 font-weight=%27700%27 font-size=%2728%27 fill=%27%2330d158%27 text-anchor=%27middle%27%3ERK%3C/text%3E%3C/svg%3E">
+<title>Tadawul Dividend Calendar</title>
+<meta name="description" content="Upcoming ex-dividend dates, payment dates and yields for Saudi Exchange (Tadawul) listed companies.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap">
+<style>
+/* Layout: same drafting board as rafkhan.com. Grid paper ground, one framed 1200px column ruled into bands with corner ticks, serif display over Geist, glossy black controls. */
+:root {
+  --bg: #fafaf9; --paper-line: #efefed; --surface: #ffffff; --raised: #f2f2f0;
+  --ink: #111111; --muted: #565656; --line: #dcdcd8;
+  --accent: #248a3d; --accent-soft: #e6f6ea; --go: #30d158; --go-ink: #0b2b14;
+  --pay: #8a5a12; --pay-soft: #f1ece1; --weekend: #f2f2f0;
+  --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font: "Geist", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --arabic: "IBM Plex Sans Arabic", "Geist", system-ui, sans-serif;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --frame: 1200px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131313; --paper-line: #1c1c1c; --surface: #1f1f1f; --raised: #272727; --ink: #f4f4f4; --muted: #a3a3a3; --line: #313131;
+    --accent: #30d158; --accent-soft: #1d2a20; --pay: #e0ae55; --pay-soft: #24211b; --weekend: #181818; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131313; --paper-line: #1c1c1c; --surface: #1f1f1f; --raised: #272727; --ink: #f4f4f4; --muted: #a3a3a3; --line: #313131;
+  --accent: #30d158; --accent-soft: #1d2a20; --pay: #e0ae55; --pay-soft: #24211b; --weekend: #181818; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background-color: var(--bg); background-image: linear-gradient(var(--paper-line) 1px, transparent 1px), linear-gradient(90deg, var(--paper-line) 1px, transparent 1px); background-size: 16px 16px;
+  color: var(--ink); font: 400 16px/24px var(--font); -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+[dir="rtl"] body { font-family: var(--arabic); }
+h1, h2, h3 { text-wrap: balance; }
+a { color: var(--accent); text-underline-offset: 4px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+.ico { width: 16px; height: 16px; flex: none; }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* framed column, ruled bands, corner ticks */
+.band { border-bottom: 1px solid var(--line); }
+.col { max-width: var(--frame); margin: 0 auto; border-left: 1px solid var(--line); border-right: 1px solid var(--line); position: relative; background-color: var(--bg); }
+.band > .col::before, .band > .col::after { content: ""; position: absolute; bottom: -5px; width: 8px; height: 8px; border: 1px solid var(--line); background: var(--bg); z-index: 2; }
+.band > .col::before { left: -5px; } .band > .col::after { right: -5px; }
+.pad { padding: 24px; }
+@media (max-width: 1232px) { .col { margin: 0 16px; } }
+@media (max-width: 480px) { .col { margin: 0 8px; } .pad { padding: 16px; } }
+
+/* glossy controls */
+.gloss { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px; border-radius: 8px; font: 500 14px/20px var(--font); color: #ffffff; text-decoration: none; cursor: pointer;
+  background: linear-gradient(#3b3b3b, #0b0b0b); border: 1px solid #000000;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -1px 0 rgba(255,255,255,0.06), 0 2px 4px rgba(0,0,0,0.28), 0 8px 16px rgba(0,0,0,0.12);
+  transition: transform 300ms var(--ease), box-shadow 300ms var(--ease); }
+.gloss:hover { transform: translateY(-2px); }
+.chipbtn { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-decoration: none; font: 500 14px/20px var(--font); cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06); transition: transform 300ms var(--ease), border-color 300ms var(--ease); }
+.chipbtn:hover { transform: translateY(-2px); border-color: var(--muted); }
+[dir="rtl"] .chipbtn, [dir="rtl"] .gloss { font-family: var(--arabic); }
+
+/* top bar, same as the home page */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.bar .col { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; padding: 8px 16px; background: transparent; }
+.seg { display: inline-flex; gap: 4px; padding: 2px; border-radius: 8px; border: 1px solid var(--line); background: var(--raised); justify-self: start; }
+.seg a, .seg button { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 8px; border: 0; background: transparent; font: 500 14px/20px var(--font); color: var(--muted); text-decoration: none; cursor: pointer; transition: color 300ms var(--ease); }
+[dir="rtl"] .seg a, [dir="rtl"] .seg button { font-family: var(--arabic); }
+.seg a:hover, .seg button:hover { color: var(--ink); }
+.seg a[aria-current="true"], .seg button[aria-pressed="true"] { color: #ffffff; background: linear-gradient(#3b3b3b, #0b0b0b); box-shadow: 0 0 0 2px var(--accent), inset 0 1px 0 rgba(255,255,255,0.25); }
+.seg .ico { width: 12px; height: 12px; }
+.brand { font: 400 20px/28px var(--font); color: var(--ink); text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; }
+.right { justify-self: end; display: flex; gap: 8px; align-items: center; }
+@media (max-width: 480px) { .seg .ico { display: none; } .seg a { padding: 2px 6px; } .bar .brand { display: none; } .bar .col { grid-template-columns: 1fr auto; } }
+@media (max-width: 560px) { .brand { font-size: 16px; line-height: 24px; } .bar .col { gap: 8px; padding: 8px; } .right .gloss { display: none; } }
+
+/* hero */
+.hero .col { padding: 64px 24px 48px; display: grid; gap: 16px; overflow: hidden; }
+.hero .col > .glow { position: absolute; inset: 0 0 auto 0; height: 280px; pointer-events: none; background: radial-gradient(ellipse 60% 100% at 50% 0%, rgba(48, 209, 88, 0.22), transparent 70%); }
+.eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; font: 400 14px/20px var(--mono); color: var(--muted); position: relative; }
+[dir="rtl"] .eyebrow { font-family: var(--arabic); }
+.back { color: var(--muted); text-decoration: none; } .back:hover { color: var(--ink); }
+.badge { font: 500 12px/16px var(--font); padding: 2px 8px; border-radius: 9999px; background: var(--pay-soft); color: var(--pay); }
+h1 { margin: 0; font: 400 60px/1 var(--serif); letter-spacing: -0.02em; position: relative; }
+h1 .sub { display: block; margin-top: 12px; font: 400 24px/32px var(--arabic); letter-spacing: 0; color: var(--muted); }
+[dir="rtl"] h1 { font: 500 52px/1.2 var(--arabic); letter-spacing: 0; }
+[dir="rtl"] h1 .sub { font: 400 24px/32px var(--serif); }
+.lede { margin: 0; max-width: 600px; color: var(--muted); font-size: 18px; line-height: 28px; position: relative; }
+@media (max-width: 860px) { .hero .col { padding: 48px 16px 32px; } h1 { font-size: 44px; } [dir="rtl"] h1 { font-size: 38px; } }
+
+/* summary cells */
+.summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.summary > div { padding: 24px; display: grid; gap: 4px; align-content: start; min-width: 0; }
+.summary > div + div { border-inline-start: 1px solid var(--line); }
+.summary .k { font: 500 14px/20px var(--font); color: var(--muted); }
+.summary .v { font: 400 36px/40px var(--serif); letter-spacing: -0.01em; }
+.summary .v.num { font: 500 32px/40px var(--mono); letter-spacing: -0.03em; }
+.summary .s { font-size: 14px; line-height: 20px; color: var(--muted); overflow-wrap: anywhere; }
+[dir="rtl"] .summary .k, [dir="rtl"] .summary .s { font-family: var(--arabic); }
+[dir="rtl"] .summary .v:not(.num) { font: 500 28px/40px var(--arabic); }
+@media (max-width: 760px) {
+  .summary { grid-template-columns: minmax(0, 1fr); }
+  .summary > div { padding: 16px; }
+  .summary > div + div { border-inline-start: 0; border-top: 1px solid var(--line); }
+}
+
+/* toolbar */
+.toolbar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.search { flex: 1 1 240px; min-width: 0; }
+.search input { width: 100%; font: 400 16px/24px var(--font); padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
+[dir="rtl"] .search input, [dir="rtl"] .sortsel { font-family: var(--arabic); }
+.sortsel { font: 500 14px/20px var(--font); padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); }
+.vseg { justify-self: auto; }
+label.toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); cursor: pointer; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; width: 100%; }
+.chip[aria-pressed="true"] { color: #ffffff; background: linear-gradient(#3b3b3b, #0b0b0b); border-color: #000000; box-shadow: 0 0 0 2px var(--accent), inset 0 1px 0 rgba(255,255,255,0.25); }
+
+/* list */
+#view { display: grid; gap: 24px; }
+.week { display: grid; gap: 8px; }
+.week h2 { margin: 0; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font: 400 14px/20px var(--mono); color: var(--muted); }
+.week h2 span:first-child { color: var(--ink); font-weight: 500; }
+[dir="rtl"] .week h2 { font-family: var(--arabic); }
+.rows { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+.row { display: grid; align-items: center; gap: 8px 24px; padding: 16px 24px; grid-template-columns: 56px minmax(0, 1.5fr) minmax(0, .8fr) minmax(0, 1.6fr) auto; transition: background-color 300ms var(--ease); }
+.row:hover { background: var(--raised); }
+.row + .row { border-top: 1px solid var(--line); }
+.row.past { opacity: .55; }
+.tick { font: 500 16px/24px var(--mono); color: var(--accent); }
+.co { min-width: 0; }
+.co .n { font: 400 22px/28px var(--serif); }
+[dir="rtl"] .co .n { font: 600 18px/28px var(--arabic); }
+.co .a { font-size: 14px; line-height: 20px; color: var(--muted); font-family: var(--arabic); }
+[dir="rtl"] .co .a { font-family: var(--font); }
+.co .meta { font-size: 13px; line-height: 20px; color: var(--muted); }
+.amt { display: grid; }
+.amt .d { font: 500 18px/24px var(--mono); letter-spacing: -0.02em; }
+[dir="rtl"] .amt .d { font-family: var(--arabic); font-variant-numeric: tabular-nums; }
+.amt .y { font-size: 13px; line-height: 18px; color: var(--muted); }
+.dates { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 16px; font-size: 14px; line-height: 20px; }
+.dates .l { font-size: 12px; line-height: 16px; color: var(--muted); }
+.dates .ex .dv { color: var(--accent); font-weight: 600; }
+.dates .pay .dv { color: var(--pay); }
+.dates .h { font-size: 12px; line-height: 16px; color: var(--muted); }
+.dates .rec { grid-column: 1 / -1; font-size: 12px; line-height: 16px; color: var(--muted); }
+.act { display: grid; justify-items: end; gap: 8px; }
+.pill { font: 500 12px/16px var(--font); padding: 4px 10px; border-radius: 9999px; background: var(--accent-soft); color: var(--accent); white-space: nowrap; }
+.pill.soon { background: var(--go); color: var(--go-ink); }
+.pill.past { background: var(--raised); color: var(--muted); }
+[dir="rtl"] .pill { font-family: var(--arabic); }
+.ics { font: 500 13px/20px var(--font); background: none; border: 0; padding: 0; color: var(--muted); text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+[dir="rtl"] .ics { font-family: var(--arabic); }
+.ics:hover { color: var(--ink); }
+@media (max-width: 860px) {
+  .row { grid-template-columns: 48px minmax(0, 1fr) auto; padding: 16px; }
+  .amt { grid-column: 3; grid-row: 1; text-align: end; }
+  .dates { grid-column: 1 / -1; }
+  .act { grid-column: 1 / -1; grid-auto-flow: column; justify-content: space-between; justify-items: start; }
+}
+.empty { padding: 32px; text-align: center; color: var(--muted); background: var(--surface); border: 1px dashed var(--line); border-radius: 16px; }
+
+/* month */
+.monthbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.monthbar h2 { margin: 0; font: 400 30px/36px var(--serif); letter-spacing: -0.01em; }
+[dir="rtl"] .monthbar h2 { font: 500 24px/36px var(--arabic); }
+.monthbar .hj { font: 400 14px/20px var(--font); color: var(--muted); margin-inline-start: 12px; }
+.nav { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 9999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; font: 500 16px/1 var(--font); transition: transform 300ms var(--ease); }
+.nav:hover { transform: translateY(-2px); }
+.gridwrap { overflow-x: auto; }
+.grid { display: grid; grid-template-columns: repeat(7, minmax(92px, 1fr)); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--line); gap: 1px; min-width: 660px; }
+.dow { background: var(--surface); padding: 8px; font: 500 12px/16px var(--mono); color: var(--muted); }
+[dir="rtl"] .dow { font-family: var(--arabic); }
+.cell { background: var(--surface); min-height: 104px; padding: 8px; display: grid; align-content: start; gap: 4px; }
+.cell.we { background: var(--weekend); }
+.cell.out { background: var(--bg); }
+.cell.out .dn { opacity: .4; }
+.cell.today .dn { background: linear-gradient(#3b3b3b, #0b0b0b); color: #ffffff; border-radius: 6px; padding: 0 6px; }
+.dn { font: 400 12px/20px var(--mono); color: var(--muted); justify-self: start; }
+.ev { font: 500 11px/16px var(--mono); padding: 2px 6px; border-radius: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+[dir="rtl"] .ev { font-family: var(--arabic); }
+.ev.ex { background: var(--accent-soft); color: var(--accent); }
+.ev.pay { background: var(--pay-soft); color: var(--pay); }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+.legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-inline-end: 6px; vertical-align: -1px; }
+.legend .lx::before { background: var(--accent); }
+.legend .lp::before { background: var(--pay); }
+.legend .lw::before { background: var(--weekend); border: 1px solid var(--line); }
+
+/* notes and footer */
+.notes { display: grid; gap: 12px; max-width: 760px; font-size: 14px; line-height: 22px; color: var(--muted); }
+.notes p { margin: 0; }
+.notes strong { color: var(--ink); font-weight: 600; }
+.fine .col { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding: 16px 24px; color: var(--muted); font-size: 14px; line-height: 20px; }
+.fine a { color: var(--muted); text-decoration: none; } .fine a:hover { color: var(--ink); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="bar band">
+  <div class="col">
+    <nav class="seg" aria-label="Main"><a href="/#work"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M104,40H56A16,16,0,0,0,40,56v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,104,40Zm0,64H56V56h48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm0,64H152V56h48Zm-96,32H56a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,104,136Zm0,64H56V152h48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,200,136Zm0,64H152V152h48Z"/></svg><span data-i="nWork">Work</span></a><a href="/#story"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M208,24H72A32,32,0,0,0,40,56V224a8,8,0,0,0,8,8H192a8,8,0,0,0,0-16H56a16,16,0,0,1,16-16H208a8,8,0,0,0,8-8V32A8,8,0,0,0,208,24Zm-8,160H72a31.82,31.82,0,0,0-16,4.29V56A16,16,0,0,1,72,40H200Z"/></svg><span data-i="nStory">Story</span></a><a href="/#labs" aria-current="true"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M221.69,199.77,160,96.92V40h8a8,8,0,0,0,0-16H88a8,8,0,0,0,0,16h8V96.92L34.31,199.77A16,16,0,0,0,48,224H208a16,16,0,0,0,13.72-24.23ZM110.86,103.25A7.93,7.93,0,0,0,112,99.14V40h32V99.14a7.93,7.93,0,0,0,1.14,4.11L183.36,167c-12,2.37-29.07,1.37-51.75-10.11-15.91-8.05-31.05-12.32-45.22-12.81ZM48,208l28.54-47.58c14.25-1.74,30.31,1.85,47.82,10.72,19,9.61,35,12.88,48,12.88a69.89,69.89,0,0,0,19.55-2.7L208,208Z"/></svg><span data-i="nLabs">Labs</span></a></nav>
+    <a class="brand" href="/">Rafay Khan</a>
+    <div class="right"><button class="chipbtn" id="langBtn" type="button" lang="ar">العربية</button><a class="gloss" href="https://www.linkedin.com/in/rafekhan" target="_blank" rel="noopener" data-i="chat">Let's chat</a></div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero band">
+    <div class="col">
+      <div class="glow" aria-hidden="true"></div>
+      <div class="eyebrow"><a class="back" href="/#labs" data-i="back">← Labs</a><span data-i="exchange">Saudi Exchange</span><span id="updated">Loading…</span><span class="badge" id="sampleBadge" data-i="sample" hidden>Sample data</span></div>
+      <h1><span data-i="title">Tadawul Dividend Calendar</span> <span class="sub" id="titleSub" lang="ar">تقويم توزيعات الأرباح في تداول</span></h1>
+      <p class="lede" data-i="lede">Upcoming ex-dividend and payment dates for Saudi-listed companies, with the last day to buy and the yield at the latest close.</p>
+    </div>
+  </section>
+
+  <section class="band" aria-label="Summary">
+    <div class="col summary">
+      <div><span class="k" data-i="sNextK">Next ex-dividend</span><span class="v" id="sNext">–</span><span class="s" id="sNextSub"></span></div>
+      <div><span class="k" data-i="s30K">Going ex in the next 30 days</span><span class="v num" id="s30">–</span><span class="s" id="s30Sub"></span></div>
+      <div><span class="k" data-i="sTopK">Highest trailing yield upcoming</span><span class="v num" id="sTop">–</span><span class="s" id="sTopSub"></span></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="col pad" style="display:grid;gap:24px">
+      <div class="toolbar" role="search">
+        <div class="search"><input id="q" type="search" placeholder="Search by name or ticker, e.g. 2222" aria-label="Search by company name or ticker"></div>
+        <select id="sort" class="sortsel" aria-label="Sort">
+          <option value="date" data-i="byDate">By ex-date</option>
+          <option value="yield" data-i="byYield">By trailing yield</option>
+        </select>
+        <div class="seg vseg" role="group" aria-label="View">
+          <button id="vList" type="button" aria-pressed="true" data-i="list">List</button>
+          <button id="vMonth" type="button" aria-pressed="false" data-i="month">Month</button>
+        </div>
+        <label class="toggle"><input id="showPast" type="checkbox"> <span data-i="showPast">Show past</span></label>
+        <div class="chips" id="chips" role="group" aria-label="Sector"></div>
+      </div>
+      <div id="view" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="col pad">
+      <div class="notes">
+        <p data-i="fDates" data-html="1"></p>
+        <p data-i="fYields" data-html="1"></p>
+        <p id="srcNote"></p>
+        <p data-i="fAdvice"></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="fine"><div class="col"><span>© <span id="year">2026</span> <span data-i="footName">Rafay Khan · Riyadh</span></span><a href="/#labs" data-i="footBack">Back to Labs</a></div></footer>
+
+<script>
+(function () {
+  // ---------- Text in both languages ----------
+  const STR = {
+    en: {
+      docTitle: "Tadawul Dividend Calendar",
+      back: "← Labs", exchange: "Saudi Exchange", nWork: "Work", nStory: "Story", nLabs: "Labs", chat: "Let's chat", footName: "Rafay Khan · Riyadh", footBack: "Back to Labs", sample: "Sample data", langBtn: "العربية",
+      title: "Tadawul Dividend Calendar", titleSub: "تقويم توزيعات الأرباح في تداول",
+      lede: "Upcoming ex-dividend and payment dates for Saudi-listed companies, with the last day to buy and the yield at the latest close.",
+      sNextK: "Next ex-dividend", s30K: "Going ex in the next 30 days", sTopK: "Highest trailing yield upcoming",
+      byDate: "By ex-date", byYield: "By trailing yield", list: "List", month: "Month", showPast: "Show past",
+      search: "Search by name or ticker, e.g. 2222",
+      fDates: "<strong>How the dates work.</strong> Tadawul trades Sunday to Thursday and settles trades two trading days later (T+2). Companies announce an eligibility date. The ex-date is one trading day before it, so you need to buy by the close of the trading day before the ex-date. \"Last day to buy\" skips weekends but not public holidays, so check the company's announcement around Eid and National Day.",
+      fYields: "<strong>Yields.</strong> \"This payment\" is the dividend per share divided by the latest close. \"Trailing\" uses dividends paid over the last twelve months. Yields are left blank where no recent price is on file.",
+      fAdvice: "Not investment advice. Always confirm dates in the company's announcement on Saudi Exchange.",
+      source: "Source.", sourceLink: "Saudi Exchange issuer announcements",
+      updated: d => "Updated " + d, loading: "Loading…", unavailable: "Data unavailable",
+      loadErr: "The dividend list could not load. Refresh the page to try again.",
+      empty: "No dividends match these filters. Clear the search or pick \"All\" sectors.",
+      all: "All", buyBy: "Last day to buy", exDate: "Ex-date", paid: "Paid", tba: "TBA",
+      elig: d => "Eligibility date " + d,
+      thisPay: "this payment", trailing: "trailing", addCal: "Add to calendar",
+      exAgo: n => "Ex " + n + "d ago", exToday: "Ex today", buyToday: "Buy by today",
+      inDays: n => "In " + n + " day" + (n === 1 ? "" : "s"),
+      thisWeek: "This week", nextWeek: "Next week", weekOf: d => "Week of " + d,
+      goingEx: n => n + " going ex", ranked: "Ranked by trailing yield", companies: n => n + " companies",
+      none: "None scheduled", buyByShort: d => "buy by " + d, exShort: d => "ex " + d,
+      heldOne: v => v + " per share if you held one of each",
+      prevM: "Previous month", nextM: "Next month", prevArrow: "←", nextArrow: "→",
+      lgEx: "Ex-dividend date", lgPay: "Payment date", lgWe: "Weekend (Fri–Sat)",
+      evEx: "EX", evPay: "PAY", evExT: (n, v) => n + " goes ex-dividend, " + v, evPayT: (n, v) => n + " pays " + v,
+      money: v => "SAR " + v,
+      sectors: {}
+    },
+    ar: {
+      docTitle: "تقويم توزيعات الأرباح في تداول",
+      back: "→ المختبر", exchange: "السوق المالية السعودية", nWork: "الأعمال", nStory: "القصة", nLabs: "المختبر", chat: "تواصل معي", footName: "Rafay Khan · الرياض", footBack: "العودة إلى المختبر", sample: "بيانات تجريبية", langBtn: "English",
+      title: "تقويم توزيعات الأرباح في تداول", titleSub: "Tadawul Dividend Calendar",
+      lede: "مواعيد الأحقية وصرف التوزيعات النقدية القادمة للشركات المدرجة في السوق السعودية، مع آخر يوم للشراء والعائد حسب آخر سعر إغلاق.",
+      sNextK: "أقرب تاريخ تداول دون أحقية", s30K: "شركات تفقد الأحقية خلال 30 يومًا", sTopK: "أعلى عائد سنوي من التوزيعات القادمة",
+      byDate: "حسب التاريخ", byYield: "حسب العائد السنوي", list: "قائمة", month: "شهر", showPast: "إظهار السابقة",
+      search: "ابحث بالاسم أو الرمز، مثل 2222",
+      fDates: "<strong>كيف تُحسب التواريخ.</strong> يتداول السوق من الأحد إلى الخميس، وتُسوّى الصفقات بعد يومَي تداول (T+2). تعلن الشركة تاريخ الأحقية، ويبدأ التداول دون أحقية قبله بيوم تداول واحد، لذلك يجب أن تشتري قبل إغلاق يوم التداول الذي يسبق ذلك التاريخ. يتجاوز «آخر يوم للشراء» عطلة نهاية الأسبوع فقط ولا يتجاوز الإجازات الرسمية، فراجع إعلان الشركة في فترات الأعياد واليوم الوطني.",
+      fYields: "<strong>العائد.</strong> «هذا التوزيع» هو التوزيع للسهم مقسومًا على آخر سعر إغلاق، و«السنوي» يعتمد على التوزيعات المدفوعة خلال آخر اثني عشر شهرًا. يُترك العائد فارغًا إذا لم يتوفر سعر حديث.",
+      fAdvice: "هذه ليست نصيحة استثمارية. تحقق دائمًا من التواريخ في إعلان الشركة على موقع السوق المالية السعودية.",
+      source: "المصدر.", sourceLink: "إعلانات الشركات في السوق المالية السعودية",
+      updated: d => "آخر تحديث " + d, loading: "جارٍ التحميل…", unavailable: "البيانات غير متاحة",
+      loadErr: "تعذّر تحميل قائمة التوزيعات. حدّث الصفحة وحاول مرة أخرى.",
+      empty: "لا توجد توزيعات تطابق هذه الخيارات. امسح البحث أو اختر «الكل».",
+      all: "الكل", buyBy: "آخر يوم للشراء", exDate: "دون أحقية", paid: "الصرف", tba: "يُعلن لاحقًا",
+      elig: d => "تاريخ الأحقية " + d,
+      thisPay: "هذا التوزيع", trailing: "سنوي", addCal: "أضف إلى التقويم",
+      exAgo: n => "منذ " + arDays(n), exToday: "دون أحقية اليوم", buyToday: "اشترِ اليوم",
+      inDays: n => "بعد " + arDays(n),
+      thisWeek: "هذا الأسبوع", nextWeek: "الأسبوع القادم", weekOf: d => "أسبوع " + d,
+      goingEx: n => n + " " + (n === 1 ? "شركة" : n === 2 ? "شركتان" : n <= 10 ? "شركات" : "شركة"),
+      ranked: "مرتبة حسب العائد السنوي", companies: n => n + " " + (n <= 10 && n > 2 ? "شركات" : "شركة"),
+      none: "لا يوجد", buyByShort: d => "اشترِ قبل نهاية " + d, exShort: d => "دون أحقية " + d,
+      heldOne: v => v + " للسهم لو امتلكت سهمًا من كل شركة",
+      prevM: "الشهر السابق", nextM: "الشهر التالي", prevArrow: "→", nextArrow: "←",
+      lgEx: "تاريخ التداول دون أحقية", lgPay: "تاريخ الصرف", lgWe: "عطلة نهاية الأسبوع (الجمعة والسبت)",
+      evEx: "أحقية", evPay: "صرف", evExT: (n, v) => n + " دون أحقية، " + v, evPayT: (n, v) => n + " صرف " + v,
+      money: v => v + " ر.س",
+      sectors: {
+        "Banks": "البنوك", "Telecom": "الاتصالات", "REITs": "صناديق الريت", "Financial Services": "الخدمات المالية",
+        "Nomu": "نمو", "Materials": "المواد الأساسية", "Energy": "الطاقة", "Health Care": "الرعاية الصحية",
+        "Consumer Staples": "السلع الاستهلاكية الأساسية", "Consumer Discretionary": "السلع الاستهلاكية الكمالية",
+        "Consumer Services": "الخدمات الاستهلاكية", "Insurance": "التأمين", "Real Estate": "إدارة وتطوير العقارات",
+        "Utilities": "المرافق العامة", "Capital Goods": "السلع الرأسمالية", "Transportation": "النقل",
+        "Food & Beverages": "إنتاج الأغذية", "Retail": "التجزئة", "Media": "الإعلام والترفيه", "Software & Services": "التطبيقات وخدمات التقنية"
+      }
+    }
+  };
+  function arDays(n) { return n === 1 ? "يوم واحد" : n === 2 ? "يومين" : n <= 10 ? n + " أيام" : n + " يومًا"; }
+
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  };
+  let lang = store.get("tdc-lang") || ((navigator.language || "").toLowerCase().startsWith("ar") ? "ar" : "en");
+  if (/[?&]lang=ar\b/.test(location.search)) lang = "ar";
+  if (/[?&]lang=en\b/.test(location.search)) lang = "en";
+  const T = () => STR[lang];
+
+  // ---------- Dates ----------
+  let F = {};
+  function makeFormats() {
+    const loc = lang === "ar" ? "ar-SA-u-ca-gregory-nu-latn" : "en-GB";
+    F.day = new Intl.DateTimeFormat(loc, { weekday: "short", day: "numeric", month: "short" });
+    F.dm = new Intl.DateTimeFormat(loc, { day: "numeric", month: "short" });
+    F.full = new Intl.DateTimeFormat(loc, { weekday: "short", day: "numeric", month: "short", year: "numeric" });
+    F.month = new Intl.DateTimeFormat(loc, { month: "long", year: "numeric" });
+    F.dow = new Intl.DateTimeFormat(loc, { weekday: lang === "ar" ? "long" : "short" });
+    try {
+      const hl = lang === "ar" ? "ar-SA-u-ca-islamic-umalqura-nu-latn" : "en-u-ca-islamic-umalqura";
+      F.h = new Intl.DateTimeFormat(hl, { day: "numeric", month: "short" });
+      F.hm = new Intl.DateTimeFormat(hl, { month: "long", year: "numeric" });
+    } catch (e) { F.h = F.hm = null; }
+  }
+  const parse = s => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
+  const iso = d => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  const addDays = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
+  const isWeekend = d => d.getDay() === 5 || d.getDay() === 6;
+  const prevTradingDay = d => { let x = addDays(d, -1); while (isWeekend(x)) x = addDays(x, -1); return x; };
+  const daysBetween = (a, b) => Math.round((b - a) / 86400000);
+  const dayLabel = d => F.day.format(d).replace("،", "");
+  const hijri = d => { try { return F.h ? F.h.format(d).replace(/\s?(AH|هـ)$/, "") : ""; } catch (e) { return ""; } };
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const amount = n => n.toFixed(Math.round(n * 1000) % 10 ? 3 : 2);
+  const money = n => T().money(amount(n));
+  const pct = n => (n * 100).toFixed(2) + "%";
+  const nm = e => lang === "ar" && e.nameAr ? e.nameAr : e.name;
+  const altName = e => lang === "ar" ? (e.nameAr ? e.name : "") : (e.nameAr || "");
+  const sectorName = s => T().sectors[s] || s;
+  function periodName(p) {
+    if (!p || lang !== "ar") return p || "";
+    const m = /^(Q[1-4]|H[12]|FY)\s*(\d{4})$/.exec(p);
+    if (!m) return p;
+    const map = { Q1: "الربع الأول", Q2: "الربع الثاني", Q3: "الربع الثالث", Q4: "الربع الرابع", H1: "النصف الأول", H2: "النصف الثاني", FY: "العام المالي" };
+    return map[m[1]] + " " + m[2];
+  }
+
+  let todayStr;
+  try { todayStr = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Riyadh" }).format(new Date()); }
+  catch (e) { todayStr = iso(new Date()); }
+  const today = parse(todayStr);
+
+  const state = { view: "list", sector: "All", q: "", sort: "date", showPast: false, month: null };
+  if (location.hash === "#month") state.view = "month";
+  if (store.get("tdc-past") === "1") state.showPast = true;
+
+  let data = null;
+  const $ = id => document.getElementById(id);
+
+  function enrich(ev) {
+    // Saudi Exchange announces the eligibility (record) date. With T+2 settlement the ex-date is one trading day earlier.
+    const rec = ev.recordDate ? parse(ev.recordDate) : null;
+    const ex = ev.exDate ? parse(ev.exDate) : prevTradingDay(rec);
+    const pay = ev.payDate ? parse(ev.payDate) : null;
+    return Object.assign({}, ev, {
+      ex, rec, pay, exDate: iso(ex), buyBy: prevTradingDay(ex),
+      yld: ev.price ? ev.dps / ev.price : null,
+      ttm: ev.price && ev.annualDps ? ev.annualDps / ev.price : null,
+      inDays: daysBetween(today, ex)
+    });
+  }
+
+  function filtered() {
+    const q = state.q.trim().toLowerCase();
+    let list = data.events.filter(e =>
+      (state.sector === "All" || e.sector === state.sector) &&
+      (!q || e.ticker.includes(q) || e.name.toLowerCase().includes(q) || (e.nameAr || "").includes(q))
+    );
+    if (state.view === "list" && !state.showPast) list = list.filter(e => e.inDays >= 0);
+    list.sort(state.sort === "yield" ? (a, b) => (b.ttm || 0) - (a.ttm || 0) : (a, b) => a.ex - b.ex);
+    return list;
+  }
+
+  function pill(e) {
+    const t = T();
+    if (e.inDays < 0) return '<span class="pill past">' + t.exAgo(-e.inDays) + '</span>';
+    if (e.inDays === 0) return '<span class="pill soon">' + t.exToday + '</span>';
+    if (daysBetween(today, e.buyBy) === 0) return '<span class="pill soon">' + t.buyToday + '</span>';
+    return '<span class="pill' + (e.inDays <= 7 ? " soon" : "") + '">' + t.inDays(e.inDays) + '</span>';
+  }
+
+  function rowHTML(e) {
+    const t = T();
+    const dcell = (cls, label, d) => d
+      ? '<div class="' + cls + '"><div class="l">' + label + '</div><div class="dv">' + dayLabel(d) + '</div><div class="h">' + hijri(d) + '</div></div>'
+      : '<div class="' + cls + '"><div class="l">' + label + '</div><div class="dv">' + t.tba + '</div></div>';
+    const alt = altName(e);
+    const period = periodName(e.period);
+    return '<div class="row' + (e.inDays < 0 ? " past" : "") + '">' +
+      '<div class="tick">' + esc(e.ticker) + '</div>' +
+      '<div class="co"><div class="n"><bdi>' + esc(nm(e)) + '</bdi></div>' +
+        (alt ? '<div class="a"><bdi>' + esc(alt) + '</bdi></div>' : "") +
+        '<div class="meta">' + esc(sectorName(e.sector)) + (period ? ' · ' + esc(period) : "") + '</div></div>' +
+      '<div class="amt"><span class="d">' + money(e.dps) + '</span>' +
+        (e.yld != null ? '<span class="y">' + pct(e.yld) + ' ' + t.thisPay + '</span>' : "") +
+        (e.ttm != null ? '<span class="y">' + pct(e.ttm) + ' ' + t.trailing + '</span>' : "") + '</div>' +
+      '<div class="dates">' + dcell("buy", t.buyBy, e.buyBy) + dcell("ex", t.exDate, e.ex) + dcell("pay", t.paid, e.pay) +
+        (e.rec ? '<div class="rec">' + t.elig(dayLabel(e.rec)) + '</div>' : "") + '</div>' +
+      '<div class="act">' + pill(e) + '<button class="ics" type="button" data-t="' + esc(e.ticker) + '" data-x="' + e.exDate + '">' + t.addCal + '</button></div>' +
+    '</div>';
+  }
+
+  function weekStart(d) { return addDays(d, -d.getDay()); } // Tadawul week starts Sunday
+
+  function renderList() {
+    const t = T(), list = filtered();
+    if (!list.length) { $("view").innerHTML = '<div class="empty">' + t.empty + '</div>'; return; }
+    if (state.sort === "yield") {
+      $("view").innerHTML = '<section class="week"><h2><span>' + t.ranked + '</span><span>' + t.companies(list.length) + '</span></h2><div class="rows">' + list.map(rowHTML).join("") + '</div></section>';
+      return;
+    }
+    const groups = new Map();
+    list.forEach(e => {
+      const k = iso(weekStart(e.ex));
+      if (!groups.has(k)) groups.set(k, []);
+      groups.get(k).push(e);
+    });
+    const thisWeek = iso(weekStart(today)), nextWeek = iso(addDays(weekStart(today), 7));
+    let html = "";
+    groups.forEach((evs, k) => {
+      const s = parse(k), end = addDays(s, 4);
+      const label = k === thisWeek ? t.thisWeek : k === nextWeek ? t.nextWeek : t.weekOf(F.dm.format(s));
+      html += '<section class="week"><h2><span>' + label + '</span><span>' + F.dm.format(s) + ' – ' + F.dm.format(end) + ' · ' + t.goingEx(evs.length) + '</span></h2><div class="rows">' + evs.map(rowHTML).join("") + '</div></section>';
+    });
+    $("view").innerHTML = html;
+  }
+
+  function renderMonth() {
+    const t = T(), m = state.month;
+    const first = new Date(m.getFullYear(), m.getMonth(), 1);
+    const start = addDays(first, -first.getDay());
+    const byDay = {};
+    filtered().forEach(e => {
+      (byDay[e.exDate] = byDay[e.exDate] || []).push({ e, t: "ex" });
+      if (e.payDate) (byDay[e.payDate] = byDay[e.payDate] || []).push({ e, t: "pay" });
+    });
+    let hm = "";
+    try {
+      if (F.hm) {
+        const a = F.hm.format(first), b = F.hm.format(new Date(m.getFullYear(), m.getMonth() + 1, 0));
+        hm = a === b ? a : a.replace(/\s?\d+\s?(AH|هـ)$/, "") + " – " + b;
+      }
+    } catch (e) {}
+    const dows = [];
+    for (let i = 0; i < 7; i++) dows.push(F.dow.format(addDays(start, i)));
+    let html = '<div style="display:grid;gap:12px">' +
+      '<div class="monthbar"><button class="nav" type="button" id="prevM" aria-label="' + t.prevM + '">' + t.prevArrow + '</button>' +
+      '<h2>' + F.month.format(first) + '<span class="hj">' + esc(hm) + '</span></h2>' +
+      '<button class="nav" type="button" id="nextM" aria-label="' + t.nextM + '">' + t.nextArrow + '</button></div>' +
+      '<div class="gridwrap"><div class="grid">' + dows.map(d => '<div class="dow">' + d + '</div>').join("");
+    for (let i = 0; i < 42; i++) {
+      const d = addDays(start, i);
+      if (i >= 35 && d.getMonth() !== m.getMonth()) break;
+      const k = iso(d);
+      const cls = ["cell"];
+      if (isWeekend(d)) cls.push("we");
+      if (d.getMonth() !== m.getMonth()) cls.push("out");
+      if (k === todayStr) cls.push("today");
+      const evs = (byDay[k] || []).map(x =>
+        '<div class="ev ' + x.t + '" title="' + esc(x.t === "ex" ? t.evExT(nm(x.e), money(x.e.dps)) : t.evPayT(nm(x.e), money(x.e.dps))) + '">' +
+        (x.t === "ex" ? t.evEx : t.evPay) + ' ' + esc(x.e.ticker) + '</div>').join("");
+      html += '<div class="' + cls.join(" ") + '"><span class="dn">' + d.getDate() + '</span>' + evs + '</div>';
+    }
+    html += '</div></div><div class="legend"><span class="lx">' + t.lgEx + '</span><span class="lp">' + t.lgPay + '</span><span class="lw">' + t.lgWe + '</span></div></div>';
+    $("view").innerHTML = html;
+    $("prevM").onclick = () => { state.month = new Date(m.getFullYear(), m.getMonth() - 1, 1); renderMonth(); };
+    $("nextM").onclick = () => { state.month = new Date(m.getFullYear(), m.getMonth() + 1, 1); renderMonth(); };
+  }
+
+  function renderSummary() {
+    const t = T();
+    const up = data.events.filter(e => e.inDays >= 0).sort((a, b) => a.ex - b.ex);
+    if (up.length) {
+      const n = up[0];
+      const same = up.filter(e => e.exDate === n.exDate);
+      $("sNext").textContent = dayLabel(n.ex);
+      $("sNextSub").textContent = same.map(nm).join(lang === "ar" ? "، " : ", ") + " · " + t.buyByShort(dayLabel(n.buyBy));
+    } else { $("sNext").textContent = t.none; $("sNextSub").textContent = ""; }
+    const in30 = up.filter(e => e.inDays <= 30);
+    $("s30").textContent = in30.length;
+    $("s30Sub").textContent = in30.length ? t.heldOne(money(in30.reduce((s, e) => s + e.dps, 0))) : "";
+    const top = up.filter(e => e.ttm != null).sort((a, b) => b.ttm - a.ttm)[0];
+    if (top) { $("sTop").textContent = pct(top.ttm); $("sTopSub").textContent = nm(top) + " (" + top.ticker + ") · " + t.exShort(F.dm.format(top.ex)); }
+    else { $("sTop").textContent = "–"; $("sTopSub").textContent = ""; }
+  }
+
+  function renderChips() {
+    const sectors = ["All"].concat(Array.from(new Set(data.events.map(e => e.sector))).sort());
+    $("chips").innerHTML = sectors.map(s => '<button type="button" class="chipbtn chip" aria-pressed="' + (s === state.sector) + '" data-s="' + esc(s) + '">' + esc(s === "All" ? T().all : sectorName(s)) + '</button>').join("");
+  }
+
+  function render() {
+    $("vList").setAttribute("aria-pressed", state.view === "list");
+    $("vMonth").setAttribute("aria-pressed", state.view === "month");
+    $("showPast").closest("label").hidden = state.view !== "list";
+    $("sort").hidden = state.view !== "list";
+    state.view === "list" ? renderList() : renderMonth();
+  }
+
+  function applyLang() {
+    const t = T();
+    const root = document.documentElement;
+    root.lang = lang; root.dir = lang === "ar" ? "rtl" : "ltr";
+    document.title = t.docTitle;
+    makeFormats();
+    document.querySelectorAll("[data-i]").forEach(el => {
+      const v = t[el.dataset.i];
+      if (typeof v !== "string") return;
+      if (el.dataset.html) el.innerHTML = v; else el.textContent = v;
+    });
+    $("titleSub").textContent = t.titleSub;
+    $("titleSub").lang = lang === "ar" ? "en" : "ar";
+    $("langBtn").textContent = t.langBtn;
+    $("langBtn").lang = lang === "ar" ? "en" : "ar";
+    $("q").placeholder = t.search;
+    $("q").setAttribute("aria-label", t.search);
+    if (!data) { $("updated").textContent = t.loading; return; }
+    if (data.error) { $("updated").textContent = t.unavailable; $("view").innerHTML = '<div class="empty">' + t.loadErr + '</div>'; return; }
+    $("updated").textContent = t.updated(F.full.format(parse(data.updated)).replace("،", ""));
+    const src = lang === "ar" ? (data.sourceAr || data.source) : data.source;
+    $("srcNote").innerHTML = "<strong>" + t.source + "</strong> " + esc(src || "") + (data.sourceUrl ? ' <a href="' + esc(data.sourceUrl) + '" target="_blank" rel="noopener">' + t.sourceLink + '</a>.' : "");
+    renderSummary(); renderChips(); render();
+  }
+
+  function icsFor(e) {
+    const dt = s => s.replace(/-/g, "");
+    const next = s => iso(addDays(parse(s), 1)).replace(/-/g, "");
+    const stamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d+/, "");
+    const ev = (uid, date, summary, desc) => [
+      "BEGIN:VEVENT", "UID:" + uid + "@rafkhan.com", "DTSTAMP:" + stamp,
+      "DTSTART;VALUE=DATE:" + dt(date), "DTEND;VALUE=DATE:" + next(date),
+      "SUMMARY:" + summary, "DESCRIPTION:" + desc, "END:VEVENT"].join("\r\n");
+    const t = T(), name = nm(e) + " (" + e.ticker + ")", amt = money(e.dps);
+    const parts = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//rafkhan.com//Tadawul Dividend Calendar//EN",
+      ev(e.ticker + "-buy-" + e.exDate, iso(e.buyBy), t.buyBy + ": " + name, amt)];
+    parts.push(ev(e.ticker + "-ex-" + e.exDate, e.exDate, t.exDate + ": " + name, amt));
+    if (e.payDate) parts.push(ev(e.ticker + "-pay-" + e.payDate, e.payDate, t.paid + ": " + name, amt));
+    parts.push("END:VCALENDAR");
+    return parts.join("\r\n");
+  }
+
+  document.addEventListener("click", ev => {
+    const chip = ev.target.closest(".chip");
+    if (chip) { state.sector = chip.dataset.s; renderChips(); render(); return; }
+    const b = ev.target.closest(".ics");
+    if (b) {
+      const e = data.events.find(x => x.ticker === b.dataset.t && x.exDate === b.dataset.x);
+      if (!e) return;
+      const url = URL.createObjectURL(new Blob([icsFor(e)], { type: "text/calendar" }));
+      const a = document.createElement("a");
+      a.href = url; a.download = e.ticker + "-dividend-" + e.exDate + ".ics";
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+    }
+  });
+  $("langBtn").addEventListener("click", () => { lang = lang === "ar" ? "en" : "ar"; store.set("tdc-lang", lang); applyLang(); });
+  $("q").addEventListener("input", e => { state.q = e.target.value; render(); });
+  $("sort").addEventListener("change", e => { state.sort = e.target.value; render(); });
+  $("showPast").addEventListener("change", e => { state.showPast = e.target.checked; store.set("tdc-past", e.target.checked ? "1" : "0"); render(); });
+  $("vList").addEventListener("click", () => { state.view = "list"; history.replaceState(null, "", "#list"); render(); });
+  $("vMonth").addEventListener("click", () => { state.view = "month"; history.replaceState(null, "", "#month"); render(); });
+  window.addEventListener("hashchange", () => { state.view = location.hash === "#month" ? "month" : "list"; render(); });
+
+  $("year").textContent = new Date().getFullYear();
+  applyLang();
+  fetch("data/dividends.json", { cache: "no-store" })
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(json => {
+      data = json;
+      data.events = (json.events || []).map(enrich);
+      $("sampleBadge").hidden = !json.sample;
+      const firstUp = data.events.filter(e => e.inDays >= 0).sort((a, b) => a.ex - b.ex)[0];
+      const base = firstUp ? firstUp.ex : today;
+      state.month = new Date(base.getFullYear(), base.getMonth(), 1);
+      $("showPast").checked = state.showPast;
+      applyLang();
+    })
+    .catch(() => { data = { error: true }; applyLang(); });
+})();
+</script>
+</body>
+</html>
