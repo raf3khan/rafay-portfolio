@@ -3,6 +3,9 @@ on:
   push:
     branches: [main]
     paths: ["**/index.html", "labs/**/data/**", "tools/seo/build_sitemap.py"]
+  # Data commits made by other Actions don't trigger this, so also refresh lastmod daily.
+  schedule:
+    - cron: "40 15 * * *"
   workflow_dispatch:
 permissions:
   contents: write
