@@ -1,0 +1,40 @@
+name: Update Tadawul dividends
+
+# Refreshes labs/tadawul-dividends/data/dividends.json from free public pages. No API keys and no Claude usage.
+on:
+  schedule:
+    - cron: "20 14 * * 0-4" # 17:20 Riyadh, after the Sunday to Thursday close
+  workflow_dispatch:
+  push:
+    branches: ["claude/**"]
+    paths:
+      - "tools/tadawul-dividends/**"
+      - ".github/workflows/tadawul-dividends.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tadawul-dividends-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Refresh dividend data
+        run: python3 tools/tadawul-dividends/update.py
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add labs/tadawul-dividends/data/dividends.json
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "Update Tadawul dividends"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
