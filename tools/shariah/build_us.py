@@ -16,12 +16,12 @@ UA = os.environ.get("SEC_USER_AGENT") or "HalalScreen rafkhan.com/labs/shariah-c
 SEC_DELAY = 0.15  # SEC asks for at most 10 requests a second
 
 
-def get(url, ua=UA, tries=3):
+def get(url, ua=UA, tries=3, timeout=30):
     last = None
     for i in range(tries):
         try:
             req = urllib.request.Request(url, headers={"User-Agent": ua, "Accept-Encoding": "identity"})
-            with urllib.request.urlopen(req, timeout=30) as r:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
                 return r.read()
         except urllib.error.HTTPError as e:
             last = e
@@ -217,21 +217,34 @@ OVERRIDES_PATH = os.path.join(DATA, "overrides-us.json")
 
 
 # ---------- prices ----------
+PRICE_FAILS = {"Stooq": 0, "Yahoo": 0}
+
+
 def price(ticker):
+    """Latest close. A source that keeps failing is skipped for the rest of the run."""
     sym = ticker.replace(".", "-")
     try:
-        raw = get(f"https://stooq.com/q/l/?s={sym.lower()}.us&f=sd2c&h&e=csv", ua="Mozilla/5.0").decode()
+        if PRICE_FAILS["Stooq"] >= 5:
+            raise RuntimeError("skip")
+        raw = get(f"https://stooq.com/q/l/?s={sym.lower()}.us&f=sd2c&h&e=csv", ua="Mozilla/5.0", tries=1, timeout=10).decode()
         row = next(csv.DictReader(io.StringIO(raw)))
         p = float(row["Close"])
         if p > 0:
+            PRICE_FAILS["Stooq"] = 0
             return p, row["Date"], "Stooq"
-    except Exception:
-        pass
+        raise ValueError("no price")
+    except Exception as e:
+        if str(e) != "skip":
+            PRICE_FAILS["Stooq"] += 1
     try:
-        j = json.loads(get(f"https://query1.finance.yahoo.com/v8/finance/chart/{sym}?range=5d&interval=1d", ua="Mozilla/5.0"))
+        if PRICE_FAILS["Yahoo"] >= 5:
+            return None, None, None
+        j = json.loads(get(f"https://query1.finance.yahoo.com/v8/finance/chart/{sym}?range=5d&interval=1d", ua="Mozilla/5.0", tries=1, timeout=10))
         m = j["chart"]["result"][0]["meta"]
+        PRICE_FAILS["Yahoo"] = 0
         return float(m["regularMarketPrice"]), datetime.fromtimestamp(m["regularMarketTime"], timezone.utc).date().isoformat(), "Yahoo Finance"
     except Exception:
+        PRICE_FAILS["Yahoo"] += 1
         return None, None, None
 
 
