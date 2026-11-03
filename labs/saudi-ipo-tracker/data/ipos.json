@@ -1,0 +1,105 @@
+{
+  "updated": "2026-11-03",
+  "sample": true,
+  "source": "Compiled by hand from IPO announcements on Saudi Exchange, the CMA and Argaam.",
+  "sourceUrl": "https://www.saudiexchange.sa/",
+  "ipos": [
+    {
+      "name": "Example Healthcare Co.",
+      "nameAr": "شركة الرعاية الصحية (مثال)",
+      "ticker": null,
+      "market": "Main",
+      "sector": "Healthcare",
+      "priceLow": 38,
+      "priceHigh": 42,
+      "finalPrice": null,
+      "offerShares": 30000000,
+      "retailPct": 10,
+      "minShares": 10,
+      "bookBuild": [
+        "2026-11-01",
+        "2026-11-05"
+      ],
+      "retail": [
+        "2026-11-16",
+        "2026-11-17"
+      ],
+      "allocation": "2026-11-20",
+      "listing": null,
+      "leadManager": "Example Capital",
+      "source": "https://www.argaam.com/en/company/calendar/details/marketid/14"
+    },
+    {
+      "name": "Example Logistics Co.",
+      "nameAr": "شركة الخدمات اللوجستية (مثال)",
+      "ticker": null,
+      "market": "Main",
+      "sector": "Transportation",
+      "priceLow": 24,
+      "priceHigh": 26,
+      "finalPrice": 26,
+      "offerShares": 90000000,
+      "retailPct": 10,
+      "minShares": 10,
+      "bookBuild": [
+        "2026-10-19",
+        "2026-10-23"
+      ],
+      "retail": [
+        "2026-11-02",
+        "2026-11-04"
+      ],
+      "allocation": "2026-11-09",
+      "listing": null,
+      "leadManager": "Example Capital",
+      "source": "https://www.argaam.com/en/company/calendar/details/marketid/14"
+    },
+    {
+      "name": "Example Retail Co.",
+      "nameAr": "شركة التجزئة (مثال)",
+      "ticker": null,
+      "market": "Main",
+      "sector": "Consumer Retail",
+      "priceLow": 15,
+      "priceHigh": 16.5,
+      "finalPrice": 16.5,
+      "offerShares": 60000000,
+      "retailPct": 20,
+      "minShares": 10,
+      "bookBuild": [
+        "2026-10-05",
+        "2026-10-09"
+      ],
+      "retail": [
+        "2026-10-20",
+        "2026-10-21"
+      ],
+      "allocation": "2026-10-26",
+      "listing": "2026-11-10",
+      "leadManager": "Example Capital",
+      "source": "https://www.argaam.com/en/company/calendar/details/marketid/14"
+    },
+    {
+      "name": "Example Tech Co.",
+      "nameAr": "شركة التقنية (مثال)",
+      "ticker": "9999",
+      "market": "Nomu",
+      "sector": "Software",
+      "priceLow": 50,
+      "priceHigh": 50,
+      "finalPrice": 50,
+      "offerShares": 2000000,
+      "retailPct": 0,
+      "minShares": 10,
+      "bookBuild": [
+        "2026-09-14",
+        "2026-09-18"
+      ],
+      "retail": null,
+      "allocation": "2026-09-23",
+      "listing": "2026-10-06",
+      "leadManager": "Example Capital",
+      "source": "https://www.argaam.com/en/company/calendar/details/marketid/14"
+    }
+  ]
+}
