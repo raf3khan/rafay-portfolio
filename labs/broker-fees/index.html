@@ -4,8 +4,69 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27%23181818%27/%3E%3Ctext x=%2732%27 y=%2742%27 font-family=%27Arial%27 font-weight=%27700%27 font-size=%2728%27 fill=%27%2330d158%27 text-anchor=%27middle%27%3ERK%3C/text%3E%3C/svg%3E">
-<title>Saudi Broker Fees</title>
-<meta name="description" content="Compare the full cost of a Tadawul trade across Saudi brokers, including exchange fees, the CMA fee, VAT and minimum charges.">
+<title>Saudi Broker Fee Calculator: true cost of a Tadawul trade</title>
+<meta name="description" content="Free calculator that compares the real cost of a Tadawul trade at Saudi brokers, with exchange fees, the CMA fee, 15% VAT and US order minimums. In English.">
+<link rel="canonical" href="https://rafkhan.com/labs/broker-fees/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rafay Khan">
+<meta property="og:title" content="Saudi Broker Fee Calculator: true cost of a Tadawul trade">
+<meta property="og:description" content="Free calculator that compares the real cost of a Tadawul trade at Saudi brokers, with exchange fees, the CMA fee, 15% VAT and US order minimums. In English.">
+<meta property="og:url" content="https://rafkhan.com/labs/broker-fees/">
+<meta property="og:locale" content="en_US">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebApplication",
+   "name": "Saudi Broker Fee Calculator",
+   "alternateName": "حاسبة عمولات الوساطة في السوق السعودية",
+   "url": "https://rafkhan.com/labs/broker-fees/",
+   "description": "Free calculator that compares the real cost of a Tadawul trade at Saudi brokers, with exchange fees, the CMA fee, 15% VAT and US order minimums. In English.",
+   "applicationCategory": "FinanceApplication",
+   "operatingSystem": "Any",
+   "inLanguage": "en",
+   "isAccessibleForFree": true,
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "SAR"
+   },
+   "author": {
+    "@type": "Person",
+    "name": "Rafay Khan",
+    "url": "https://rafkhan.com/",
+    "sameAs": [
+     "https://www.linkedin.com/in/rafekhan"
+    ]
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Rafay Khan",
+     "item": "https://rafkhan.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Labs",
+     "item": "https://rafkhan.com/#labs"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Saudi Broker Fee Calculator",
+     "item": "https://rafkhan.com/labs/broker-fees/"
+    }
+   ]
+  }
+ ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
@@ -195,7 +256,7 @@ tbody tr:last-child td { border-bottom: 0; }
     <div class="col">
       <div class="glow" aria-hidden="true"></div>
       <div class="eyebrow"><a class="back" href="/#labs">← Labs</a><span>Saudi Exchange</span><span>Rates checked 2 Nov 2026</span></div>
-      <h1>Saudi broker fees</h1>
+      <h1>Saudi broker fee calculator</h1>
       <p class="lede">The headline commission is only part of what you pay. Every Tadawul trade also pays exchange and clearing fees, a CMA fee, and 15% VAT on most of that. Enter a trade to see the full bill at each broker.</p>
     </div>
   </section>
@@ -298,6 +359,8 @@ tbody tr:last-child td { border-bottom: 0; }
       <div class="notes">
         <p><strong>Rates last checked 2 November 2026.</strong> Sources: <a href="https://cma.gov.sa/en/MediaCenter/PR/Pages/SaleCommissions.aspx" target="_blank" rel="noopener">CMA commission ruling</a>, <a href="https://www.argaam.com/en/article/articledetail/id/1546615" target="_blank" rel="noopener">Tadawul Group fee structure</a>, <a href="https://www.argaam.com/en/article/articledetail/id/1387911" target="_blank" rel="noopener">VAT on trading commissions</a>, and each broker's fee page linked in its row.</p>
         <p>Brokers marked "Ceiling rate" haven't published a discount we could confirm, so the tool assumes the full 10.5 bps. Sahm Capital lists 0.105% and was also running a limited-time 0% offer when checked.</p>
+        <p><strong>How the calculator works.</strong> For a Saudi stock order it takes the trade value and adds four parts: the broker's commission at its published rate, the 2.0 basis point levy that goes to the Saudi Exchange, Muqassa and Edaa, the 3.0 basis point CMA fee, and 15% VAT on the commission and the levy. The CMA fee carries no VAT. A round trip counts the buy and the sell. The yearly gap multiplies the difference between the cheapest and the most expensive broker by the number of orders you place each month. For US stocks it uses each broker's per share rate and minimum per order, adds 15% VAT on the commission, converts at the fixed rate of 3.75 riyals to the dollar, and adds any FX spread you enter. Everything runs in your browser and nothing you type is sent anywhere.</p>
+        <p>More tools: the <a href="/labs/tadawul-dividends/">Tadawul dividend calendar</a> for upcoming ex-dividend dates, and <a href="https://shariah.rafkhan.com" target="_blank" rel="noopener">Halal Screen</a> for checking a stock against AAOIFI standards. <a href="/#labs">See all Labs tools</a>.</p>
         <p>For information only, not financial advice. Brokers change prices and run promotions, so confirm with yours before trading.</p>
       </div>
     </div>
