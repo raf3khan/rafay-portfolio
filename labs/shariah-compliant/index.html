@@ -314,14 +314,18 @@ function render(){
   const mcap=num("mcap"), debt=num("debt"), cash=num("cash"), rev=num("rev"), bad=num("bad"), shares=num("shares");
   const b = BIZ[$("biz").value];
   const live = current && $("form").hidden;
-  let incomeCaveat = null, incomeMissing = false;
-  if (live && current.nonPermissibleQuality === "missing"){ incomeMissing = true; incomeCaveat = "This company doesn't report interest income as a separate line in its filing data, so this check can't be run automatically. Look for interest or finance income in the notes to its 10-K."; }
-  if (live && current.nonPermissibleQuality === "net") incomeCaveat = "Estimated from net interest income, because gross interest income isn't reported separately. The real figure may be a little higher.";
+  let incomeCaveat = null, incomeMissing = false, incomeSoft = false, debtMissing = false;
+  const q = live ? current.nonPermissibleQuality : null;
+  if (q === "missing"){ incomeMissing = true; incomeCaveat = "This company doesn't report interest income as a separate figure in its filing data, so this check can't be run automatically. Look for interest or finance income in the notes to its 10-K."; }
+  if (q === "net") incomeCaveat = "Estimated from net interest income, because gross interest income isn't reported separately. The real figure may be a little higher.";
+  if (q === "upper"){ incomeSoft = true; incomeCaveat = "Interest income isn't reported separately, so this uses all non-operating income, which also includes investment gains and other one-offs. The real non-permissible share is lower than shown."; }
+  if (live && current.debtQuality === "missing"){ debtMissing = true; }
   const checks = [
     {title:"Business activity", s:b.s, fig:`<b class="plain">${b.t}</b>`, why:b.d + (live && current.sicDesc ? ` SEC industry: ${esc(current.sicDesc)}.` : ""), caveat: live && current.bizNote ? esc(current.bizNote) : null},
-    ratioCheck("Debt", debt, mcap, .30, cur, "Interest-bearing debt", "Market cap",
+    ratioCheck("Debt", debtMissing ? null : debt, mcap, .30, cur, "Interest-bearing debt", "Market cap",
       "The company relies mostly on its own equity. AAOIFI tolerates some conventional borrowing because few companies can avoid it, but caps it at 30% of market value.",
-      "Too much of the company is funded by interest-bearing loans. Above 30% of market value, AAOIFI treats the riba as too large a part of the business to overlook."),
+      "Too much of the company is funded by interest-bearing loans. Above 30% of market value, AAOIFI treats the riba as too large a part of the business to overlook.",
+      debtMissing ? "This company reports its borrowings under its own labels, so its debt can't be read automatically. Check the debt note in its latest 10-K." : null),
     ratioCheck("Interest-bearing cash and securities", cash, mcap, .30, cur, "Cash and investments", "Market cap",
       "The company keeps a modest amount in interest-earning deposits and securities, under the 30% cap.",
       "The company parks too much money in interest-earning deposits or bonds. Above 30% of market value, owning the share starts to look like owning an interest-bearing account."),
@@ -329,6 +333,7 @@ function render(){
       "Under 5% of revenue comes from interest or prohibited activity. That small share is tolerated, and you purify it below.",
       "More than 5% of revenue comes from interest or prohibited activity. At that level the haram income is too large to clean through purification.", incomeCaveat),
   ];
+  if (incomeSoft && checks[3].s === "fail"){ checks[3].s = "warn"; checks[3].why = "Non-operating income is above 5% of revenue, but that figure includes more than interest. Check the 10-K notes for the actual interest income before deciding."; }
   const fails = checks.filter(c=>c.s==="fail"), warns = checks.filter(c=>c.s==="warn");
   $("verdict").className = "verdict " + (fails.length ? "fail" : warns.length ? "warn" : "pass");
   $("vco").textContent = name + (live ? ` · ${current.exchange || "US"} · data as of ${fmtDate(current.priceDate)}` : "");
@@ -374,10 +379,10 @@ function showUS(t){
   $("facts").innerHTML = [
     ["Share price", `USD ${r.price.toLocaleString("en-US",{maximumFractionDigits:2})}`],
     ["Market cap", money(r.marketCap/1e6,"USD")],
-    ["Interest-bearing debt", money(r.debt/1e6,"USD")],
+    ["Interest-bearing debt", r.debtQuality === "missing" ? "not readable" : money(r.debt/1e6,"USD")],
     ["Cash and investments", money(r.cash/1e6,"USD")],
     ["Revenue (fiscal year)", money(r.revenue/1e6,"USD")],
-    ["Interest income", r.nonPermissible == null ? "not reported" : money(r.nonPermissible/1e6,"USD")],
+    [r.nonPermissibleQuality === "upper" ? "Non-operating income" : "Interest income", r.nonPermissible == null ? "not reported" : money(r.nonPermissible/1e6,"USD")],
   ].map(([k,v]) => `<div class="fact"><span>${k}</span><span>${v}</span></div>`).join("");
   $("src").innerHTML = `<div>Balance sheet at ${fmtDate(r.balanceDate)}. Revenue and interest income for the year to ${fmtDate(r.fiscalYearEnd)}. Price close on ${fmtDate(r.priceDate)}.</div>
     <div>Debt is ${esc(parts(r.debtParts))}. Cash is ${esc(parts(r.cashParts))}.</div>

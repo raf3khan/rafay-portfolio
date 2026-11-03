@@ -182,28 +182,30 @@ def interest_income(facts, fy_end):
     return None, None, "missing"
 
 
-def shares(facts):
-    best = None
-    for ns, t, unit in (("dei", "EntityCommonStockSharesOutstanding", "shares"),
-                        ("us-gaap", "CommonStockSharesOutstanding", "shares"),
-                        ("us-gaap", "WeightedAverageNumberOfDilutedSharesOutstanding", "shares")):
-        es = [e for e in facts.get(ns, {}).get(t, {}).get("units", {}).get(unit, [])]
-        if not es:
-            continue
-        last_end = max(e["end"] for e in es)
-        # several share classes can share one date: add them up
-        same = {}
-        for e in es:
-            if e["end"] == last_end:
-                same[e.get("frame") or e["accn"] + str(e["val"])] = e["val"]
-        latest = sorted([e for e in es if e["end"] == last_end], key=lambda e: e["filed"])[-1]
-        tot = sum(e["val"] for e in es if e["end"] == last_end and e["accn"] == latest["accn"])
-        cand = (t, tot, last_end)
-        if best is None or last_end > best[2]:
-            best = cand
-        if t == "EntityCommonStockSharesOutstanding":
-            return cand
-    return best
+def shares(facts, on):
+    """Shares outstanding near balance-sheet date `on`. Stale facts (a company that switched to
+    per-class reporting stops filing the plain total) are ignored."""
+    def fresh(d):
+        return days(d, on) <= 200
+    es = facts.get("dei", {}).get("EntityCommonStockSharesOutstanding", {}).get("units", {}).get("shares", [])
+    if es:
+        last = max(e["end"] for e in es)
+        if fresh(last):
+            latest = sorted([e for e in es if e["end"] == last], key=lambda e: e["filed"])[-1]
+            # one cover page can list several classes without dimensions: add them up
+            tot = sum(e["val"] for e in es if e["end"] == last and e["accn"] == latest["accn"])
+            return "EntityCommonStockSharesOutstanding", tot, last
+    v = instant(facts, "CommonStockSharesOutstanding", on, unit="shares")
+    if v:
+        return "CommonStockSharesOutstanding", v, on
+    for t in ("WeightedAverageNumberOfDilutedSharesOutstanding", "WeightedAverageNumberOfSharesOutstandingBasic"):
+        es = [e for e in entries(facts, t, unit="shares") if "start" in e]
+        if es:
+            last = max(e["end"] for e in es)
+            if fresh(last):
+                e = sorted([e for e in es if e["end"] == last], key=lambda e: (days(e["start"], e["end"]), e["filed"]))[0]
+                return t, e["val"], last
+    return None
 
 
 # ---------- business activity from SIC ----------
@@ -293,8 +295,18 @@ def main():
             skipped[t] = "Balance sheet or revenue missing in EDGAR data"
             continue
         d, c = debt(facts, on), cash(facts, on)
+        lt_found = any(k.startswith(("LongTerm", "Debt", "SeniorNotes", "ConvertibleNotes", "UnsecuredDebt", "OtherLongTermDebt")) for k, _ in d)
+        iexp = None
+        for tg in ("InterestExpense", "InterestExpenseNonoperating", "InterestExpenseDebt", "InterestPaidNet"):
+            iexp = annual_at(facts, tg, rev[1]["end"])
+            if iexp is not None:
+                break
+        debt_quality = "reported" if lt_found or not iexp or iexp < 0.002 * rev[1]["val"] else "missing"
+        seen = sorted({k for k, u in facts["us-gaap"].items()
+                       if any(w in k for w in ("Debt", "Borrowing", "NotesPayable"))
+                       and any(e.get("end") == on and "start" not in e for e in u.get("units", {}).get("USD", []))})[:20]
         itag, ival, iquality = interest_income(facts, rev[1]["end"])
-        sh = shares(facts)
+        sh = shares(facts, on)
         p, pdate, psrc = price(t)
         if not p or not sh:
             skipped[t] = "No price or share count"
@@ -316,7 +328,8 @@ def main():
             "shares": sh[1], "sharesDate": sh[2], "sharesTag": sh[0],
             "marketCap": round(mcap),
             "balanceDate": on,
-            "debt": sum(v for _, v in d), "debtParts": d,
+            "debt": sum(v for _, v in d), "debtParts": d, "debtQuality": debt_quality,
+            "interestExpense": iexp, "debtTagsSeen": seen if debt_quality == "missing" else None,
             "cash": sum(v for _, v in c), "cashParts": c,
             "revenue": rev[1]["val"], "revenueTag": rev[0], "fiscalYearEnd": rev[1]["end"],
             "nonPermissible": ival, "nonPermissibleTag": itag, "nonPermissibleQuality": iquality,
