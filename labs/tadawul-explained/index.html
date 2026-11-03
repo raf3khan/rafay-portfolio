@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27%23181818%27/%3E%3Ctext x=%2732%27 y=%2742%27 font-family=%27Arial%27 font-weight=%27700%27 font-size=%2728%27 fill=%27%2330d158%27 text-anchor=%27middle%27%3ERK%3C/text%3E%3C/svg%3E">
+<title>Tadawul Explained</title>
+<meta name="description" content="Plain-language explanations of Saudi Exchange (Tadawul) stocks in English and Arabic: what the company does, key numbers and recent announcements.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap">
+<style>
+/* Layout: same drafting board as rafkhan.com. Grid paper ground, one framed 1200px column ruled into bands with corner ticks, serif display over Geist, glossy black controls. */
+:root {
+  --bg: #fafaf9; --paper-line: #efefed; --surface: #ffffff; --raised: #f2f2f0;
+  --ink: #111111; --muted: #565656; --line: #dcdcd8;
+  --accent: #248a3d; --accent-soft: #e6f6ea; --go: #30d158; --go-ink: #0b2b14;
+  --pay: #8a5a12; --pay-soft: #f1ece1; --weekend: #f2f2f0;
+  --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font: "Geist", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --arabic: "IBM Plex Sans Arabic", "Geist", system-ui, sans-serif;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --frame: 1200px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131313; --paper-line: #1c1c1c; --surface: #1f1f1f; --raised: #272727; --ink: #f4f4f4; --muted: #a3a3a3; --line: #313131;
+    --accent: #30d158; --accent-soft: #1d2a20; --pay: #e0ae55; --pay-soft: #24211b; --weekend: #181818; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131313; --paper-line: #1c1c1c; --surface: #1f1f1f; --raised: #272727; --ink: #f4f4f4; --muted: #a3a3a3; --line: #313131;
+  --accent: #30d158; --accent-soft: #1d2a20; --pay: #e0ae55; --pay-soft: #24211b; --weekend: #181818; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background-color: var(--bg); background-image: linear-gradient(var(--paper-line) 1px, transparent 1px), linear-gradient(90deg, var(--paper-line) 1px, transparent 1px); background-size: 16px 16px;
+  color: var(--ink); font: 400 16px/24px var(--font); -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+[dir="rtl"] body { font-family: var(--arabic); }
+h1, h2, h3 { text-wrap: balance; }
+a { color: var(--accent); text-underline-offset: 4px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+.ico { width: 16px; height: 16px; flex: none; }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* framed column, ruled bands, corner ticks */
+.band { border-bottom: 1px solid var(--line); }
+.col { max-width: var(--frame); margin: 0 auto; border-left: 1px solid var(--line); border-right: 1px solid var(--line); position: relative; background-color: var(--bg); }
+.band > .col::before, .band > .col::after { content: ""; position: absolute; bottom: -5px; width: 8px; height: 8px; border: 1px solid var(--line); background: var(--bg); z-index: 2; }
+.band > .col::before { left: -5px; } .band > .col::after { right: -5px; }
+.pad { padding: 24px; }
+@media (max-width: 1232px) { .col { margin: 0 16px; } }
+@media (max-width: 480px) { .col { margin: 0 8px; } .pad { padding: 16px; } }
+
+/* glossy controls */
+.gloss { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px; border-radius: 8px; font: 500 14px/20px var(--font); color: #ffffff; text-decoration: none; cursor: pointer;
+  background: linear-gradient(#3b3b3b, #0b0b0b); border: 1px solid #000000;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -1px 0 rgba(255,255,255,0.06), 0 2px 4px rgba(0,0,0,0.28), 0 8px 16px rgba(0,0,0,0.12);
+  transition: transform 300ms var(--ease), box-shadow 300ms var(--ease); }
+.gloss:hover { transform: translateY(-2px); }
+.chipbtn { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-decoration: none; font: 500 14px/20px var(--font); cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06); transition: transform 300ms var(--ease), border-color 300ms var(--ease); }
+.chipbtn:hover { transform: translateY(-2px); border-color: var(--muted); }
+[dir="rtl"] .chipbtn, [dir="rtl"] .gloss { font-family: var(--arabic); }
+
+/* top bar, same as the home page */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.bar .col { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; padding: 8px 16px; background: transparent; }
+.seg { display: inline-flex; gap: 4px; padding: 2px; border-radius: 8px; border: 1px solid var(--line); background: var(--raised); justify-self: start; }
+.seg a, .seg button { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 8px; border: 0; background: transparent; font: 500 14px/20px var(--font); color: var(--muted); text-decoration: none; cursor: pointer; transition: color 300ms var(--ease); }
+[dir="rtl"] .seg a, [dir="rtl"] .seg button { font-family: var(--arabic); }
+.seg a:hover, .seg button:hover { color: var(--ink); }
+.seg a[aria-current="true"], .seg button[aria-pressed="true"] { color: #ffffff; background: linear-gradient(#3b3b3b, #0b0b0b); box-shadow: 0 0 0 2px var(--accent), inset 0 1px 0 rgba(255,255,255,0.25); }
+.seg .ico { width: 12px; height: 12px; }
+.brand { font: 400 20px/28px var(--font); color: var(--ink); text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; }
+.right { justify-self: end; display: flex; gap: 8px; align-items: center; }
+@media (max-width: 480px) { .seg .ico { display: none; } .seg a { padding: 2px 6px; } .bar .brand { display: none; } .bar .col { grid-template-columns: 1fr auto; } }
+@media (max-width: 560px) { .brand { font-size: 16px; line-height: 24px; } .bar .col { gap: 8px; padding: 8px; } .right .gloss { display: none; } }
+
+/* hero */
+.hero .col { padding: 64px 24px 48px; display: grid; gap: 16px; overflow: hidden; }
+.hero .col > .glow { position: absolute; inset: 0 0 auto 0; height: 280px; pointer-events: none; background: radial-gradient(ellipse 60% 100% at 50% 0%, rgba(48, 209, 88, 0.22), transparent 70%); }
+.eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; font: 400 14px/20px var(--mono); color: var(--muted); position: relative; }
+[dir="rtl"] .eyebrow { font-family: var(--arabic); }
+.back { color: var(--muted); text-decoration: none; } .back:hover { color: var(--ink); }
+.badge { font: 500 12px/16px var(--font); padding: 2px 8px; border-radius: 9999px; background: var(--pay-soft); color: var(--pay); }
+h1 { margin: 0; font: 400 60px/1 var(--serif); letter-spacing: -0.02em; position: relative; }
+h1 .sub { display: block; margin-top: 12px; font: 400 24px/32px var(--arabic); letter-spacing: 0; color: var(--muted); }
+[dir="rtl"] h1 { font: 500 52px/1.2 var(--arabic); letter-spacing: 0; }
+[dir="rtl"] h1 .sub { font: 400 24px/32px var(--serif); }
+.lede { margin: 0; max-width: 600px; color: var(--muted); font-size: 18px; line-height: 28px; position: relative; }
+@media (max-width: 860px) { .hero .col { padding: 48px 16px 32px; } h1 { font-size: 44px; } [dir="rtl"] h1 { font-size: 38px; } }
+
+
+/* finder */
+.finder { display: grid; gap: 12px; position: relative; max-width: 720px; }
+.finder form { display: flex; gap: 8px; flex-wrap: wrap; }
+.finder input { flex: 1 1 260px; min-width: 0; font: 400 18px/28px var(--font); padding: 10px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
+[dir="rtl"] .finder input { font-family: var(--arabic); }
+.finder .gloss { padding: 10px 18px; font-size: 16px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 14px; color: var(--muted); }
+.chip b { font: 500 13px/20px var(--mono); color: var(--accent); }
+.chip[aria-pressed="true"] { color: #ffffff; background: linear-gradient(#3b3b3b, #0b0b0b); border-color: #000000; box-shadow: 0 0 0 2px var(--accent), inset 0 1px 0 rgba(255,255,255,0.25); }
+.chip[aria-pressed="true"] b { color: var(--go); }
+
+/* company head */
+.co-head { display: flex; flex-wrap: wrap; gap: 16px 24px; justify-content: space-between; align-items: end; }
+.co-head .code { font: 400 14px/20px var(--mono); color: var(--muted); }
+.co-head h2 { margin: 4px 0 0; font: 400 44px/1.05 var(--serif); letter-spacing: -0.02em; }
+[dir="rtl"] .co-head h2 { font: 600 34px/1.3 var(--arabic); letter-spacing: 0; }
+.co-head .alt { font-size: 15px; color: var(--muted); font-family: var(--arabic); }
+[dir="rtl"] .co-head .alt { font-family: var(--serif); font-size: 18px; }
+.sector { display: inline-block; margin-top: 8px; font: 500 12px/16px var(--font); padding: 4px 10px; border-radius: 9999px; background: var(--accent-soft); color: var(--accent); }
+[dir="rtl"] .sector { font-family: var(--arabic); }
+.px { text-align: end; display: grid; gap: 2px; }
+.px .v { font: 500 40px/44px var(--mono); letter-spacing: -0.03em; }
+.px .v small { font-size: 16px; color: var(--muted); letter-spacing: 0; margin-inline-start: 4px; }
+.px .d { font-size: 13px; color: var(--muted); }
+.px .stale { color: var(--pay); }
+@media (max-width: 640px) { .co-head h2 { font-size: 34px; } .px { text-align: start; } .px .v { font-size: 32px; line-height: 40px; } }
+
+/* range bar */
+.range { display: grid; gap: 6px; max-width: 520px; }
+.range .track { position: relative; height: 8px; border-radius: 9999px; background: var(--raised); border: 1px solid var(--line); }
+.range .dot { position: absolute; top: 50%; width: 16px; height: 16px; margin-left: -8px; transform: translateY(-50%); border-radius: 50%; background: linear-gradient(#3b3b3b, #0b0b0b); box-shadow: 0 0 0 3px var(--accent-soft); }
+.range .ends { display: flex; justify-content: space-between; font: 400 13px/18px var(--mono); color: var(--muted); }
+.range .cap { font-size: 14px; color: var(--muted); }
+
+/* two cells */
+.split { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
+.split > div { padding: 24px; min-width: 0; display: grid; gap: 16px; align-content: start; }
+.split > div + div { border-inline-start: 1px solid var(--line); }
+@media (max-width: 860px) { .split { grid-template-columns: minmax(0, 1fr); } .split > div + div { border-inline-start: 0; border-top: 1px solid var(--line); } .split > div { padding: 16px; } }
+.k { font: 500 14px/20px var(--font); color: var(--muted); margin: 0; }
+[dir="rtl"] .k { font-family: var(--arabic); }
+.story p { margin: 0; font-size: 18px; line-height: 30px; max-width: 62ch; }
+[dir="rtl"] .story p { line-height: 34px; }
+.aitag { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+.aitag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--go); box-shadow: 0 0 8px var(--go); }
+.ratios { display: grid; border-top: 1px solid var(--line); }
+.ratio { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.ratio .n { font-weight: 600; }
+.ratio .val { font: 500 18px/24px var(--mono); text-align: end; font-variant-numeric: tabular-nums; }
+.ratio .x { grid-column: 1 / -1; font-size: 14px; line-height: 20px; color: var(--muted); }
+
+/* announcements */
+.events { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+.ev { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 4px 24px; padding: 16px 24px; }
+.ev + .ev { border-top: 1px solid var(--line); }
+.ev time { font: 400 13px/24px var(--mono); color: var(--muted); }
+.ev .t { font-weight: 600; display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; }
+.ev .p { grid-column: 2; color: var(--muted); font-size: 15px; line-height: 22px; }
+.ev .s { grid-column: 2; font-size: 13px; }
+.pill { font: 500 12px/16px var(--font); padding: 2px 8px; border-radius: 9999px; background: var(--accent-soft); color: var(--accent); white-space: nowrap; }
+.pill.upcoming { background: var(--pay-soft); color: var(--pay); }
+[dir="rtl"] .pill { font-family: var(--arabic); }
+@media (max-width: 560px) { .ev { grid-template-columns: minmax(0, 1fr); padding: 16px; } .ev .p, .ev .s { grid-column: 1; } }
+.empty { padding: 32px; text-align: center; color: var(--muted); background: var(--surface); border: 1px dashed var(--line); border-radius: 16px; }
+
+/* notes and footer */
+.notes { display: grid; gap: 12px; max-width: 760px; font-size: 14px; line-height: 22px; color: var(--muted); }
+.notes p { margin: 0; }
+.notes strong { color: var(--ink); font-weight: 600; }
+.fine .col { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding: 16px 24px; color: var(--muted); font-size: 14px; line-height: 20px; }
+.fine a { color: var(--muted); text-decoration: none; } .fine a:hover { color: var(--ink); }
+@media (prefers-reduced-motion: no-preference) { #result { transition: opacity 200ms var(--ease); } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="bar band">
+  <div class="col">
+    <nav class="seg" aria-label="Main"><a href="/#work"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M104,40H56A16,16,0,0,0,40,56v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,104,40Zm0,64H56V56h48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm0,64H152V56h48Zm-96,32H56a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,104,136Zm0,64H56V152h48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,200,136Zm0,64H152V152h48Z"/></svg><span data-i="nWork">Work</span></a><a href="/#story"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M208,24H72A32,32,0,0,0,40,56V224a8,8,0,0,0,8,8H192a8,8,0,0,0,0-16H56a16,16,0,0,1,16-16H208a8,8,0,0,0,8-8V32A8,8,0,0,0,208,24Zm-8,160H72a31.82,31.82,0,0,0-16,4.29V56A16,16,0,0,1,72,40H200Z"/></svg><span data-i="nStory">Story</span></a><a href="/#labs" aria-current="true"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M221.69,199.77,160,96.92V40h8a8,8,0,0,0,0-16H88a8,8,0,0,0,0,16h8V96.92L34.31,199.77A16,16,0,0,0,48,224H208a16,16,0,0,0,13.72-24.23ZM110.86,103.25A7.93,7.93,0,0,0,112,99.14V40h32V99.14a7.93,7.93,0,0,0,1.14,4.11L183.36,167c-12,2.37-29.07,1.37-51.75-10.11-15.91-8.05-31.05-12.32-45.22-12.81ZM48,208l28.54-47.58c14.25-1.74,30.31,1.85,47.82,10.72,19,9.61,35,12.88,48,12.88a69.89,69.89,0,0,0,19.55-2.7L208,208Z"/></svg><span data-i="nLabs">Labs</span></a></nav>
+    <a class="brand" href="/">Rafay Khan</a>
+    <div class="right"><button class="chipbtn" id="langBtn" type="button" lang="ar">العربية</button><a class="gloss" href="https://www.linkedin.com/in/rafekhan" target="_blank" rel="noopener" data-i="chat">Let's chat</a></div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero band">
+    <div class="col">
+      <div class="glow" aria-hidden="true"></div>
+      <div class="eyebrow"><a class="back" href="/#labs" data-i="back">← Labs</a><span data-i="exchange">Saudi Exchange</span><span id="updated">Loading…</span></div>
+      <h1><span data-i="title">Tadawul Explained</span> <span class="sub" id="titleSub" lang="ar">تداول بوضوح</span></h1>
+      <p class="lede" data-i="lede">Type a Saudi stock code or company name. Get a plain-language read on what the company does, where the price sits, what its key numbers mean and what it has announced lately.</p>
+      <div class="finder">
+        <form id="f" role="search">
+          <input id="q" type="search" autocomplete="off" placeholder="2222 or Aramco" aria-label="Stock code or company name">
+          <button class="gloss" type="submit" data-i="go">Explain</button>
+        </form>
+        <div class="chips" id="chips" role="group" aria-label="Companies"></div>
+      </div>
+    </div>
+  </section>
+
+  <div id="result" aria-live="polite"></div>
+
+  <section class="band">
+    <div class="col pad">
+      <div class="notes">
+        <p data-i="fHow" data-html="1"></p>
+        <p id="srcNote"></p>
+        <p data-i="fAdvice"></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="fine"><div class="col"><span>© <span id="year">2026</span> <span data-i="footName">Rafay Khan · Riyadh</span></span><a href="/#labs" data-i="footBack">Back to Labs</a></div></footer>
+
+<script>
+(function () {
+  const STR = {
+    en: {
+      docTitle: "Tadawul Explained",
+      back: "← Labs", exchange: "Saudi Exchange", nWork: "Work", nStory: "Story", nLabs: "Labs", chat: "Let's chat", footName: "Rafay Khan · Riyadh", footBack: "Back to Labs", langBtn: "العربية",
+      title: "Tadawul Explained", titleSub: "تداول بوضوح",
+      lede: "Type a Saudi stock code or company name. Get a plain-language read on what the company does, where the price sits, what its key numbers mean and what it has announced lately.",
+      go: "Explain", ph: "2222 or Aramco", updated: d => "Updated " + d, loading: "Loading…",
+      noMatch: q => `No company matches “${q}” yet. This first version covers the eight largest names below. Try a 4-digit code like 1120 or a name like Almarai.`,
+      loadErr: "The company data didn't load. Refresh the page to try again.",
+      asOf: d => "Delayed price as of " + d, stale: "Older snapshot, refreshed weekly",
+      inPlain: "In plain words", aiTag: "Written with AI from the figures on this page",
+      range: "Where the price sits in its 52-week range", rangeCap: p => `${p}% of the way from the year's low to its high`,
+      nums: "Key numbers, explained", recent: "Recent announcements", source: "Source",
+      pe: "P/E ratio", peX: "How many riyals you pay for each riyal of yearly profit. Lower can mean cheaper, or that the market expects less growth.",
+      peNone: "No P/E", peNoneX: "The company made a loss over the last twelve months, so there is no profit to compare the price with.",
+      dy: "Dividend yield", dyX: d => `Cash paid to shareholders over the past year (SAR ${d} a share) as a share of today's price.`, dyNone: "No dividend", dyNoneX: "The company has not paid a dividend over the past year.",
+      mc: "Market value", mcX: "What the whole company is worth at this price.",
+      ni: "Profit, last 12 months", niX: c => c == null ? "Net income over the last four reported quarters." : `${c > 0 ? "Up" : "Down"} ${Math.abs(c)}% on the twelve months before.`,
+      bn: "bn", tn: "tn", sar: "SAR",
+      kinds: { results: "Results", dividend: "Dividend", deal: "Deal", upcoming: "Coming up" },
+      sectors: { Energy: "Energy", Banks: "Banks", Telecom: "Telecom", Materials: "Materials", Utilities: "Utilities", Food: "Food" },
+      fHow: "<strong>How this works.</strong> Each week the prices, ratios and announcements are collected from public sources and an AI model rewrites them in plain English and Arabic. Every announcement links to where it came from, so you can read the original.",
+      fAdvice: "This is general information to help you understand a company. It is not investment advice or a recommendation to buy or sell."
+    },
+    ar: {
+      docTitle: "تداول بوضوح",
+      back: "→ المختبر", exchange: "السوق المالية السعودية", nWork: "الأعمال", nStory: "القصة", nLabs: "المختبر", chat: "تواصل معي", footName: "Rafay Khan · الرياض", footBack: "العودة إلى المختبر", langBtn: "English",
+      title: "تداول بوضوح", titleSub: "Tadawul Explained",
+      lede: "اكتب رمز السهم أو اسم الشركة، واحصل على شرح مبسّط لنشاط الشركة وموقع السعر وما تعنيه أهم أرقامها وآخر ما أعلنته.",
+      go: "اشرح", ph: "2222 أو أرامكو", updated: d => "آخر تحديث " + d, loading: "جارٍ التحميل…",
+      noMatch: q => `لا توجد شركة تطابق «${q}» حتى الآن. تغطي هذه النسخة الأولى أكبر ثماني شركات أدناه. جرّب رمزًا من 4 أرقام مثل 1120 أو اسمًا مثل المراعي.`,
+      loadErr: "لم يتم تحميل بيانات الشركات. حدّث الصفحة وحاول مرة أخرى.",
+      asOf: d => "سعر متأخر بتاريخ " + d, stale: "لقطة أقدم، تُحدَّث أسبوعيًا",
+      inPlain: "باختصار", aiTag: "مكتوب بالذكاء الاصطناعي من الأرقام في هذه الصفحة",
+      range: "موقع السعر ضمن نطاق 52 أسبوعًا", rangeCap: p => `عند ${p}٪ من المسافة بين أدنى سعر وأعلى سعر خلال العام`,
+      nums: "أهم الأرقام وماذا تعني", recent: "آخر الإعلانات", source: "المصدر",
+      pe: "مكرر الربحية", peX: "عدد الريالات التي تدفعها مقابل كل ريال من الربح السنوي. الرقم الأقل قد يعني سعرًا أرخص أو توقعات نمو أقل.",
+      peNone: "لا يوجد مكرر", peNoneX: "سجلت الشركة خسارة في آخر اثني عشر شهرًا، فلا يوجد ربح لمقارنته بالسعر.",
+      dy: "عائد التوزيعات", dyX: d => `النقد الموزّع على المساهمين خلال العام الماضي (${d} ريال للسهم) كنسبة من سعر اليوم.`, dyNone: "لا توجد توزيعات", dyNoneX: "لم توزّع الشركة أرباحًا خلال العام الماضي.",
+      mc: "القيمة السوقية", mcX: "قيمة الشركة كاملة بهذا السعر.",
+      ni: "الربح في آخر 12 شهرًا", niX: c => c == null ? "صافي الربح في آخر أربعة أرباع معلنة." : `${c > 0 ? "ارتفاع" : "انخفاض"} بنسبة ${Math.abs(c)}٪ عن الاثني عشر شهرًا السابقة.`,
+      bn: "مليار", tn: "تريليون", sar: "ر.س",
+      kinds: { results: "نتائج", dividend: "توزيعات", deal: "صفقة", upcoming: "قادم" },
+      sectors: { Energy: "الطاقة", Banks: "البنوك", Telecom: "الاتصالات", Materials: "المواد الأساسية", Utilities: "المرافق العامة", Food: "الأغذية" },
+      fHow: "<strong>كيف تعمل الصفحة.</strong> كل أسبوع تُجمع الأسعار والنسب والإعلانات من مصادر عامة، ثم يعيد نموذج ذكاء اصطناعي صياغتها بلغة مبسطة بالعربية والإنجليزية. كل إعلان مرتبط بمصدره لتقرأ الأصل.",
+      fAdvice: "هذه معلومات عامة لمساعدتك على فهم الشركة، وليست نصيحة استثمارية أو توصية بالشراء أو البيع."
+    }
+  };
+
+  const $ = id => document.getElementById(id);
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  };
+  const params = new URLSearchParams(location.search);
+  let lang = store.get("tx-lang") || ((navigator.language || "").toLowerCase().startsWith("ar") ? "ar" : "en");
+  if (params.get("lang") === "ar" || params.get("lang") === "en") lang = params.get("lang");
+  const T = () => STR[lang];
+  let data = null, cur = null, missQ = "";
+
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const loc = () => lang === "ar" ? "ar-SA-u-nu-latn" : "en-GB";
+  const num = (v, d = 2) => v.toLocaleString(loc(), { minimumFractionDigits: d, maximumFractionDigits: d });
+  function fmtDate(s) {
+    const p = s.split("-").map(Number);
+    const opt = p.length === 3 ? { day: "numeric", month: "short", year: "numeric" } : { month: "short", year: "numeric" };
+    return new Intl.DateTimeFormat(lang === "ar" ? "ar-SA-u-ca-gregory-nu-latn" : "en-GB", opt).format(new Date(p[0], p[1] - 1, p[2] || 1));
+  }
+  const nm = c => lang === "ar" ? c.nameAr : c.name;
+  const big = bn => bn >= 1000 ? num(bn / 1000, 2) + " " + T().tn : num(bn, bn >= 100 ? 0 : 1) + " " + T().bn;
+  const norm = s => s.toLowerCase().replace(/[ً-ْ]/g, "").replace(/[أإآ]/g, "ا").replace(/[^a-z0-9؀-ۿ]/g, "");
+
+  function find(q) {
+    const n = norm(q);
+    if (!n) return null;
+    const list = data.companies;
+    return list.find(c => c.code === n)
+      || list.find(c => [c.name, c.nameAr, ...(c.aka || [])].some(k => norm(k) === n))
+      || list.find(c => [c.name, c.nameAr, ...(c.aka || [])].some(k => { const m = norm(k); return m.includes(n) || (n.length > 3 && n.includes(m)); }))
+      || null;
+  }
+
+  function renderChips() {
+    if (!data || !data.companies) { $("chips").innerHTML = ""; return; }
+    $("chips").innerHTML = data.companies.map(c =>
+      `<button type="button" class="chipbtn chip" data-c="${c.code}" aria-pressed="${cur && cur.code === c.code}"><b>${c.code}</b> ${esc(nm(c))}</button>`).join("");
+  }
+
+  function render() {
+    const t = T(), out = $("result");
+    if (!data) { out.innerHTML = ""; return; }
+    if (data.error) { out.innerHTML = `<section class="band"><div class="col pad"><div class="empty">${t.loadErr}</div></div></section>`; return; }
+    if (!cur) { out.innerHTML = `<section class="band"><div class="col pad"><div class="empty">${esc(t.noMatch(missQ))}</div></div></section>`; return; }
+    const c = cur;
+    const days = (Date.now() - new Date(c.asOf + "T12:00:00").getTime()) / 864e5;
+    const pos = Math.max(0, Math.min(100, Math.round((c.price - c.low52) / (c.high52 - c.low52) * 100)));
+    const ratios = [
+      c.pe != null ? [t.pe, num(c.pe, 1) + "×", t.peX] : [t.peNone, "–", t.peNoneX],
+      c.yield != null ? [t.dy, num(c.yield, 1) + "%", t.dyX(num(c.dps, 2))] : [t.dyNone, "–", t.dyNoneX],
+      [t.mc, big(c.marketCap) + " " + t.sar, t.mcX]
+    ];
+    if (c.netIncome != null) ratios.push([t.ni, (c.netIncome < 0 ? "−" : "") + big(Math.abs(c.netIncome)) + " " + t.sar, t.niX(c.niChange)]);
+    const story = lang === "ar" ? c.summaryAr : c.summary;
+    const evs = (c.events || []).slice().sort((a, b) => b.date.localeCompare(a.date));
+    out.innerHTML = `
+    <section class="band" aria-label="${esc(nm(c))}">
+      <div class="col pad" style="display:grid;gap:24px">
+        <div class="co-head">
+          <div><div class="code">TADAWUL · ${c.code}</div><h2>${esc(nm(c))}</h2><div class="alt" lang="${lang === "ar" ? "en" : "ar"}">${esc(lang === "ar" ? c.name : c.nameAr)}</div><span class="sector">${t.sectors[c.sector] || c.sector}</span></div>
+          <div class="px"><div class="v" dir="ltr">${num(c.price)}<small>${t.sar}</small></div><div class="d">${t.asOf(fmtDate(c.asOf))}</div>${days > 30 ? `<div class="d stale">${t.stale}</div>` : ""}</div>
+        </div>
+        <div class="range"><p class="k">${t.range}</p><div class="track" dir="ltr"><span class="dot" style="left:${pos}%"></span></div><div class="ends" dir="ltr"><span>${num(c.low52)}</span><span>${num(c.high52)}</span></div><div class="cap">${t.rangeCap(pos)}</div></div>
+      </div>
+    </section>
+    <section class="band">
+      <div class="col split">
+        <div class="story"><p class="k">${t.inPlain}</p>${story.map(p => `<p>${esc(p)}</p>`).join("")}<span class="aitag">${t.aiTag}</span></div>
+        <div><p class="k">${t.nums}</p><div class="ratios">${ratios.map(r => `<div class="ratio"><span class="n">${r[0]}</span><span class="val">${r[1]}</span><span class="x">${esc(r[2])}</span></div>`).join("")}</div></div>
+      </div>
+    </section>
+    <section class="band">
+      <div class="col pad" style="display:grid;gap:16px">
+        <p class="k">${t.recent}</p>
+        <div class="events">${evs.map(e => `<div class="ev"><time datetime="${e.date}">${fmtDate(e.date)}</time><div class="t">${esc(lang === "ar" ? e.titleAr : e.title)} <span class="pill ${e.kind}">${t.kinds[e.kind] || e.kind}</span></div><div class="p">${esc(lang === "ar" ? e.plainAr : e.plain)}</div><div class="s"><a href="${esc(e.url)}" target="_blank" rel="noopener">${t.source}: ${esc(e.src)}</a></div></div>`).join("")}</div>
+      </div>
+    </section>`;
+  }
+
+  function applyLang() {
+    const t = T(), root = document.documentElement;
+    root.lang = lang; root.dir = lang === "ar" ? "rtl" : "ltr";
+    document.title = t.docTitle;
+    document.querySelectorAll("[data-i]").forEach(el => {
+      const v = t[el.dataset.i]; if (typeof v !== "string") return;
+      if (el.dataset.html) el.innerHTML = v; else el.textContent = v;
+    });
+    $("titleSub").textContent = t.titleSub; $("titleSub").lang = lang === "ar" ? "en" : "ar";
+    $("langBtn").textContent = t.langBtn; $("langBtn").lang = lang === "ar" ? "en" : "ar";
+    $("q").placeholder = t.ph;
+    $("updated").textContent = data && data.updated ? t.updated(fmtDate(data.updated)) : (data && data.error ? "" : t.loading);
+    $("srcNote").textContent = data && !data.error ? (lang === "ar" ? data.sourceAr : data.source) : "";
+    renderChips(); render();
+  }
+
+  function select(c, push) {
+    cur = c;
+    if (c) { $("q").value = c.code; const u = new URL(location.href); u.searchParams.set("t", c.code); if (push) history.replaceState(null, "", u); }
+    renderChips(); render();
+  }
+
+  $("f").addEventListener("submit", e => {
+    e.preventDefault();
+    if (!data || data.error) return;
+    missQ = $("q").value.trim();
+    if (!missQ) return;
+    select(find(missQ), true);
+  });
+  $("chips").addEventListener("click", e => { const b = e.target.closest(".chip"); if (b) select(data.companies.find(c => c.code === b.dataset.c), true); });
+  $("langBtn").addEventListener("click", () => { lang = lang === "ar" ? "en" : "ar"; store.set("tx-lang", lang); applyLang(); });
+
+  $("year").textContent = new Date().getFullYear();
+  applyLang();
+  fetch("data/companies.json", { cache: "no-store" })
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(json => {
+      data = json;
+      const start = params.get("t") ? find(params.get("t")) : null;
+      cur = start || data.companies[0];
+      if (cur) $("q").value = cur.code;
+      applyLang();
+    })
+    .catch(() => { data = { error: true }; applyLang(); });
+})();
+</script>
+</body>
+</html>
