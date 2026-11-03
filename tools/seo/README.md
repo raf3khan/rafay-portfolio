@@ -51,6 +51,10 @@ Nothing to do. `.github/workflows/sitemap.yml` rebuilds `sitemap.xml` from every
 to main, and reads the hreflang links for the Arabic URL. Pages with `<meta name="robots" content="noindex">`
 are left out.
 
-## 8. Do not
+## 8. Analytics
+Load the shared Google Analytics file on every page: `<script src="/analytics.js" defer></script>` in the `<head>`.
+Do not paste the GA snippet or measurement ID into the page; `/analytics.js` holds it.
+
+## 9. Do not
 - Publish a personal email or phone number anywhere, including JSON-LD. LinkedIn only.
 - Use `?lang=` values other than `en` and `ar`.
