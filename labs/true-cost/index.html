@@ -4,8 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27%23181818%27/%3E%3Ctext x=%2732%27 y=%2742%27 font-family=%27Arial%27 font-weight=%27700%27 font-size=%2728%27 fill=%27%2330d158%27 text-anchor=%27middle%27%3ERK%3C/text%3E%3C/svg%3E">
-<title>True Cost of Credit</title>
-<meta name="description" content="See what buy now, pay later late fees and minimum-only credit card payments really cost, with plain maths you can check.">
+<title>BNPL and Credit Card Cost Calculator: late fees and APR</title>
+<meta name="description" content="Free BNPL and credit card cost calculator. See what late fees and minimum-only payments really cost as a yearly rate, in SAR or any currency.">
+<link rel="canonical" href="https://rafkhan.com/labs/true-cost/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rafay Khan">
+<meta property="og:title" content="The true cost of BNPL and credit cards">
+<meta property="og:description" content="What a late BNPL payment and minimum-only card payments really cost, as a yearly rate and in years of payments.">
+<meta property="og:url" content="https://rafkhan.com/labs/true-cost/">
+<meta property="og:image" content="https://rafkhan.com/og/true-cost.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="True cost of BNPL and credit cards, a free calculator by Rafay Khan">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "True Cost of BNPL and Credit Cards", "alternateName": "التكلفة الحقيقية للشراء الآن والدفع لاحقًا وبطاقات الائتمان", "url": "https://rafkhan.com/labs/true-cost/", "description": "A calculator that turns buy now, pay later late fees into a yearly rate and shows how long minimum-only credit card payments take and how much interest they cost.", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "inLanguage": "en", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "SAR"}, "author": {"@type": "Person", "name": "Rafay Khan", "url": "https://rafkhan.com/", "sameAs": ["https://www.linkedin.com/in/rafekhan"]}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Rafay Khan", "item": "https://rafkhan.com/"}, {"@type": "ListItem", "position": 2, "name": "Labs", "item": "https://rafkhan.com/#labs"}, {"@type": "ListItem", "position": 3, "name": "True Cost of BNPL and Credit Cards", "item": "https://rafkhan.com/labs/true-cost/"}]}]}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
@@ -203,7 +218,7 @@ details.tbl th:first-child, details.tbl td:first-child { text-align: left; }
     <div class="col">
       <div class="glow" aria-hidden="true"></div>
       <div class="eyebrow"><a class="back" href="/#labs">← Labs</a><span>Borrowing</span><span>Plain maths, no bank data</span></div>
-      <h1>The true cost of pay later</h1>
+      <h1>The true cost of BNPL and credit cards</h1>
       <p class="lede">Buy now, pay later is free until a payment slips. A credit card is cheap until you only pay the minimum. Put in your numbers and see what each one really costs, in money and in time.</p>
     </div>
   </section>
@@ -294,7 +309,8 @@ details.tbl th:first-child, details.tbl td:first-child { text-align: left; }
     <section class="band">
       <div class="col pad">
         <div class="notes">
-          <p><strong>How the BNPL maths works.</strong> Each instalment is <code>price ÷ number of payments</code>. The first is paid at checkout and the rest on schedule. A missed payment adds the late fee and is paid the number of days late you set. Fees stop at the cap if your plan has one.</p>
+          <h2 class="sec">How the BNPL maths works</h2>
+          <p>Each instalment is <code>price ÷ number of payments</code>. The first is paid at checkout and the rest on schedule. A missed payment adds the late fee and is paid the number of days late you set. Fees stop at the cap if your plan has one.</p>
           <p><strong>The headline rate</strong> looks only at the late payment: <code>late fee ÷ instalment × 365 ÷ days late</code>. That is what the fee charges you for those few extra days.</p>
           <p><strong>The whole-plan APR</strong> treats the purchase as a loan and finds the yearly rate that makes what you paid, on the days you paid it, equal to the price. It is the same idea as the APR quoted on a loan. Without late fees it is 0%. The cost is entirely in the slips.</p>
         </div>
@@ -357,7 +373,8 @@ details.tbl th:first-child, details.tbl td:first-child { text-align: left; }
     <section class="band">
       <div class="col pad">
         <div class="notes">
-          <p><strong>How the card maths works.</strong> Each month, interest is <code>balance × APR ÷ 12</code>, added before you pay. The minimum is the larger of the % of balance and the floor, so it shrinks as the balance shrinks. That is why minimum-only payoff drags on for years.</p>
+          <h2 class="sec">How the card maths works</h2>
+          <p>Each month, interest is <code>balance × APR ÷ 12</code>, added before you pay. The minimum is the larger of the % of balance and the floor, so it shrinks as the balance shrinks. That is why minimum-only payoff drags on for years.</p>
           <p><strong>Islamic cards.</strong> If your card charges a fixed monthly fee instead of interest, turn it into a rate with <code>monthly fee ÷ balance × 12 × 100</code> and enter that as the APR.</p>
           <p>This assumes no new spending, no late fees and no rate changes. Any of those make it worse.</p>
         </div>
@@ -367,7 +384,7 @@ details.tbl th:first-child, details.tbl td:first-child { text-align: left; }
 
   <section class="band">
     <div class="col pad">
-      <div class="notes"><p>Plain maths on the numbers you enter. Not tied to any bank or provider, and not financial advice. Nothing you type leaves your browser.</p></div>
+      <div class="notes"><p>Plain maths on the numbers you enter, checked November 2026. There is no bank or provider data behind it, so it works for any BNPL plan or card. Not financial advice. Nothing you type leaves your browser.</p><p>More from <a href="/#labs">Labs</a>: the <a href="/labs/tadawul-dividends/">Tadawul dividend calendar</a>.</p></div>
     </div>
   </section>
 </main>
