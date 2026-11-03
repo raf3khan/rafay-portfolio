@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27%23181818%27/%3E%3Ctext x=%2732%27 y=%2742%27 font-family=%27Arial%27 font-weight=%27700%27 font-size=%2728%27 fill=%27%2330d158%27 text-anchor=%27middle%27%3ERK%3C/text%3E%3C/svg%3E">
+<title>Kafalah Readiness Check</title>
+<meta name="description" content="A short quiz for Saudi SMEs: are you likely to qualify for a Kafalah loan guarantee, which product fits, and which documents to prepare.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: same drafting board as rafkhan.com. Grid paper ground, one framed 1200px column ruled into bands with corner ticks, serif display over Geist, glossy black controls. Quiz, then verdict, then what to fix and what to gather side by side. */
+:root {
+  --bg: #fafaf9; --paper-line: #efefed; --surface: #ffffff; --raised: #f2f2f0;
+  --ink: #111111; --muted: #565656; --line: #dcdcd8;
+  --accent: #248a3d; --accent-soft: #e6f6ea;
+  --warn: #8a5a12; --warn-soft: #f1ece1;
+  --bad: #b3261e; --bad-soft: #fbe9e7;
+  --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font: "Geist", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --frame: 1200px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131313; --paper-line: #1c1c1c; --surface: #1f1f1f; --raised: #272727; --ink: #f4f4f4; --muted: #a3a3a3; --line: #313131;
+    --accent: #30d158; --accent-soft: #1d2a20; --warn: #e0ae55; --warn-soft: #24211b; --bad: #ff8a80; --bad-soft: #2e1d1b; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131313; --paper-line: #1c1c1c; --surface: #1f1f1f; --raised: #272727; --ink: #f4f4f4; --muted: #a3a3a3; --line: #313131;
+  --accent: #30d158; --accent-soft: #1d2a20; --warn: #e0ae55; --warn-soft: #24211b; --bad: #ff8a80; --bad-soft: #2e1d1b; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background-color: var(--bg); background-image: linear-gradient(var(--paper-line) 1px, transparent 1px), linear-gradient(90deg, var(--paper-line) 1px, transparent 1px); background-size: 16px 16px;
+  color: var(--ink); font: 400 16px/24px var(--font); -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+h1, h2, h3 { text-wrap: balance; }
+a { color: var(--accent); text-underline-offset: 4px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+.ico { width: 16px; height: 16px; flex: none; }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* framed column, ruled bands, corner ticks */
+.band { border-bottom: 1px solid var(--line); }
+.col { max-width: var(--frame); margin: 0 auto; border-left: 1px solid var(--line); border-right: 1px solid var(--line); position: relative; background-color: var(--bg); }
+.band > .col::before, .band > .col::after { content: ""; position: absolute; bottom: -5px; width: 8px; height: 8px; border: 1px solid var(--line); background: var(--bg); z-index: 2; }
+.band > .col::before { left: -5px; } .band > .col::after { right: -5px; }
+.pad { padding: 24px; }
+@media (max-width: 1232px) { .col { margin: 0 16px; } }
+@media (max-width: 480px) { .col { margin: 0 8px; } .pad { padding: 16px; } }
+
+/* glossy controls */
+.gloss { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px; border-radius: 8px; font: 500 14px/20px var(--font); color: #ffffff; text-decoration: none; cursor: pointer;
+  background: linear-gradient(#3b3b3b, #0b0b0b); border: 1px solid #000000;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -1px 0 rgba(255,255,255,0.06), 0 2px 4px rgba(0,0,0,0.28), 0 8px 16px rgba(0,0,0,0.12);
+  transition: transform 300ms var(--ease), box-shadow 300ms var(--ease); }
+.gloss:hover { transform: translateY(-2px); }
+.chipbtn { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-decoration: none; font: 500 14px/20px var(--font); cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06); transition: transform 300ms var(--ease), border-color 300ms var(--ease); }
+.chipbtn:hover { transform: translateY(-2px); border-color: var(--muted); }
+
+/* top bar, same as the home page */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.bar .col { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; padding: 8px 16px; background: transparent; }
+.seg { display: inline-flex; gap: 4px; padding: 2px; border-radius: 8px; border: 1px solid var(--line); background: var(--raised); justify-self: start; }
+.seg a { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 8px; font: 500 14px/20px var(--font); color: var(--muted); text-decoration: none; transition: color 300ms var(--ease); }
+.seg a:hover { color: var(--ink); }
+.seg a[aria-current="true"] { color: #ffffff; background: linear-gradient(#3b3b3b, #0b0b0b); box-shadow: 0 0 0 2px var(--accent), inset 0 1px 0 rgba(255,255,255,0.25); }
+.seg .ico { width: 12px; height: 12px; }
+.brand { font: 400 20px/28px var(--font); color: var(--ink); text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; }
+.right { justify-self: end; display: flex; gap: 8px; align-items: center; }
+@media (max-width: 480px) { .seg .ico { display: none; } .seg a { padding: 2px 6px; } .bar .brand { display: none; } .bar .col { grid-template-columns: 1fr auto; } }
+@media (max-width: 560px) { .brand { font-size: 16px; line-height: 24px; } .bar .col { gap: 8px; padding: 8px; } .right .gloss { display: none; } }
+
+/* hero */
+.hero .col { padding: 64px 24px 48px; display: grid; gap: 16px; overflow: hidden; }
+.hero .col > .glow { position: absolute; inset: 0 0 auto 0; height: 280px; pointer-events: none; background: radial-gradient(ellipse 60% 100% at 50% 0%, rgba(48, 209, 88, 0.22), transparent 70%); }
+.eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; font: 400 14px/20px var(--mono); color: var(--muted); position: relative; }
+.back { color: var(--muted); text-decoration: none; } .back:hover { color: var(--ink); }
+h1 { margin: 0; font: 400 60px/1 var(--serif); letter-spacing: -0.02em; position: relative; }
+.lede { margin: 0; max-width: 640px; color: var(--muted); font-size: 18px; line-height: 28px; position: relative; }
+@media (max-width: 860px) { .hero .col { padding: 48px 16px 32px; } h1 { font-size: 44px; } }
+
+/* section heads */
+.shead { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.shead h2 { margin: 0; font: 400 30px/36px var(--serif); letter-spacing: -0.01em; }
+.shead .k { font: 400 14px/20px var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* quiz */
+.quiz { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.step { padding: 24px; display: grid; gap: 20px; align-content: start; min-width: 0; }
+.step + .step { border-left: 1px solid var(--line); }
+.step h2 { margin: 0; display: flex; gap: 12px; align-items: baseline; font: 400 24px/32px var(--serif); }
+.step h2 .n { font: 500 14px/20px var(--mono); color: var(--accent); }
+.qrow { display: grid; gap: 8px; }
+.q, .field label { font: 500 14px/20px var(--font); }
+.input { display: flex; align-items: center; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); padding: 0 12px; box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
+.input:focus-within { border-color: var(--accent); }
+.input span { color: var(--muted); font: 400 13px/20px var(--mono); }
+.input input { flex: 1; min-width: 0; border: 0; background: transparent; color: var(--ink); font: 500 16px/24px var(--mono); font-variant-numeric: tabular-nums; padding: 8px; outline: none; }
+.field { display: grid; gap: 8px; min-width: 0; }
+.opts { display: flex; flex-wrap: wrap; gap: 6px; }
+.opts button { font: 500 14px/20px var(--font); padding: 6px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--muted); cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.06); transition: color 300ms var(--ease), border-color 300ms var(--ease); }
+.opts button:hover { color: var(--ink); border-color: var(--muted); }
+.opts button[aria-pressed="true"] { color: #ffffff; background: linear-gradient(#3b3b3b, #0b0b0b); border-color: #000000; box-shadow: 0 0 0 2px var(--accent), inset 0 1px 0 rgba(255,255,255,0.25); }
+@media (max-width: 960px) { .quiz { grid-template-columns: minmax(0, 1fr); } .step + .step { border-left: 0; border-top: 1px solid var(--line); } }
+@media (max-width: 480px) { .step { padding: 16px; } }
+
+/* verdict and figures */
+.verdict { padding: 32px 24px; display: grid; gap: 8px; border-bottom: 1px solid var(--line); }
+.verdict .tag { justify-self: start; font: 500 12px/16px var(--font); padding: 2px 10px; border-radius: 9999px; }
+.verdict.ok .tag { background: var(--accent-soft); color: var(--accent); }
+.verdict.gap .tag { background: var(--warn-soft); color: var(--warn); }
+.verdict.no .tag { background: var(--bad-soft); color: var(--bad); }
+.verdict h2 { margin: 0; font: 400 40px/44px var(--serif); letter-spacing: -0.02em; }
+.verdict p { margin: 0; max-width: 680px; color: var(--muted); font-size: 17px; line-height: 26px; }
+@media (max-width: 480px) { .verdict { padding: 24px 16px; } .verdict h2 { font-size: 30px; line-height: 36px; } }
+.summary { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.summary > div { padding: 24px; display: grid; gap: 4px; align-content: start; min-width: 0; }
+.summary > div + div { border-left: 1px solid var(--line); }
+.summary .k { font: 500 14px/20px var(--font); color: var(--muted); }
+.summary .v { font: 400 30px/36px var(--serif); letter-spacing: -0.01em; }
+.summary .v.num { font: 500 28px/36px var(--mono); letter-spacing: -0.03em; }
+.summary .v.good { color: var(--accent); }
+.summary .s { font-size: 14px; line-height: 20px; color: var(--muted); }
+@media (max-width: 960px) { .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); } .summary > div:nth-child(3) { border-left: 0; } .summary > div:nth-child(n+3) { border-top: 1px solid var(--line); } }
+@media (max-width: 520px) { .summary { grid-template-columns: minmax(0, 1fr); } .summary > div { padding: 16px; } .summary > div + div { border-left: 0; border-top: 1px solid var(--line); } }
+
+/* findings and documents */
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.split > div { padding: 24px; display: grid; gap: 16px; align-content: start; min-width: 0; }
+.split > div + div { border-left: 1px solid var(--line); }
+@media (max-width: 960px) { .split { grid-template-columns: minmax(0, 1fr); } .split > div + div { border-left: 0; border-top: 1px solid var(--line); } }
+@media (max-width: 480px) { .split > div { padding: 16px; } }
+.findings, .dlist { list-style: none; margin: 0; padding: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+.findings li { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 12px; padding: 16px; }
+.findings li + li, .dlist li + li { border-top: 1px solid var(--line); }
+.findings b { display: block; font-weight: 600; }
+.findings .d { color: var(--muted); font-size: 14px; line-height: 22px; }
+.src { font: 400 12px/16px var(--mono); color: var(--muted); }
+.dot { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font: 600 12px/1 var(--mono); }
+.dot.ok { background: var(--accent-soft); color: var(--accent); }
+.dot.gap { background: var(--warn-soft); color: var(--warn); }
+.dot.no { background: var(--bad-soft); color: var(--bad); }
+.meter { height: 6px; background: var(--raised); border-radius: 99px; overflow: hidden; }
+.meter i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 99px; transition: width 300ms var(--ease); }
+.hint { margin: 0; font-size: 14px; line-height: 20px; color: var(--muted); }
+.dlist label { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 12px; padding: 14px 16px; cursor: pointer; transition: background-color 300ms var(--ease); }
+.dlist label:hover { background: var(--raised); }
+.dlist input { width: 18px; height: 18px; margin: 3px 0 0; accent-color: var(--accent); }
+.dlist .t { font-weight: 500; }
+.dlist .w { display: block; color: var(--muted); font-size: 14px; line-height: 20px; }
+.dlist input:checked + span .t { text-decoration: line-through; color: var(--muted); }
+.pill { display: inline-block; font: 500 11px/16px var(--font); padding: 0 8px; border-radius: 9999px; border: 1px solid var(--line); color: var(--muted); margin-left: 8px; vertical-align: 1px; }
+.pill.must { border-color: transparent; background: var(--accent-soft); color: var(--accent); }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* how it works */
+.how { display: grid; gap: 20px; }
+.how p { margin: 0; max-width: 760px; color: var(--muted); }
+.tblwrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+table { border-collapse: collapse; width: 100%; font-size: 14px; line-height: 20px; min-width: 560px; }
+th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font: 500 12px/16px var(--mono); color: var(--muted); }
+td.r, th.r { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+tr:last-child td { border-bottom: 0; }
+.tables { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 16px; }
+@media (max-width: 960px) { .tables { grid-template-columns: minmax(0, 1fr); } }
+.notes { display: grid; gap: 12px; max-width: 760px; font-size: 14px; line-height: 22px; color: var(--muted); }
+.notes p { margin: 0; }
+.notes strong { color: var(--ink); font-weight: 600; }
+.fine .col { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding: 16px 24px; color: var(--muted); font-size: 14px; line-height: 20px; }
+.fine a { color: var(--muted); text-decoration: none; } .fine a:hover { color: var(--ink); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+@media print {
+  .bar, .quiz, .summary, .actions, .how-band, .split > div:first-child { display: none !important; }
+  body { background: #fff; }
+  .split { grid-template-columns: 1fr; }
+  .dlist label { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<header class="bar band">
+  <div class="col">
+    <nav class="seg" aria-label="Main"><a href="/#work"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M104,40H56A16,16,0,0,0,40,56v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,104,40Zm0,64H56V56h48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm0,64H152V56h48Zm-96,32H56a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,104,136Zm0,64H56V152h48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,200,136Zm0,64H152V152h48Z"/></svg>Work</a><a href="/#story"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M208,24H72A32,32,0,0,0,40,56V224a8,8,0,0,0,8,8H192a8,8,0,0,0,0-16H56a16,16,0,0,1,16-16H208a8,8,0,0,0,8-8V32A8,8,0,0,0,208,24Zm-8,160H72a31.82,31.82,0,0,0-16,4.29V56A16,16,0,0,1,72,40H200Z"/></svg>Story</a><a href="/#labs" aria-current="true"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M221.69,199.77,160,96.92V40h8a8,8,0,0,0,0-16H88a8,8,0,0,0,0,16h8V96.92L34.31,199.77A16,16,0,0,0,48,224H208a16,16,0,0,0,13.72-24.23ZM110.86,103.25A7.93,7.93,0,0,0,112,99.14V40h32V99.14a7.93,7.93,0,0,0,1.14,4.11L183.36,167c-12,2.37-29.07,1.37-51.75-10.11-15.91-8.05-31.05-12.32-45.22-12.81ZM48,208l28.54-47.58c14.25-1.74,30.31,1.85,47.82,10.72,19,9.61,35,12.88,48,12.88a69.89,69.89,0,0,0,19.55-2.7L208,208Z"/></svg>Labs</a></nav>
+    <a class="brand" href="/">Rafay Khan</a>
+    <div class="right"><a class="gloss" href="https://www.linkedin.com/in/rafekhan" target="_blank" rel="noopener">Let's chat</a></div>
+  </div>
+</header>
+<main id="main">
+  <section class="hero band">
+    <div class="col">
+      <div class="glow" aria-hidden="true"></div>
+      <div class="eyebrow"><a class="back" href="/#labs">← Labs</a><span>SME financing</span><span>Rules checked 2 Nov 2026</span></div>
+      <h1>Kafalah Readiness Check</h1>
+      <p class="lede">Kafalah, now run by the SME Bank, guarantees up to 80 to 90% of a loan so banks and finance companies will lend to smaller Saudi businesses. Answer a dozen quick questions to see which guarantee fits, how much it could cover, and what to get ready before you talk to a lender.</p>
+    </div>
+  </section>
+
+  <section class="band" aria-label="Your business">
+    <div class="col quiz">
+      <div class="step">
+        <h2><span class="n">01</span>Size and need</h2>
+        <div class="field">
+          <label for="rev">Annual revenue</label>
+          <div class="input"><span>SAR</span><input id="rev" type="number" inputmode="decimal" min="0" step="100000" value="2000000"></div>
+        </div>
+        <div class="field">
+          <label for="emp">Full-time employees</label>
+          <div class="input"><input id="emp" type="number" inputmode="numeric" min="0" step="1" value="8"></div>
+        </div>
+        <div class="field">
+          <label for="amt">Financing you need</label>
+          <div class="input"><span>SAR</span><input id="amt" type="number" inputmode="decimal" min="0" step="50000" value="1000000"></div>
+        </div>
+        <div class="qrow">
+          <div class="q" id="q-sector">Which sector best describes the business?</div>
+          <div class="opts" role="group" aria-labelledby="q-sector" data-q="sector">
+            <button type="button" data-v="general">Other / general</button>
+            <button type="button" data-v="export">Export</button>
+            <button type="button" data-v="consulting">Consulting</button>
+            <button type="button" data-v="culture">Culture</button>
+            <button type="button" data-v="entertainment">Entertainment</button>
+            <button type="button" data-v="nonprofit">Awqaf / non-profit</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <h2><span class="n">02</span>The business</h2>
+        <div class="qrow">
+          <div class="q" id="q-cr">Does it have an active Commercial Registration (CR) in Saudi Arabia?</div>
+          <div class="opts" role="group" aria-labelledby="q-cr" data-q="cr">
+            <button type="button" data-v="yes">Yes</button>
+            <button type="button" data-v="no">Not yet</button>
+          </div>
+        </div>
+        <div class="qrow">
+          <div class="q" id="q-age">How long has it been trading?</div>
+          <div class="opts" role="group" aria-labelledby="q-age" data-q="age">
+            <button type="button" data-v="new">Under 1 year</button>
+            <button type="button" data-v="mid">1 to 2 years</button>
+            <button type="button" data-v="old">2+ years</button>
+          </div>
+        </div>
+        <div class="qrow">
+          <div class="q" id="q-own">Is it at least 51% Saudi-owned?</div>
+          <div class="opts" role="group" aria-labelledby="q-own" data-q="own">
+            <button type="button" data-v="yes">Yes</button>
+            <button type="button" data-v="no">No</button>
+            <button type="button" data-v="unsure">Not sure</button>
+          </div>
+        </div>
+        <div class="qrow">
+          <div class="q" id="q-credit">What does the credit record (SIMAH) look like for the business and its owners?</div>
+          <div class="opts" role="group" aria-labelledby="q-credit" data-q="credit">
+            <button type="button" data-v="clean">Clean</button>
+            <button type="button" data-v="settled">Past issues, now settled</button>
+            <button type="button" data-v="overdue">Payments overdue now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <h2><span class="n">03</span>Paperwork</h2>
+        <div class="qrow">
+          <div class="q" id="q-fs">Which financial statements do you have?</div>
+          <div class="opts" role="group" aria-labelledby="q-fs" data-q="fs">
+            <button type="button" data-v="audited">Audited</button>
+            <button type="button" data-v="mgmt">Own accounts only</button>
+            <button type="button" data-v="none">None yet</button>
+          </div>
+        </div>
+        <div class="qrow">
+          <div class="q" id="q-comp">Are the Zakat (ZATCA) and GOSI certificates valid and up to date?</div>
+          <div class="opts" role="group" aria-labelledby="q-comp" data-q="comp">
+            <button type="button" data-v="both">Both valid</button>
+            <button type="button" data-v="one">One of them</button>
+            <button type="button" data-v="neither">Neither</button>
+          </div>
+        </div>
+        <div class="qrow">
+          <div class="q" id="q-bank">Does the business have its own bank account with at least 6 months of statements?</div>
+          <div class="opts" role="group" aria-labelledby="q-bank" data-q="bank">
+            <button type="button" data-v="yes">Yes</button>
+            <button type="button" data-v="no">No</button>
+          </div>
+        </div>
+        <div class="qrow">
+          <div class="q" id="q-plan">Do you have a written business plan or feasibility study for what the money is for?</div>
+          <div class="opts" role="group" aria-labelledby="q-plan" data-q="plan">
+            <button type="button" data-v="yes">Yes</button>
+            <button type="button" data-v="no">No</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-label="Result">
+    <div class="col">
+      <div class="verdict" id="verdict" aria-live="polite">
+        <span class="tag" id="v-tag"></span>
+        <h2 id="v-title"></h2>
+        <p id="v-text"></p>
+      </div>
+      <div class="summary">
+        <div><span class="k">Size band</span><span class="v" id="s-size"></span><span class="s" id="s-size-n"></span></div>
+        <div><span class="k">Matching product</span><span class="v" id="s-prod" style="font-size:24px;line-height:30px"></span><span class="s" id="s-prod-n"></span></div>
+        <div><span class="k">Guarantee could cover</span><span class="v num good" id="s-gtee"></span><span class="s" id="s-gtee-n"></span></div>
+        <div><span class="k">Guarantee fee</span><span class="v num" id="s-fee"></span><span class="s" id="s-fee-n"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="col split">
+      <div>
+        <div class="shead"><h2>What stands out</h2></div>
+        <ul class="findings" id="findings"></ul>
+      </div>
+      <div class="docs" aria-label="Documents to prepare">
+        <div class="shead"><h2>Documents to prepare</h2><span class="k" id="dprog"></span></div>
+        <div class="meter"><i id="dbar"></i></div>
+        <p class="hint">Tailored to your answers. Tick each one off as you gather it; your ticks stay in this browser. <span class="pill must" style="margin-left:0">Core</span> means almost every lender asks for it.</p>
+        <ul class="dlist" id="dlist"></ul>
+        <div class="actions">
+          <button type="button" class="gloss" id="print">Print checklist</button>
+          <button type="button" class="chipbtn" id="reset">Start over</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band how-band">
+    <div class="col pad how">
+      <div class="shead"><h2>How Kafalah works</h2></div>
+      <p>You don't apply to Kafalah on your own. You apply for financing at a participating bank or finance company, and the lender asks the SME Bank for a guarantee on part of the loan. If the business can't repay, the guarantee covers the lender for that share. The lender still makes its own credit decision, so its own conditions apply on top of the rules below.</p>
+      <div class="tables">
+        <div class="tblwrap">
+          <table>
+            <thead><tr><th>Product</th><th>Who it's for</th><th class="r">Cover</th><th class="r">Fee</th></tr></thead>
+            <tbody>
+              <tr><td>Regular Financing</td><td>All sectors without a dedicated product</td><td class="r">80%</td><td class="r">1.5%</td></tr>
+              <tr><td>Export Sectors</td><td>Sectors targeted by Saudi EXIM Bank</td><td class="r">90%</td><td class="r">1%</td></tr>
+              <tr><td>Domestic Consulting</td><td>Consulting activities (ISIC)</td><td class="r">90%</td><td class="r">1%</td></tr>
+              <tr><td>Cultural Sector</td><td>As classified by the Cultural Development Fund</td><td class="r">90%</td><td class="r">1%</td></tr>
+              <tr><td>Entertainment Sector</td><td>As classified by the General Entertainment Authority</td><td class="r">90%</td><td class="r">1%</td></tr>
+              <tr><td>Non-Profit Sectors</td><td>Awqaf and non-profit activities</td><td class="r">90%</td><td class="r">1%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tblwrap">
+          <table style="min-width:420px">
+            <thead><tr><th>Size</th><th class="r">Staff</th><th class="r">Revenue</th><th class="r">Max guarantee</th></tr></thead>
+            <tbody>
+              <tr><td>Micro</td><td class="r">1–5</td><td class="r">≤ 3M</td><td class="r">2.5M</td></tr>
+              <tr><td>Small</td><td class="r">6–49</td><td class="r">3–40M</td><td class="r">5M</td></tr>
+              <tr><td>Medium</td><td class="r">50–249</td><td class="r">40–200M</td><td class="r">15M</td></tr>
+              <tr><td>Large</td><td class="r">250+</td><td class="r">&gt; 200M</td><td class="r">Not eligible</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="notes">
+        <p><strong>Size.</strong> Amounts are in SAR. When headcount and revenue point to different sizes, Monsha'at uses the higher of the two.</p>
+        <p><strong>Fees.</strong> The SME Bank lists each product's fee rate but not what it is charged on, so the fee above assumes a yearly charge on the guaranteed amount. Ask your lender how it is applied and whether it is passed on to you.</p>
+        <p><strong>Sources.</strong> <a href="https://www.smebank.gov.sa/en/services/programs/loan-guarantee" target="_blank" rel="noopener">SME Bank loan guarantee programme</a> and its product pages, <a href="https://www.monshaat.gov.sa/en/SMEs-definition" target="_blank" rel="noopener">Monsha'at SME definition</a>, and the <a href="https://www.smefinanceforum.org/sites/default/files/The%20Success%20Story%20of%20the%20KAFALAH%20Program.pdf" target="_blank" rel="noopener">SME Finance Forum's Kafalah case study</a> on how credit records are checked. The 51% Saudi ownership rule and the documents list reflect what lenders commonly ask for, not a published Kafalah rule.</p>
+        <p>For information only, not financial advice, and not affiliated with the SME Bank, Kafalah or any lender.</p>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="fine"><div class="col"><span>© <span id="year">2026</span> Rafay Khan · Riyadh</span><a href="/#labs">Back to Labs</a></div></footer>
+<script>
+(function () {
+  const STORE = "kafalah-check-v1";
+  const CAPS = { micro: 2.5e6, small: 5e6, medium: 15e6 };
+  const PRODUCTS = {
+    general:       { name: "Regular Financing Guarantee", cov: 0.80, fee: 0.015 },
+    export:        { name: "Export Sectors Guarantee",    cov: 0.90, fee: 0.01 },
+    consulting:    { name: "Domestic Consulting Guarantee", cov: 0.90, fee: 0.01 },
+    culture:       { name: "Cultural Sector Guarantee",   cov: 0.90, fee: 0.01 },
+    entertainment: { name: "Entertainment Sector Guarantee", cov: 0.90, fee: 0.01 },
+    nonprofit:     { name: "Non-Profit Sectors Guarantee", cov: 0.90, fee: 0.01 }
+  };
+  const SIZE_LABEL = { micro: "Micro", small: "Small", medium: "Medium", large: "Large" };
+  const ORDER = ["micro", "small", "medium", "large"];
+  const DEFAULTS = { sector: "general", cr: "yes", age: "old", own: "yes", credit: "clean", fs: "mgmt", comp: "both", bank: "yes", plan: "no" };
+
+  const $ = (id) => document.getElementById(id);
+  let state = { a: Object.assign({}, DEFAULTS), rev: 2000000, emp: 8, amt: 1000000, ticks: {} };
+  try { const s = JSON.parse(localStorage.getItem(STORE) || "null"); if (s && s.a) state = Object.assign(state, s, { a: Object.assign({}, DEFAULTS, s.a) }); } catch (e) {}
+  const save = () => { try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) {} };
+
+  const fmt = (n) => {
+    if (!isFinite(n)) return "–";
+    if (n >= 1e6) return "SAR " + (Math.round(n / 1e4) / 100).toLocaleString("en-US") + "M";
+    return "SAR " + Math.round(n).toLocaleString("en-US");
+  };
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  function sizeBy(rev, emp) {
+    const r = rev > 200e6 ? 3 : rev > 40e6 ? 2 : rev > 3e6 ? 1 : 0;
+    const e = emp >= 250 ? 3 : emp >= 50 ? 2 : emp >= 6 ? 1 : 0;
+    return { band: ORDER[Math.max(r, e)], byRev: ORDER[r], byEmp: ORDER[e] };
+  }
+
+  function evaluate() {
+    const a = state.a, f = [];
+    const sz = sizeBy(state.rev || 0, state.emp || 0);
+    const P = PRODUCTS[a.sector];
+    const add = (lvl, title, detail, src) => f.push({ lvl, title, detail, src });
+
+    // Hard programme rules
+    if (sz.band === "large") add("no", "Too large for Kafalah", "Kafalah only guarantees micro, small and medium enterprises. With over 249 staff or revenue above SAR 200M the business counts as large.", "SME Bank, Monsha'at");
+    else add("ok", SIZE_LABEL[sz.band] + " enterprise, within Kafalah's range", sz.byRev !== sz.byEmp ? "Revenue says " + SIZE_LABEL[sz.byRev].toLowerCase() + ", headcount says " + SIZE_LABEL[sz.byEmp].toLowerCase() + ". Monsha'at uses the higher of the two." : "Revenue and headcount both put you in the same band.", "Monsha'at");
+
+    if (a.cr === "no") add("no", "No Commercial Registration yet", "Guarantees are for businesses registered in Saudi Arabia. Register on the Saudi Business Center before applying for financing.", "SME Bank");
+    if (a.credit === "overdue") add("no", "Overdue payments on record", "Kafalah and lenders check SIMAH reports for the business and its owners. Clear or reschedule overdue amounts first; an active default is usually an automatic no.", "Kafalah case study");
+    else if (a.credit === "settled") add("gap", "Past credit issues", "Settled issues are not always a blocker, but expect questions. Pull your own SIMAH report so nothing surprises you, and have a short written explanation ready.", "Lender practice");
+    else add("ok", "Clean credit record", "This is one of the first things checked.", "Kafalah case study");
+
+    // Lender expectations
+    if (a.own === "no") add("gap", "Less than 51% Saudi-owned", "Many lenders ask for majority Saudi ownership for Kafalah-backed loans, though some sectors differ. Ask the lender before you apply.", "Lender practice");
+    else if (a.own === "unsure") add("gap", "Check the ownership split", "Many lenders look for at least 51% Saudi ownership. Your CR and articles of association show the split.", "Lender practice");
+
+    if (a.age === "new") add("gap", "Under a year of trading", "Kafalah's own FAQ notes that financiers often decline businesses still being set up. A solid feasibility study and some trading history help a lot.", "Kafalah FAQ");
+    else if (a.age === "mid") add("ok", "Some trading history", "One to two years is workable. Lenders usually want to see at least one full year of results.", "Lender practice");
+
+    if (a.fs === "none") add("gap", "No financial statements", "Lenders size the loan on your numbers. Prepare at least a year of accounts; companies usually need audited ones.", "Lender practice");
+    else if (a.fs === "mgmt") add("gap", "Statements aren't audited", "Fine for many small establishments, but larger loans and companies usually need statements audited by a SOCPA-licensed auditor.", "Lender practice");
+    else add("ok", "Audited statements ready", "This speeds up most credit reviews.", "Lender practice");
+
+    if (a.comp !== "both") add("gap", a.comp === "one" ? "One compliance certificate is missing" : "Zakat and GOSI certificates are missing", "Lenders ask for a valid ZATCA Zakat certificate and a GOSI certificate. Both are issued online once filings and contributions are current.", "Lender practice");
+    if (a.bank === "no") add("gap", "No business bank history", "Six to twelve months of business account statements show the lender your real cash flow. Keep business money out of personal accounts.", "Lender practice");
+    if (a.plan === "no") add("gap", a.age === "new" ? "No feasibility study" : "No written plan for the money", a.age === "new" ? "For a business under a year old this is usually required." : "A one or two page plan showing what the money buys and how it is repaid makes the request much stronger.", "Lender practice");
+
+    // Guarantee maths
+    let gtee = NaN, capped = false;
+    if (sz.band !== "large") {
+      const raw = (state.amt || 0) * P.cov;
+      gtee = Math.min(raw, CAPS[sz.band]);
+      capped = raw > CAPS[sz.band];
+      if (capped) add("gap", "The loan is bigger than the guarantee cap", "A " + sz.band + " enterprise can be guaranteed up to " + fmt(CAPS[sz.band]) + ". Above that the lender carries the risk alone, so expect it to ask for more collateral or a smaller loan.", "SME Bank");
+    }
+    return { f, sz, P, gtee, capped };
+  }
+
+  function docsFor(a, sz) {
+    const d = [
+      { id: "cr", t: "Commercial Registration certificate", w: "Current and showing the activity you are financing.", core: true },
+      { id: "ids", t: "IDs of the owners and authorised signatory", w: "National ID or Iqama for each partner, plus any power of attorney.", core: true },
+      { id: "aoa", t: "Articles of association", w: "For companies. Shows the ownership split and who can sign.", core: false },
+      { id: "addr", t: "National Address certificate", w: "From Saudi Post (SPL) for the business.", core: false },
+      { id: "fs", t: a.age === "new" ? "Opening balance sheet and accounts to date" : "Financial statements for the last 2 to 3 years", w: a.fs === "audited" ? "You said these are audited. Include the auditor's report." : "Audited by a SOCPA-licensed auditor where your legal form or loan size needs it.", core: true },
+      { id: "bank", t: "Business bank statements, last 6 to 12 months", w: "From every account the business uses.", core: true },
+      { id: "zakat", t: "Zakat certificate (ZATCA)", w: "Valid and current. Download it from the ZATCA portal.", core: true },
+      { id: "vat", t: "VAT registration certificate", w: "If revenue is over SAR 375,000 you must be registered.", core: false, show: (state.rev || 0) > 375000 },
+      { id: "gosi", t: "GOSI certificate", w: "Shows employee contributions are paid up.", core: true },
+      { id: "qiwa", t: "Saudization (Nitaqat) certificate from Qiwa", w: "Lenders check the business is not in the red band.", core: false, show: (state.emp || 0) > 0 },
+      { id: "coc", t: "Chamber of Commerce membership", w: "Valid subscription certificate.", core: false },
+      { id: "simah", t: "Your own SIMAH credit report", w: "Pull it first so you see what the lender will see.", core: false },
+      { id: "plan", t: a.age === "new" ? "Feasibility study" : "Short business plan for the financing", w: "What the money is for, how much, and how it gets repaid from cash flow.", core: a.age === "new" },
+      { id: "quotes", t: "Quotations or invoices for what you're buying", w: "Equipment, vehicles, fit-out or stock. Working capital requests need a cash flow forecast instead.", core: false },
+      { id: "contracts", t: "Key contracts or purchase orders", w: "Signed customer contracts make repayment more believable.", core: false }
+    ];
+    const sector = {
+      export: { id: "sec", t: "Export evidence", w: "Customs declarations, export contracts or Saudi EXIM eligibility.", core: true },
+      culture: { id: "sec", t: "Cultural sector licence", w: "From the relevant Ministry of Culture commission.", core: true },
+      entertainment: { id: "sec", t: "General Entertainment Authority licence", w: "Shows the activity falls under the entertainment sector.", core: true },
+      nonprofit: { id: "sec", t: "Non-profit or awqaf registration", w: "From the National Center for Non-Profit Sector or the General Authority for Awqaf.", core: true },
+      consulting: { id: "sec", t: "Professional or consulting licence", w: "Where your activity needs one, for example from the Saudi Council of Engineers or MISA.", core: false }
+    }[a.sector];
+    if (sector) d.splice(2, 0, sector);
+    return d.filter((x) => x.show !== false);
+  }
+
+  function render() {
+    const { f, sz, P, gtee, capped } = evaluate();
+    const blockers = f.filter((x) => x.lvl === "no").length;
+    const gaps = f.filter((x) => x.lvl === "gap").length;
+
+    const v = $("verdict");
+    v.className = "verdict " + (blockers ? "no" : gaps ? "gap" : "ok");
+    $("v-tag").textContent = blockers ? "Not yet" : gaps ? "Nearly there" : "Ready";
+    $("v-title").textContent = blockers ? (blockers === 1 ? "One thing rules this out for now" : blockers + " things rule this out for now")
+      : gaps ? "Likely eligible, with " + gaps + " gap" + (gaps > 1 ? "s" : "") + " to close"
+      : "Ready to talk to a lender";
+    $("v-text").textContent = blockers ? "Fix the items marked in red below before applying. Lenders will stop at these whatever else is in place."
+      : gaps ? "Nothing rules you out under the published rules. Closing the gaps below before you apply will make the lender's review faster and an approval more likely."
+      : "You fit the published rules and have the basics lenders look for. Gather the documents below and ask a participating bank or finance company for a Kafalah-backed facility.";
+
+    $("s-size").textContent = SIZE_LABEL[sz.band];
+    $("s-size-n").textContent = sz.band === "large" ? "Outside Kafalah's range" : "Cap " + fmt(CAPS[sz.band]) + " guaranteed";
+    $("s-prod").textContent = P.name;
+    $("s-prod-n").textContent = "Up to " + Math.round(P.cov * 100) + "% of the loan";
+    $("s-gtee").textContent = isFinite(gtee) ? fmt(gtee) : "–";
+    $("s-gtee-n").textContent = isFinite(gtee) ? (capped ? "Hits the cap. " : "") + fmt(Math.max(0, (state.amt || 0) - gtee)) + " left unguaranteed" : "Not eligible";
+    $("s-fee").textContent = isFinite(gtee) ? fmt(gtee * P.fee) : "–";
+    $("s-fee-n").textContent = isFinite(gtee) ? (P.fee * 100) + "% a year on the guaranteed amount, if charged that way" : "";
+
+    const icon = { ok: "✓", gap: "!", no: "×" };
+    const rank = { no: 0, gap: 1, ok: 2 };
+    $("findings").innerHTML = f.slice().sort((x, y) => rank[x.lvl] - rank[y.lvl]).map((x) =>
+      '<li><span class="dot ' + x.lvl + '" aria-hidden="true">' + icon[x.lvl] + '</span><div><b>' + esc(x.title) + '</b><span class="d">' + esc(x.detail) + '</span> <span class="src">· ' + esc(x.src) + '</span></div></li>').join("");
+
+    const docs = docsFor(state.a, sz);
+    $("dlist").innerHTML = docs.map((d) =>
+      '<li><label><input type="checkbox" data-id="' + d.id + '"' + (state.ticks[d.id] ? " checked" : "") + '><span><span class="t">' + esc(d.t) + '</span>' + (d.core ? '<span class="pill must">Core</span>' : "") + '<span class="w">' + esc(d.w) + '</span></span></label></li>').join("");
+    const done = docs.filter((d) => state.ticks[d.id]).length;
+    $("dprog").textContent = done + " of " + docs.length + " ready";
+    $("dbar").style.width = (docs.length ? (done / docs.length) * 100 : 0) + "%";
+
+    document.querySelectorAll(".opts[data-q]").forEach((g) => {
+      g.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(state.a[g.dataset.q] === b.dataset.v)));
+    });
+  }
+
+  document.querySelectorAll(".opts[data-q]").forEach((g) => {
+    g.addEventListener("click", (e) => {
+      const b = e.target.closest("button"); if (!b) return;
+      state.a[g.dataset.q] = b.dataset.v; save(); render();
+    });
+  });
+  [["rev", "rev"], ["emp", "emp"], ["amt", "amt"]].forEach(([id, k]) => {
+    const el = $(id); el.value = state[k];
+    el.addEventListener("input", () => { const n = parseFloat(el.value); state[k] = isFinite(n) && n >= 0 ? n : 0; save(); render(); });
+  });
+  $("dlist").addEventListener("change", (e) => {
+    const c = e.target.closest("input[data-id]"); if (!c) return;
+    state.ticks[c.dataset.id] = c.checked; save(); render();
+  });
+  $("print").addEventListener("click", () => window.print());
+  $("reset").addEventListener("click", () => {
+    state = { a: Object.assign({}, DEFAULTS), rev: 2000000, emp: 8, amt: 1000000, ticks: {} };
+    $("rev").value = state.rev; $("emp").value = state.emp; $("amt").value = state.amt;
+    save(); render();
+  });
+  $("year").textContent = new Date().getFullYear();
+  render();
+})();
+</script>
+</body>
+</html>
