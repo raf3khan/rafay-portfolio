@@ -3,12 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Halal Screen · Rafay Khan Labs</title>
-<meta name="description" content="Check whether a US or Tadawul stock passes the AAOIFI Shariah screens, using real SEC filings updated every weekday. Each check is explained.">
-<meta property="og:title" content="Halal Screen">
-<meta property="og:description" content="Is this stock Shariah compliant? AAOIFI screening with every check explained.">
-<meta property="og:url" content="https://rafkhan.com/labs/shariah-compliant/">
+<title>Halal Stock Screener: AAOIFI Shariah Check for US Stocks</title>
+<meta name="description" content="Free halal stock screener. Check if a US or Tadawul stock is Shariah compliant under AAOIFI rules, using SEC filings updated every weekday. In English.">
 <link rel="canonical" href="https://rafkhan.com/labs/shariah-compliant/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rafay Khan">
+<meta property="og:title" content="Halal Stock Screener: is this stock Shariah compliant?">
+<meta property="og:description" content="Check any of 150+ US stocks against the AAOIFI Shariah screens, with every ratio explained and a purification calculator. Free.">
+<meta property="og:url" content="https://rafkhan.com/labs/shariah-compliant/">
+<meta property="og:image" content="https://rafkhan.com/og/shariah-compliant.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Halal Stock Screener by Rafay Khan: AAOIFI Shariah checks for US stocks">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"Halal Stock Screener","alternateName":"فاحص الأسهم الشرعية","url":"https://rafkhan.com/labs/shariah-compliant/","description":"Checks whether a US or Tadawul stock is Shariah compliant under AAOIFI Shariah Standard No. 21: business activity, interest-bearing debt, interest-bearing cash and non-permissible income, with a purification calculator.","applicationCategory":"FinanceApplication","operatingSystem":"Any","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Rafay Khan","url":"https://rafkhan.com/"}},
+{"@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Rafay Khan","item":"https://rafkhan.com/"},
+{"@type":"ListItem","position":2,"name":"Labs","item":"https://rafkhan.com/#labs"},
+{"@type":"ListItem","position":3,"name":"Halal Stock Screener","item":"https://rafkhan.com/labs/shariah-compliant/"}]}
+]}
+</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23181818'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='700' font-size='28' fill='%2330d158' text-anchor='middle'%3ERK%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -112,8 +129,9 @@ legend{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--
 .formula{font-family:var(--mono);font-size:12px;color:var(--muted);overflow-x:auto;white-space:nowrap}
 .purify{margin-top:14px}
 .purify .out{font-family:var(--serif);font-size:30px;font-weight:500;margin-top:8px}
-.foot{margin-top:28px;font-size:12.5px;color:var(--muted);max-width:80ch;display:grid;gap:8px}
+.foot{margin-top:36px;font-size:14px;line-height:1.6;color:var(--muted);max-width:80ch;display:grid;gap:8px}
 .foot p{margin:0}
+.foot h2{font-family:var(--serif);font-weight:500;font-size:22px;color:var(--ink);margin:10px 0 0;letter-spacing:-.005em}
 .foot a{color:var(--ink)}
 @media (prefers-reduced-motion:no-preference){.meter .fill{transition:width .35s ease}}
 </style>
@@ -265,11 +283,16 @@ legend{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--
     </section>
   </div>
 
-  <div class="foot">
-    <p><strong>Method.</strong> AAOIFI Shariah Standard No. 21 (Financial Papers) sets three ratio limits: interest-bearing debt under 30% of market value, interest-bearing deposits and securities under 30% of market value, and non-permissible income under 5% of total revenue. The company's main business must also be permissible. Other screening bodies use total assets instead of market cap or a 33% limit, so results can differ from other apps.</p>
-    <p><strong>Where US data comes from.</strong> Balance sheet and income figures come from each company's latest 10-K and 10-Q filings in <a href="https://www.sec.gov/edgar/search/" target="_blank" rel="noopener">SEC EDGAR</a>. Business type comes from the company's SEC industry code, with a few hand-checked corrections. Prices are the latest daily close. All cash is counted as interest-bearing because filings rarely separate Islamic deposits, so the cash check errs on the strict side. Where a company doesn't report interest income separately, the income check is marked for review.</p>
-    <p><strong>This is an educational tool, not a fatwa.</strong> Figures can be out of date or misread from filings. Ask a qualified scholar before you invest. Built by <a href="/">Rafay Khan</a>.</p>
-  </div>
+  <section class="foot" aria-labelledby="how">
+    <h2 id="how">How the halal stock screener works</h2>
+    <p>The screener follows AAOIFI Shariah Standard No. 21 (Financial Papers), the rulebook most Islamic banks and Shariah boards in Saudi Arabia and the Gulf use for shares. A stock passes when its main business is permissible and three ratios stay under their limits: interest-bearing debt under 30% of market value, interest-bearing cash and securities under 30% of market value, and non-permissible income under 5% of total revenue. Other screens, such as some index providers, divide by total assets or use a 33% limit, so their results can differ.</p>
+    <h2>Where the US data comes from</h2>
+    <p>Balance sheet and income figures come from each company's latest 10-K and 10-Q filings in <a href="https://www.sec.gov/edgar/search/" target="_blank" rel="noopener">SEC EDGAR</a>, and are refreshed every weekday after the US market closes. The date of each figure is shown next to the result. Business type comes from the company's SEC industry code, with a few hand-checked corrections. Prices are the latest daily close. All cash is treated as interest-bearing, because filings rarely separate Islamic deposits, so the cash check errs on the strict side. When a filing doesn't show interest income or debt clearly, the check is marked for review instead of guessed. Tadawul stocks are checked from figures you enter from the annual report.</p>
+    <h2>How purification works</h2>
+    <p>Even a compliant company earns a little interest. Scholars ask investors to give their share of that income to charity each year. The calculator divides the company's non-permissible income by its shares outstanding and multiplies by the shares you hold.</p>
+    <p><strong>This is an educational tool, not a fatwa.</strong> Figures can be out of date or misread from filings. Ask a qualified scholar before you invest.</p>
+    <p>More from <a href="/#labs">Rafay Khan Labs</a>: the <a href="/labs/tadawul-dividends/">Tadawul dividend calendar</a>.</p>
+  </section>
 </div>
 
 <script>
