@@ -4,8 +4,42 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27%23181818%27/%3E%3Ctext x=%2732%27 y=%2742%27 font-family=%27Arial%27 font-weight=%27700%27 font-size=%2728%27 fill=%27%2330d158%27 text-anchor=%27middle%27%3ERK%3C/text%3E%3C/svg%3E">
-<title>Tadawul Dividend Calendar</title>
-<meta name="description" content="Upcoming ex-dividend dates, payment dates and yields for Saudi Exchange (Tadawul) listed companies.">
+<title>Tadawul Dividend Calendar: Saudi ex-dividend dates and yields</title>
+<meta name="description" content="Upcoming Saudi Exchange (Tadawul) dividends: the last day to buy, ex-dividend and payment dates, and yields for every listed company. Free, in English and Arabic.">
+<link rel="alternate" hreflang="en" href="https://rafkhan.com/labs/tadawul-dividends/">
+<link rel="alternate" hreflang="ar" href="https://rafkhan.com/labs/tadawul-dividends/?lang=ar">
+<link rel="alternate" hreflang="x-default" href="https://rafkhan.com/labs/tadawul-dividends/">
+<script>
+/* SEO: one canonical per language. ?lang=ar is the Arabic page, everything else is the English page. */
+(function () {
+  var ar = /[?&]lang=ar\b/.test(location.search);
+  var l = document.createElement("link");
+  l.rel = "canonical";
+  l.href = "https://rafkhan.com/labs/tadawul-dividends/" + (ar ? "?lang=ar" : "");
+  document.head.appendChild(l);
+})();
+</script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rafay Khan">
+<meta property="og:title" content="Tadawul Dividend Calendar">
+<meta property="og:description" content="The last day to buy, ex-dividend and payment dates, and yields for Saudi-listed companies. In English and Arabic.">
+<meta property="og:url" content="https://rafkhan.com/labs/tadawul-dividends/">
+<meta property="og:image" content="https://rafkhan.com/og/tadawul-dividends.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Tadawul Dividend Calendar by Rafay Khan">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ar_SA">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"Tadawul Dividend Calendar","alternateName":"تقويم توزيعات الأرباح في تداول","url":"https://rafkhan.com/labs/tadawul-dividends/","description":"Upcoming Saudi Exchange (Tadawul) dividends with the last day to buy, ex-dividend dates, payment dates and yields.","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["en","ar"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"SAR"},"author":{"@type":"Person","name":"Rafay Khan","url":"https://rafkhan.com/"}},
+{"@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Rafay Khan","item":"https://rafkhan.com/"},
+{"@type":"ListItem","position":2,"name":"Labs","item":"https://rafkhan.com/#labs"},
+{"@type":"ListItem","position":3,"name":"Tadawul Dividend Calendar","item":"https://rafkhan.com/labs/tadawul-dividends/"}]}
+]}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap">
@@ -266,7 +300,8 @@ label.toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 1
   // ---------- Text in both languages ----------
   const STR = {
     en: {
-      docTitle: "Tadawul Dividend Calendar",
+      docTitle: "Tadawul Dividend Calendar: Saudi ex-dividend dates and yields",
+      docDesc: "Upcoming Saudi Exchange (Tadawul) dividends: the last day to buy, ex-dividend and payment dates, and yields for every listed company. Free, in English and Arabic.",
       back: "← Labs", exchange: "Saudi Exchange", nWork: "Work", nStory: "Story", nLabs: "Labs", chat: "Let's chat", footName: "Rafay Khan · Riyadh", footBack: "Back to Labs", sample: "Sample data", langBtn: "العربية",
       title: "Tadawul Dividend Calendar", titleSub: "تقويم توزيعات الأرباح في تداول",
       lede: "Upcoming ex-dividend and payment dates for Saudi-listed companies, with the last day to buy and the yield at the latest close.",
@@ -296,7 +331,8 @@ label.toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 1
       sectors: {}
     },
     ar: {
-      docTitle: "تقويم توزيعات الأرباح في تداول",
+      docTitle: "تقويم توزيعات الأرباح في تداول: تواريخ الأحقية والعوائد",
+      docDesc: "توزيعات أرباح الشركات المدرجة في السوق المالية السعودية (تداول): آخر يوم للشراء وتواريخ الأحقية والصرف والعائد لكل شركة. مجاني بالعربية والإنجليزية.",
       back: "→ المختبر", exchange: "السوق المالية السعودية", nWork: "الأعمال", nStory: "القصة", nLabs: "المختبر", chat: "تواصل معي", footName: "Rafay Khan · الرياض", footBack: "العودة إلى المختبر", sample: "بيانات تجريبية", langBtn: "English",
       title: "تقويم توزيعات الأرباح في تداول", titleSub: "Tadawul Dividend Calendar",
       lede: "مواعيد الأحقية وصرف التوزيعات النقدية القادمة للشركات المدرجة في السوق السعودية، مع آخر يوم للشراء والعائد حسب آخر سعر إغلاق.",
@@ -550,6 +586,7 @@ label.toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 1
     const root = document.documentElement;
     root.lang = lang; root.dir = lang === "ar" ? "rtl" : "ltr";
     document.title = t.docTitle;
+    const md = document.querySelector('meta[name="description"]'); if (md) md.content = t.docDesc;
     makeFormats();
     document.querySelectorAll("[data-i]").forEach(el => {
       const v = t[el.dataset.i];
@@ -601,7 +638,11 @@ label.toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 1
       setTimeout(() => URL.revokeObjectURL(url), 2000);
     }
   });
-  $("langBtn").addEventListener("click", () => { lang = lang === "ar" ? "en" : "ar"; store.set("tdc-lang", lang); applyLang(); });
+  $("langBtn").addEventListener("click", () => {
+    lang = lang === "ar" ? "en" : "ar"; store.set("tdc-lang", lang);
+    const u = new URL(location.href); u.searchParams.set("lang", lang); history.replaceState(null, "", u);
+    applyLang();
+  });
   $("q").addEventListener("input", e => { state.q = e.target.value; render(); });
   $("sort").addEventListener("change", e => { state.sort = e.target.value; render(); });
   $("showPast").addEventListener("change", e => { state.showPast = e.target.checked; store.set("tdc-past", e.target.checked ? "1" : "0"); render(); });
