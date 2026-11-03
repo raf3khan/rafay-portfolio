@@ -113,8 +113,14 @@ def debt(facts, on):
                 parts.append((t, v(t)))
     elif v("DebtLongtermAndShorttermCombinedAmount") is not None:
         return [("DebtLongtermAndShorttermCombinedAmount", v("DebtLongtermAndShorttermCombinedAmount"))]
-    elif v("LongTermDebtNoncurrent") is None and v("DebtCurrent") is not None:
-        pass
+    else:
+        for t in ("LongTermNotesPayable", "SeniorNotes", "ConvertibleNotesPayable", "UnsecuredDebt",
+                  "OtherLongTermDebtNoncurrent", "LongTermDebtFairValue", "DebtInstrumentCarryingAmount"):
+            if v(t) is not None:
+                parts.append((t, v(t)))
+                break
+        if v("NotesPayableCurrent") is not None:
+            parts.append(("NotesPayableCurrent", v("NotesPayableCurrent")))
     # short-term borrowings (commercial paper is usually inside ShortTermBorrowings)
     if v("ShortTermBorrowings") is not None:
         parts.append(("ShortTermBorrowings", v("ShortTermBorrowings")))
@@ -164,9 +170,15 @@ def interest_income(facts, fy_end):
         val = annual_at(facts, t, fy_end)
         if val is not None:
             return t, max(val, 0), "reported"
-    val = annual_at(facts, "InterestIncomeExpenseNonoperatingNet", fy_end)
-    if val is not None and val > 0:
-        return "InterestIncomeExpenseNonoperatingNet", val, "net"
+    for t in ("InterestIncomeExpenseNonoperatingNet", "InterestIncomeExpenseNet"):
+        val = annual_at(facts, t, fy_end)
+        if val is not None and val > 0:
+            return t, val, "net"
+    # last resort: treat all non-operating income as possibly non-permissible (an upper bound)
+    for t in ("InvestmentIncomeNonoperating", "OtherNonoperatingIncomeExpense", "NonoperatingIncomeExpense"):
+        val = annual_at(facts, t, fy_end)
+        if val is not None and val > 0:
+            return t, val, "upper"
     return None, None, "missing"
 
 
@@ -291,6 +303,9 @@ def main():
         ov = overrides.get(t, {})
         biz = ov.get("biz", biz)
         mcap = p * sh[1]
+        if mcap <= 0:
+            skipped[t] = "Share count missing in EDGAR data"
+            continue
         rec = {
             "name": sub.get("name") or title,
             "cik": cik,
@@ -298,7 +313,7 @@ def main():
             "sic": sub.get("sic"), "sicDesc": sub.get("sicDescription"),
             "biz": biz, "bizNote": ov.get("note"),
             "price": round(p, 4), "priceDate": pdate, "priceSource": psrc,
-            "shares": sh[1], "sharesDate": sh[2],
+            "shares": sh[1], "sharesDate": sh[2], "sharesTag": sh[0],
             "marketCap": round(mcap),
             "balanceDate": on,
             "debt": sum(v for _, v in d), "debtParts": d,
@@ -309,7 +324,7 @@ def main():
         }
         out[t] = rec
         print(f"{t:6} {biz:8} mcap {mcap/1e9:8.1f}B debt {rec['debt']/mcap:6.1%} cash {rec['cash']/mcap:6.1%} "
-              f"income {(ival or 0)/rev[1]['val']:6.1%} ({iquality})", flush=True)
+              f"income {(ival or 0)/rev[1]['val']:6.1%} ({iquality}) | px {p:.2f} {psrc} {pdate} | shares {sh[1]/1e6:.0f}M {sh[0]} {sh[2]}", flush=True)
 
     path = os.path.join(DATA, "us.json")
     json.dump({"generated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
