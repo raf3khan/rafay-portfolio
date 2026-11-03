@@ -1,0 +1,24 @@
+name: Update Tadawul dividends
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["claude/**"]
+    paths:
+      - "tools/tadawul-dividends/**"
+      - ".github/workflows/tadawul-dividends.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Probe sources
+        run: python3 tools/tadawul-dividends/probe.py
