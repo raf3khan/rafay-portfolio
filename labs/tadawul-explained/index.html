@@ -4,8 +4,42 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27%23181818%27/%3E%3Ctext x=%2732%27 y=%2742%27 font-family=%27Arial%27 font-weight=%27700%27 font-size=%2728%27 fill=%27%2330d158%27 text-anchor=%27middle%27%3ERK%3C/text%3E%3C/svg%3E">
-<title>Tadawul Explained</title>
-<meta name="description" content="Plain-language explanations of Saudi Exchange (Tadawul) stocks in English and Arabic: what the company does, key numbers and recent announcements.">
+<title>Tadawul Explained: Saudi stocks in plain English and Arabic</title>
+<meta name="description" content="Look up a Saudi Exchange (Tadawul) stock and get a plain summary of the company, its key numbers and recent announcements. Free, in English and Arabic.">
+<link rel="alternate" hreflang="en" href="https://rafkhan.com/labs/tadawul-explained/">
+<link rel="alternate" hreflang="ar" href="https://rafkhan.com/labs/tadawul-explained/?lang=ar">
+<link rel="alternate" hreflang="x-default" href="https://rafkhan.com/labs/tadawul-explained/">
+<script>
+/* SEO: one canonical per language. ?lang=ar is the Arabic page, everything else is the English page. */
+(function () {
+  var ar = /[?&]lang=ar\b/.test(location.search);
+  var l = document.createElement("link");
+  l.rel = "canonical";
+  l.href = "https://rafkhan.com/labs/tadawul-explained/" + (ar ? "?lang=ar" : "");
+  document.head.appendChild(l);
+})();
+</script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rafay Khan">
+<meta property="og:title" content="Tadawul Explained">
+<meta property="og:description" content="Saudi stocks in plain words: what the company does, what its key numbers mean and what it announced lately. In English and Arabic.">
+<meta property="og:url" content="https://rafkhan.com/labs/tadawul-explained/">
+<meta property="og:image" content="https://rafkhan.com/og/tadawul-explained.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Tadawul Explained by Rafay Khan">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ar_SA">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"Tadawul Explained","alternateName":"تداول بوضوح","url":"https://rafkhan.com/labs/tadawul-explained/","description":"Plain-language explanations of Saudi Exchange (Tadawul) stocks: what the company does, key ratios explained and recent announcements, in English and Arabic.","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["en","ar"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"SAR"},"author":{"@type":"Person","name":"Rafay Khan","url":"https://rafkhan.com/"}},
+{"@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Rafay Khan","item":"https://rafkhan.com/"},
+{"@type":"ListItem","position":2,"name":"Labs","item":"https://rafkhan.com/#labs"},
+{"@type":"ListItem","position":3,"name":"Tadawul Explained","item":"https://rafkhan.com/labs/tadawul-explained/"}]}
+]}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap">
@@ -162,6 +196,8 @@ h1 .sub { display: block; margin-top: 12px; font: 400 24px/32px var(--arabic); l
 /* notes and footer */
 .notes { display: grid; gap: 12px; max-width: 760px; font-size: 14px; line-height: 22px; color: var(--muted); }
 .notes p { margin: 0; }
+.nh { margin: 0; font: 400 30px/36px var(--serif); letter-spacing: -0.01em; color: var(--ink); }
+[dir="rtl"] .nh { font: 500 24px/36px var(--arabic); }
 .notes strong { color: var(--ink); font-weight: 600; }
 .fine .col { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding: 16px 24px; color: var(--muted); font-size: 14px; line-height: 20px; }
 .fine a { color: var(--muted); text-decoration: none; } .fine a:hover { color: var(--ink); }
@@ -201,9 +237,12 @@ h1 .sub { display: block; margin-top: 12px; font: 400 24px/32px var(--arabic); l
   <section class="band">
     <div class="col pad">
       <div class="notes">
+        <h2 class="nh" data-i="hHow">How Tadawul Explained works</h2>
         <p data-i="fHow" data-html="1"></p>
+        <p data-i="fRead" data-html="1"></p>
         <p id="srcNote"></p>
         <p data-i="fAdvice"></p>
+        <p data-i="fRelated" data-html="1"></p>
       </div>
     </div>
   </section>
@@ -215,7 +254,8 @@ h1 .sub { display: block; margin-top: 12px; font: 400 24px/32px var(--arabic); l
 (function () {
   const STR = {
     en: {
-      docTitle: "Tadawul Explained",
+      docTitle: "Tadawul Explained: Saudi stocks in plain English and Arabic",
+      docDesc: "Look up a Saudi Exchange (Tadawul) stock and get a plain summary of the company, its key numbers and recent announcements. Free, in English and Arabic.",
       back: "← Labs", exchange: "Saudi Exchange", nWork: "Work", nStory: "Story", nLabs: "Labs", chat: "Let's chat", footName: "Rafay Khan · Riyadh", footBack: "Back to Labs", langBtn: "العربية",
       title: "Tadawul Explained", titleSub: "تداول بوضوح",
       lede: "Type a Saudi stock code or company name. Get a plain-language read on what the company does, where the price sits, what its key numbers mean and what it has announced lately.",
@@ -234,11 +274,15 @@ h1 .sub { display: block; margin-top: 12px; font: 400 24px/32px var(--arabic); l
       bn: "bn", tn: "tn", sar: "SAR",
       kinds: { results: "Results", dividend: "Dividend", deal: "Deal", upcoming: "Coming up" },
       sectors: { Energy: "Energy", Banks: "Banks", Telecom: "Telecom", Materials: "Materials", Utilities: "Utilities", Food: "Food" },
-      fHow: "<strong>How this works.</strong> Each week the prices, ratios and announcements are collected from public sources and an AI model rewrites them in plain English and Arabic. Every announcement links to where it came from, so you can read the original.",
+      hHow: "How Tadawul Explained works",
+      fHow: "<strong>Where the numbers come from.</strong> Prices, ratios and announcements are collected from public sources for the largest companies on the Saudi Exchange. An AI model then rewrites them in plain English and Arabic, and every summary is checked against the figures shown on the page. Each announcement links to where it came from, so you can read the original filing.",
+      fRead: "<strong>How to read a company page.</strong> The 52-week range shows whether the price is near its high or low for the past year. The P/E ratio tells you how many riyals investors pay for each riyal of yearly profit. The dividend yield is the cash paid out over the past year as a share of today's price. Market value is what the whole company is worth at this price, and profit over the last twelve months shows whether the business is growing or shrinking. Prices are delayed, and each company shows the date of its snapshot.",
+      fRelated: "More free tools: the <a href=\"/labs/tadawul-dividends/\">Tadawul Dividend Calendar</a> for upcoming payouts, or <a href=\"/#labs\">everything in Labs</a>.",
       fAdvice: "This is general information to help you understand a company. It is not investment advice or a recommendation to buy or sell."
     },
     ar: {
-      docTitle: "تداول بوضوح",
+      docTitle: "تداول بوضوح: أسهم السوق السعودية بلغة مبسطة",
+      docDesc: "ابحث عن أي سهم في السوق المالية السعودية (تداول) واحصل على ملخص مبسط للشركة وأهم أرقامها وآخر إعلاناتها. مجاني بالعربية والإنجليزية.",
       back: "→ المختبر", exchange: "السوق المالية السعودية", nWork: "الأعمال", nStory: "القصة", nLabs: "المختبر", chat: "تواصل معي", footName: "Rafay Khan · الرياض", footBack: "العودة إلى المختبر", langBtn: "English",
       title: "تداول بوضوح", titleSub: "Tadawul Explained",
       lede: "اكتب رمز السهم أو اسم الشركة، واحصل على شرح مبسّط لنشاط الشركة وموقع السعر وما تعنيه أهم أرقامها وآخر ما أعلنته.",
@@ -257,7 +301,10 @@ h1 .sub { display: block; margin-top: 12px; font: 400 24px/32px var(--arabic); l
       bn: "مليار", tn: "تريليون", sar: "ر.س",
       kinds: { results: "نتائج", dividend: "توزيعات", deal: "صفقة", upcoming: "قادم" },
       sectors: { Energy: "الطاقة", Banks: "البنوك", Telecom: "الاتصالات", Materials: "المواد الأساسية", Utilities: "المرافق العامة", Food: "الأغذية" },
-      fHow: "<strong>كيف تعمل الصفحة.</strong> كل أسبوع تُجمع الأسعار والنسب والإعلانات من مصادر عامة، ثم يعيد نموذج ذكاء اصطناعي صياغتها بلغة مبسطة بالعربية والإنجليزية. كل إعلان مرتبط بمصدره لتقرأ الأصل.",
+      hHow: "كيف تعمل صفحة تداول بوضوح",
+      fHow: "<strong>من أين تأتي الأرقام.</strong> تُجمع الأسعار والنسب والإعلانات من مصادر عامة لأكبر الشركات في السوق المالية السعودية، ثم يعيد نموذج ذكاء اصطناعي صياغتها بلغة مبسطة بالعربية والإنجليزية، ويُراجع كل ملخص مقابل الأرقام المعروضة في الصفحة. كل إعلان مرتبط بمصدره لتقرأ الإفصاح الأصلي.",
+      fRead: "<strong>كيف تقرأ صفحة الشركة.</strong> يوضح نطاق 52 أسبوعًا إن كان السعر قريبًا من أعلى أو أدنى مستوى له خلال العام. ويبيّن مكرر الربحية كم ريالًا يدفعه المستثمرون مقابل كل ريال من الربح السنوي. وعائد التوزيعات هو النقد الموزّع خلال العام الماضي كنسبة من سعر اليوم. والقيمة السوقية هي قيمة الشركة كاملة بهذا السعر، ويُظهر ربح آخر اثني عشر شهرًا إن كان النشاط ينمو أو يتراجع. الأسعار متأخرة، وتعرض كل شركة تاريخ بياناتها.",
+      fRelated: "أدوات مجانية أخرى: <a href=\"/labs/tadawul-dividends/?lang=ar\">تقويم توزيعات الأرباح في تداول</a> للتوزيعات القادمة، أو <a href=\"/#labs\">كل أدوات المختبر</a>.",
       fAdvice: "هذه معلومات عامة لمساعدتك على فهم الشركة، وليست نصيحة استثمارية أو توصية بالشراء أو البيع."
     }
   };
@@ -345,6 +392,7 @@ h1 .sub { display: block; margin-top: 12px; font: 400 24px/32px var(--arabic); l
     const t = T(), root = document.documentElement;
     root.lang = lang; root.dir = lang === "ar" ? "rtl" : "ltr";
     document.title = t.docTitle;
+    const md = document.querySelector('meta[name="description"]'); if (md) md.content = t.docDesc;
     document.querySelectorAll("[data-i]").forEach(el => {
       const v = t[el.dataset.i]; if (typeof v !== "string") return;
       if (el.dataset.html) el.innerHTML = v; else el.textContent = v;
@@ -371,7 +419,11 @@ h1 .sub { display: block; margin-top: 12px; font: 400 24px/32px var(--arabic); l
     select(find(missQ), true);
   });
   $("chips").addEventListener("click", e => { const b = e.target.closest(".chip"); if (b) select(data.companies.find(c => c.code === b.dataset.c), true); });
-  $("langBtn").addEventListener("click", () => { lang = lang === "ar" ? "en" : "ar"; store.set("tx-lang", lang); applyLang(); });
+  $("langBtn").addEventListener("click", () => {
+    lang = lang === "ar" ? "en" : "ar"; store.set("tx-lang", lang);
+    const u = new URL(location.href); u.searchParams.set("lang", lang); history.replaceState(null, "", u);
+    applyLang();
+  });
 
   $("year").textContent = new Date().getFullYear();
   applyLang();
