@@ -2,17 +2,102 @@
   "updated": "2026-11-03",
   "sample": false,
   "source": "Compiled from company dividend announcements on Saudi Exchange, cross-checked with broker dividend calendars. Prices are the latest close on file and can lag by a few days.",
+  "sourceAr": "جُمعت من إعلانات توزيع الأرباح المنشورة على موقع السوق المالية السعودية، ورُوجعت مع تقاويم التوزيعات لدى الوسطاء. الأسعار هي آخر إغلاق متوفر وقد تتأخر بضعة أيام.",
   "sourceUrl": "https://www.saudiexchange.sa/wps/portal/saudiexchange/newsandreports/issuer-news/issuer-announcements",
   "events": [
-    { "ticker": "1182", "name": "Amlak International", "nameAr": "أملاك العالمية", "sector": "Financial Services", "dps": 0.30, "annualDps": 0.80, "price": 8.15, "recordDate": "2026-10-18" },
-    { "ticker": "4339", "name": "Derayah REIT", "nameAr": "دراية ريت", "sector": "REITs", "dps": 0.10, "annualDps": 0.39, "price": 4.90, "recordDate": "2026-10-25" },
-    { "ticker": "4342", "name": "Jadwa REIT Saudi", "nameAr": "جدوى ريت السعودية", "sector": "REITs", "dps": 0.20, "annualDps": 0.80, "price": 7.64, "recordDate": "2026-10-28" },
-    { "ticker": "4336", "name": "Mulkia REIT", "nameAr": "ملكية ريت", "sector": "REITs", "dps": 0.08, "annualDps": 0.32, "price": 3.81, "recordDate": "2026-10-29" },
-    { "ticker": "4333", "name": "Taleem REIT", "nameAr": "تعليم ريت", "sector": "REITs", "dps": 0.18, "recordDate": "2026-11-02" },
-    { "ticker": "7010", "name": "stc", "nameAr": "الاتصالات السعودية", "sector": "Telecom", "period": "Q3 2026", "dps": 0.55, "annualDps": 2.20, "recordDate": "2026-11-02", "payDate": "2026-11-19" },
-    { "ticker": "1150", "name": "Alinma Bank", "nameAr": "مصرف الإنماء", "sector": "Banks", "dps": 0.25, "recordDate": "2026-11-04", "payDate": "2026-11-18" },
-    { "ticker": "9571", "name": "Munawla", "sector": "Nomu", "dps": 0.27, "recordDate": "2026-11-04", "payDate": "2026-11-17" },
-    { "ticker": "9604", "name": "Miral", "sector": "Nomu", "dps": 2.00, "recordDate": "2026-11-05", "payDate": "2026-11-19" },
-    { "ticker": "4348", "name": "Alkhabeer REIT", "nameAr": "الخبير ريت", "sector": "REITs", "dps": 0.105, "annualDps": 0.42, "price": 5.07, "recordDate": "2026-11-15" }
+    {
+      "ticker": "1182",
+      "name": "Amlak International",
+      "nameAr": "أملاك العالمية",
+      "sector": "Financial Services",
+      "dps": 0.3,
+      "annualDps": 0.8,
+      "price": 8.15,
+      "recordDate": "2026-10-18"
+    },
+    {
+      "ticker": "4339",
+      "name": "Derayah REIT",
+      "nameAr": "دراية ريت",
+      "sector": "REITs",
+      "dps": 0.1,
+      "annualDps": 0.39,
+      "price": 4.9,
+      "recordDate": "2026-10-25"
+    },
+    {
+      "ticker": "4342",
+      "name": "Jadwa REIT Saudi",
+      "nameAr": "جدوى ريت السعودية",
+      "sector": "REITs",
+      "dps": 0.2,
+      "annualDps": 0.8,
+      "price": 7.64,
+      "recordDate": "2026-10-28"
+    },
+    {
+      "ticker": "4336",
+      "name": "Mulkia REIT",
+      "nameAr": "ملكية ريت",
+      "sector": "REITs",
+      "dps": 0.08,
+      "annualDps": 0.32,
+      "price": 3.81,
+      "recordDate": "2026-10-29"
+    },
+    {
+      "ticker": "4333",
+      "name": "Taleem REIT",
+      "nameAr": "تعليم ريت",
+      "sector": "REITs",
+      "dps": 0.18,
+      "recordDate": "2026-11-02"
+    },
+    {
+      "ticker": "7010",
+      "name": "stc",
+      "nameAr": "الاتصالات السعودية",
+      "sector": "Telecom",
+      "period": "Q3 2026",
+      "dps": 0.55,
+      "annualDps": 2.2,
+      "recordDate": "2026-11-02",
+      "payDate": "2026-11-19"
+    },
+    {
+      "ticker": "1150",
+      "name": "Alinma Bank",
+      "nameAr": "مصرف الإنماء",
+      "sector": "Banks",
+      "dps": 0.25,
+      "recordDate": "2026-11-04",
+      "payDate": "2026-11-18"
+    },
+    {
+      "ticker": "9571",
+      "name": "Munawla",
+      "sector": "Nomu",
+      "dps": 0.27,
+      "recordDate": "2026-11-04",
+      "payDate": "2026-11-17"
+    },
+    {
+      "ticker": "9604",
+      "name": "Miral",
+      "sector": "Nomu",
+      "dps": 2.0,
+      "recordDate": "2026-11-05",
+      "payDate": "2026-11-19"
+    },
+    {
+      "ticker": "4348",
+      "name": "Alkhabeer REIT",
+      "nameAr": "الخبير ريت",
+      "sector": "REITs",
+      "dps": 0.105,
+      "annualDps": 0.42,
+      "price": 5.07,
+      "recordDate": "2026-11-15"
+    }
   ]
 }
