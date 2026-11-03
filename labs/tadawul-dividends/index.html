@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tadawul Dividend Calendar</title>
+<meta name="description" content="Upcoming ex-dividend dates, payment dates and yields for Saudi Exchange (Tadawul) listed companies.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one working column. Summary line, filters, then the schedule grouped by trading week (or a Sun–Sat month grid). */
+:root {
+  --bg: #F2F5F2;
+  --surface: #FFFFFF;
+  --ink: #13211C;
+  --muted: #5A6A63;
+  --line: #D8E0DB;
+  --accent: #0B6B4D;
+  --accent-soft: #E1EFE8;
+  --gold: #8F6512;
+  --gold-soft: #F5EBD6;
+  --weekend: #E9EEEA;
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans Arabic", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0C1411; --surface: #131E19; --ink: #E3ECE7; --muted: #93A49C; --line: #24342D;
+    --accent: #48C392; --accent-soft: #173327; --gold: #E0AE55; --gold-soft: #33280F; --weekend: #101915;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0C1411; --surface: #131E19; --ink: #E3ECE7; --muted: #93A49C; --line: #24342D;
+  --accent: #48C392; --accent-soft: #173327; --gold: #E0AE55; --gold-soft: #33280F; --weekend: #101915;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.5;
+}
+.wrap {
+  max-width: 1040px; margin: 0 auto;
+  padding-block: 32px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 28px;
+}
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Header */
+header { display: grid; gap: 10px; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.back { color: var(--muted); text-decoration: none; } .back:hover { color: var(--accent); }
+.badge { font-family: var(--f-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; background: var(--gold-soft); color: var(--gold); }
+h1 { font-family: var(--f-display); font-weight: 700; font-size: clamp(30px, 5.5vw, 48px); line-height: 1.05; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+h1 .ar { display: block; font-family: var(--f-body); font-weight: 500; font-size: .45em; color: var(--muted); letter-spacing: 0; margin-top: 6px; text-align: left; }
+.lede { margin: 0; color: var(--muted); max-width: 62ch; }
+
+/* Summary */
+.summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-block: 1px solid var(--line); }
+.summary > div { padding: 14px 16px 14px 0; display: grid; gap: 2px; min-width: 0; }
+.summary > div + div { padding-left: 16px; border-left: 1px solid var(--line); }
+.summary .k { font-size: 12px; color: var(--muted); }
+.summary .v { font-family: var(--f-display); font-weight: 500; font-size: 22px; line-height: 1.2; }
+.summary .s { font-size: 13px; color: var(--muted); overflow-wrap: anywhere; }
+@media (max-width: 640px) {
+  .summary { grid-template-columns: 1fr; }
+  .summary > div { padding: 12px 0; }
+  .summary > div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+}
+
+/* Toolbar */
+.toolbar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.search { flex: 1 1 220px; min-width: 0; }
+.search input {
+  width: 100%; font: inherit; padding: 9px 12px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink);
+}
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--surface); }
+.seg button { font: inherit; font-size: 14px; border: 0; background: transparent; color: var(--muted); padding: 8px 14px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--surface); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; width: 100%; }
+.chip { font: inherit; font-size: 13px; padding: 4px 11px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; }
+.chip[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+label.toggle { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--muted); cursor: pointer; }
+.sortsel { font: inherit; font-size: 14px; padding: 7px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink); }
+
+/* List */
+.week { display: grid; gap: 8px; }
+.week h2 { font-family: var(--f-mono); font-weight: 500; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0; display: flex; justify-content: space-between; gap: 12px; }
+.rows { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.row {
+  display: grid; align-items: center; gap: 4px 16px; padding: 14px 16px;
+  grid-template-columns: 64px minmax(0, 1.6fr) minmax(0, .8fr) minmax(0, 1.5fr) auto;
+}
+.row + .row { border-top: 1px solid var(--line); }
+.row.past { opacity: .55; }
+.tick { font-family: var(--f-mono); font-weight: 500; font-size: 15px; color: var(--accent); }
+.co { min-width: 0; }
+.co .n { font-weight: 600; }
+.co .a { font-size: 13px; color: var(--muted); text-align: left; }
+.co .meta { font-size: 12px; color: var(--muted); }
+.amt { display: grid; gap: 0; }
+.amt .d { font-family: var(--f-mono); font-size: 15px; }
+.amt .y { font-size: 12px; color: var(--muted); }
+.dates { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; font-size: 13px; }
+.dates .l { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.dates .ex .dv { color: var(--accent); font-weight: 600; }
+.dates .pay .dv { color: var(--gold); }
+.dates .h { font-size: 11px; color: var(--muted); }
+.dates .rec { grid-column: 1 / -1; font-size: 12px; color: var(--muted); }
+.act { display: grid; justify-items: end; gap: 6px; }
+.pill { font-family: var(--f-mono); font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); white-space: nowrap; }
+.pill.soon { background: var(--accent); color: var(--surface); }
+.pill.past { background: var(--weekend); color: var(--muted); }
+.ics { font: inherit; font-size: 12px; background: none; border: 0; padding: 0; color: var(--muted); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+.ics:hover { color: var(--accent); }
+@media (max-width: 820px) {
+  .row { grid-template-columns: 56px minmax(0, 1fr) auto; }
+  .amt { grid-column: 3; grid-row: 1; text-align: right; }
+  .dates { grid-column: 1 / -1; }
+  .act { grid-column: 1 / -1; grid-auto-flow: column; justify-content: space-between; justify-items: start; }
+}
+.empty { padding: 32px; text-align: center; color: var(--muted); background: var(--surface); border: 1px dashed var(--line); border-radius: 8px; }
+
+/* Month view */
+.monthbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.monthbar h2 { font-family: var(--f-display); font-weight: 500; font-size: 22px; margin: 0; }
+.monthbar .hj { font-size: 13px; color: var(--muted); font-weight: 400; margin-left: 8px; }
+.nav { font: inherit; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 6px; padding: 6px 12px; cursor: pointer; }
+.gridwrap { overflow-x: auto; }
+.grid { display: grid; grid-template-columns: repeat(7, minmax(92px, 1fr)); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--line); gap: 1px; min-width: 660px; }
+.dow { background: var(--surface); padding: 8px; font-family: var(--f-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.cell { background: var(--surface); min-height: 96px; padding: 6px; display: grid; align-content: start; gap: 4px; }
+.cell.we { background: var(--weekend); }
+.cell.out { background: var(--bg); }
+.cell.out .dn { opacity: .4; }
+.cell.today .dn { background: var(--ink); color: var(--surface); border-radius: 4px; padding: 0 5px; }
+.dn { font-family: var(--f-mono); font-size: 12px; color: var(--muted); justify-self: start; }
+.ev { font-family: var(--f-mono); font-size: 11px; padding: 2px 5px; border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ev.ex { background: var(--accent-soft); color: var(--accent); }
+.ev.pay { background: var(--gold-soft); color: var(--gold); }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+.legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.legend .lx::before { background: var(--accent); }
+.legend .lp::before { background: var(--gold); }
+.legend .lw::before { background: var(--weekend); border: 1px solid var(--line); }
+
+footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; display: grid; gap: 6px; max-width: 75ch; }
+footer p { margin: 0; }
+@media (prefers-reduced-motion: no-preference) { .row, .cell { transition: background .15s; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow"><a class="back" href="/#labs">← Labs</a><span>Saudi Exchange</span><span id="updated">Loading…</span><span class="badge" id="sampleBadge" hidden>Sample data</span></div>
+    <h1>Tadawul Dividend Calendar <span class="ar" lang="ar" dir="rtl">تقويم توزيعات الأرباح</span></h1>
+    <p class="lede">Upcoming ex-dividend and payment dates for Saudi-listed companies, with the last day to buy and the yield at the latest close.</p>
+  </header>
+
+  <section class="summary" aria-label="Summary">
+    <div><span class="k">Next ex-dividend</span><span class="v" id="sNext">–</span><span class="s" id="sNextSub"></span></div>
+    <div><span class="k">Going ex in the next 30 days</span><span class="v num" id="s30">–</span><span class="s" id="s30Sub"></span></div>
+    <div><span class="k">Highest trailing yield upcoming</span><span class="v num" id="sTop">–</span><span class="s" id="sTopSub"></span></div>
+  </section>
+
+  <section class="toolbar" aria-label="Filters">
+    <div class="search"><input id="q" type="search" placeholder="Search by name or ticker, e.g. 2222" aria-label="Search by company name or ticker"></div>
+    <select id="sort" class="sortsel" aria-label="Sort">
+      <option value="date">By ex-date</option>
+      <option value="yield">By trailing yield</option>
+    </select>
+    <div class="seg" role="group" aria-label="View">
+      <button id="vList" type="button" aria-pressed="true">List</button>
+      <button id="vMonth" type="button" aria-pressed="false">Month</button>
+    </div>
+    <label class="toggle"><input id="showPast" type="checkbox"> Show past</label>
+    <div class="chips" id="chips" role="group" aria-label="Sector"></div>
+  </section>
+
+  <main id="view" aria-live="polite"></main>
+
+  <footer>
+    <p><strong>How the dates work.</strong> Tadawul trades Sunday to Thursday and settles trades two trading days later (T+2). Companies announce an eligibility date. The ex-date is one trading day before it, so you need to buy by the close of the trading day before the ex-date. "Last day to buy" skips weekends but not public holidays, so check the company's announcement around Eid and National Day.</p>
+    <p><strong>Yields.</strong> "This payment" is the dividend per share divided by the latest close. "Trailing" uses dividends paid over the last twelve months. Yields are left blank where no recent price is on file.</p>
+    <p id="srcNote"></p>
+    <p>Not investment advice. Always confirm dates in the company's announcement on Saudi Exchange.</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  const DOW = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const fmtD = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short" });
+  const fmtDY = new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short", year: "numeric" });
+  const fmtM = new Intl.DateTimeFormat("en-GB", { month: "long", year: "numeric" });
+  let fmtH = null, fmtHM = null;
+  try {
+    fmtH = new Intl.DateTimeFormat("en-u-ca-islamic-umalqura", { day: "numeric", month: "short" });
+    fmtHM = new Intl.DateTimeFormat("en-u-ca-islamic-umalqura", { month: "long", year: "numeric" });
+  } catch (e) {}
+
+  const parse = s => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
+  const iso = d => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  const addDays = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
+  const isWeekend = d => d.getDay() === 5 || d.getDay() === 6;
+  const prevTradingDay = d => { let x = addDays(d, -1); while (isWeekend(x)) x = addDays(x, -1); return x; };
+  const daysBetween = (a, b) => Math.round((b - a) / 86400000);
+  const hijri = d => { try { return fmtH ? fmtH.format(d).replace(/\s?AH$/, "") : ""; } catch (e) { return ""; } };
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const sar = n => n.toFixed(Math.round(n * 1000) % 10 ? 3 : 2);
+  const pct = n => (n * 100).toFixed(2) + "%";
+
+  let todayStr;
+  try { todayStr = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Riyadh" }).format(new Date()); }
+  catch (e) { todayStr = iso(new Date()); }
+  const today = parse(todayStr);
+
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  };
+
+  const state = { view: "list", sector: "All", q: "", sort: "date", showPast: false, month: null };
+  if (location.hash === "#month") state.view = "month";
+  if (store.get("tdc-past") === "1") state.showPast = true;
+
+  let data = { events: [] };
+  const $ = id => document.getElementById(id);
+
+  function enrich(ev) {
+    // Saudi Exchange announces the eligibility (record) date. With T+2 settlement the ex-date is one trading day earlier.
+    const rec = ev.recordDate ? parse(ev.recordDate) : null;
+    const ex = ev.exDate ? parse(ev.exDate) : prevTradingDay(rec);
+    const pay = ev.payDate ? parse(ev.payDate) : null;
+    return Object.assign({}, ev, {
+      ex, rec, pay, exDate: iso(ex), buyBy: prevTradingDay(ex),
+      yld: ev.price ? ev.dps / ev.price : null,
+      ttm: ev.price && ev.annualDps ? ev.annualDps / ev.price : null,
+      inDays: daysBetween(today, ex)
+    });
+  }
+
+  function filtered() {
+    const q = state.q.trim().toLowerCase();
+    let list = data.events.filter(e =>
+      (state.sector === "All" || e.sector === state.sector) &&
+      (!q || e.ticker.includes(q) || e.name.toLowerCase().includes(q) || (e.nameAr || "").includes(q))
+    );
+    if (state.view === "list" && !state.showPast) list = list.filter(e => e.inDays >= 0);
+    list.sort(state.sort === "yield" ? (a, b) => (b.ttm || 0) - (a.ttm || 0) : (a, b) => a.ex - b.ex);
+    return list;
+  }
+
+  function pill(e) {
+    if (e.inDays < 0) return '<span class="pill past">Ex ' + (-e.inDays) + 'd ago</span>';
+    if (e.inDays === 0) return '<span class="pill soon">Ex today</span>';
+    const buyIn = daysBetween(today, e.buyBy);
+    if (buyIn === 0) return '<span class="pill soon">Buy by today</span>';
+    return '<span class="pill' + (e.inDays <= 7 ? " soon" : "") + '">In ' + e.inDays + ' day' + (e.inDays === 1 ? "" : "s") + '</span>';
+  }
+
+  function rowHTML(e) {
+    const dcell = (cls, label, d) => d
+      ? '<div class="' + cls + '"><div class="l">' + label + '</div><div class="dv">' + DOW[d.getDay()] + ' ' + fmtD.format(d) + '</div><div class="h">' + hijri(d) + '</div></div>'
+      : '<div class="' + cls + '"><div class="l">' + label + '</div><div class="dv">TBA</div></div>';
+    return '<div class="row' + (e.inDays < 0 ? " past" : "") + '">' +
+      '<div class="tick">' + esc(e.ticker) + '</div>' +
+      '<div class="co"><div class="n">' + esc(e.name) + '</div>' +
+        (e.nameAr ? '<div class="a" lang="ar" dir="rtl">' + esc(e.nameAr) + '</div>' : "") +
+        '<div class="meta">' + esc(e.sector) + (e.period ? ' · ' + esc(e.period) : "") + '</div></div>' +
+      '<div class="amt"><span class="d">SAR ' + sar(e.dps) + '</span>' +
+        (e.yld != null ? '<span class="y">' + pct(e.yld) + ' this payment</span>' : "") +
+        (e.ttm != null ? '<span class="y">' + pct(e.ttm) + ' trailing</span>' : "") + '</div>' +
+      '<div class="dates">' + dcell("buy", "Last day to buy", e.buyBy) + dcell("ex", "Ex-date", e.ex) + dcell("pay", "Paid", e.pay) +
+        (e.rec ? '<div class="rec">Eligibility date ' + DOW[e.rec.getDay()] + ' ' + fmtD.format(e.rec) + '</div>' : "") + '</div>' +
+      '<div class="act">' + pill(e) + '<button class="ics" type="button" data-t="' + esc(e.ticker) + '" data-x="' + e.exDate + '">Add to calendar</button></div>' +
+    '</div>';
+  }
+
+  function weekStart(d) { return addDays(d, -d.getDay()); } // Tadawul week starts Sunday
+
+  function renderList() {
+    const list = filtered();
+    if (!list.length) {
+      $("view").innerHTML = '<div class="empty">No dividends match these filters. Clear the search or pick "All" sectors.</div>';
+      return;
+    }
+    if (state.sort === "yield") {
+      $("view").innerHTML = '<section class="week"><h2><span>Ranked by trailing yield</span><span>' + list.length + ' companies</span></h2><div class="rows">' + list.map(rowHTML).join("") + '</div></section>';
+      return;
+    }
+    const groups = new Map();
+    list.forEach(e => {
+      const k = iso(weekStart(e.ex));
+      if (!groups.has(k)) groups.set(k, []);
+      groups.get(k).push(e);
+    });
+    const thisWeek = iso(weekStart(today));
+    const nextWeek = iso(addDays(weekStart(today), 7));
+    let html = "";
+    groups.forEach((evs, k) => {
+      const s = parse(k), end = addDays(s, 4);
+      const label = k === thisWeek ? "This week" : k === nextWeek ? "Next week" : "Week of " + fmtD.format(s);
+      html += '<section class="week"><h2><span>' + label + '</span><span>' + fmtD.format(s) + ' – ' + fmtD.format(end) + ' · ' + evs.length + ' going ex</span></h2><div class="rows">' + evs.map(rowHTML).join("") + '</div></section>';
+    });
+    $("view").innerHTML = html;
+  }
+
+  function renderMonth() {
+    const m = state.month;
+    const first = new Date(m.getFullYear(), m.getMonth(), 1);
+    const start = addDays(first, -first.getDay());
+    const list = filtered();
+    const byDay = {};
+    list.forEach(e => {
+      (byDay[e.exDate] = byDay[e.exDate] || []).push({ e, t: "ex" });
+      if (e.payDate) (byDay[e.payDate] = byDay[e.payDate] || []).push({ e, t: "pay" });
+    });
+    let hm = "";
+    try { if (fmtHM) { const a = fmtHM.format(first), b = fmtHM.format(new Date(m.getFullYear(), m.getMonth() + 1, 0)); hm = a === b ? a : a.replace(/\s?\d+\s?AH$/, "") + " – " + b; } } catch (e) {}
+    let html = '<div style="display:grid;gap:12px">' +
+      '<div class="monthbar"><button class="nav" type="button" id="prevM" aria-label="Previous month">←</button>' +
+      '<h2>' + fmtM.format(first) + '<span class="hj">' + esc(hm) + '</span></h2>' +
+      '<button class="nav" type="button" id="nextM" aria-label="Next month">→</button></div>' +
+      '<div class="gridwrap"><div class="grid">' + DOW.map(d => '<div class="dow">' + d + '</div>').join("");
+    for (let i = 0; i < 42; i++) {
+      const d = addDays(start, i);
+      if (i >= 35 && d.getMonth() !== m.getMonth()) break;
+      const k = iso(d);
+      const cls = ["cell"];
+      if (isWeekend(d)) cls.push("we");
+      if (d.getMonth() !== m.getMonth()) cls.push("out");
+      if (k === todayStr) cls.push("today");
+      const evs = (byDay[k] || []).map(x =>
+        '<div class="ev ' + x.t + '" title="' + esc(x.e.name) + (x.t === "ex" ? " goes ex-dividend, SAR " + sar(x.e.dps) : " pays SAR " + sar(x.e.dps)) + '">' + (x.t === "ex" ? "EX " : "PAY ") + esc(x.e.ticker) + '</div>').join("");
+      html += '<div class="' + cls.join(" ") + '"><span class="dn">' + d.getDate() + '</span>' + evs + '</div>';
+    }
+    html += '</div></div><div class="legend"><span class="lx">Ex-dividend date</span><span class="lp">Payment date</span><span class="lw">Weekend (Fri–Sat)</span></div></div>';
+    $("view").innerHTML = html;
+    $("prevM").onclick = () => { state.month = new Date(m.getFullYear(), m.getMonth() - 1, 1); renderMonth(); };
+    $("nextM").onclick = () => { state.month = new Date(m.getFullYear(), m.getMonth() + 1, 1); renderMonth(); };
+  }
+
+  function renderSummary() {
+    const up = data.events.filter(e => e.inDays >= 0).sort((a, b) => a.ex - b.ex);
+    if (up.length) {
+      const n = up[0];
+      const same = up.filter(e => e.exDate === n.exDate);
+      $("sNext").textContent = DOW[n.ex.getDay()] + " " + fmtD.format(n.ex);
+      $("sNextSub").textContent = same.map(e => e.name).join(", ") + " · buy by " + DOW[n.buyBy.getDay()] + " " + fmtD.format(n.buyBy);
+    } else { $("sNext").textContent = "None scheduled"; }
+    const in30 = up.filter(e => e.inDays <= 30);
+    $("s30").textContent = in30.length;
+    $("s30Sub").textContent = in30.length ? "SAR " + sar(in30.reduce((s, e) => s + e.dps, 0)) + " per share if you held one of each" : "";
+    const top = up.filter(e => e.ttm != null).sort((a, b) => b.ttm - a.ttm)[0];
+    if (top) { $("sTop").textContent = pct(top.ttm); $("sTopSub").textContent = top.name + " (" + top.ticker + ") · ex " + fmtD.format(top.ex); }
+  }
+
+  function renderChips() {
+    const sectors = ["All"].concat(Array.from(new Set(data.events.map(e => e.sector))).sort());
+    $("chips").innerHTML = sectors.map(s => '<button type="button" class="chip" aria-pressed="' + (s === state.sector) + '" data-s="' + esc(s) + '">' + esc(s) + '</button>').join("");
+  }
+
+  function render() {
+    $("vList").setAttribute("aria-pressed", state.view === "list");
+    $("vMonth").setAttribute("aria-pressed", state.view === "month");
+    $("showPast").closest("label").hidden = state.view !== "list";
+    $("sort").hidden = state.view !== "list";
+    state.view === "list" ? renderList() : renderMonth();
+  }
+
+  function icsFor(e) {
+    const dt = s => s.replace(/-/g, "");
+    const next = s => iso(addDays(parse(s), 1)).replace(/-/g, "");
+    const stamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d+/, "");
+    const ev = (uid, date, summary, desc) => [
+      "BEGIN:VEVENT", "UID:" + uid + "@rafkhan.com", "DTSTAMP:" + stamp,
+      "DTSTART;VALUE=DATE:" + dt(date), "DTEND;VALUE=DATE:" + next(date),
+      "SUMMARY:" + summary, "DESCRIPTION:" + desc, "END:VEVENT"].join("\r\n");
+    const parts = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//rafkhan.com//Tadawul Dividend Calendar//EN",
+      ev(e.ticker + "-buy-" + e.exDate, iso(e.buyBy), "Last day to buy " + e.name + " (" + e.ticker + ") for dividend", "SAR " + sar(e.dps) + " per share" + (e.period ? ", " + e.period : "") + ". Ex-date " + e.exDate + ".")];
+    parts.push(ev(e.ticker + "-ex-" + e.exDate, e.exDate, e.name + " (" + e.ticker + ") ex-dividend", "SAR " + sar(e.dps) + " per share" + (e.period ? ", " + e.period : "") + "."));
+    if (e.payDate) parts.push(ev(e.ticker + "-pay-" + e.payDate, e.payDate, e.name + " (" + e.ticker + ") dividend paid", "SAR " + sar(e.dps) + " per share."));
+    parts.push("END:VCALENDAR");
+    return parts.join("\r\n");
+  }
+
+  document.addEventListener("click", ev => {
+    const chip = ev.target.closest(".chip");
+    if (chip) { state.sector = chip.dataset.s; renderChips(); render(); return; }
+    const b = ev.target.closest(".ics");
+    if (b) {
+      const e = data.events.find(x => x.ticker === b.dataset.t && x.exDate === b.dataset.x);
+      if (!e) return;
+      const url = URL.createObjectURL(new Blob([icsFor(e)], { type: "text/calendar" }));
+      const a = document.createElement("a");
+      a.href = url; a.download = e.ticker + "-dividend-" + e.exDate + ".ics";
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+    }
+  });
+  $("q").addEventListener("input", e => { state.q = e.target.value; render(); });
+  $("sort").addEventListener("change", e => { state.sort = e.target.value; render(); });
+  $("showPast").addEventListener("change", e => { state.showPast = e.target.checked; store.set("tdc-past", e.target.checked ? "1" : "0"); render(); });
+  $("vList").addEventListener("click", () => { state.view = "list"; history.replaceState(null, "", "#list"); render(); });
+  $("vMonth").addEventListener("click", () => { state.view = "month"; history.replaceState(null, "", "#month"); render(); });
+  window.addEventListener("hashchange", () => { state.view = location.hash === "#month" ? "month" : "list"; render(); });
+
+  fetch("data/dividends.json", { cache: "no-store" })
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(json => {
+      data = json;
+      data.events = (json.events || []).map(enrich);
+      $("updated").textContent = "Updated " + fmtDY.format(parse(json.updated));
+      $("sampleBadge").hidden = !json.sample;
+      $("srcNote").innerHTML = "<strong>Source.</strong> " + esc(json.source || "") + (json.sourceUrl ? ' <a href="' + esc(json.sourceUrl) + '" target="_blank" rel="noopener">Saudi Exchange issuer calendars</a>.' : "");
+      const firstUp = data.events.filter(e => e.inDays >= 0).sort((a, b) => a.ex - b.ex)[0];
+      const base = firstUp ? firstUp.ex : today;
+      state.month = new Date(base.getFullYear(), base.getMonth(), 1);
+      $("showPast").checked = state.showPast;
+      renderSummary(); renderChips(); render();
+    })
+    .catch(() => {
+      $("updated").textContent = "Data unavailable";
+      $("view").innerHTML = '<div class="empty">The dividend list could not load. Refresh the page to try again.</div>';
+    });
+})();
+</script>
+</body>
+</html>
