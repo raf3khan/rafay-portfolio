@@ -11,5 +11,19 @@
     "ar": "تقويم توزيعات الأرباح في تداول",
     "sub": "The last day to buy, ex-dividend and payment dates, and yields for Saudi-listed companies.",
     "url": "rafkhan.com/labs/tadawul-dividends"
+  },
+  "saudi-ipo-tracker": {
+    "kicker": "Labs · Free tool",
+    "title": "Saudi IPO Tracker",
+    "ar": "متتبع الطروحات العامة السعودية",
+    "sub": "Retail subscription dates for upcoming Saudi IPOs, and an estimate of your allocation and refund.",
+    "url": "rafkhan.com/labs/saudi-ipo-tracker"
+  },
+  "broker-fees": {
+    "kicker": "Labs · Free tool",
+    "title": "Saudi Broker Fee Calculator",
+    "ar": "حاسبة عمولات الوساطة في السوق السعودية",
+    "sub": "The real cost of a Tadawul trade at each Saudi broker, with exchange fees, the CMA fee and VAT.",
+    "url": "rafkhan.com/labs/broker-fees"
   }
 }
