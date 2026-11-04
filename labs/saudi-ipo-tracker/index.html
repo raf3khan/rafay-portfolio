@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27%23181818%27/%3E%3Ctext x=%2732%27 y=%2742%27 font-family=%27Arial%27 font-weight=%27700%27 font-size=%2728%27 fill=%27%2330d158%27 text-anchor=%27middle%27%3ERK%3C/text%3E%3C/svg%3E">
 <title>Saudi IPO Tracker: subscription dates and allocation estimator</title>
-<meta name="description" content="Upcoming Saudi IPOs on Tadawul and Nomu with retail subscription dates, plus a free estimator for the shares you'll be allocated and your refund. In English.">
+<meta name="description" content="Saudi IPOs, ETF and sukuk offerings from the Saudi Exchange list, with subscription dates, how to subscribe and a free share allocation estimator.">
 <link rel="canonical" href="https://rafkhan.com/labs/saudi-ipo-tracker/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Rafay Khan">
@@ -228,24 +228,24 @@ summary { cursor: pointer; color: var(--ink); font-weight: 500; }
   <section class="hero band">
     <div class="col">
       <div class="glow" aria-hidden="true"></div>
-      <div class="eyebrow"><a class="back" href="/#labs">← Labs</a><span>Tadawul and Nomu</span><span id="updated">Loading…</span><span class="badge" id="sampleBadge" hidden>Sample data</span></div>
+      <div class="eyebrow"><a class="back" href="/#labs">← Labs</a><span>Saudi Exchange</span><span id="updated">Loading…</span><span class="badge" id="sampleBadge" hidden>Sample data</span></div>
       <h1>Saudi IPO Tracker <span class="sub" lang="ar">متتبع الطروحات العامة السعودية</span></h1>
-      <p class="lede">Every upcoming Saudi IPO with its retail subscription window, and an estimate of how many shares you'll actually be allocated and how much comes back as a refund.</p>
+      <p class="lede">Every IPO, ETF and sukuk offering on the Saudi Exchange list, with its subscription window and how to subscribe. For company IPOs, an estimate of how many shares you'll actually be allocated and how much comes back as a refund.</p>
     </div>
   </section>
 
   <section class="band" aria-label="Summary">
     <div class="col summary">
       <div><span class="k">Open for subscription</span><span class="v num" id="sOpen">–</span><span class="s" id="sOpenSub"></span></div>
-      <div><span class="k">Opening next</span><span class="v" id="sNext">–</span><span class="s" id="sNextSub"></span></div>
-      <div><span class="k">Value in the pipeline</span><span class="v num" id="sValue">–</span><span class="s" id="sValueSub"></span></div>
+      <div><span class="k">Next company IPO</span><span class="v" id="sNext">–</span><span class="s" id="sNextSub"></span></div>
+      <div><span class="k">On the exchange list</span><span class="v num" id="sValue">–</span><span class="s" id="sValueSub"></span></div>
     </div>
   </section>
 
   <section class="band">
     <div class="col pad" style="display:grid;gap:24px">
       <div class="toolbar">
-        <h2 class="sec">Upcoming Saudi IPOs</h2>
+        <h2 class="sec">Saudi IPOs and offerings</h2>
         <div class="chips" id="chips" role="group" aria-label="Filter by stage"></div>
       </div>
       <div id="list" aria-live="polite"></div>
@@ -256,6 +256,7 @@ summary { cursor: pointer; color: var(--ink); font-weight: 500; }
     <div class="col pad">
       <div class="est-h">
         <h2>Allocation estimator</h2>
+        <p id="estNote" class="badge" style="justify-self:start" hidden>No company IPO is taking subscriptions right now, so this starts with example numbers.</p>
         <p>Saudi retail tranches give every subscriber a minimum number of shares first, then split what's left in proportion to what each person applied for. How oversubscribed the tranche is decides the rest.</p>
       </div>
       <div class="est">
@@ -296,6 +297,7 @@ summary { cursor: pointer; color: var(--ink); font-weight: 500; }
       <div class="notes">
         <h2 class="sec">How this tracker works</h2>
         <p><strong>Stages.</strong> A Saudi IPO runs in four steps. Institutions bid first during book-building, which sets the final price. Individuals then subscribe through their bank or broker during the retail window, usually two or three days, paying the full amount up front. Shares are allocated a few days later and the unused money is refunded. The stock then lists on Tadawul's Main Market, or on Nomu for smaller companies, where only qualified investors can subscribe.</p>
+        <p><strong>ETFs and sukuk.</strong> The Saudi Exchange list also carries new exchange-traded funds and sukuk. A new ETF stays open for weeks rather than days and is subscribed through its fund manager, often by swapping shares you already hold for fund units. Units are issued at the offer price, so the allocation estimator doesn't apply. Sukuk are Shariah-compliant bonds, sold in certificates with a set face value, SAR 1,000 each for the WSM sukuk on the list now.</p>
         <p><strong>Allocation.</strong> Retail tranches are almost always oversubscribed. Each subscriber first gets a minimum, often 10 shares, and the rest is shared in proportion to what each person applied for. That's why a large subscription can come back mostly as a refund. Try different coverage and subscriber counts in the estimator above to see the range.</p>
         <p><strong>Where to subscribe.</strong> Individuals subscribe through a "receiving entity", which is a bank or a CMA-licensed broker named in the offering announcement. You need an investment account with one of them and enough cash in it for the full amount. Each IPO card lists its receiving entities once they're announced. Most large Saudi brokers usually take part, including Al Rajhi Capital, SNB Capital, Riyad Capital, Alinma Capital, Albilad Capital, AlJazira Capital, ANB Capital, SAB Invest, BSF Capital, Alistithmar Capital, Derayah Financial and Sahm Capital.</p>
         <p><strong>Where the dates come from.</strong> Each IPO is entered by hand from the <a href="https://www.saudiexchange.sa/wps/portal/saudiexchange/listing/ipos" target="_blank" rel="noopener">Saudi Exchange IPO list</a> and the offering announcements, so this can lag by a day or two. Stages update on their own from the dates.</p>
@@ -329,10 +331,13 @@ summary { cursor: pointer; color: var(--ink); font-weight: 500; }
     var r = x.retail;
     if (r && today >= d(r[0]) && today <= d(r[1])) return { k: "open", label: "Subscription open", rank: 0 };
     if (r && today < d(r[0])) return { k: "soon", label: "Upcoming", rank: 1 };
+    if (r && !isIpo(x) && today > d(r[1]) && !x.listing) return { k: "wait", label: "Offer closed", rank: 2 };
     if (!r && x.bookBuild && today < d(x.bookBuild[0])) return { k: "soon", label: "Upcoming", rank: 1 };
     if (x.listing && today >= d(x.listing)) return { k: "done", label: "Listed", rank: 3 };
+    if (!r && !x.bookBuild && !x.allocation && !x.listing) return { k: "soon", label: "Dates TBA", rank: 1 };
     return { k: "wait", label: x.allocation && today <= d(x.allocation) ? "Awaiting allocation" : "Awaiting listing", rank: 2 };
   }
+  function isIpo(x) { return !x.type || x.type === "IPO"; }
   function keyDate(x) { return d((x.retail && x.retail[0]) || x.allocation || x.listing) || today; }
 
   var IPOS = [], filter = "all";
@@ -345,8 +350,9 @@ summary { cursor: pointer; color: var(--ink); font-weight: 500; }
 
   function init(data) {
     IPOS = (data.ipos || []).map(function (x, i) {
-      x.id = i; x.st = stage(x); x.price = x.finalPrice != null ? x.finalPrice : x.priceHigh;
-      x.tranche = Math.round(x.offerShares * (x.retailPct || 0) / 100);
+      x.id = i; x.st = stage(x);
+      if (isIpo(x)) { x.price = x.finalPrice != null ? x.finalPrice : x.priceHigh; x.tranche = Math.round(x.offerShares * (x.retailPct || 0) / 100); }
+      else x.retailPct = 0;
       return x;
     });
     IPOS.sort(function (a, b) { return a.st.rank - b.st.rank || (keyDate(a) - keyDate(b)) * (a.st.rank === 3 ? -1 : 1); });
@@ -360,14 +366,17 @@ summary { cursor: pointer; color: var(--ink); font-weight: 500; }
   function summary() {
     var open = IPOS.filter(function (x) { return x.st.k === "open"; });
     $("sOpen").textContent = open.length;
-    $("sOpenSub").textContent = open.length ? open.map(function (x) { return x.name; }).join(", ") : "Nothing open right now";
-    var next = IPOS.filter(function (x) { return x.st.k === "soon" && x.retail; })[0];
-    $("sNext").textContent = next ? next.name : "None announced";
-    $("sNextSub").textContent = next ? "Retail opens " + fmtDate(next.retail[0]) + ", in " + plural(daysTo(next.retail[0]), "day") : "";
+    var closes = open.map(function (x) { return x.retail[1]; }).sort();
+    $("sOpenSub").textContent = !open.length ? "Nothing open right now" : open.length <= 2 ? open.map(function (x) { return x.name; }).join(", ") : "First one closes " + fmtDate(closes[0]) + ", last one " + fmtDate(closes[closes.length - 1]);
+    var eq = IPOS.filter(function (x) { return isIpo(x) && x.st.k !== "done"; });
+    var next = eq.filter(function (x) { return x.st.k === "soon" && x.retail; })[0] || eq.filter(function (x) { return x.st.k === "open"; })[0];
+    $("sNext").textContent = next ? next.name : "None right now";
+    $("sNextSub").textContent = next ? (next.st.k === "open" ? "Retail closes " + fmtDate(next.retail[1]) : "Retail opens " + fmtDate(next.retail[0]) + ", in " + plural(daysTo(next.retail[0]), "day")) : "No company share offering is on the Saudi Exchange list at the moment";
     var live = IPOS.filter(function (x) { return x.st.k !== "done"; });
-    var v = live.reduce(function (s, x) { return s + x.price * x.offerShares; }, 0);
-    $("sValue").textContent = live.length ? fmtBig(v) : "–";
-    $("sValueSub").textContent = plural(live.length, "offering") + " not yet listed, at the top of the range";
+    var by = {}; live.forEach(function (x) { var t = x.type || "IPO"; by[t] = (by[t] || 0) + 1; });
+    var names = { IPO: ["equity IPO", "equity IPOs"], ETF: ["ETF", "ETFs"], Sukuk: ["sukuk", "sukuk"] };
+    $("sValue").textContent = live.length;
+    $("sValueSub").textContent = Object.keys(by).map(function (t) { var n = names[t] || [t, t + "s"]; return by[t] + " " + n[by[t] === 1 ? 0 : 1]; }).join(", ") || "Nothing listed yet";
   }
 
   var TABS = [["all", "All"], ["open", "Open"], ["soon", "Upcoming"], ["wait", "Allocation"], ["done", "Listed"]];
@@ -383,8 +392,8 @@ summary { cursor: pointer; color: var(--ink); font-weight: 500; }
   });
 
   function timeline(x) {
-    var steps = [["Book-build", x.bookBuild && x.bookBuild[0], x.bookBuild && x.bookBuild[1]], ["Retail", x.retail && x.retail[0], x.retail && x.retail[1]], ["Allocation", x.allocation, x.allocation], ["Listing", x.listing, x.listing]];
-    return '<div class="tl">' + steps.map(function (s) {
+    var steps = !isIpo(x) ? [["Offer opens", x.retail && x.retail[0], x.retail && x.retail[0]], ["Offer closes", x.retail && x.retail[1], x.retail && x.retail[1]], ["Listing", x.listing, x.listing]] : [["Book-build", x.bookBuild && x.bookBuild[0], x.bookBuild && x.bookBuild[1]], ["Retail", x.retail && x.retail[0], x.retail && x.retail[1]], ["Allocation", x.allocation, x.allocation], ["Listing", x.listing, x.listing]];
+    return '<div class="tl" style="grid-template-columns:repeat(' + steps.length + ',minmax(0,1fr))">' + steps.map(function (s) {
       var cls = "", txt;
       if (s[1] && today > d(s[2] || s[1])) cls = "past";
       if (s[1] && today >= d(s[1]) && today <= d(s[2] || s[1])) cls = "now";
@@ -393,6 +402,7 @@ summary { cursor: pointer; color: var(--ink); font-weight: 500; }
     }).join("") + "</div>";
   }
   function brokers(x) {
+    if (x.subscribeVia) return '<details class="brk"><summary>How to subscribe</summary><p class="none">' + esc(x.subscribeVia) + "</p></details>";
     if (!x.retailPct) return "";
     var r = x.receivingEntities || [];
     if (!r.length) return '<details class="brk"><summary>Where to subscribe</summary><p class="none">Receiving banks and brokers are named closer to the retail window. Most Saudi brokers take part, so check your own broker\'s app first.</p></details>';
@@ -402,7 +412,9 @@ summary { cursor: pointer; color: var(--ink); font-weight: 500; }
     var n;
     if (x.st.k === "open") { n = daysTo(x.retail[1]); return n === 0 ? "<b>Closes today</b>" : "Closes in <b>" + plural(n, "day") + "</b>"; }
     if (x.st.k === "soon" && x.retail) return "Opens in <b>" + plural(daysTo(x.retail[0]), "day") + "</b>";
-    if (x.st.k === "soon") return "Book-build from <b>" + fmtDate(x.bookBuild[0]) + "</b>";
+    if (x.st.k === "soon" && x.bookBuild) return "Book-build from <b>" + fmtDate(x.bookBuild[0]) + "</b>";
+    if (x.st.k === "soon") return "Dates not announced yet";
+    if (x.st.k === "wait" && !isIpo(x)) return x.listing ? "Lists <b>" + fmtDate(x.listing) + "</b>" : "Closed " + fmtDate(x.retail[1]) + ", listing date TBA";
     if (x.st.k === "wait" && x.allocation && daysTo(x.allocation) >= 0) return "Allocation on <b>" + fmtDate(x.allocation) + "</b>";
     if (x.st.k === "wait") return x.listing ? "Lists <b>" + fmtDate(x.listing) + "</b>" : "Listing date TBA";
     return "Listed " + fmtDate(x.listing) + (x.ticker ? " · <b>" + esc(x.ticker) + "</b>" : "");
@@ -410,19 +422,27 @@ summary { cursor: pointer; color: var(--ink); font-weight: 500; }
   function list() {
     var rows = IPOS.filter(function (x) { return filter === "all" || x.st.k === filter; });
     $("list").innerHTML = rows.length ? rows.map(function (x) {
-      var price = x.finalPrice != null ? "SAR " + x.finalPrice : (x.priceLow === x.priceHigh ? "SAR " + x.priceHigh : "SAR " + x.priceLow + "–" + x.priceHigh);
-      var live = x.st.k === "open" || x.st.k === "soon";
+      var ipo = isIpo(x), live = x.st.k === "open" || x.st.k === "soon";
+      var price = !ipo ? "SAR " + fmtN(x.price) : x.finalPrice != null ? "SAR " + x.finalPrice : (x.priceLow === x.priceHigh ? "SAR " + x.priceHigh : "SAR " + x.priceLow + "–" + x.priceHigh);
+      var kv = ipo
+        ? '<div><span>' + (x.finalPrice != null ? "Final price" : "Price range") + "</span><b>" + price + "</b></div>" +
+          "<div><span>Offer size</span><b>" + fmtBig(x.price * x.offerShares) + "</b></div>" +
+          "<div><span>Retail tranche</span><b>" + (x.retailPct ? x.retailPct + "%" : "None") + "</b></div>"
+        : "<div><span>Offer price</span><b>" + price + "</b></div>" +
+          "<div><span>Offering size</span><b>" + esc(x.offeringSizeText || "Not stated") + "</b></div>" +
+          "<div><span>Type</span><b>" + esc(x.type) + "</b></div>";
+      var action = ipo
+        ? '<button type="button" class="' + (live ? "gloss" : "chipbtn") + '" data-est="' + x.id + '"' + (x.retailPct ? "" : " disabled") + ">Estimate allocation</button>"
+        : (x.prospectus ? '<a class="chipbtn" href="' + esc(x.prospectus) + '" target="_blank" rel="noopener">Prospectus</a>' : "");
       return '<article class="card">' +
         '<div class="card-h"><div><h3>' + esc(x.name) + "</h3>" + (x.nameAr ? '<span class="ar" lang="ar" dir="rtl">' + esc(x.nameAr) + "</span>" : "") +
-        '<div class="meta">' + esc(x.market) + " market · " + esc(x.sector) + (x.leadManager ? " · " + esc(x.leadManager) : "") + "</div></div>" +
+        '<div class="meta">' + esc(x.market) + (/market$/i.test(x.market) || !ipo ? "" : " market") + " · " + esc(x.sector) + (x.leadManager || x.manager ? " · " + esc(x.leadManager || x.manager) : "") + "</div></div>" +
         '<span class="pill ' + x.st.k + '">' + x.st.label + "</span></div>" +
-        '<div class="kv"><div><span>' + (x.finalPrice != null ? "Final price" : "Price range") + "</span><b>" + price + "</b></div>" +
-        "<div><span>Offer size</span><b>" + fmtBig(x.price * x.offerShares) + "</b></div>" +
-        "<div><span>Retail tranche</span><b>" + (x.retailPct ? x.retailPct + "%" : "None") + "</b></div></div>" +
+        '<div class="kv">' + kv + "</div>" +
         timeline(x) +
         brokers(x) +
         '<div class="card-f"><span class="when">' + when(x) + (x.source ? ' · <a href="' + esc(x.source) + '" target="_blank" rel="noopener">Announcement</a>' : "") + "</span>" +
-        '<button type="button" class="' + (live ? "gloss" : "chipbtn") + '" data-est="' + x.id + '"' + (x.retailPct ? "" : " disabled") + ">Estimate allocation</button></div>" +
+        action + "</div>" +
         "</article>";
     }).join("") : '<div class="empty">Nothing at this stage right now.</div>';
   }
@@ -442,7 +462,9 @@ summary { cursor: pointer; color: var(--ink); font-weight: 500; }
     return { shares: Math.min(applied, base + Math.floor(Math.max(0, applied - min) * factor)), guaranteed: true };
   }
   function setupEstimator() {
-    var el = IPOS.filter(function (x) { return x.retailPct > 0; });
+    var el = IPOS.filter(function (x) { return isIpo(x) && x.retailPct > 0 && x.st.k !== "done"; });
+    $("estNote").hidden = el.length > 0;
+    if (!el.length) { $("f-price").value = 26; $("f-tranche").value = 9000000; }
     $("f-ipo").innerHTML = el.map(function (x) { return '<option value="' + x.id + '">' + esc(x.name) + "</option>"; }).join("") + '<option value="custom">Custom numbers</option>';
     $("f-ipo").addEventListener("change", loadIpo);
     ["f-price", "f-amount", "f-tranche", "f-min", "f-cov", "f-subs"].forEach(function (id) {
