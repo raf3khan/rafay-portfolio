@@ -25,5 +25,12 @@
     "ar": "حاسبة عمولات الوساطة في السوق السعودية",
     "sub": "The real cost of a Tadawul trade at each Saudi broker, with exchange fees, the CMA fee and VAT.",
     "url": "rafkhan.com/labs/broker-fees"
+  },
+  "zakat": {
+    "kicker": "Labs · Free tool",
+    "title": "Zakat Calculator for Investors",
+    "ar": "حاسبة الزكاة للمستثمرين",
+    "sub": "Zakat on cash, gold, stocks, funds and retirement savings, with the ruling spelled out at each step.",
+    "url": "rafkhan.com/labs/zakat"
   }
 }

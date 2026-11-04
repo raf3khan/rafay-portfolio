@@ -1,0 +1,653 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27%23181818%27/%3E%3Ctext x=%2732%27 y=%2742%27 font-family=%27Arial%27 font-weight=%27700%27 font-size=%2728%27 fill=%27%2330d158%27 text-anchor=%27middle%27%3ERK%3C/text%3E%3C/svg%3E">
+<title>Zakat Calculator for Investors: stocks, gold and cash</title>
+<meta name="description" content="Free zakat calculator for cash, gold, silver, stocks, funds and retirement savings. Every step explains the ruling, including Tadawul shares. In English.">
+<link rel="canonical" href="https://rafkhan.com/labs/zakat/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rafay Khan">
+<meta property="og:title" content="Zakat Calculator for Investors">
+<meta property="og:description" content="Zakat on cash, gold, stocks, funds and retirement savings, with the ruling spelled out at each step. Free, and nothing leaves your browser.">
+<meta property="og:url" content="https://rafkhan.com/labs/zakat/">
+<meta property="og:image" content="https://rafkhan.com/og/zakat.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Zakat Calculator for Investors by Rafay Khan">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"Zakat Calculator for Investors","alternateName":"حاسبة الزكاة للمستثمرين","url":"https://rafkhan.com/labs/zakat/","description":"Free zakat calculator for cash, gold, silver, stocks, funds and retirement savings. Every step explains the ruling, including Tadawul shares. In English.","applicationCategory":"FinanceApplication","operatingSystem":"Any","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"SAR"},"author":{"@type":"Person","name":"Rafay Khan","url":"https://rafkhan.com/","sameAs":["https://www.linkedin.com/in/rafekhan"]}},
+{"@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Rafay Khan","item":"https://rafkhan.com/"},
+{"@type":"ListItem","position":2,"name":"Labs","item":"https://rafkhan.com/#labs"},
+{"@type":"ListItem","position":3,"name":"Zakat Calculator","item":"https://rafkhan.com/labs/zakat/"}]}
+]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"></noscript>
+<style>
+/* Fallback sized like Geist so text does not reflow when the web font arrives. */
+@font-face { font-family: "Geist Fallback"; src: local("Arial"), local("Liberation Sans"), local("Helvetica"); size-adjust: 102.6%; }
+:root {
+  --bg: #fafaf9; --paper-line: #efefed; --surface: #ffffff; --raised: #f2f2f0;
+  --ink: #111111; --muted: #565656; --line: #dcdcd8;
+  --accent: #1f7d37; --accent-soft: #e6f6ea; --go: #30d158; --go-ink: #0b2b14;
+  --warn: #8a5a12; --warn-soft: #f1ece1; --accent-ink: #ffffff;
+  --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font: "Geist", "Geist Fallback", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --frame: 1200px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131313; --paper-line: #1c1c1c; --surface: #1f1f1f; --raised: #272727; --ink: #f4f4f4; --muted: #a3a3a3; --line: #313131;
+    --accent: #30d158; --accent-soft: #1d2a20; --warn: #e0ae55; --warn-soft: #24211b; --accent-ink: #0b2b14; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131313; --paper-line: #1c1c1c; --surface: #1f1f1f; --raised: #272727; --ink: #f4f4f4; --muted: #a3a3a3; --line: #313131;
+  --accent: #30d158; --accent-soft: #1d2a20; --warn: #e0ae55; --warn-soft: #24211b; --accent-ink: #0b2b14; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background-color: var(--bg); background-image: linear-gradient(var(--paper-line) 1px, transparent 1px), linear-gradient(90deg, var(--paper-line) 1px, transparent 1px); background-size: 16px 16px;
+  color: var(--ink); font: 400 16px/24px var(--font); -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+h1, h2, h3 { text-wrap: balance; }
+a { color: var(--accent); text-underline-offset: 4px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+.ico { width: 16px; height: 16px; flex: none; }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* framed column, ruled bands, corner ticks */
+.band { border-bottom: 1px solid var(--line); }
+.col { max-width: var(--frame); margin: 0 auto; border-left: 1px solid var(--line); border-right: 1px solid var(--line); position: relative; background-color: var(--bg); }
+.band > .col::before, .band > .col::after { content: ""; position: absolute; bottom: -5px; width: 8px; height: 8px; border: 1px solid var(--line); background: var(--bg); z-index: 2; }
+.band > .col::before { left: -5px; } .band > .col::after { right: -5px; }
+.pad { padding: 24px; }
+@media (max-width: 1232px) { .col { margin: 0 16px; } }
+@media (max-width: 480px) { .col { margin: 0 8px; } .pad { padding: 16px; } }
+
+/* glossy controls */
+.gloss { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px; border-radius: 8px; font: 500 14px/20px var(--font); color: #ffffff; text-decoration: none; cursor: pointer;
+  background: linear-gradient(#3b3b3b, #0b0b0b); border: 1px solid #000000;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -1px 0 rgba(255,255,255,0.06), 0 2px 4px rgba(0,0,0,0.28), 0 8px 16px rgba(0,0,0,0.12);
+  transition: transform 300ms var(--ease), box-shadow 300ms var(--ease); }
+.gloss:hover { transform: translateY(-2px); }
+.chipbtn { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-decoration: none; font: 500 14px/20px var(--font); cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06); transition: transform 300ms var(--ease), border-color 300ms var(--ease); }
+.chipbtn:hover { transform: translateY(-2px); border-color: var(--muted); }
+
+/* top bar, same as the home page */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.bar .col { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; padding: 8px 16px; background: transparent; }
+.seg { display: inline-flex; gap: 4px; padding: 2px; border-radius: 8px; border: 1px solid var(--line); background: var(--raised); justify-self: start; }
+.seg a, .seg button { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 8px; border: 0; background: transparent; font: 500 14px/20px var(--font); color: var(--muted); text-decoration: none; cursor: pointer; transition: color 300ms var(--ease); }
+.seg a:hover, .seg button:hover { color: var(--ink); }
+.seg a[aria-current="true"], .seg button[aria-pressed="true"] { color: #ffffff; background: linear-gradient(#3b3b3b, #0b0b0b); box-shadow: 0 0 0 2px var(--accent), inset 0 1px 0 rgba(255,255,255,0.25); }
+.seg .ico { width: 12px; height: 12px; }
+.brand { font: 400 20px/28px var(--font); color: var(--ink); text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; }
+.right { justify-self: end; display: flex; gap: 8px; align-items: center; }
+@media (max-width: 480px) { .seg .ico { display: none; } .seg a { padding: 2px 6px; } .bar .brand { display: none; } .bar .col { grid-template-columns: 1fr auto; } }
+@media (max-width: 560px) { .brand { font-size: 16px; line-height: 24px; } .bar .col { gap: 8px; padding: 8px; } .right .gloss { display: none; } }
+
+/* hero */
+.hero .col { padding: 64px 24px 48px; display: grid; gap: 16px; overflow: hidden; }
+.hero .col > .glow { position: absolute; inset: 0 0 auto 0; height: 280px; pointer-events: none; background: radial-gradient(ellipse 60% 100% at 50% 0%, rgba(48, 209, 88, 0.22), transparent 70%); }
+.eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; font: 400 14px/20px var(--mono); color: var(--muted); position: relative; }
+.back { color: var(--muted); text-decoration: none; } .back:hover { color: var(--ink); }
+h1 { margin: 0; font: 400 60px/1 var(--serif); letter-spacing: -0.02em; position: relative; }
+.lede { margin: 0; max-width: 600px; color: var(--muted); font-size: 18px; line-height: 28px; position: relative; }
+@media (max-width: 860px) { .hero .col { padding: 48px 16px 32px; } h1 { font-size: 44px; } }
+
+
+/* Layout */
+.grid { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 24px; align-items: start; }
+@media (max-width: 900px) { .grid { grid-template-columns: minmax(0, 1fr); } .ledger { order: -1; position: static !important; } }
+
+/* Steps */
+.steps { display: grid; gap: 16px; min-width: 0; }
+.step { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); padding: 24px; display: grid; gap: 16px; min-width: 0; }
+.step-head { display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: baseline; }
+.step-no { font-family: var(--mono); font-size: 12px; color: var(--muted); width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; transform: translateY(-2px); }
+.step h2 { font: 400 24px/32px var(--serif); letter-spacing: -0.01em; margin: 0; }
+.step-sub { color: var(--muted); font-size: 14px; grid-column: 2 / -1; margin-top: -6px; }
+.step-total { font-family: var(--mono); font-size: 13px; color: var(--muted); white-space: nowrap; }
+.step-total b { color: var(--ink); font-weight: 500; }
+
+.fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; align-items: start; }
+.field { display: grid; gap: 6px; min-width: 0; align-content: start; }
+.field .opt { justify-self: start; }
+.field label, .lbl { font-size: 13px; font-weight: 500; }
+.field .hint { font-size: 12px; line-height: 18px; color: var(--muted); min-height: 18px; }
+input[type="number"], input[type="text"], input[type="date"], select {
+  font: inherit; font-size: 15px; color: var(--ink); background: var(--bg); border: 1px solid var(--line);
+  border-radius: 8px; padding: 9px 11px; width: 100%; min-width: 0; transition: border-color .15s var(--ease), box-shadow .15s var(--ease);
+}
+input[type="number"] { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+input:focus-visible, select:focus-visible, button:focus-visible, summary:focus-visible {
+  outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.money { position: relative; }
+.money span { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); font-family: var(--mono); font-size: 12px; color: var(--muted); pointer-events: none; }
+.money input { padding-left: 46px; }
+
+/* Segmented control */
+.opt { display: inline-flex; flex-wrap: wrap; background: var(--raised); border: 1px solid var(--line); border-radius: 8px; padding: 2px; gap: 4px; }
+.opt input { position: absolute; opacity: 0; pointer-events: none; }
+.opt label { font-size: 13px; font-weight: 500; padding: 6px 12px; border-radius: 7px; cursor: pointer; color: var(--muted); transition: background .15s var(--ease), color .15s var(--ease); }
+.opt input:checked + label { color: #ffffff; background: linear-gradient(#3b3b3b, #0b0b0b); box-shadow: 0 0 0 2px var(--accent), inset 0 1px 0 rgba(255,255,255,0.25); }
+.opt input:focus-visible + label { box-shadow: 0 0 0 3px var(--accent-soft); }
+
+.check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; cursor: pointer; }
+.check input { accent-color: var(--accent); width: 17px; height: 17px; margin-top: 2px; flex: none; }
+
+/* Explainer */
+details.why { border-top: 1px dashed var(--line); padding-top: 12px; }
+details.why summary { cursor: pointer; font-size: 13px; font-weight: 500; color: var(--accent); list-style: none; display: inline-flex; gap: 6px; align-items: center; border-radius: 6px; }
+details.why summary::-webkit-details-marker { display: none; }
+details.why summary::before { content: "+"; font-family: var(--mono); width: 14px; }
+details.why[open] summary::before { content: "−"; }
+.why-body { display: grid; gap: 8px; margin-top: 10px; color: var(--muted); font-size: 14px; max-width: 68ch; }
+.why-body strong { color: var(--ink); font-weight: 500; }
+.why-body .src { font-size: 12px; font-family: var(--mono); }
+
+/* Holdings rows */
+.rows { display: grid; gap: 10px; min-height: 120px; }
+.row { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1.4fr) auto; gap: 10px; align-items: end; background: var(--raised); border-radius: 10px; padding: 12px; }
+.row .field label { font-size: 12px; color: var(--muted); font-weight: 400; }
+.row .pct { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; font-size: 13px; color: var(--muted); }
+.row .pct input { width: 84px; padding: 5px 8px; font-size: 13px; }
+.row .pct .res { margin-left: auto; font-family: var(--mono); color: var(--ink); }
+@media (max-width: 620px) { .row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .row .field:first-child { grid-column: 1 / -1; } .row .field:nth-child(3) { grid-column: 1 / -1; } }
+
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 500 14px/20px var(--font); box-shadow: 0 1px 2px rgba(0,0,0,0.06); transition: transform 300ms var(--ease), border-color 300ms var(--ease); }
+.btn:hover { transform: translateY(-2px); }
+.btn:hover { border-color: var(--muted); }
+.btn.primary { color: #ffffff; background: linear-gradient(#3b3b3b, #0b0b0b); border-color: #000000; box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), 0 2px 4px rgba(0,0,0,0.28), 0 8px 16px rgba(0,0,0,0.12); }
+.btn.ghost { border-color: transparent; background: transparent; color: var(--muted); box-shadow: none; }
+.btn.ghost:hover { color: var(--ink); }
+.icon-btn { border: 0; background: transparent; color: var(--muted); width: 36px; height: 38px; border-radius: 8px; font-size: 18px; line-height: 1; }
+.icon-btn:hover { background: var(--surface); color: var(--ink); }
+.add { justify-self: start; }
+
+.tag { font: 500 12px/16px var(--font); padding: 2px 8px; border-radius: 9999px; background: var(--warn-soft); color: var(--warn); }
+
+/* Ledger */
+.ledger { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 72px); background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); padding: 24px; display: grid; gap: 18px; min-width: 0; }
+.due-lbl { font-size: 13px; color: var(--muted); }
+.due { margin: 0; font: 400 clamp(40px, 6vw, 56px)/1 var(--serif); font-variant-numeric: tabular-nums lining-nums; letter-spacing: -0.02em; word-break: break-all; }
+.due small { font: 400 14px/1 var(--mono); color: var(--muted); letter-spacing: 0; margin-right: 8px; vertical-align: 0.6em; }
+.status { display: inline-flex; gap: 8px; align-items: center; font-size: 13px; font-weight: 500; padding: 5px 11px 5px 9px; border-radius: 99px; }
+.status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.status.ok { background: var(--accent-soft); color: var(--accent); }
+.status.below { background: var(--raised); color: var(--muted); }
+.meter { display: grid; gap: 6px; }
+.meter-bar { height: 6px; background: var(--raised); border-radius: 99px; position: relative; overflow: hidden; }
+.meter-fill { position: absolute; inset: 0 auto 0 0; background: var(--accent); border-radius: 99px; transition: width .4s var(--ease); }
+.meter-legend { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); font-family: var(--mono); gap: 8px; }
+table.lines { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+table.lines td { padding: 7px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.lines td:last-child { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; padding-left: 12px; }
+table.lines tr.neg td:last-child { color: var(--warn); }
+table.lines tr.sum td { border-bottom: 0; font-weight: 600; padding-top: 10px; }
+table.lines tr.zero td { color: var(--muted); }
+#rateNote { min-height: 40px; }
+.small { font-size: 12px; color: var(--muted); }
+.ledger .actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.toast { font-size: 12px; color: var(--accent); min-height: 1em; }
+
+.steps p, .ledger p { margin: 0; }
+.toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; position: relative; }
+input:focus-visible, select:focus-visible { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.notes { display: grid; gap: 12px; max-width: 760px; font-size: 14px; line-height: 22px; color: var(--muted); }
+.notes p { margin: 0; }
+.notes-h { margin: 0; font: 400 24px/32px var(--serif); color: var(--ink); letter-spacing: -0.01em; }
+.notes strong { color: var(--ink); font-weight: 600; }
+.fine .col { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding: 16px 24px; color: var(--muted); font-size: 14px; line-height: 20px; }
+.fine a { color: var(--muted); text-decoration: none; } .fine a:hover { color: var(--ink); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<script src="/analytics.js" defer></script>
+</head>
+<body>
+
+<header class="bar band">
+  <div class="col">
+    <nav class="seg" aria-label="Main"><a href="/#work"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M104,40H56A16,16,0,0,0,40,56v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,104,40Zm0,64H56V56h48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm0,64H152V56h48Zm-96,32H56a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,104,136Zm0,64H56V152h48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,200,136Zm0,64H152V152h48Z"/></svg><span>Work</span></a><a href="/#story"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M208,24H72A32,32,0,0,0,40,56V224a8,8,0,0,0,8,8H192a8,8,0,0,0,0-16H56a16,16,0,0,1,16-16H208a8,8,0,0,0,8-8V32A8,8,0,0,0,208,24Zm-8,160H72a31.82,31.82,0,0,0-16,4.29V56A16,16,0,0,1,72,40H200Z"/></svg><span>Story</span></a><a href="/#labs" aria-current="true"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M221.69,199.77,160,96.92V40h8a8,8,0,0,0,0-16H88a8,8,0,0,0,0,16h8V96.92L34.31,199.77A16,16,0,0,0,48,224H208a16,16,0,0,0,13.72-24.23ZM110.86,103.25A7.93,7.93,0,0,0,112,99.14V40h32V99.14a7.93,7.93,0,0,0,1.14,4.11L183.36,167c-12,2.37-29.07,1.37-51.75-10.11-15.91-8.05-31.05-12.32-45.22-12.81ZM48,208l28.54-47.58c14.25-1.74,30.31,1.85,47.82,10.72,19,9.61,35,12.88,48,12.88a69.89,69.89,0,0,0,19.55-2.7L208,208Z"/></svg><span>Labs</span></a></nav>
+    <a class="brand" href="/">Rafay Khan</a>
+    <div class="right"><a class="gloss" href="https://www.linkedin.com/in/rafekhan" target="_blank" rel="noopener">Let's chat</a></div>
+  </div>
+</header>
+<main id="main">
+  <section class="hero band">
+    <div class="col">
+      <div class="glow" aria-hidden="true"></div>
+      <div class="eyebrow"><a class="back" href="/#labs">← Labs</a><span>For investors</span><span class="tag" id="sampleTag">Example figures</span></div>
+      <h1>Zakat calculator for investors</h1>
+      <p class="lede">Cash, gold, stocks, funds and retirement savings each follow their own rule. Fill in what applies to you and open “How this works” on any step to see the reasoning. Nothing you type leaves your browser.</p>
+      <div class="toolbar">
+        <button class="btn" id="clearBtn" type="button">Clear and start with my own</button>
+        <button class="btn ghost" id="sampleBtn" type="button" hidden>Load example figures</button>
+      </div>
+    </div>
+  </section>
+  <section class="band">
+    <div class="col pad">
+  <div class="grid">
+    <div class="steps">
+
+      <!-- 1. Basics -->
+      <section class="step" id="s-basics">
+        <div class="step-head"><span class="step-no">1</span><h2>Your zakat date and the nisab</h2><span></span>
+          <p class="step-sub">Zakat is due once a full year passes with your wealth above the nisab.</p></div>
+        <div class="fields">
+          <div class="field"><label for="currency">Currency</label>
+            <select id="currency"><option>SAR</option><option>AED</option><option>USD</option><option>GBP</option><option>EUR</option><option>PKR</option><option>INR</option><option>MYR</option><option>QAR</option><option>KWD</option></select></div>
+          <div class="field"><label for="zdate">Zakat date</label><input type="date" id="zdate"><span class="hint" id="hijri"></span></div>
+          <div class="field"><label for="goldPrice">24k gold price per gram</label><div class="money"><span class="cur">SAR</span><input type="number" id="goldPrice" min="0" step="0.01" inputmode="decimal"></div><span class="hint">Use today’s price from your bank or a gold dealer.</span></div>
+          <div class="field"><label for="silverPrice">Silver price per gram</label><div class="money"><span class="cur">SAR</span><input type="number" id="silverPrice" min="0" step="0.01" inputmode="decimal"></div></div>
+        </div>
+        <div class="fields">
+          <div class="field"><span class="lbl">Measure the nisab by</span>
+            <div class="opt" role="radiogroup" aria-label="Nisab basis">
+              <input type="radio" name="nisab" id="nisab-gold" value="gold" checked><label for="nisab-gold">Gold · 85 g</label>
+              <input type="radio" name="nisab" id="nisab-silver" value="silver"><label for="nisab-silver">Silver · 595 g</label>
+            </div></div>
+          <div class="field"><span class="lbl">Your zakat year follows the</span>
+            <div class="opt" role="radiogroup" aria-label="Calendar">
+              <input type="radio" name="year" id="year-lunar" value="lunar" checked><label for="year-lunar">Hijri year · 2.5%</label>
+              <input type="radio" name="year" id="year-solar" value="solar"><label for="year-solar">Gregorian year · 2.577%</label>
+            </div></div>
+        </div>
+        <details class="why"><summary>How this works</summary><div class="why-body">
+          <p><strong>Nisab</strong> is the minimum wealth that makes zakat due. The Prophet ﷺ set it at 20 mithqal of gold or 200 dirham of silver, which works out to about <strong>85 g of gold</strong> or <strong>595 g of silver</strong>.</p>
+          <p>Because silver is much cheaper, the silver nisab is a far lower bar. Many scholars recommend it when your wealth is mostly cash, since more people end up paying and the poor benefit. Others say the gold nisab fits better today because it reflects real purchasing power. Pick one and use it every year.</p>
+          <p><strong>Hawl</strong> is the year your wealth must stay above the nisab. Most people pick a fixed date, such as 1 Ramadan, and total everything they own on that day. The rate is <strong>2.5% for a Hijri year</strong>. A Gregorian year is 11 days longer, so if you use one the rate scales up to about <strong>2.577%</strong>.</p>
+        </div></details>
+      </section>
+
+      <!-- 2. Cash -->
+      <section class="step" id="s-cash">
+        <div class="step-head"><span class="step-no">2</span><h2>Cash and savings</h2><span class="step-total" data-total="cash"></span>
+          <p class="step-sub">Everything liquid counts in full.</p></div>
+        <div class="fields">
+          <div class="field"><label for="cashBank">Bank accounts</label><div class="money"><span class="cur">SAR</span><input type="number" id="cashBank" min="0" inputmode="decimal"></div><span class="hint">Current and savings accounts, deposits</span></div>
+          <div class="field"><label for="cashHand">Cash at home</label><div class="money"><span class="cur">SAR</span><input type="number" id="cashHand" min="0" inputmode="decimal"></div></div>
+          <div class="field"><label for="cashBroker">Uninvested cash at brokers</label><div class="money"><span class="cur">SAR</span><input type="number" id="cashBroker" min="0" inputmode="decimal"></div></div>
+          <div class="field"><label for="cashCrypto">Crypto</label><div class="money"><span class="cur">SAR</span><input type="number" id="cashCrypto" min="0" inputmode="decimal"></div><span class="hint">Market value on your zakat date</span></div>
+        </div>
+        <details class="why"><summary>How this works</summary><div class="why-body">
+          <p>Money is zakatable in full whatever account it sits in. Count the balance on your zakat date, not the average over the year.</p>
+          <p><strong>Interest</strong> earned on conventional accounts is not yours to keep or count. Give it away to charity separately and leave it out here.</p>
+          <p><strong>Crypto</strong> held as an investment or as money is treated like cash or trade goods by most contemporary scholars, so its full market value counts.</p>
+        </div></details>
+      </section>
+
+      <!-- 3. Gold & silver -->
+      <section class="step" id="s-metal">
+        <div class="step-head"><span class="step-no">3</span><h2>Gold and silver</h2><span class="step-total" data-total="metal"></span>
+          <p class="step-sub">Valued by their pure metal content.</p></div>
+        <div class="fields">
+          <div class="field"><label for="g24">24k gold (g)</label><input type="number" id="g24" min="0" step="0.1" inputmode="decimal"><span class="hint">Bars, coins</span></div>
+          <div class="field"><label for="g22">22k gold (g)</label><input type="number" id="g22" min="0" step="0.1" inputmode="decimal"></div>
+          <div class="field"><label for="g21">21k gold (g)</label><input type="number" id="g21" min="0" step="0.1" inputmode="decimal"><span class="hint">Common in Gulf jewelry</span></div>
+          <div class="field"><label for="g18">18k gold (g)</label><input type="number" id="g18" min="0" step="0.1" inputmode="decimal"></div>
+          <div class="field"><label for="silverG">Silver (g)</label><input type="number" id="silverG" min="0" step="1" inputmode="decimal"></div>
+          <div class="field"><label for="goldFund">Gold ETFs or certificates</label><div class="money"><span class="cur">SAR</span><input type="number" id="goldFund" min="0" inputmode="decimal"></div></div>
+        </div>
+        <div class="fields">
+          <div class="field"><label for="jewG">Jewelry you wear regularly (g)</label><input type="number" id="jewG" min="0" step="0.1" inputmode="decimal"><span class="hint">Keep it out of the boxes above</span></div>
+          <div class="field"><label for="jewK">Its karat</label><select id="jewK"><option value="g21">21k</option><option value="g22">22k</option><option value="g18">18k</option><option value="g24">24k</option></select></div>
+        </div>
+        <label class="check"><input type="checkbox" id="jewelryIncl"><span>Count my worn jewelry<br><span class="small">Tick this if you follow the Hanafi view. Leave it off for the Maliki, Shafi‘i and Hanbali view.</span></span></label>
+        <details class="why"><summary>How this works</summary><div class="why-body">
+          <p>Gold and silver are zakatable in full at their <strong>melt value</strong>, not the shop price. Lower karats contain less gold: 22k is 91.7% pure, 21k is 87.5% and 18k is 75%. The calculator converts each weight to pure gold and multiplies by the 24k price.</p>
+          <p><strong>Jewelry you wear</strong> is where scholars differ. The Hanafi school says it is zakatable. The Maliki, Shafi‘i and Hanbali schools say jewelry worn in normal amounts is exempt. Jewelry bought as a store of value, or kept and never worn, counts for everyone. Use the checkbox to follow the view you hold.</p>
+          <p>Gold ETFs and gold certificates represent metal you own, so their full market value counts.</p>
+        </div></details>
+      </section>
+
+      <!-- 4. Stocks -->
+      <section class="step" id="s-stocks">
+        <div class="step-head"><span class="step-no">4</span><h2>Stocks</h2><span class="step-total" data-total="stocks"></span>
+          <p class="step-sub">The rule depends on why you hold each share.</p></div>
+        <div class="rows" id="stockRows"></div>
+        <button class="btn add" type="button" data-add="stock">+ Add a stock</button>
+        <details class="why"><summary>How this works</summary><div class="why-body">
+          <p><strong>Shares you trade</strong>, meaning bought to sell for a profit within the year, are trade goods. Their full market value on your zakat date counts.</p>
+          <p><strong>Shares you hold long term</strong> for dividends and growth are different. You own a slice of the company, and only the zakatable part of the company (its cash, receivables and inventory) counts. Buildings, machinery and other fixed assets don’t.</p>
+          <p>The exact way is to take the company’s zakatable assets per share from its balance sheet and multiply by your share count. Most people don’t have time for that, so many zakat bodies accept <strong>25% of market value</strong> as an estimate. You can change the percentage on any row if you’ve done the exact work.</p>
+          <p><strong>If the company pays zakat itself</strong>, as companies listed on Tadawul do through ZATCA, many scholars say long-term shareholders don’t pay again on those shares. Choose that option on the row. Trading shares still count in full because the reason you hold them is different.</p>
+          <p class="src">Based on AAOIFI Shari‘ah Standard 35 (Zakah) and the resolutions of the International Islamic Fiqh Academy.</p>
+        </div></details>
+      </section>
+
+      <!-- 5. Funds -->
+      <section class="step" id="s-funds">
+        <div class="step-head"><span class="step-no">5</span><h2>Funds and ETFs</h2><span class="step-total" data-total="funds"></span>
+          <p class="step-sub">Treated by what the fund holds.</p></div>
+        <div class="rows" id="fundRows"></div>
+        <button class="btn add" type="button" data-add="fund">+ Add a fund</button>
+        <details class="why"><summary>How this works</summary><div class="why-body">
+          <p>A fund is a basket, so look through it to what it holds.</p>
+          <p><strong>Equity funds and ETFs</strong> follow the stock rule. If you trade the units, count the full value. If you hold them long term, count the zakatable part, estimated at 25% unless the fund publishes a zakat figure per unit. Some Islamic funds do, and you should use it when they do.</p>
+          <p><strong>Money market, murabaha and sukuk funds</strong> hold cash-like assets, so their full value counts.</p>
+          <p><strong>REITs</strong> mostly hold buildings that earn rent. Only the cash they hold and the rent you received and still have counts, which is why the long-term estimate is the usual approach.</p>
+        </div></details>
+      </section>
+
+      <!-- 6. Retirement -->
+      <section class="step" id="s-retire">
+        <div class="step-head"><span class="step-no">6</span><h2>Retirement and pension savings</h2><span class="step-total" data-total="retire"></span>
+          <p class="step-sub">Count only what you could actually take out today.</p></div>
+        <div class="fields">
+          <div class="field"><label for="retBal">Balance you control</label><div class="money"><span class="cur">SAR</span><input type="number" id="retBal" min="0" inputmode="decimal"></div><span class="hint">401(k), IRA, SIPP, employer savings plan</span></div>
+          <div class="field"><label for="retCost">Penalty and tax if withdrawn today</label><div class="money"><span class="cur">%</span><input type="number" id="retCost" min="0" max="100" step="1" inputmode="decimal"></div></div>
+          <div class="field"><label for="retTreat">How it is invested</label>
+            <select id="retTreat"><option value="1">Cash or trading, full value</option><option value="0.25">Long-term funds, 25% estimate</option></select></div>
+        </div>
+        <details class="why"><summary>How this works</summary><div class="why-body">
+          <p>Zakat needs <strong>full ownership</strong>, meaning you can access and use the money. A state pension or an end-of-service benefit you can’t touch until you retire (GOSI, for example) isn’t zakatable yet. Most scholars say you pay on it once it reaches you.</p>
+          <p>For savings you could withdraw today, even with a penalty, count what would actually land in your account: the balance minus the early withdrawal penalty and tax. Then apply the stock or fund rule depending on how it is invested.</p>
+        </div></details>
+      </section>
+
+      <!-- 7. Owed to you -->
+      <section class="step" id="s-owed">
+        <div class="step-head"><span class="step-no">7</span><h2>Money owed to you and business stock</h2><span class="step-total" data-total="owed"></span>
+          <p class="step-sub">Loans you expect back and goods you hold for sale.</p></div>
+        <div class="fields">
+          <div class="field"><label for="owedGood">Loans you expect to be repaid</label><div class="money"><span class="cur">SAR</span><input type="number" id="owedGood" min="0" inputmode="decimal"></div></div>
+          <div class="field"><label for="inventory">Goods or property held for sale</label><div class="money"><span class="cur">SAR</span><input type="number" id="inventory" min="0" inputmode="decimal"></div><span class="hint">At today’s sale value</span></div>
+        </div>
+        <details class="why"><summary>How this works</summary><div class="why-body">
+          <p>A loan to someone who will repay it is still your wealth, so it counts each year. A loan you doubt you’ll see again isn’t counted. If it does come back, many scholars say you pay one year of zakat on it then.</p>
+          <p>Anything you bought to resell, such as stock in a shop or land you plan to flip, is trade goods and counts at its current sale value. Your home, your car and land you plan to keep aren’t zakatable.</p>
+        </div></details>
+      </section>
+
+      <!-- 8. Debts -->
+      <section class="step" id="s-debts">
+        <div class="step-head"><span class="step-no">8</span><h2>What you owe</h2><span class="step-total" data-total="debts"></span>
+          <p class="step-sub">Debts due soon come off the total.</p></div>
+        <div class="fields">
+          <div class="field"><label for="debtNow">Bills and debts due now</label><div class="money"><span class="cur">SAR</span><input type="number" id="debtNow" min="0" inputmode="decimal"></div><span class="hint">Credit cards, unpaid bills, money owed to friends</span></div>
+          <div class="field"><label for="debtYear">Loan installments due in the next 12 months</label><div class="money"><span class="cur">SAR</span><input type="number" id="debtYear" min="0" inputmode="decimal"></div><span class="hint">Mortgage, car or personal finance</span></div>
+        </div>
+        <details class="why"><summary>How this works</summary><div class="why-body">
+          <p>Money you owe and must pay soon isn’t really yours, so it is deducted. For long loans like a mortgage, deducting the whole balance would erase most people’s zakat while they live in a paid-for home, so the common approach is to deduct only the <strong>installments due in the coming 12 months</strong>.</p>
+          <p>Some scholars allow deducting only what is due right now. If you follow that view, leave the second box empty.</p>
+        </div></details>
+      </section>
+    </div>
+
+    <aside class="ledger" aria-live="polite">
+      <div>
+        <p class="due-lbl">Zakat due</p>
+        <p class="due" id="due"><small>SAR</small>0</p>
+      </div>
+      <span class="status below" id="status">Below nisab</span>
+      <div class="meter">
+        <div class="meter-bar"><div class="meter-fill" id="meterFill" style="width:0%"></div></div>
+        <div class="meter-legend"><span id="netLbl">Net 0</span><span id="nisabLbl">Nisab 0</span></div>
+      </div>
+      <table class="lines" id="lines"><tr class="zero"><td>Cash and savings</td><td>SAR 0</td></tr><tr class="zero"><td>Gold and silver</td><td>SAR 0</td></tr><tr class="zero"><td>Stocks, zakatable part</td><td>SAR 0</td></tr><tr class="zero"><td>Funds, zakatable part</td><td>SAR 0</td></tr><tr class="zero"><td>Retirement, accessible</td><td>SAR 0</td></tr><tr class="zero"><td>Owed to you and stock for sale</td><td>SAR 0</td></tr><tr class="zero"><td>Debts due</td><td>SAR 0</td></tr><tr class="sum"><td>Net zakatable wealth</td><td>SAR 0</td></tr></table>
+      <p class="small" id="rateNote"></p>
+      <div class="actions">
+        <button class="btn primary" type="button" id="copyBtn">Copy summary</button>
+      </div>
+      <p class="toast" id="toast" role="status"></p>
+    </aside>
+  </div>
+    </div>
+  </section>
+  <section class="band">
+    <div class="col pad">
+      <div class="notes">
+        <h2 class="notes-h">How the calculation works</h2>
+        <p>The calculator adds up everything zakat applies to on your zakat date, takes off debts that are due soon, and compares the result with the <strong>nisab</strong>: the value of 85 g of gold or 595 g of silver at the price you enter. If your net wealth is at or above the nisab, zakat is 2.5% of it for a Hijri year, or 2.577% if you keep your zakat year on the Gregorian calendar, which is 11 days longer.</p>
+        <p>Cash, crypto, gold and silver bars, and anything bought to resell count in full. Gold is valued by its pure content, so 21k counts at 87.5%. <strong>Stocks and funds</strong> depend on why you hold them. Shares you trade count at full market value. For shares you hold long term, only the company’s zakatable assets (cash, receivables and inventory) count, estimated at 25% of market value unless you have the exact figure. Many scholars hold that long-term shareholders owe nothing more when the company pays zakat itself, as companies listed on Tadawul do through ZATCA. Retirement savings count only for the amount you could withdraw today, after penalties and tax.</p>
+        <p>Stock and fund rules draw on <strong>AAOIFI Shari‘ah Standard 35 (Zakah)</strong> and resolutions of the International Islamic Fiqh Academy. Rulings last reviewed November 2026. The calculator follows mainstream contemporary positions and says where scholars differ. It is a guide, not a fatwa, so ask a scholar you trust if your situation is unusual.</p>
+        <p>Your figures are saved only in this browser and are never sent anywhere. Planning your income for next year? See upcoming payouts in the <a href="/labs/tadawul-dividends/">Tadawul dividend calendar</a>, or browse the other tools in <a href="/#labs">Labs</a>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="fine"><div class="col"><span>© <span id="year">2026</span> Rafay Khan · Riyadh</span><a href="/#labs">Back to Labs</a></div></footer>
+<script>
+(() => {
+  const KARAT = { g24: 1, g22: 22/24, g21: 21/24, g18: 18/24 };
+  const NISAB_G = { gold: 85, silver: 595 };
+  const RATE = { lunar: 0.025, solar: 0.025 * 365.2425 / 354.367 };
+  const STORE = "zakat-calc-v1";
+
+  // Example figures (SAR). Clearly labelled as examples in the UI.
+  const SAMPLE = {
+    currency: "SAR", zdate: "2027-02-08", goldPrice: 480, silverPrice: 5.8, nisab: "gold", year: "lunar",
+    cashBank: 62000, cashHand: 3000, cashBroker: 8500, cashCrypto: 0,
+    g24: 20, g22: 0, g21: 45, g18: 0, silverG: 0, goldFund: 0, jewG: 30, jewK: "g21", jewelryIncl: false,
+    stocks: [
+      { name: "Al Rajhi Bank", value: 40000, mode: "company" },
+      { name: "Apple", value: 25000, mode: "long", pct: 25 },
+      { name: "Short-term trades", value: 12000, mode: "trade" }
+    ],
+    funds: [
+      { name: "S&P 500 ETF", value: 30000, mode: "long", pct: 25 },
+      { name: "Murabaha fund", value: 15000, mode: "cash" }
+    ],
+    retBal: 0, retCost: 0, retTreat: "1",
+    owedGood: 5000, inventory: 0, debtNow: 4200, debtYear: 18000
+  };
+  const EMPTY = {
+    currency: "SAR", zdate: "", goldPrice: 480, silverPrice: 5.8, nisab: "gold", year: "lunar",
+    cashBank: "", cashHand: "", cashBroker: "", cashCrypto: "",
+    g24: "", g22: "", g21: "", g18: "", silverG: "", goldFund: "", jewG: "", jewK: "g21", jewelryIncl: false,
+    stocks: [{ name: "", value: "", mode: "long", pct: 25 }], funds: [{ name: "", value: "", mode: "long", pct: 25 }],
+    retBal: "", retCost: "", retTreat: "1", owedGood: "", inventory: "", debtNow: "", debtYear: ""
+  };
+  const SIMPLE = ["currency","zdate","goldPrice","silverPrice","cashBank","cashHand","cashBroker","cashCrypto","g24","g22","g21","g18","silverG","goldFund","jewG","jewK","retBal","retCost","retTreat","owedGood","inventory","debtNow","debtYear"];
+
+  const $ = (id) => document.getElementById(id);
+  const n = (v) => { const x = parseFloat(v); return isFinite(x) && x > 0 ? x : 0; };
+  let state, isSample;
+
+  const STOCK_MODES = [
+    ["long", "Long-term holding"],
+    ["company", "Long-term, company pays zakat"],
+    ["trade", "Trading, selling within the year"]
+  ];
+  const FUND_MODES = [
+    ["long", "Equity fund, long-term"],
+    ["trade", "Equity fund, trading"],
+    ["cash", "Money market, murabaha or sukuk"]
+  ];
+
+  function rowShare(r) {
+    if (r.mode === "trade" || r.mode === "cash") return 1;
+    if (r.mode === "company") return 0;
+    const p = parseFloat(r.pct); return isFinite(p) ? Math.min(Math.max(p, 0), 100) / 100 : 0.25;
+  }
+  function shareText(r) {
+    if (r.mode === "trade") return "Full value counts";
+    if (r.mode === "cash") return "Full value counts";
+    if (r.mode === "company") return "Already paid by the company";
+    return null;
+  }
+
+  function fmt(x, dp = 0) {
+    return x.toLocaleString("en-US", { minimumFractionDigits: dp, maximumFractionDigits: dp });
+  }
+  function money(x) { return state.currency + " " + fmt(x, x > 0 && x < 100 ? 2 : 0); }
+
+  function renderRows(kind) {
+    const list = kind === "stock" ? state.stocks : state.funds;
+    const modes = kind === "stock" ? STOCK_MODES : FUND_MODES;
+    const host = $(kind === "stock" ? "stockRows" : "fundRows");
+    host.innerHTML = "";
+    list.forEach((r, i) => {
+      const id = kind + i;
+      const el = document.createElement("div");
+      el.className = "row";
+      el.innerHTML = `
+        <div class="field"><label for="${id}-name">${kind === "stock" ? "Company" : "Fund"}</label><input type="text" id="${id}-name" placeholder="${kind === "stock" ? "e.g. SABIC" : "e.g. Global equity ETF"}"></div>
+        <div class="field"><label for="${id}-val">Market value</label><div class="money"><span class="cur">${state.currency}</span><input type="number" id="${id}-val" min="0" inputmode="decimal"></div></div>
+        <div class="field"><label for="${id}-mode">Why you hold it</label><select id="${id}-mode">${modes.map(([v,t]) => `<option value="${v}">${t}</option>`).join("")}</select></div>
+        <button class="icon-btn" type="button" aria-label="Remove row" title="Remove">×</button>
+        <div class="pct"></div>`;
+      const nameI = el.querySelector(`#${id}-name`), valI = el.querySelector(`#${id}-val`), modeI = el.querySelector(`#${id}-mode`), pctBox = el.querySelector(".pct");
+      nameI.value = r.name || ""; valI.value = r.value ?? ""; modeI.value = r.mode;
+      const drawPct = () => {
+        const t = shareText(r);
+        pctBox.innerHTML = t
+          ? `<span>${t}</span><span class="res" data-res></span>`
+          : `<label for="${id}-pct">Zakatable share of value</label><input type="number" id="${id}-pct" min="0" max="100" step="1" value="${r.pct ?? 25}"><span>%</span><span class="res" data-res></span>`;
+        const p = pctBox.querySelector("input");
+        if (p) p.addEventListener("input", () => { r.pct = p.value; changed(); });
+      };
+      drawPct();
+      nameI.addEventListener("input", () => { r.name = nameI.value; changed(); });
+      valI.addEventListener("input", () => { r.value = valI.value; changed(); });
+      modeI.addEventListener("change", () => { r.mode = modeI.value; if (r.pct == null) r.pct = 25; drawPct(); changed(); });
+      el.querySelector(".icon-btn").addEventListener("click", () => { list.splice(i, 1); if (!list.length) list.push({ name: "", value: "", mode: "long", pct: 25 }); renderRows(kind); changed(); });
+      host.appendChild(el);
+    });
+  }
+
+  function fillForm() {
+    SIMPLE.forEach(k => { $(k).value = state[k] ?? ""; });
+    $("jewelryIncl").checked = !!state.jewelryIncl;
+    $("nisab-" + state.nisab).checked = true;
+    $("year-" + state.year).checked = true;
+    renderRows("stock"); renderRows("fund");
+    syncCurrency();
+  }
+
+  function syncCurrency() {
+    document.querySelectorAll(".money .cur").forEach(s => s.textContent = state.currency);
+  }
+
+  function compute() {
+    const gp = n(state.goldPrice), sp = n(state.silverPrice);
+    const cash = n(state.cashBank) + n(state.cashHand) + n(state.cashBroker) + n(state.cashCrypto);
+    const pureGold = Object.keys(KARAT).reduce((a, k) => a + n(state[k]) * KARAT[k], 0)
+      + (state.jewelryIncl ? n(state.jewG) * (KARAT[state.jewK] || KARAT.g21) : 0);
+    const metal = pureGold * gp + n(state.silverG) * sp + n(state.goldFund);
+    const rowsTotal = (list) => list.reduce((a, r) => a + n(r.value) * rowShare(r), 0);
+    const stocks = rowsTotal(state.stocks), funds = rowsTotal(state.funds);
+    const retire = n(state.retBal) * (1 - Math.min(n(state.retCost), 100) / 100) * parseFloat(state.retTreat || 1);
+    const owed = n(state.owedGood) + n(state.inventory);
+    const debts = n(state.debtNow) + n(state.debtYear);
+    const assets = cash + metal + stocks + funds + retire + owed;
+    const net = Math.max(assets - debts, 0);
+    const nisab = NISAB_G[state.nisab] * (state.nisab === "gold" ? gp : sp);
+    const above = nisab > 0 && net >= nisab;
+    const rate = RATE[state.year];
+    return { cash, metal, pureGold, stocks, funds, retire, owed, debts, assets, net, nisab, above, rate, due: above ? net * rate : 0 };
+  }
+
+  function render() {
+    const r = compute();
+    const set = (k, v) => { const el = document.querySelector(`[data-total="${k}"]`); el.innerHTML = v > 0 ? `${k === "debts" ? "−" : ""}<b>${money(v)}</b>` : ""; };
+    ["cash","metal","stocks","funds","retire","owed","debts"].forEach(k => set(k, r[k]));
+
+    document.querySelectorAll("#stockRows .row, #fundRows .row").forEach((el, idx) => {
+      const isStock = el.parentElement.id === "stockRows";
+      const list = isStock ? state.stocks : state.funds;
+      const i = isStock ? idx : idx - state.stocks.length;
+      const row = list[i]; const res = el.querySelector("[data-res]");
+      if (row && res) { const z = n(row.value) * rowShare(row); res.textContent = n(row.value) ? "Counts " + money(z) : ""; }
+    });
+
+    $("due").innerHTML = `<small>${state.currency}</small>${fmt(r.due, r.due > 0 && r.due < 1000 ? 2 : 0)}`;
+    const st = $("status");
+    if (!r.nisab) { st.className = "status below"; st.textContent = "Enter a metal price to set the nisab"; }
+    else if (r.above) { st.className = "status ok"; st.textContent = "Above nisab, zakat is due"; }
+    else { st.className = "status below"; st.textContent = "Below nisab, no zakat due"; }
+    const pct = r.nisab ? Math.min(r.net / (r.nisab * 4), 1) * 100 : 0;
+    $("meterFill").style.width = pct + "%";
+    $("netLbl").textContent = "Net " + money(r.net);
+    $("nisabLbl").textContent = "Nisab " + money(r.nisab);
+
+    const line = (label, v, cls = "") => `<tr class="${cls}${v ? "" : " zero"}"><td>${label}</td><td>${cls === "neg" && v ? "−" : ""}${money(v)}</td></tr>`;
+    $("lines").innerHTML =
+      line("Cash and savings", r.cash) +
+      line(`Gold and silver${r.pureGold ? ` <span class="small">(${fmt(r.pureGold, 1)} g pure gold)</span>` : ""}`, r.metal) +
+      line("Stocks, zakatable part", r.stocks) +
+      line("Funds, zakatable part", r.funds) +
+      line("Retirement, accessible", r.retire) +
+      line("Owed to you and stock for sale", r.owed) +
+      line("Debts due", r.debts, "neg") +
+      `<tr class="sum"><td>Net zakatable wealth</td><td>${money(r.net)}</td></tr>`;
+    $("rateNote").textContent = `${state.year === "lunar" ? "2.5% for a Hijri year" : "2.577% for a Gregorian year"}. Nisab is ${NISAB_G[state.nisab]} g of ${state.nisab} at ${money(n(state.nisab === "gold" ? state.goldPrice : state.silverPrice))} per gram.`;
+
+    // Hijri date
+    const h = $("hijri");
+    if (state.zdate) {
+      try {
+        const d = new Date(state.zdate + "T12:00:00");
+        h.textContent = new Intl.DateTimeFormat("en-u-ca-islamic-umalqura", { day: "numeric", month: "long", year: "numeric" }).format(d);
+      } catch (e) { h.textContent = ""; }
+    } else h.textContent = "Many people pick 1 Ramadan.";
+    return r;
+  }
+
+  function save() { try { localStorage.setItem(STORE, JSON.stringify({ state, isSample })); } catch (e) {} }
+  function markSample(v) { isSample = v; $("sampleTag").hidden = !v; $("clearBtn").hidden = !v; $("sampleBtn").hidden = v; }
+  function changed() { if (isSample) markSample(false); render(); save(); }
+
+  SIMPLE.forEach(k => $(k).addEventListener(k === "currency" || k === "retTreat" || k === "zdate" || k === "jewK" ? "change" : "input", () => {
+    state[k] = $(k).value; if (k === "currency") syncCurrency(); changed();
+  }));
+  $("zdate").addEventListener("input", () => { state.zdate = $("zdate").value; changed(); });
+  $("jewelryIncl").addEventListener("change", () => { state.jewelryIncl = $("jewelryIncl").checked; changed(); });
+  document.querySelectorAll('input[name="nisab"]').forEach(el => el.addEventListener("change", () => { state.nisab = el.value; changed(); }));
+  document.querySelectorAll('input[name="year"]').forEach(el => el.addEventListener("change", () => { state.year = el.value; changed(); }));
+  document.querySelectorAll("[data-add]").forEach(b => b.addEventListener("click", () => {
+    const kind = b.dataset.add; (kind === "stock" ? state.stocks : state.funds).push({ name: "", value: "", mode: "long", pct: 25 });
+    renderRows(kind); changed();
+    const host = $(kind === "stock" ? "stockRows" : "fundRows"); host.lastElementChild.querySelector("input").focus();
+  }));
+  $("clearBtn").addEventListener("click", () => { state = structuredClone(EMPTY); state.currency = $("currency").value; fillForm(); markSample(false); render(); save(); });
+  $("sampleBtn").addEventListener("click", () => { state = structuredClone(SAMPLE); fillForm(); markSample(true); render(); save(); });
+
+
+  $("copyBtn").addEventListener("click", () => {
+    const r = compute();
+    const lines = [
+      `Zakat summary${state.zdate ? " for " + state.zdate : ""}`,
+      `Cash and savings: ${money(r.cash)}`,
+      `Gold and silver: ${money(r.metal)}`,
+      `Stocks (zakatable part): ${money(r.stocks)}`,
+      `Funds (zakatable part): ${money(r.funds)}`,
+      `Retirement (accessible): ${money(r.retire)}`,
+      `Owed to you and stock for sale: ${money(r.owed)}`,
+      `Debts due: -${money(r.debts)}`,
+      `Net zakatable wealth: ${money(r.net)}`,
+      `Nisab (${NISAB_G[state.nisab]} g ${state.nisab}): ${money(r.nisab)}`,
+      `Zakat due: ${money(r.due)}`
+    ].join("\n");
+    const ok = () => { $("toast").textContent = "Summary copied"; setTimeout(() => $("toast").textContent = "", 2500); };
+    try {
+      navigator.clipboard.writeText(lines).then(ok, () => { $("toast").textContent = "Copy isn't available here. Select the table and copy it instead."; });
+    } catch (e) { $("toast").textContent = "Copy isn't available here. Select the table and copy it instead."; }
+  });
+
+  try { $("year").textContent = new Date().getFullYear(); } catch (e) {}
+  // Boot
+  let saved = null;
+  try { saved = JSON.parse(localStorage.getItem(STORE) || "null"); } catch (e) {}
+  state = saved && saved.state ? Object.assign(structuredClone(EMPTY), saved.state) : structuredClone(SAMPLE);
+  fillForm(); markSample(saved ? !!saved.isSample : true); render();
+})();
+</script>
+</body>
+</html>
