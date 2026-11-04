@@ -25,5 +25,12 @@
     "ar": "حاسبة عمولات الوساطة في السوق السعودية",
     "sub": "The real cost of a Tadawul trade at each Saudi broker, with exchange fees, the CMA fee and VAT.",
     "url": "rafkhan.com/labs/broker-fees"
+  },
+  "kafalah-check": {
+    "kicker": "Labs · Free tool",
+    "title": "Kafalah Readiness Check",
+    "ar": "فحص الجاهزية لبرنامج كفالة",
+    "sub": "Is your Saudi SME ready for a Kafalah loan guarantee? Which product fits, how much it covers, and the documents to prepare.",
+    "url": "rafkhan.com/labs/kafalah-check"
   }
 }
