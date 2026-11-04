@@ -25,5 +25,12 @@
     "ar": "حاسبة عمولات الوساطة في السوق السعودية",
     "sub": "The real cost of a Tadawul trade at each Saudi broker, with exchange fees, the CMA fee and VAT.",
     "url": "rafkhan.com/labs/broker-fees"
+  },
+  "shariah-compliant": {
+    "kicker": "Labs · Free tool",
+    "title": "Halal Stock Screener",
+    "ar": "فاحص الأسهم الشرعية",
+    "sub": "Is this stock Shariah compliant? AAOIFI checks for 150+ US stocks from SEC filings, with every ratio explained.",
+    "url": "rafkhan.com/labs/shariah-compliant"
   }
 }
