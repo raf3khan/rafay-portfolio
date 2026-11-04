@@ -1,0 +1,125 @@
+{
+  "updated": "2026-11-04",
+  "sample": false,
+  "source": "Offerings and dates from the Saudi Exchange IPO list as of 4 Nov 2026. How to subscribe is from fund manager and company announcements; the prospectus is the final word.",
+  "sourceUrl": "https://www.saudiexchange.sa/wps/portal/saudiexchange/listing/ipos",
+  "_fields": "Equity IPOs: type IPO, priceLow, priceHigh, finalPrice, offerShares, retailPct, minShares, bookBuild [start,end], retail [start,end], allocation, listing, receivingEntities [..]. ETFs and sukuk: type ETF or Sukuk, price, offeringSizeText, retail [open,close] or null, subscribeVia. Dates are YYYY-MM-DD.",
+  "ipos": [
+    {
+      "name": "WSM For Information Technology Company Sukuk",
+      "type": "Sukuk",
+      "market": "Corporate Sukuk",
+      "sector": "Information technology",
+      "manager": "Advisor: Impact 46",
+      "price": 1000,
+      "offeringSizeText": "SAR 500M",
+      "retail": null,
+      "allocation": null,
+      "listing": null,
+      "prospectus": "https://www.saudiexchange.sa/Resources/IPO/PDF/IPO_ENG_2026-09-29_11-08-18_1.pdf",
+      "subscribeVia": "Offering dates aren't set yet. Who can subscribe and through which banks or brokers will be in the offering announcement and the prospectus."
+    },
+    {
+      "name": "Al Rajhi MSCI Saudi Equity Dividends ETF",
+      "type": "ETF",
+      "market": "Main Market",
+      "sector": "Saudi dividend stocks",
+      "manager": "Al Rajhi Capital",
+      "price": 10,
+      "offeringSizeText": "Not stated",
+      "retail": [
+        "2026-10-26",
+        "2026-12-07"
+      ],
+      "allocation": null,
+      "listing": null,
+      "prospectus": "https://www.saudiexchange.sa/Resources/IPO/PDF/IPO_ENG_2026-10-22_14-46-19_1.pdf",
+      "subscribeVia": "Through the fund manager, Al Rajhi Capital. Check the prospectus for the minimum subscription and whether it takes cash or shares."
+    },
+    {
+      "name": "Albilad MSCI Saudi Financials Equity ETF",
+      "type": "ETF",
+      "market": "ETF",
+      "sector": "Financials",
+      "manager": "Albilad Capital",
+      "price": 10,
+      "offeringSizeText": "2,000,000",
+      "retail": [
+        "2026-10-25",
+        "2026-12-03"
+      ],
+      "allocation": null,
+      "listing": null,
+      "prospectus": "https://www.saudiexchange.sa/Resources/IPO/PDF/IPO_ENG_2026-10-12_14-15-53_1.pdf",
+      "subscribeVia": "Through the fund manager, Albilad Capital. Albilad's earlier ETF offers took in-kind subscriptions (shares you already own), with cash only at the manager's discretion, and a high minimum. Check the prospectus for this fund's minimum and how to pay."
+    },
+    {
+      "name": "Albilad MSCI Saudi Tourism & Its Complementary Activities Equity ETF",
+      "type": "ETF",
+      "market": "ETF",
+      "sector": "Tourism",
+      "manager": "Albilad Capital",
+      "price": 10,
+      "offeringSizeText": "2,000,000",
+      "retail": [
+        "2026-10-25",
+        "2026-12-03"
+      ],
+      "allocation": null,
+      "listing": null,
+      "prospectus": "https://www.saudiexchange.sa/Resources/IPO/PDF/IPO_ENG_2026-10-12_14-17-14_1.pdf",
+      "subscribeVia": "Through the fund manager, Albilad Capital. Albilad's earlier ETF offers took in-kind subscriptions (shares you already own), with cash only at the manager's discretion, and a high minimum. Check the prospectus for this fund's minimum and how to pay."
+    },
+    {
+      "name": "Albilad MSCI Saudi Building & Constructions Equity ETF",
+      "type": "ETF",
+      "market": "ETF",
+      "sector": "Building and construction",
+      "manager": "Albilad Capital",
+      "price": 10,
+      "offeringSizeText": "2,000,000",
+      "retail": [
+        "2026-10-25",
+        "2026-12-03"
+      ],
+      "allocation": null,
+      "listing": null,
+      "prospectus": "https://www.saudiexchange.sa/Resources/IPO/PDF/IPO_ENG_2026-10-12_14-13-15_1.pdf",
+      "subscribeVia": "Through the fund manager, Albilad Capital. Albilad's earlier ETF offers took in-kind subscriptions (shares you already own), with cash only at the manager's discretion, and a high minimum. Check the prospectus for this fund's minimum and how to pay."
+    },
+    {
+      "name": "Albilad MSCI Saudi Consumers Equity ETF",
+      "type": "ETF",
+      "market": "ETF",
+      "sector": "Consumer",
+      "manager": "Albilad Capital",
+      "price": 10,
+      "offeringSizeText": "2,000,000",
+      "retail": [
+        "2026-10-25",
+        "2026-12-03"
+      ],
+      "allocation": null,
+      "listing": null,
+      "prospectus": "https://www.saudiexchange.sa/Resources/IPO/PDF/IPO_ENG_2026-10-12_14-14-40_1.pdf",
+      "subscribeVia": "Through the fund manager, Albilad Capital. Albilad's earlier ETF offers took in-kind subscriptions (shares you already own), with cash only at the manager's discretion, and a high minimum. Check the prospectus for this fund's minimum and how to pay."
+    },
+    {
+      "name": "Albilad MSCI Saudi Healthcare Equity ETF",
+      "type": "ETF",
+      "market": "ETF",
+      "sector": "Healthcare",
+      "manager": "Albilad Capital",
+      "price": 10,
+      "offeringSizeText": "2,000,000",
+      "retail": [
+        "2026-10-25",
+        "2026-12-03"
+      ],
+      "allocation": null,
+      "listing": null,
+      "prospectus": "https://www.saudiexchange.sa/Resources/IPO/PDF/IPO_ENG_2026-10-12_14-11-42_1.pdf",
+      "subscribeVia": "Through the fund manager, Albilad Capital. Albilad's earlier ETF offers took in-kind subscriptions (shares you already own), with cash only at the manager's discretion, and a high minimum. Check the prospectus for this fund's minimum and how to pay."
+    }
+  ]
+}

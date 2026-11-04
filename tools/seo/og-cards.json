@@ -1,0 +1,36 @@
+{
+  "home": {
+    "kicker": "rafkhan.com",
+    "title": "Product design and AI for banking and capital markets",
+    "sub": "Product designer and product manager in Riyadh. Led the redesign behind SAR 60B in yearly trades.",
+    "url": "Riyadh, Saudi Arabia"
+  },
+  "tadawul-dividends": {
+    "kicker": "Labs · Free tool",
+    "title": "Tadawul Dividend Calendar",
+    "ar": "تقويم توزيعات الأرباح في تداول",
+    "sub": "The last day to buy, ex-dividend and payment dates, and yields for Saudi-listed companies.",
+    "url": "rafkhan.com/labs/tadawul-dividends"
+  },
+  "saudi-ipo-tracker": {
+    "kicker": "Labs · Free tool",
+    "title": "Saudi IPO Tracker",
+    "ar": "متتبع الطروحات العامة السعودية",
+    "sub": "Retail subscription dates for upcoming Saudi IPOs, and an estimate of your allocation and refund.",
+    "url": "rafkhan.com/labs/saudi-ipo-tracker"
+  },
+  "broker-fees": {
+    "kicker": "Labs · Free tool",
+    "title": "Saudi Broker Fee Calculator",
+    "ar": "حاسبة عمولات الوساطة في السوق السعودية",
+    "sub": "The real cost of a Tadawul trade at each Saudi broker, with exchange fees, the CMA fee and VAT.",
+    "url": "rafkhan.com/labs/broker-fees"
+  },
+  "tadawul-explained": {
+    "kicker": "Labs · Free tool",
+    "title": "Tadawul Explained",
+    "ar": "تداول بوضوح",
+    "sub": "Saudi stocks in plain words: the company, its key numbers and recent announcements.",
+    "url": "rafkhan.com/labs/tadawul-explained"
+  }
+}
