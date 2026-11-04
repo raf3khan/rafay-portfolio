@@ -20,7 +20,8 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23181818'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='700' font-size='28' fill='%2330d158' text-anchor='middle'%3ERK%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"></noscript>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
 {"@type":"WebSite","@id":"https://rafkhan.com/#site","name":"Rafay Khan","url":"https://rafkhan.com/","inLanguage":"en","publisher":{"@id":"https://rafkhan.com/#me"}},
@@ -37,6 +38,8 @@
 ]}]}
 </script>
 <style>
+/* Fallback sized like Geist so text does not reflow when the web font arrives. */
+@font-face { font-family: "Geist Fallback"; src: local("Arial"), local("Liberation Sans"), local("Helvetica"); size-adjust: 102.6%; }
 /* Layout: drafting board portfolio. Grid paper ground, one framed 1200px column ruled into bands with corner ticks, serif display over a sans body, glossy black controls, image first work cards with pill tags. */
 :root {
   --bg: #fafaf9;
@@ -47,12 +50,12 @@
   --ink: #111111;
   --muted: #565656;
   --line: #dcdcd8;
-  --accent: #248a3d;
+  --accent: #1f7d37;
   --accent-soft: #e6f6ea;
   --glow: rgba(48, 209, 88, 0.42);
   --tint-a: #eef6ef; --tint-b: #f1ece1; --tint-c: #eaeef4; --tint-d: #f3eef2;
   --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
-  --font: "Geist", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --font: "Geist", "Geist Fallback", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
   --mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --frame: 1200px;
@@ -70,6 +73,7 @@
   --tint-a: #1b231d; --tint-b: #24211b; --tint-c: #1c2027; --tint-d: #241e23; color-scheme: dark;
 }
 * { box-sizing: border-box; }
+.vh { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 html { scroll-padding-top: 64px; }
 body { background-color: var(--bg); background-image: linear-gradient(var(--paper-line) 1px, transparent 1px), linear-gradient(90deg, var(--paper-line) 1px, transparent 1px); background-size: 16px 16px;
   color: var(--ink); font: 400 16px/24px var(--font); -webkit-font-smoothing: antialiased; }
@@ -166,7 +170,7 @@ html.lenis, html.lenis body { height: auto; }
 .m-phone { width: 248px; max-width: 100%; border-radius: 40px; border: 8px solid #111111; background: #fafafa; color: #111111; padding: 24px 16px 16px; display: grid; gap: 12px; box-shadow: 0 32px 64px rgba(0,0,0,0.25); transform: rotate(-4deg); }
 .m-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 12px; line-height: 16px; color: #6b6b6b; }
 .m-big { font: 500 24px/32px var(--mono); letter-spacing: -0.02em; }
-.m-up { color: #248a3d; font: 500 12px/16px var(--mono); }
+.m-up { color: #1f7d37; font: 500 12px/16px var(--mono); }
 .m-phone canvas { display: block; width: 100%; height: 96px; }
 .m-pills { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .m-pill { border-radius: 9999px; padding: 8px 12px; text-align: center; font: 600 12px/16px var(--font); background: #ececec; }
@@ -357,6 +361,7 @@ a.lab:hover .go .ico { transform: translate(2px, -2px); }
 
   <section class="band reveal" id="work">
     <div class="col pad">
+      <h2 class="vh">Selected work</h2>
       <div class="masonry">
         <div class="stack">
           <article class="wcard">
