@@ -1,0 +1,27 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500&family=Geist:wght@400;600&family=Geist+Mono:wght@500&family=IBM+Plex+Sans+Arabic:wght@500&display=swap">
+<style>
+html,body{margin:0}
+body{width:1200px;height:630px;background-color:#fafaf9;background-image:linear-gradient(#efefed 1px,transparent 1px),linear-gradient(90deg,#efefed 1px,transparent 1px);background-size:16px 16px;font-family:Geist,system-ui,sans-serif;color:#111}
+.f{position:absolute;inset:40px;border:1px solid #dcdcd8;background:#fff;padding:64px 72px;display:flex;flex-direction:column;box-sizing:border-box}
+.f::before,.f::after{content:"";position:absolute;width:14px;height:14px;border-color:#111;border-style:solid}
+.f::before{top:-8px;left:-8px;border-width:2px 0 0 2px}.f::after{bottom:-8px;right:-8px;border-width:0 2px 2px 0}
+.k{font:500 22px "Geist Mono",monospace;color:#248a3d;letter-spacing:.02em;display:flex;align-items:center;gap:12px}
+.k i{width:12px;height:12px;border-radius:50%;background:#30d158;box-shadow:0 0 0 6px #e6f6ea}
+h1{font:500 76px/1.04 Newsreader,Georgia,serif;letter-spacing:-.02em;margin:28px 0 0;max-width:960px}
+.ar{font:500 34px "IBM Plex Sans Arabic",sans-serif;color:#565656;margin-top:16px;direction:rtl;text-align:left}
+p{font-size:28px;line-height:1.35;color:#565656;margin:20px 0 0;max-width:900px}
+.b{margin-top:auto;display:flex;justify-content:space-between;align-items:center;font:500 22px "Geist Mono",monospace;color:#565656}
+.b strong{font:600 24px Geist,sans-serif;color:#111}
+</style></head>
+<body><div class="f">
+<div class="k"><i></i><span id="kicker"></span></div>
+<h1 id="title"></h1><div class="ar" id="ar"></div><p id="sub"></p>
+<div class="b"><strong>Rafay Khan</strong><span id="url"></span></div>
+</div>
+<script>
+const q=new URLSearchParams(location.search);
+for (const k of ["kicker","title","ar","sub","url"]) document.getElementById(k).textContent=q.get(k)||"";
+if(!q.get("ar"))document.getElementById("ar").remove();
+</script></body></html>
