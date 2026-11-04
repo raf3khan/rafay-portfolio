@@ -3,22 +3,28 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rafay Khan</title>
+<title>Rafay Khan · Product design and AI for finance</title>
+<link rel="canonical" href="https://rafkhan.com/">
 <meta name="description" content="Rafay Khan is a product designer and product manager in Riyadh who designs and ships AI products for banking and capital markets.">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Rafay Khan">
+<meta property="og:locale" content="en_US">
 <meta property="og:title" content="Rafay Khan · Product design and AI for finance">
 <meta property="og:description" content="Product designer and product manager for banking and capital markets. Led the redesign behind SAR 60B ($16B) in yearly trades.">
 <meta property="og:url" content="https://rafkhan.com/">
-<meta property="og:image" content="https://rafkhan.com/rafay.jpg">
-<meta property="og:image:alt" content="Portrait of Rafay Khan">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://rafkhan.com/og/home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Rafay Khan, product design and AI for finance">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23181818'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='700' font-size='28' fill='%2330d158' text-anchor='middle'%3ERK%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
-{"@type":"Person","name":"Rafay Khan","jobTitle":"Product designer and product manager","url":"https://rafkhan.com/","image":"https://rafkhan.com/rafay.jpg","address":{"@type":"PostalAddress","addressLocality":"Riyadh","addressCountry":"SA"},"alumniOf":"University of Nottingham","worksFor":"Bank Albilad","sameAs":["https://www.linkedin.com/in/rafekhan"],"knowsLanguage":["English","Arabic","Urdu"]},
+{"@type":"WebSite","@id":"https://rafkhan.com/#site","name":"Rafay Khan","url":"https://rafkhan.com/","inLanguage":"en","publisher":{"@id":"https://rafkhan.com/#me"}},
+{"@type":"Person","@id":"https://rafkhan.com/#me","name":"Rafay Khan","jobTitle":"Product designer and product manager","url":"https://rafkhan.com/","image":"https://rafkhan.com/rafay.jpg","address":{"@type":"PostalAddress","addressLocality":"Riyadh","addressCountry":"SA"},"alumniOf":"University of Nottingham","worksFor":"Bank Albilad","sameAs":["https://www.linkedin.com/in/rafekhan"],"knowsLanguage":["English","Arabic","Urdu"]},
 {"@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"What do you do?","acceptedAnswer":{"@type":"Answer","text":"I design and manage digital products for banks and capital market firms, from customer research and journey design through roadmaps, delivery and launch."}},
 {"@type":"Question","name":"Are you a designer or a product manager?","acceptedAnswer":{"@type":"Answer","text":"Both. At ANB Capital I was Principal Product Manager and UI/UX Specialist on the same platform. At Bank Albilad I own product vision, roadmaps and backlogs for enterprise lending."}},
@@ -192,16 +198,18 @@ html.lenis, html.lenis body { height: auto; }
 
 /* clients grid */
 .label-row { color: var(--muted); }
-.logos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); }
-.logos div { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 104px; font: 600 20px/28px var(--font); letter-spacing: -0.02em; color: var(--ink); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background-color 300ms var(--ease); }
-.logos div:hover { background: var(--surface); }
-.logos div:nth-child(3n) { border-right: 0; }
-.logos div:nth-last-child(-n+3) { border-bottom: 0; }
-.logos i { width: 16px; height: 16px; border-radius: 4px; background: var(--ink); display: inline-block; }
-.logos div:nth-child(2n) i { border-radius: 9999px; }
-.logos div:nth-child(3n) i { transform: rotate(45deg); border-radius: 2px; width: 12px; height: 12px; }
-@media (max-width: 640px) { .logos { grid-template-columns: repeat(2, minmax(0, 1fr)); } .logos div { font-size: 16px; line-height: 24px; min-height: 80px; }
-  .logos div:nth-child(3n) { border-right: 1px solid var(--line); } .logos div:nth-child(2n) { border-right: 0; } .logos div:nth-last-child(-n+3) { border-bottom: 1px solid var(--line); } .logos div:nth-last-child(-n+2) { border-bottom: 0; } }
+.logos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); list-style: none; margin: 0; padding: 0; }
+.logos li { display: flex; align-items: center; justify-content: center; min-height: 120px; padding: 24px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background-color 300ms var(--ease); }
+.logos li:hover { background: var(--surface); }
+.logos li:nth-child(3n) { border-right: 0; }
+.logos li:nth-last-child(-n+3) { border-bottom: 0; }
+/* one quiet tone for every mark, brand colour on hover */
+.logos img { display: block; width: auto; height: 40px; max-width: 168px; object-fit: contain; filter: grayscale(1) brightness(0); opacity: 0.62; transition: filter 500ms var(--ease), opacity 500ms var(--ease); }
+.logos li:hover img { filter: none; opacity: 1; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .logos img { filter: grayscale(1) brightness(0) invert(1); opacity: 0.7; } :root:not([data-theme="light"]) .logos li:hover img { filter: grayscale(1) brightness(0) invert(1); opacity: 1; } }
+:root[data-theme="dark"] .logos img { filter: grayscale(1) brightness(0) invert(1); opacity: 0.7; } :root[data-theme="dark"] .logos li:hover img { filter: grayscale(1) brightness(0) invert(1); opacity: 1; }
+@media (max-width: 640px) { .logos { grid-template-columns: repeat(2, minmax(0, 1fr)); } .logos li { min-height: 88px; padding: 16px; } .logos img { height: 28px; max-width: 128px; }
+  .logos li:nth-child(3n) { border-right: 1px solid var(--line); } .logos li:nth-child(2n) { border-right: 0; } .logos li:nth-last-child(-n+3) { border-bottom: 1px solid var(--line); } .logos li:nth-last-child(-n+2) { border-bottom: 0; } }
 
 /* big serif section heads */
 .head { padding: 96px 24px; text-align: center; }
@@ -446,7 +454,7 @@ a.lab:hover .go .ico { transform: translate(2px, -2px); }
   <section class="band" aria-label="Banks and firms I've built for">
     <div class="col">
       <div class="pad label-row">Banks and firms I've built for:</div>
-      <div class="logos"><div><i aria-hidden="true"></i>Bank Albilad</div><div><i aria-hidden="true"></i>ANB Capital</div><div><i aria-hidden="true"></i>DirectFN</div><div><i aria-hidden="true"></i>SNB</div><div><i aria-hidden="true"></i>Riyad Bank</div><div><i aria-hidden="true"></i>BSF</div></div>
+      <ul class="logos"><li><img src="/logos/bank-albilad.png" alt="Bank Albilad" width="205" height="64" loading="lazy" decoding="async"></li><li><img src="/logos/anb-capital.png" alt="ANB Capital" width="311" height="64" loading="lazy" decoding="async"></li><li><img src="/logos/directfn.png" alt="DirectFN" width="375" height="64" loading="lazy" decoding="async"></li><li><img src="/logos/snb.png" alt="SNB" width="244" height="64" loading="lazy" decoding="async"></li><li><img src="/logos/riyad-bank.png" alt="Riyad Bank" width="243" height="64" loading="lazy" decoding="async"></li><li><img src="/logos/bsf.png" alt="BSF" width="209" height="64" loading="lazy" decoding="async"></li></ul>
     </div>
   </section>
 
@@ -473,9 +481,9 @@ a.lab:hover .go .ico { transform: translate(2px, -2px); }
       <div class="head left sh"><h2>Sharpening my edge through curiosity</h2><div class="arrows"><button type="button" class="arr" data-dir="-1" aria-label="Previous cards"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"/></svg></button><button type="button" class="arr" data-dir="1" aria-label="Next cards"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/></svg></button></div></div>
       <div class="strip" data-lenis-prevent-wheel tabindex="0" aria-label="Curiosity cards, scroll sideways">
         <article class="pc"><div class="face ta"><span class="big">MEng</span><h3>AI for cancer diagnostics</h3><p>First Class Honours at Nottingham, with a thesis on AI based spectroscopic analysis.</p></div></article>
-        <article class="pc"><div class="face tb"><span class="big">CFA</span><h3>Quant analytics</h3><p>Built buy side portfolio attribution in line with CFA standards, turning annual reviews into an instant report.</p></div></article>
+        <article class="pc"><div class="face tb"><span class="big">SPMC</span><h3>Senior product management</h3><p>Senior Product Management Certificate (SPMC™) from Product School.</p></div></article>
         <article class="pc"><div class="face tc"><span class="big">Robo</span><h3>Robo advisory</h3><p>AI assisted advisory and digital savings platforms for top tier banks.</p></div></article>
-        <article class="pc"><div class="face td"><span class="big">FMVA</span><h3>Certifications</h3><p>FMVA®, SPMC™ and Bloomberg Market Concepts.</p></div></article>
+        <article class="pc"><div class="face td"><span class="big">FMVA</span><h3>Certifications</h3><p>FMVA® from the Corporate Finance Institute and Bloomberg Market Concepts.</p></div></article>
         <article class="pc"><div class="face ta"><span class="big">3</span><h3>Languages</h3><p>English, Arabic and Urdu, for teams and customers across the region.</p></div></article>
       </div>
     </div>
@@ -536,6 +544,8 @@ a.lab:hover .go .ico { transform: translate(2px, -2px); }
         <article class="lab"><div class="li tb" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="14" fill="none" stroke="var(--line)" stroke-width="3"/><path d="M24 10 A14 14 0 0 1 37.3 28.3" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><text x="24" y="28" text-anchor="middle" font-family="Geist Mono, monospace" font-size="10" fill="var(--ink)">2.5</text></svg></div><div class="lt"><div class="lh"><h3>Zakat calculator</h3><span class="st">In the lab</span></div><p>Zakat on cash, gold, stocks, funds and retirement savings, with the rulings spelled out at each step.</p></div></article>
         <article class="lab"><div class="li tc" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="8" y="14" width="32" height="20" rx="4" fill="none" stroke="var(--muted)" stroke-width="3"/><rect x="8" y="19" width="32" height="4" fill="var(--muted)"/><rect x="12" y="27" width="10" height="3" rx="1.5" fill="var(--accent)"/></svg></div><div class="lt"><div class="lh"><h3>True cost of BNPL and cards</h3><span class="st">In the lab</span></div><p>See what buy now, pay later and credit card balances really cost once fees and interest add up.</p></div></article>
         <a class="lab" href="/labs/tadawul-dividends/"><div class="li td" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="10" y="12" width="28" height="26" rx="4" fill="none" stroke="var(--muted)" stroke-width="3"/><rect x="10" y="12" width="28" height="7" rx="3" fill="var(--muted)"/><circle cx="18" cy="27" r="2.5" fill="var(--line)"/><circle cx="24" cy="27" r="2.5" fill="var(--accent)"/><circle cx="30" cy="27" r="2.5" fill="var(--line)"/><circle cx="18" cy="33" r="2.5" fill="var(--line)"/></svg></div><div class="lt"><div class="lh"><h3>Dividend calendar</h3><span class="st live">Live</span></div><p>Upcoming Tadawul dividends with the last day to buy, ex dates, payout dates and yields in one view.</p><span class="go">rafkhan.com/labs/tadawul-dividends <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></span></div></a>
+        <a class="lab" href="/labs/saudi-ipo-tracker/"><div class="li tb" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M10 36 H38" stroke="var(--line)" stroke-width="3" stroke-linecap="round"/><rect x="12" y="24" width="6" height="12" rx="2" fill="var(--muted)"/><rect x="21" y="18" width="6" height="18" rx="2" fill="var(--muted)"/><rect x="30" y="10" width="6" height="26" rx="2" fill="var(--accent)"/></svg></div><div class="lt"><div class="lh"><h3>Saudi IPO tracker</h3><span class="st live">Live</span></div><p>Upcoming Saudi IPOs with retail subscription dates, plus an estimate of the shares you'll be allocated and your refund.</p><span class="go">rafkhan.com/labs/saudi-ipo-tracker <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></span></div></a>
+        <a class="lab" href="/labs/broker-fees/"><div class="li tc" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="8" y="12" width="32" height="5" rx="2.5" fill="var(--muted)"/><rect x="8" y="21.5" width="22" height="5" rx="2.5" fill="var(--line)"/><rect x="8" y="31" width="12" height="5" rx="2.5" fill="var(--accent)"/></svg></div><div class="lt"><div class="lh"><h3>Saudi broker fees</h3><span class="st live">Live</span></div><p>The full cost of a trade at each Saudi broker, with exchange fees, the CMA fee and VAT added in.</p><span class="go">rafkhan.com/labs/broker-fees <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></span></div></a>
         <article class="lab"><div class="li ta" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M8 32 L16 24 L22 28 L32 16 L40 20" fill="none" stroke="var(--muted)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M36 30 l2 4 4 2 -4 2 -2 4 -2 -4 -4 -2 4 -2z" fill="var(--accent)"/></svg></div><div class="lt"><div class="lh"><h3>Tadawul explainer</h3><span class="st">In the lab</span></div><p>Plain language summaries of Saudi market announcements, in English and Arabic.</p></div></article>
       </div>
     </div>
