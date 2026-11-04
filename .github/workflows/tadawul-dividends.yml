@@ -1,21 +1,17 @@
 name: Update Tadawul dividends
 
 # Refreshes labs/tadawul-dividends/data/dividends.json from free public pages. No API keys and no Claude usage.
+# Only ever reads and writes main, so it never adds commits to open pull request branches.
 on:
   schedule:
     - cron: "20 14 * * 0-4" # 17:20 Riyadh, after the Sunday to Thursday close
-  workflow_dispatch:
-  push:
-    branches: ["claude/**"]
-    paths:
-      - "tools/tadawul-dividends/**"
-      - ".github/workflows/tadawul-dividends.yml"
+  workflow_dispatch: # run by hand from the Actions tab; always updates main
 
 permissions:
   contents: write
 
 concurrency:
-  group: tadawul-dividends-${{ github.ref }}
+  group: tadawul-dividends
   cancel-in-progress: true
 
 jobs:
@@ -24,6 +20,8 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -36,5 +34,5 @@ jobs:
           git add labs/tadawul-dividends/data/dividends.json
           if git diff --cached --quiet; then echo "No changes"; exit 0; fi
           git commit -m "Update Tadawul dividends"
-          git pull --rebase origin "${GITHUB_REF_NAME}"
-          git push origin "HEAD:${GITHUB_REF_NAME}"
+          git pull --rebase origin main
+          git push origin HEAD:main
