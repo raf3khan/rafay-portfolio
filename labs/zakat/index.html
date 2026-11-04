@@ -29,15 +29,18 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"></noscript>
 <style>
+/* Fallback sized like Geist so text does not reflow when the web font arrives. */
+@font-face { font-family: "Geist Fallback"; src: local("Arial"), local("Liberation Sans"), local("Helvetica"); size-adjust: 102.6%; }
 :root {
   --bg: #fafaf9; --paper-line: #efefed; --surface: #ffffff; --raised: #f2f2f0;
   --ink: #111111; --muted: #565656; --line: #dcdcd8;
-  --accent: #248a3d; --accent-soft: #e6f6ea; --go: #30d158; --go-ink: #0b2b14;
+  --accent: #1f7d37; --accent-soft: #e6f6ea; --go: #30d158; --go-ink: #0b2b14;
   --warn: #8a5a12; --warn-soft: #f1ece1; --accent-ink: #ffffff;
   --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
-  --font: "Geist", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --font: "Geist", "Geist Fallback", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
   --mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --frame: 1200px;
@@ -123,7 +126,7 @@ h1 { margin: 0; font: 400 60px/1 var(--serif); letter-spacing: -0.02em; position
 .field { display: grid; gap: 6px; min-width: 0; align-content: start; }
 .field .opt { justify-self: start; }
 .field label, .lbl { font-size: 13px; font-weight: 500; }
-.field .hint { font-size: 12px; line-height: 18px; color: var(--muted); }
+.field .hint { font-size: 12px; line-height: 18px; color: var(--muted); min-height: 18px; }
 input[type="number"], input[type="text"], input[type="date"], select {
   font: inherit; font-size: 15px; color: var(--ink); background: var(--bg); border: 1px solid var(--line);
   border-radius: 8px; padding: 9px 11px; width: 100%; min-width: 0; transition: border-color .15s var(--ease), box-shadow .15s var(--ease);
@@ -157,7 +160,7 @@ details.why[open] summary::before { content: "−"; }
 .why-body .src { font-size: 12px; font-family: var(--mono); }
 
 /* Holdings rows */
-.rows { display: grid; gap: 10px; }
+.rows { display: grid; gap: 10px; min-height: 120px; }
 .row { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1.4fr) auto; gap: 10px; align-items: end; background: var(--raised); border-radius: 10px; padding: 12px; }
 .row .field label { font-size: 12px; color: var(--muted); font-weight: 400; }
 .row .pct { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; font-size: 13px; color: var(--muted); }
@@ -197,6 +200,7 @@ table.lines td:last-child { text-align: right; font-family: var(--mono); font-va
 table.lines tr.neg td:last-child { color: var(--warn); }
 table.lines tr.sum td { border-bottom: 0; font-weight: 600; padding-top: 10px; }
 table.lines tr.zero td { color: var(--muted); }
+#rateNote { min-height: 40px; }
 .small { font-size: 12px; color: var(--muted); }
 .ledger .actions { display: flex; flex-wrap: wrap; gap: 8px; }
 .toast { font-size: 12px; color: var(--accent); min-height: 1em; }
@@ -396,7 +400,7 @@ input:focus-visible, select:focus-visible { outline: none; border-color: var(--a
         <div class="meter-bar"><div class="meter-fill" id="meterFill" style="width:0%"></div></div>
         <div class="meter-legend"><span id="netLbl">Net 0</span><span id="nisabLbl">Nisab 0</span></div>
       </div>
-      <table class="lines" id="lines"></table>
+      <table class="lines" id="lines"><tr class="zero"><td>Cash and savings</td><td>SAR 0</td></tr><tr class="zero"><td>Gold and silver</td><td>SAR 0</td></tr><tr class="zero"><td>Stocks, zakatable part</td><td>SAR 0</td></tr><tr class="zero"><td>Funds, zakatable part</td><td>SAR 0</td></tr><tr class="zero"><td>Retirement, accessible</td><td>SAR 0</td></tr><tr class="zero"><td>Owed to you and stock for sale</td><td>SAR 0</td></tr><tr class="zero"><td>Debts due</td><td>SAR 0</td></tr><tr class="sum"><td>Net zakatable wealth</td><td>SAR 0</td></tr></table>
       <p class="small" id="rateNote"></p>
       <div class="actions">
         <button class="btn primary" type="button" id="copyBtn">Copy summary</button>
