@@ -25,5 +25,12 @@
     "ar": "حاسبة عمولات الوساطة في السوق السعودية",
     "sub": "The real cost of a Tadawul trade at each Saudi broker, with exchange fees, the CMA fee and VAT.",
     "url": "rafkhan.com/labs/broker-fees"
+  },
+  "true-cost": {
+    "kicker": "Labs · Free tool",
+    "title": "True cost of BNPL and credit cards",
+    "ar": "التكلفة الحقيقية للشراء الآن والدفع لاحقًا وبطاقات الائتمان",
+    "sub": "What a late BNPL payment and minimum-only card payments really cost, as a yearly rate and in years.",
+    "url": "rafkhan.com/labs/true-cost"
   }
 }

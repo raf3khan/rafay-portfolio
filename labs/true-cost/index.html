@@ -23,17 +23,20 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"></noscript>
 <style>
+/* Fallback sized like Geist so text does not reflow when the web font arrives. */
+@font-face { font-family: "Geist Fallback"; src: local("Arial"), local("Liberation Sans"), local("Helvetica"); size-adjust: 102.6%; }
 /* Layout: same drafting board as rafkhan.com. Grid paper ground, one framed 1200px column ruled into bands with corner ticks, serif display over Geist, glossy black controls. */
 :root {
   --bg: #fafaf9; --paper-line: #efefed; --surface: #ffffff; --raised: #f2f2f0;
   --ink: #111111; --muted: #565656; --line: #dcdcd8; --grid: #ececea;
-  --accent: #248a3d; --accent-soft: #e6f6ea;
+  --accent: #1f7d37; --accent-soft: #e6f6ea;
   --bad: #b3261e; --bad-soft: #fbeceb; --warn: #8a5a12; --warn-soft: #f1ece1;
   --s-plan: #248a3d; --s-min: #9a4fc2;
   --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
-  --font: "Geist", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --font: "Geist", "Geist Fallback", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
   --mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --frame: 1200px;
@@ -194,6 +197,16 @@ details.tbl table { width: 100%; border-collapse: collapse; font: 400 14px/20px 
 details.tbl th, details.tbl td { text-align: right; padding: 6px 8px; border-bottom: 1px solid var(--line); }
 details.tbl th { font-family: var(--font); font-weight: 500; color: var(--muted); }
 details.tbl th:first-child, details.tbl td:first-child { text-align: left; }
+
+/* reserve space for content the script fills in, so nothing shifts */
+.headline { min-height: 196px; }
+.summary { min-height: 125px; }
+.plot { min-height: 296px; }
+#b-stack { min-height: 78px; }
+#c-fixed-chips { min-height: 24px; }
+@media (max-width: 960px) { .summary { min-height: 270px; } }
+@media (max-width: 860px) { .headline { min-height: 184px; } }
+@media (max-width: 520px) { .headline { min-height: 240px; } .summary { min-height: 480px; } .plot { min-height: 230px; } }
 
 /* notes and footer */
 .notes { display: grid; gap: 12px; max-width: 760px; font-size: 14px; line-height: 22px; color: var(--muted); }
