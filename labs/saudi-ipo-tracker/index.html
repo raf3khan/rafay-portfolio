@@ -168,6 +168,11 @@ h1 .sub { display: block; margin-top: 12px; font: 400 24px/32px var(--arabic); l
 .tl .past { border-color: var(--muted); }
 .tl .now { border-color: var(--accent); color: var(--ink); }
 .tl b { display: block; font: 500 12px/16px var(--font); color: inherit; }
+.brk { font-size: 14px; line-height: 20px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; }
+.brk summary { cursor: pointer; color: var(--ink); font-weight: 500; }
+.brk ul { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; padding: 0; list-style: none; }
+.brk li { font-size: 13px; line-height: 18px; padding: 3px 10px; border-radius: 9999px; background: var(--raised); color: var(--ink); }
+.brk .none { margin: 8px 0 0; }
 .card-f { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: auto; }
 .when { font-size: 14px; line-height: 20px; color: var(--muted); }
 .when b { color: var(--ink); font-weight: 600; }
@@ -292,7 +297,8 @@ summary { cursor: pointer; color: var(--ink); font-weight: 500; }
         <h2 class="sec">How this tracker works</h2>
         <p><strong>Stages.</strong> A Saudi IPO runs in four steps. Institutions bid first during book-building, which sets the final price. Individuals then subscribe through their bank or broker during the retail window, usually two or three days, paying the full amount up front. Shares are allocated a few days later and the unused money is refunded. The stock then lists on Tadawul's Main Market, or on Nomu for smaller companies, where only qualified investors can subscribe.</p>
         <p><strong>Allocation.</strong> Retail tranches are almost always oversubscribed. Each subscriber first gets a minimum, often 10 shares, and the rest is shared in proportion to what each person applied for. That's why a large subscription can come back mostly as a refund. Try different coverage and subscriber counts in the estimator above to see the range.</p>
-        <p><strong>Where the dates come from.</strong> Each IPO is entered by hand from its announcement on Saudi Exchange or the CMA, so this can lag by a day or two. Stages update on their own from the dates.</p>
+        <p><strong>Where to subscribe.</strong> Individuals subscribe through a "receiving entity", which is a bank or a CMA-licensed broker named in the offering announcement. You need an investment account with one of them and enough cash in it for the full amount. Each IPO card lists its receiving entities once they're announced. Most large Saudi brokers usually take part, including Al Rajhi Capital, SNB Capital, Riyad Capital, Alinma Capital, Albilad Capital, AlJazira Capital, ANB Capital, SAB Invest, BSF Capital, Alistithmar Capital, Derayah Financial and Sahm Capital.</p>
+        <p><strong>Where the dates come from.</strong> Each IPO is entered by hand from the <a href="https://www.saudiexchange.sa/wps/portal/saudiexchange/listing/ipos" target="_blank" rel="noopener">Saudi Exchange IPO list</a> and the offering announcements, so this can lag by a day or two. Stages update on their own from the dates.</p>
         <p id="srcNote"></p>
         <p>Not investment advice. Always read the prospectus and confirm dates with your broker or receiving bank before you subscribe.</p>
         <p>Also in <a href="/#labs">Labs</a>: the <a href="/labs/tadawul-dividends/">Tadawul dividend calendar</a>, with the last day to buy for every upcoming Saudi dividend.</p>
@@ -346,7 +352,7 @@ summary { cursor: pointer; color: var(--ink); font-weight: 500; }
     IPOS.sort(function (a, b) { return a.st.rank - b.st.rank || (keyDate(a) - keyDate(b)) * (a.st.rank === 3 ? -1 : 1); });
     $("updated").textContent = "Updated " + d(data.updated).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
     $("sampleBadge").hidden = !data.sample;
-    $("srcNote").innerHTML = data.source ? esc(data.source) + (data.sourceUrl ? ' <a href="' + esc(data.sourceUrl) + '" target="_blank" rel="noopener">Saudi Exchange</a>' : "") : "";
+    $("srcNote").innerHTML = data.source ? esc(data.source) + (data.sourceUrl ? ' <a href="' + esc(data.sourceUrl) + '" target="_blank" rel="noopener">Saudi Exchange IPO list</a>' : "") : "";
     summary(); chips(); list(); setupEstimator();
   }
   function count(k) { return IPOS.filter(function (x) { return x.st.k === k; }).length; }
@@ -386,6 +392,12 @@ summary { cursor: pointer; color: var(--ink); font-weight: 500; }
       return '<div class="' + cls + '"><b>' + s[0] + "</b>" + txt + "</div>";
     }).join("") + "</div>";
   }
+  function brokers(x) {
+    if (!x.retailPct) return "";
+    var r = x.receivingEntities || [];
+    if (!r.length) return '<details class="brk"><summary>Where to subscribe</summary><p class="none">Receiving banks and brokers are named closer to the retail window. Most Saudi brokers take part, so check your own broker\'s app first.</p></details>';
+    return '<details class="brk"><summary>Subscribe through ' + plural(r.length, "broker") + "</summary><ul>" + r.map(function (n) { return "<li>" + esc(n) + "</li>"; }).join("") + "</ul></details>";
+  }
   function when(x) {
     var n;
     if (x.st.k === "open") { n = daysTo(x.retail[1]); return n === 0 ? "<b>Closes today</b>" : "Closes in <b>" + plural(n, "day") + "</b>"; }
@@ -408,6 +420,7 @@ summary { cursor: pointer; color: var(--ink); font-weight: 500; }
         "<div><span>Offer size</span><b>" + fmtBig(x.price * x.offerShares) + "</b></div>" +
         "<div><span>Retail tranche</span><b>" + (x.retailPct ? x.retailPct + "%" : "None") + "</b></div></div>" +
         timeline(x) +
+        brokers(x) +
         '<div class="card-f"><span class="when">' + when(x) + (x.source ? ' · <a href="' + esc(x.source) + '" target="_blank" rel="noopener">Announcement</a>' : "") + "</span>" +
         '<button type="button" class="' + (live ? "gloss" : "chipbtn") + '" data-est="' + x.id + '"' + (x.retailPct ? "" : " disabled") + ">Estimate allocation</button></div>" +
         "</article>";
