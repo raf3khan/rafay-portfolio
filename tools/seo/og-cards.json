@@ -25,5 +25,11 @@
     "ar": "حاسبة عمولات الوساطة في السوق السعودية",
     "sub": "The real cost of a Tadawul trade at each Saudi broker, with exchange fees, the CMA fee and VAT.",
     "url": "rafkhan.com/labs/broker-fees"
+  },
+  "debt-payoff": {
+    "kicker": "Labs · Free tool",
+    "title": "Debt Payoff Planner",
+    "sub": "Snowball or avalanche? Compare both across your loans and cards, and see your debt-free date.",
+    "url": "rafkhan.com/labs/debt-payoff"
   }
 }
