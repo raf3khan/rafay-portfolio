@@ -46,6 +46,14 @@
       "recordDate": "2026-10-29"
     },
     {
+      "ticker": "9403",
+      "name": "Albilad Sovereign Sukuk",
+      "sector": "Nomu",
+      "dps": 0.03,
+      "recordDate": "2026-11-01",
+      "nameAr": "البلاد للصكوك السيادية"
+    },
+    {
       "ticker": "4333",
       "name": "Taleem REIT",
       "nameAr": "تعليم ريت",
@@ -104,6 +112,15 @@
       "dps": 2.0,
       "recordDate": "2026-11-05",
       "payDate": "2026-11-19"
+    },
+    {
+      "ticker": "9611",
+      "name": "UFG",
+      "sector": "Nomu",
+      "dps": 1.0,
+      "recordDate": "2026-11-05",
+      "nameAr": "المتحدة للزجاج المسطح",
+      "payDate": "2026-11-16"
     },
     {
       "ticker": "4004",
