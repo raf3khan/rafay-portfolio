@@ -1,0 +1,163 @@
+{
+  "updated": "2026-11-03",
+  "source": "Prices and ratios from StockAnalysis (delayed quotes). Announcements from company filings as listed by StockAnalysis and Argaam. Plain-language summaries written with AI from these figures and checked by hand.",
+  "sourceAr": "الأسعار والنسب من موقع StockAnalysis (أسعار متأخرة). الإعلانات من إفصاحات الشركات كما يعرضها StockAnalysis وأرقام. الملخصات المبسطة مكتوبة بالذكاء الاصطناعي من هذه الأرقام ومراجعة يدويًا.",
+  "companies": [
+    {
+      "code": "2222", "name": "Saudi Aramco", "nameAr": "أرامكو السعودية", "aka": ["aramco", "saudi arabian oil"],
+      "sector": "Energy", "asOf": "2026-10-15", "price": 25.28, "low52": 23.29, "high52": 27.96,
+      "marketCap": 6120, "pe": 15.03, "dps": 1.33, "yield": 5.27, "netIncome": null, "niChange": null,
+      "summary": [
+        "Aramco is the state-controlled oil and gas company and by far the largest business on Tadawul. It finds and pumps crude oil and gas, refines it, and makes chemicals through its stake in SABIC.",
+        "The share price tends to follow oil prices and sits in the lower half of its range for the past year. Most people hold it for the dividend: about 5.3% a year at this price, paid every quarter."
+      ],
+      "summaryAr": [
+        "أرامكو شركة النفط والغاز التي تسيطر عليها الدولة، وهي أكبر شركة في تداول بفارق كبير. تستكشف النفط والغاز وتنتجهما وتكرّرهما، وتصنع الكيماويات عبر حصتها في سابك.",
+        "يتحرك سعر السهم غالبًا مع أسعار النفط، وهو حاليًا في النصف الأدنى من نطاقه خلال العام الماضي. يملكه أغلب المستثمرين من أجل التوزيعات: نحو 5.3٪ سنويًا بهذا السعر، تُدفع كل ربع سنة."
+      ],
+      "events": [
+        { "date": "2026-11-03", "kind": "dividend", "title": "Q3 2026 dividend of SAR 0.34 a share", "titleAr": "توزيع الربع الثالث 2026 بقيمة 0.34 ريال للسهم",
+          "plain": "Aramco is paying SAR 0.34 for every share you own for the third quarter. That keeps the regular quarterly payout going.", "plainAr": "ستدفع أرامكو 0.34 ريال عن كل سهم تملكه عن الربع الثالث، لتستمر التوزيعات الربعية المعتادة.",
+          "src": "Argaam", "url": "https://www.argaam.com/en" }
+      ]
+    },
+    {
+      "code": "1120", "name": "Al Rajhi Bank", "nameAr": "مصرف الراجحي", "aka": ["rajhi", "al rajhi", "alrajhi", "الراجحي"],
+      "sector": "Banks", "asOf": "2026-10-22", "price": 59.80, "low52": 59.45, "high52": 73.40,
+      "marketCap": 358.8, "pe": 14.36, "dps": 3.01, "yield": 5.03, "netIncome": 24.98, "niChange": 16.9,
+      "summary": [
+        "Al Rajhi is one of the world's largest Islamic banks, with millions of individual customers across Saudi Arabia. Most of its income comes from home and personal financing.",
+        "Profit over the last twelve months was up about 17% on the year before, yet the share price is close to its lowest point of the past year. So the fall is not coming from the bank's own recent results."
+      ],
+      "summaryAr": [
+        "مصرف الراجحي من أكبر المصارف الإسلامية في العالم، ولديه ملايين العملاء الأفراد في المملكة. يأتي أغلب دخله من التمويل العقاري والشخصي.",
+        "ارتفع الربح في آخر اثني عشر شهرًا بنحو 17٪ عن العام السابق، ومع ذلك فسعر السهم قريب من أدنى مستوى له خلال العام. أي أن الانخفاض لا يعود إلى نتائج المصرف الأخيرة."
+      ],
+      "events": [
+        { "date": "2026-10", "kind": "results", "title": "Q3 2026 results released", "titleAr": "إعلان نتائج الربع الثالث 2026",
+          "plain": "The bank published its July to September numbers. The full release is on the company's investor page and on Tadawul.", "plainAr": "نشر المصرف نتائج الفترة من يوليو إلى سبتمبر، والإعلان الكامل متاح في صفحة علاقات المستثمرين وفي موقع تداول.",
+          "src": "StockAnalysis", "url": "https://stockanalysis.com/quote/tadawul/1120/" }
+      ]
+    },
+    {
+      "code": "7010", "name": "stc", "nameAr": "إس تي سي", "aka": ["stc", "saudi telecom", "الاتصالات السعودية", "اس تي سي"],
+      "sector": "Telecom", "asOf": "2026-09-29", "price": 42.78, "low52": 40.20, "high52": 45.38,
+      "marketCap": 215.2, "pe": 14.61, "dps": 2.20, "yield": 5.14, "netIncome": 14.67, "niChange": -42.6,
+      "summary": [
+        "stc is Saudi Arabia's largest telecom company. It sells mobile and home internet, runs networks and data centres, and provides IT and digital payment services to businesses and government.",
+        "Revenue keeps growing slowly, but profit over the last twelve months fell about 43% from the year before. A drop that large usually comes from a one-off item in the earlier year, so read the results release before drawing conclusions. The dividend is about 5.1% a year."
+      ],
+      "summaryAr": [
+        "إس تي سي أكبر شركة اتصالات في المملكة. تقدم خدمات الجوال والإنترنت المنزلي، وتشغّل الشبكات ومراكز البيانات، وتقدم خدمات تقنية المعلومات والمدفوعات الرقمية للشركات والجهات الحكومية.",
+        "تنمو الإيرادات ببطء، لكن الربح في آخر اثني عشر شهرًا انخفض نحو 43٪ عن العام السابق. انخفاض بهذا الحجم يأتي غالبًا من بند استثنائي في العام السابق، لذا اقرأ إعلان النتائج قبل الحكم. عائد التوزيعات نحو 5.1٪ سنويًا."
+      ],
+      "events": [
+        { "date": "2026-08", "kind": "results", "title": "Q2 2026 results released", "titleAr": "إعلان نتائج الربع الثاني 2026",
+          "plain": "The company published its April to June numbers along with an investor presentation.", "plainAr": "نشرت الشركة نتائج الفترة من أبريل إلى يونيو مع عرض للمستثمرين.",
+          "src": "StockAnalysis", "url": "https://stockanalysis.com/quote/tadawul/7010/" },
+        { "date": "2026-02", "kind": "deal", "title": "Data centre partnership with Humain", "titleAr": "شراكة مراكز بيانات مع هيوماين",
+          "plain": "stc teamed up with Humain, the Saudi AI company, to build more data centre capacity. This is part of its push to grow beyond phone and internet plans.", "plainAr": "تعاونت إس تي سي مع هيوماين، شركة الذكاء الاصطناعي السعودية، لبناء سعة إضافية في مراكز البيانات، ضمن توجهها للنمو خارج باقات الجوال والإنترنت.",
+          "src": "GuruFocus", "url": "https://stockanalysis.com/quote/tadawul/7010/" }
+      ]
+    },
+    {
+      "code": "2010", "name": "SABIC", "nameAr": "سابك", "aka": ["sabic", "saudi basic industries", "سابك"],
+      "sector": "Materials", "asOf": "2026-10-22", "price": 43.72, "low52": 43.72, "high52": 62.50,
+      "marketCap": 131.16, "pe": null, "dps": 2.20, "yield": 5.03, "netIncome": -21.32, "niChange": null,
+      "summary": [
+        "SABIC makes plastics, chemicals and fertilisers that end up in packaging, cars, buildings and farms. Aramco owns most of it.",
+        "Over the last twelve months it lost about SAR 21 billion, so there is no P/E ratio to show. The share price is at its lowest point of the past year. Chemical prices have been weak worldwide, and the company has been selling parts of the business."
+      ],
+      "summaryAr": [
+        "سابك تصنع البلاستيك والكيماويات والأسمدة التي تدخل في التغليف والسيارات والمباني والزراعة، وتملك أرامكو أغلب أسهمها.",
+        "خسرت الشركة نحو 21 مليار ريال في آخر اثني عشر شهرًا، لذلك لا يوجد مكرر ربحية. سعر السهم عند أدنى مستوى له خلال العام. أسعار الكيماويات ضعيفة عالميًا، والشركة تبيع بعض أنشطتها."
+      ],
+      "events": [
+        { "date": "2026-08", "kind": "results", "title": "Q2 2026 results released", "titleAr": "إعلان نتائج الربع الثاني 2026",
+          "plain": "The company published its April to June numbers and held a call with analysts.", "plainAr": "نشرت الشركة نتائج الفترة من أبريل إلى يونيو وعقدت مؤتمرًا مع المحللين.",
+          "src": "StockAnalysis", "url": "https://stockanalysis.com/quote/tadawul/2010/" },
+        { "date": "2026-02", "kind": "deal", "title": "Sale of engineering thermoplastics business to Mutares", "titleAr": "بيع نشاط اللدائن الهندسية إلى موتاريس",
+          "plain": "SABIC agreed to sell one of its specialty plastics units to the German investor Mutares, shrinking the business to its core products.", "plainAr": "وافقت سابك على بيع إحدى وحدات البلاستيك المتخصصة إلى المستثمر الألماني موتاريس، لتركّز على منتجاتها الأساسية.",
+          "src": "Nasdaq", "url": "https://stockanalysis.com/quote/tadawul/2010/" }
+      ]
+    },
+    {
+      "code": "1180", "name": "Saudi National Bank", "nameAr": "البنك الأهلي السعودي", "aka": ["snb", "national bank", "ncb", "الأهلي", "الاهلي"],
+      "sector": "Banks", "asOf": "2026-10-22", "price": 34.62, "low52": 34.40, "high52": 45.24,
+      "marketCap": 205.47, "pe": 8.29, "dps": 2.30, "yield": 6.64, "netIncome": 24.83, "niChange": 6.9,
+      "summary": [
+        "SNB is Saudi Arabia's largest bank by assets. It lends to individuals, small businesses and large companies, all through Shariah-compliant products.",
+        "Profit is still growing, about 7% over the last twelve months. The share price is near its low for the year, which pushes the P/E down to about 8 and the dividend yield up to about 6.6%. Both are low compared with most large Tadawul stocks."
+      ],
+      "summaryAr": [
+        "البنك الأهلي السعودي أكبر بنك في المملكة من حيث الأصول. يقدم التمويل للأفراد والمنشآت الصغيرة والشركات الكبرى بمنتجات متوافقة مع الشريعة.",
+        "ما زال الربح ينمو بنحو 7٪ في آخر اثني عشر شهرًا. سعر السهم قريب من أدنى مستوى له خلال العام، ما يخفض مكرر الربحية إلى نحو 8 ويرفع عائد التوزيعات إلى نحو 6.6٪، وكلاهما منخفض مقارنة بأغلب الأسهم الكبرى في تداول."
+      ],
+      "events": [
+        { "date": "2026-08", "kind": "results", "title": "Q2 2026 results released", "titleAr": "إعلان نتائج الربع الثاني 2026",
+          "plain": "The bank published its April to June numbers and an investor presentation.", "plainAr": "نشر البنك نتائج الفترة من أبريل إلى يونيو مع عرض للمستثمرين.",
+          "src": "StockAnalysis", "url": "https://stockanalysis.com/quote/tadawul/1180/" }
+      ]
+    },
+    {
+      "code": "2082", "name": "ACWA Power", "nameAr": "أكوا باور", "aka": ["acwa", "acwa power", "اكوا"],
+      "sector": "Utilities", "asOf": "2026-10-22", "price": 150.00, "low52": 148.00, "high52": 250.00,
+      "marketCap": 114.93, "pe": 71.84, "dps": 0.46, "yield": 0.31, "netIncome": 1.60, "niChange": -8.2,
+      "summary": [
+        "ACWA Power builds and runs power plants, water desalination plants and green hydrogen projects in Saudi Arabia and across the Middle East, Asia and Africa.",
+        "Investors pay about 72 riyals for every riyal of yearly profit, which means they are betting on a lot of future growth. The price has fallen about 40% from its high of the past year and pays almost no dividend. Its next results are due on 5 November."
+      ],
+      "summaryAr": [
+        "أكوا باور تبني وتشغّل محطات الكهرباء وتحلية المياه ومشاريع الهيدروجين الأخضر في المملكة والشرق الأوسط وآسيا وأفريقيا.",
+        "يدفع المستثمرون نحو 72 ريالًا مقابل كل ريال من الربح السنوي، أي أنهم يراهنون على نمو كبير مستقبلًا. انخفض السعر نحو 40٪ عن أعلى مستوى له خلال العام، والتوزيعات شبه معدومة. النتائج القادمة متوقعة في 5 نوفمبر."
+      ],
+      "events": [
+        { "date": "2026-11-05", "kind": "upcoming", "title": "Q3 2026 results expected", "titleAr": "نتائج الربع الثالث 2026 متوقعة",
+          "plain": "The company is expected to report its July to September numbers.", "plainAr": "من المتوقع أن تعلن الشركة نتائج الفترة من يوليو إلى سبتمبر.",
+          "src": "StockAnalysis", "url": "https://stockanalysis.com/quote/tadawul/2082/" },
+        { "date": "2026-08", "kind": "results", "title": "Q2 2026 results released", "titleAr": "إعلان نتائج الربع الثاني 2026",
+          "plain": "The company published its April to June numbers and held a call with analysts.", "plainAr": "نشرت الشركة نتائج الفترة من أبريل إلى يونيو وعقدت مؤتمرًا مع المحللين.",
+          "src": "StockAnalysis", "url": "https://stockanalysis.com/quote/tadawul/2082/" }
+      ]
+    },
+    {
+      "code": "1211", "name": "Ma'aden", "nameAr": "معادن", "aka": ["maaden", "ma'aden", "saudi arabian mining", "معادن"],
+      "sector": "Materials", "asOf": "2026-09-10", "price": 66.00, "low52": 53.50, "high52": 79.90,
+      "marketCap": 256.2, "pe": 33.33, "dps": null, "yield": null, "netIncome": 7.69, "niChange": 77.2,
+      "summary": [
+        "Ma'aden is Saudi Arabia's mining company. It mines gold, phosphate for fertilisers and bauxite for aluminium, and is moving into copper and other metals.",
+        "Profit over the last twelve months rose about 77%. Investors pay a high price for that growth, about 33 times yearly profit, and the company does not currently pay a dividend."
+      ],
+      "summaryAr": [
+        "معادن شركة التعدين السعودية. تستخرج الذهب والفوسفات للأسمدة والبوكسيت للألمنيوم، وتتوسع في النحاس ومعادن أخرى.",
+        "ارتفع الربح في آخر اثني عشر شهرًا بنحو 77٪. يدفع المستثمرون سعرًا مرتفعًا مقابل هذا النمو، نحو 33 ضعف الربح السنوي، ولا توزّع الشركة أرباحًا حاليًا."
+      ],
+      "events": [
+        { "date": "2026-08", "kind": "deal", "title": "Mineral exploration venture with Aramco", "titleAr": "مشروع مشترك مع أرامكو لاستكشاف المعادن",
+          "plain": "Ma'aden and Aramco plan a joint company to search for minerals in Saudi Arabia, combining Aramco's exploration know-how with Ma'aden's mining.", "plainAr": "تخطط معادن وأرامكو لتأسيس شركة مشتركة للبحث عن المعادن في المملكة، تجمع خبرة أرامكو في الاستكشاف مع خبرة معادن في التعدين.",
+          "src": "Reuters", "url": "https://stockanalysis.com/quote/tadawul/1211/" },
+        { "date": "2026-08", "kind": "results", "title": "Q2 2026 results released", "titleAr": "إعلان نتائج الربع الثاني 2026",
+          "plain": "The company published its April to June numbers.", "plainAr": "نشرت الشركة نتائج الفترة من أبريل إلى يونيو.",
+          "src": "StockAnalysis", "url": "https://stockanalysis.com/quote/tadawul/1211/" }
+      ]
+    },
+    {
+      "code": "2280", "name": "Almarai", "nameAr": "المراعي", "aka": ["almarai", "al marai", "المراعي"],
+      "sector": "Food", "asOf": "2026-08-13", "price": 48.20, "low52": 38.18, "high52": 54.05,
+      "marketCap": 48.2, "pe": 19.84, "dps": 1.15, "yield": 2.39, "netIncome": 2.45, "niChange": 2.8,
+      "summary": [
+        "Almarai is the Gulf's biggest food company. It makes milk, laban, juice, cheese, bread and poultry and sells them across the region.",
+        "This is a steady business: revenue grew about 7% and profit about 3% over the last twelve months. The dividend is modest at about 2.4%, and the shares trade at about 20 times yearly profit."
+      ],
+      "summaryAr": [
+        "المراعي أكبر شركة أغذية في الخليج. تنتج الحليب واللبن والعصير والأجبان والمخبوزات والدواجن وتبيعها في المنطقة.",
+        "نشاطها مستقر: نمت الإيرادات نحو 7٪ والربح نحو 3٪ في آخر اثني عشر شهرًا. عائد التوزيعات متواضع عند نحو 2.4٪، ويتداول السهم عند نحو 20 ضعف الربح السنوي."
+      ],
+      "events": [
+        { "date": "2026-07", "kind": "results", "title": "Q2 2026 results released", "titleAr": "إعلان نتائج الربع الثاني 2026",
+          "plain": "The company published its April to June numbers and held a call with analysts.", "plainAr": "نشرت الشركة نتائج الفترة من أبريل إلى يونيو وعقدت مؤتمرًا مع المحللين.",
+          "src": "StockAnalysis", "url": "https://stockanalysis.com/quote/tadawul/2280/" }
+      ]
+    }
+  ]
+}
