@@ -32,5 +32,12 @@
     "ar": "فحص الجاهزية لبرنامج كفالة",
     "sub": "Is your Saudi SME ready for a Kafalah loan guarantee? Which product fits, how much it covers, and the documents to prepare.",
     "url": "rafkhan.com/labs/kafalah-check"
+  },
+  "tadawul-explained": {
+    "kicker": "Labs · Free tool",
+    "title": "Tadawul Explained",
+    "ar": "تداول بوضوح",
+    "sub": "Saudi stocks in plain words: the company, its key numbers and recent announcements.",
+    "url": "rafkhan.com/labs/tadawul-explained"
   }
 }
