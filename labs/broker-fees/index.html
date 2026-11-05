@@ -6,16 +6,16 @@
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<title>Saudi Broker Fee Calculator: true cost of a Tadawul trade</title>
-<meta name="description" content="Free calculator that compares the real cost of a Tadawul trade at Saudi brokers, with exchange fees, the CMA fee, 15% VAT and US order minimums. In English and Arabic.">
+<title>Which Saudi Broker is Cheapest? Tadawul trading fees compared</title>
+<meta name="description" content="Free calculator that compares the full cost of a Tadawul trade at all 27 Saudi online brokers, with exchange fees, the CMA fee and 15% VAT. In English and Arabic.">
 <link rel="alternate" hreflang="en" href="https://rafkhan.com/labs/broker-fees/">
 <link rel="alternate" hreflang="ar" href="https://rafkhan.com/labs/broker-fees/?lang=ar">
 <link rel="alternate" hreflang="x-default" href="https://rafkhan.com/labs/broker-fees/">
 <script>(function(){var ar=/[?&]lang=ar\b/.test(location.search);var l=document.createElement("link");l.rel="canonical";l.href="https://rafkhan.com/labs/broker-fees/"+(ar?"?lang=ar":"");document.head.appendChild(l);})();</script>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Rafay Khan">
-<meta property="og:title" content="Saudi Broker Fee Calculator: true cost of a Tadawul trade">
-<meta property="og:description" content="Free calculator that compares the real cost of a Tadawul trade at Saudi brokers, with exchange fees, the CMA fee, 15% VAT and US order minimums. In English and Arabic.">
+<meta property="og:title" content="Which Saudi Broker is Cheapest? Tadawul trading fees compared">
+<meta property="og:description" content="Free calculator that compares the full cost of a Tadawul trade at all 27 Saudi online brokers, with exchange fees, the CMA fee and 15% VAT. In English and Arabic.">
 <meta property="og:url" content="https://rafkhan.com/labs/broker-fees/">
 <meta property="og:image" content="https://rafkhan.com/og/broker-fees.png">
 <meta property="og:image:width" content="1200">
@@ -33,7 +33,7 @@
    "name": "Saudi Broker Fee Calculator",
    "alternateName": "حاسبة عمولات الوساطة في السوق السعودية",
    "url": "https://rafkhan.com/labs/broker-fees/",
-   "description": "Free calculator that compares the real cost of a Tadawul trade at Saudi brokers, with exchange fees, the CMA fee, 15% VAT and US order minimums. In English and Arabic.",
+   "description": "Free calculator that compares the full cost of a Tadawul trade at all 27 Saudi online brokers, with exchange fees, the CMA fee and 15% VAT. In English and Arabic.",
    "applicationCategory": "FinanceApplication",
    "operatingSystem": "Any",
    "inLanguage": ["en", "ar"],
@@ -183,20 +183,52 @@ h1 .sub { display: block; margin-top: 12px; font: 400 24px/32px var(--arabic); l
 
 
 /* fee tool */
-:root { --seg-broker: var(--accent); --seg-market: #7f9e87; --seg-cma: #c9d2cb; --seg-vat: #c8901e; --warn: #8a5a12; --warn-soft: #f1ece1; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --seg-market: #5f8a6b; --seg-cma: #3d4a41; --seg-vat: #e0ae55; --warn: #e0ae55; --warn-soft: #24211b; } }
-:root[data-theme="dark"] { --seg-market: #5f8a6b; --seg-cma: #3d4a41; --seg-vat: #e0ae55; --warn: #e0ae55; --warn-soft: #24211b; }
+:root { --seg-broker: var(--accent); --seg-market: #7f9e87; --seg-cma: #9aa59d; --seg-vat: #c8901e; --warn: #8a5a12; --warn-soft: #f1ece1; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --seg-market: #5f8a6b; --seg-cma: #6f7a72; --seg-vat: #e0ae55; --warn: #e0ae55; --warn-soft: #24211b; } }
+:root[data-theme="dark"] { --seg-market: #5f8a6b; --seg-cma: #6f7a72; --seg-vat: #e0ae55; --warn: #e0ae55; --warn-soft: #24211b; }
+
+/* fee flow graphic */
+.flow { display: grid; gap: 12px; }
+.flow svg { width: 100%; height: auto; display: block; }
+.flow text { unicode-bidi: plaintext; }
+.flow .fl-m { display: none; }
+@media (max-width: 640px) { .flow .fl-d { display: none; } .flow .fl-m { display: block; } }
+.flow .node { fill: var(--surface); stroke: var(--line); }
+.flow .node.src { fill: var(--ink); stroke: var(--ink); }
+.flow .t1 { font: 600 15px var(--font); fill: var(--ink); }
+.flow .t2 { font: 400 13px var(--mono); fill: var(--muted); }
+.flow .src-t1 { font: 600 15px var(--font); fill: var(--bg); }
+.flow .src-t2 { font: 500 13px var(--mono); fill: var(--bg); opacity: .8; }
+[dir="rtl"] .flow .t1, [dir="rtl"] .flow .src-t1 { font-family: var(--arabic); }
+[dir="rtl"] .flow .t2, [dir="rtl"] .flow .src-t2 { font-family: var(--arabic); }
+.flow .wire { fill: none; stroke: var(--line); stroke-width: 2; }
+.flow .dot { stroke: none; }
+.flow figcaption { font-size: 14px; line-height: 20px; color: var(--muted); max-width: 640px; }
+
+/* inputs */
 .inputs { display: grid; gap: 24px; }
-.fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+.fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
 .field { display: grid; gap: 8px; min-width: 0; align-content: start; }
 .field label, .lbl { font: 500 14px/20px var(--font); color: var(--muted); }
-.input { display: flex; align-items: center; gap: 8px; min-width: 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); padding: 0 12px; box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
+.input { display: flex; align-items: center; gap: 8px; min-width: 0; height: 48px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); padding: 0 12px; box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
 .input:focus-within { border-color: var(--accent); }
 .input span { color: var(--muted); font: 400 13px/20px var(--mono); white-space: nowrap; }
-.input input { flex: 1 1 0; width: 100%; min-width: 0; border: 0; background: transparent; color: var(--ink); font: 500 18px/24px var(--mono); letter-spacing: -0.02em; padding: 10px 0; outline: none; }
-.chips .chipbtn { padding: 2px 10px; font: 400 13px/20px var(--mono); }
-.seg.wide { display: flex; justify-self: stretch; }
-.seg.wide button { flex: 1; justify-content: center; padding: 6px 8px; }
+.input input { flex: 1 1 0; width: 100%; min-width: 0; border: 0; background: transparent; color: var(--ink); font: 500 18px/24px var(--mono); letter-spacing: -0.02em; padding: 0; outline: none; }
+.quick { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.quick button { height: 40px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 500 14px/20px var(--mono); cursor: pointer; transition: border-color 300ms var(--ease), background-color 300ms var(--ease); }
+.quick button:hover { border-color: var(--muted); }
+.quick button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+
+/* switch: one control style for market and trade type, same height as inputs */
+.switch { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 4px; height: 48px; padding: 4px; border: 1px solid var(--line); border-radius: 10px; background: var(--raised); }
+.switch button { min-width: 0; border: 0; border-radius: 7px; background: transparent; color: var(--muted); font: 500 15px/20px var(--font); padding: 0 12px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: color 300ms var(--ease); }
+.switch button:hover { color: var(--ink); }
+.switch button[aria-pressed="true"] { color: #ffffff; background: linear-gradient(#3b3b3b, #0b0b0b); box-shadow: 0 0 0 2px var(--accent), inset 0 1px 0 rgba(255,255,255,0.25); }
+.switch.market { max-width: 560px; }
+[dir="rtl"] .switch button { font-family: var(--arabic); }
+@media (max-width: 480px) { .switch button { font-size: 14px; padding: 0 6px; } }
+
+/* list */
 .listhead { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
 .listhead h2 { margin: 0; font: 400 30px/36px var(--serif); letter-spacing: -0.01em; }
 .legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px; line-height: 20px; color: var(--muted); }
@@ -217,7 +249,7 @@ h1 .sub { display: block; margin-top: 12px; font: 400 24px/32px var(--arabic); l
 .brow.best .pill.ok { background: var(--surface); }
 .pill.warn { background: var(--warn-soft); color: var(--warn); }
 .total { text-align: end; }
-.total b { display: block; font: 500 20px/28px var(--mono); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.total b { display: block; font: 500 20px/28px var(--mono); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .total span { font: 400 13px/18px var(--mono); color: var(--muted); }
 .meter { height: 8px; border-radius: 4px; background: var(--raised); display: flex; overflow: hidden; }
 .brow:hover .meter { background: var(--bg); }
@@ -232,9 +264,6 @@ details > summary:hover { color: var(--ink); }
 .breakdown .v { font-family: var(--mono); font-variant-numeric: tabular-nums; text-align: end; }
 .breakdown .k { color: var(--muted); }
 .breakdown .t { border-top: 1px solid var(--line); padding-top: 4px; font-weight: 600; }
-.custom { border: 1px dashed var(--line); border-radius: 16px; padding: 16px 24px; display: grid; gap: 16px; }
-.custom .fields { gap: 16px; }
-.custom p { margin: 0; font-size: 14px; line-height: 20px; color: var(--muted); }
 .explain { display: grid; gap: 16px; }
 .explain h2 { margin: 0; font: 400 30px/36px var(--serif); letter-spacing: -0.01em; }
 .tblwrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
@@ -243,7 +272,7 @@ th, td { text-align: start; padding: 12px 16px; border-bottom: 1px solid var(--l
 th { font: 500 13px/20px var(--font); color: var(--muted); }
 td.r, th.r { text-align: end; font-family: var(--mono); font-variant-numeric: tabular-nums; }
 tbody tr:last-child td { border-bottom: 0; }
-@media (max-width: 560px) { .brow { padding: 16px; } .rtop { grid-template-columns: 24px minmax(0, 1fr) auto; gap: 8px; } .name .n { font-size: 19px; line-height: 24px; } .listhead h2, .explain h2 { font-size: 24px; line-height: 32px; } .custom { padding: 16px; } }
+@media (max-width: 560px) { .brow { padding: 16px; } .rtop { grid-template-columns: 24px minmax(0, 1fr) auto; gap: 8px; } .name .n { font-size: 19px; line-height: 24px; } .listhead h2, .explain h2 { font-size: 24px; line-height: 32px; } .total b { font-size: 17px; } }
 /* notes and footer */
 .notes { display: grid; gap: 12px; max-width: 760px; font-size: 14px; line-height: 22px; color: var(--muted); }
 .notes p { margin: 0; }
@@ -253,12 +282,10 @@ tbody tr:last-child td { border-bottom: 0; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 
 /* Arabic */
-[dir="rtl"] .field label, [dir="rtl"] .lbl, [dir="rtl"] .legend, [dir="rtl"] .pill, [dir="rtl"] details > summary, [dir="rtl"] th, [dir="rtl"] .input span, [dir="rtl"] .brow .d, [dir="rtl"] .breakdown .k { font-family: var(--arabic); }
+[dir="rtl"] .field label, [dir="rtl"] .lbl, [dir="rtl"] .legend, [dir="rtl"] .pill, [dir="rtl"] details > summary, [dir="rtl"] th, [dir="rtl"] .input span, [dir="rtl"] .brow .d, [dir="rtl"] .breakdown .k, [dir="rtl"] .flow figcaption { font-family: var(--arabic); }
 [dir="rtl"] .name .n { font: 600 18px/28px var(--arabic); }
 [dir="rtl"] .listhead h2, [dir="rtl"] .explain h2 { font: 500 24px/36px var(--arabic); }
 [dir="rtl"] .total b, [dir="rtl"] .summary .v.num { font-family: var(--arabic); font-weight: 600; letter-spacing: 0; font-variant-numeric: tabular-nums; }
-[dir="rtl"] details > summary::before { content: "+ "; }
-[dir="rtl"] details[open] > summary::before { content: "− "; }
 </style>
 <script src="/analytics.js" defer></script>
 </head>
@@ -274,28 +301,37 @@ tbody tr:last-child td { border-bottom: 0; }
   <section class="hero band">
     <div class="col">
       <div class="glow" aria-hidden="true"></div>
-      <div class="eyebrow"><a class="back" href="/#labs" data-i="back">← Labs</a><span data-i="exchange">Saudi Exchange</span><span data-i="checked">Rates checked 4 Nov 2026</span></div>
-      <h1><span data-i="title">Saudi broker fee calculator</span> <span class="sub" id="titleSub" lang="ar">حاسبة عمولات الوساطة في السوق السعودية</span></h1>
-      <p class="lede" data-i="lede">The headline commission is only part of what you pay. Every Tadawul trade also pays exchange and clearing fees, a CMA fee, and 15% VAT on most of that, even at brokers that charge no commission. Enter a trade to see the full bill at each broker.</p>
+      <div class="eyebrow"><a class="back" href="/#labs" data-i="back">← Labs</a><span data-i="exchange">Saudi Stock Exchange</span><span data-i="checked">Rates checked 5 Nov 2026</span></div>
+      <h1><span data-i="title">Which Saudi Broker is Cheapest?</span> <span class="sub" id="titleSub" lang="ar">أي وسيط سعودي هو الأرخص؟</span></h1>
+      <p class="lede" data-i="lede">Commission is only part of the bill. Every trade also pays the exchange, the regulator and VAT, even at brokers that charge no commission. Enter a trade to see the full cost at each broker.</p>
+    </div>
+  </section>
+
+  <section class="band" data-i-aria="flowAria" aria-label="Where your trading fees go">
+    <div class="col pad">
+      <figure class="flow" style="margin:0">
+        <div id="flow"></div>
+        <figcaption data-i="flowCap">Every order splits into up to four charges. Only the broker's share can be zero.</figcaption>
+      </figure>
     </div>
   </section>
 
   <section class="band" data-i-aria="trade" aria-label="Trade details">
     <div class="col pad inputs">
-      <div class="seg" role="group" data-i-aria="market" aria-label="Market">
+      <div class="switch market" role="group" data-i-aria="market" aria-label="Market">
         <button type="button" id="tab-sa" aria-pressed="true" data-i="tabSa">Saudi stocks</button>
-        <button type="button" id="tab-us" aria-pressed="false" data-i="tabUs">US stocks via Saudi brokers</button>
+        <button type="button" id="tab-us" aria-pressed="false" data-i="tabUs">US stocks</button>
       </div>
 
       <div class="fields" id="fields-sa">
         <div class="field">
           <label for="sa-value" data-i="value">Trade value</label>
           <div class="input"><span data-i="sar">SAR</span><input id="sa-value" type="number" inputmode="decimal" min="0" step="100" value="10000"></div>
-          <div class="chips" data-for="sa-value"><button class="chipbtn" type="button" data-v="2000">2,000</button><button class="chipbtn" type="button" data-v="10000">10,000</button><button class="chipbtn" type="button" data-v="50000">50,000</button><button class="chipbtn" type="button" data-v="250000">250,000</button></div>
+          <div class="quick" data-for="sa-value" role="group" data-i-aria="quickVal" aria-label="Quick trade values"><button type="button" data-v="2000">2K</button><button type="button" data-v="10000">10K</button><button type="button" data-v="50000">50K</button><button type="button" data-v="250000">250K</button></div>
         </div>
         <div class="field" id="side-field">
           <span class="lbl" id="side-lbl" data-i="trade">Trade</span>
-          <div class="seg wide" role="group" aria-labelledby="side-lbl" id="side">
+          <div class="switch" role="group" aria-labelledby="side-lbl" id="side">
             <button type="button" data-side="1" aria-pressed="false" data-i="one">Buy or sell</button>
             <button type="button" data-side="2" aria-pressed="true" data-i="round">Round trip</button>
           </div>
@@ -310,12 +346,12 @@ tbody tr:last-child td { border-bottom: 0; }
         <div class="field">
           <label for="us-price" data-i="price">Share price</label>
           <div class="input"><span>USD</span><input id="us-price" type="number" inputmode="decimal" min="0" step="0.01" value="25"></div>
-          <div class="chips" data-for="us-price"><button class="chipbtn" type="button" data-v="3">3</button><button class="chipbtn" type="button" data-v="25">25</button><button class="chipbtn" type="button" data-v="180">180</button><button class="chipbtn" type="button" data-v="500">500</button></div>
+          <div class="quick" data-for="us-price" role="group" data-i-aria="quickPrice" aria-label="Quick share prices"><button type="button" data-v="3">$3</button><button type="button" data-v="25">$25</button><button type="button" data-v="180">$180</button><button type="button" data-v="500">$500</button></div>
         </div>
         <div class="field">
           <label for="us-qty" data-i="qty">Shares</label>
           <div class="input"><input id="us-qty" type="number" inputmode="numeric" min="0" step="1" value="40"><span data-i="shares">shares</span></div>
-          <div class="chips" data-for="us-qty"><button class="chipbtn" type="button" data-v="5">5</button><button class="chipbtn" type="button" data-v="40">40</button><button class="chipbtn" type="button" data-v="200">200</button><button class="chipbtn" type="button" data-v="1000">1,000</button></div>
+          <div class="quick" data-for="us-qty" role="group" data-i-aria="quickQty" aria-label="Quick share counts"><button type="button" data-v="5">5</button><button type="button" data-v="40">40</button><button type="button" data-v="200">200</button><button type="button" data-v="1000">1K</button></div>
         </div>
         <div class="field">
           <label for="us-fx" data-i="fx">FX spread your broker charges</label>
@@ -336,25 +372,13 @@ tbody tr:last-child td { border-bottom: 0; }
         <div class="legend" id="legend"></div>
       </div>
       <div class="rows" id="rows"></div>
-      <details class="custom" id="custom-wrap">
-        <summary data-i="customSum">Compare your own rate</summary>
-        <div class="fields" id="custom-sa">
-          <div class="field"><label for="c-bps" data-i="cBps">Broker commission</label><div class="input"><input id="c-bps" type="number" min="0" max="10.5" step="0.5" value="7"><span data-i="bps">bps</span></div></div>
-          <div class="field"><label for="c-min" data-i="cMin">Minimum per order</label><div class="input"><span data-i="sar">SAR</span><input id="c-min" type="number" min="0" step="1" value="0"></div></div>
-        </div>
-        <div class="fields" id="custom-us" hidden>
-          <div class="field"><label for="c-ps" data-i="cPs">Per share</label><div class="input"><span>USD</span><input id="c-ps" type="number" min="0" step="0.001" value="0.01"></div></div>
-          <div class="field"><label for="c-umin" data-i="cMin">Minimum per order</label><div class="input"><span>USD</span><input id="c-umin" type="number" min="0" step="0.01" value="1"></div></div>
-        </div>
-        <p data-i="customNote">Your rate joins the ranking above as "Your rate". One basis point (bp) is 0.01% of the trade value.</p>
-      </details>
     </div>
   </section>
 
   <section class="band">
     <div class="col pad explain" id="explain-sa">
       <h2 data-i="whereH">Where the 0.155% goes</h2>
-      <div class="notes"><p data-i="whereP">The CMA caps the total commission on Saudi equities at 15.5 basis points (0.155%) of the trade value, charged on both the buy and the sell. Only the broker's share can be discounted. The rest goes to the market and the regulator on every trade, even at a zero commission broker. There has been no fixed minimum per order on Tadawul since July 2016.</p></div>
+      <div class="notes"><p data-i="whereP"></p></div>
       <div class="tblwrap">
         <table>
           <thead><tr><th data-i="thShare">Share</th><th data-i="thWho">Who gets it</th><th class="r" data-i="thRate">Rate</th><th class="r" data-i="thOn">On SAR 10,000</th><th data-i="thVat">VAT</th></tr></thead>
@@ -369,7 +393,7 @@ tbody tr:last-child td { border-bottom: 0; }
     </div>
     <div class="col pad explain" id="explain-us" hidden>
       <h2 data-i="usH">Why small US orders can cost more</h2>
-      <div class="notes"><p data-i="usP">Several Saudi brokers now offer free US trading, often on a basic plan. Paid plans charge per share with a minimum per order, so a small order pays the minimum and its cost as a share of the trade climbs fast. 15% VAT applies on top of any commission. Converting riyals to dollars may carry an FX spread that brokers don't publish clearly, so enter your own. US sell orders also pay small SEC and FINRA fees, which are not included here.</p></div>
+      <div class="notes"><p data-i="usP"></p></div>
     </div>
   </section>
 
@@ -378,7 +402,6 @@ tbody tr:last-child td { border-bottom: 0; }
       <div class="notes">
         <p data-i="howP" data-html="1"></p>
         <p data-i="srcP" data-html="1"></p>
-        <p data-i="unconfP" data-html="1"></p>
         <p data-i="moreP" data-html="1"></p>
         <p data-i="advP"></p>
       </div>
@@ -389,50 +412,70 @@ tbody tr:last-child td { border-bottom: 0; }
 
 <script>
 (function () {
-  const VAT = 0.15, MARKET_BPS = 2.0, CMA_BPS = 3.0, USD_SAR = 3.75;
+  const VAT = 0.15, MARKET_BPS = 2.0, CMA_BPS = 3.0, CAP_BPS = 10.5, USD_SAR = 3.75;
 
-  // Saudi equities. bps = the broker's own share of the 15.5 bps ceiling. status: ok = rate published by the broker, ceiling = not published, cap assumed.
+  // The 27 members with internet trading on the Saudi Exchange main market (Members Trading Activity report, October 2026), in that report's order.
+  // bps = the broker's own share of the 15.5 bps ceiling. src: "terms" fee page or terms, "promo" promotion page, null = nothing published, standard 15.5 bps assumed.
   const SA_BROKERS = [
-    { en: "Awaed", ar: "عوائد", bps: 0, status: "ok", note: "zeroSa", url: "https://apps.apple.com/us/app/awaed-invest-trade/id1610134585" },
-    { en: "Derayah Financial", ar: "دراية المالية", bps: 0, status: "ok", note: "zeroSa", url: "https://web.derayah.com/en/prices-fees/" },
-    { en: "Sahm Capital", ar: "سهم كابيتال", bps: 0, status: "ok", note: "sahmSa", url: "https://www.sahmcapital.com/ar-sa/support/detail/saudi-arabia-stock-fees-schedule" },
-    { en: "Alinma Capital", ar: "الإنماء للاستثمار", bps: 10.5, status: "ok", note: "full", url: "https://alinmacapital.com/tadawul-fees" },
-    { en: "Riyad Capital", ar: "الرياض المالية", bps: 10.5, status: "ok", note: "full", url: "https://riyadcapital.com/local-trading" },
-    { en: "SAB Invest", ar: "ساب إنفست", bps: 10.5, status: "ok", note: "full", url: "https://sabinvest.com/en/sab-invest/brokerage/commissions" },
-    { en: "Al Rajhi Capital", ar: "الراجحي المالية", bps: 10.5, status: "ceiling", note: "noRate" },
-    { en: "SNB Capital", ar: "الأهلي المالية", bps: 10.5, status: "ceiling", note: "noRate" },
-    { en: "Albilad Capital", ar: "البلاد المالية", bps: 10.5, status: "ceiling", note: "noRate" },
-    { en: "ANB Capital", ar: "العربي المالية", bps: 10.5, status: "ceiling", note: "noRate" },
-    { en: "Aljazira Capital", ar: "الجزيرة كابيتال", bps: 10.5, status: "ceiling", note: "noRate" },
-    { en: "Saudi Fransi Capital", ar: "السعودي الفرنسي كابيتال", bps: 10.5, status: "ceiling", note: "noRate" },
-    { en: "Alistithmar Capital", ar: "الاستثمار كابيتال", bps: 10.5, status: "ceiling", note: "noRate" },
-    { en: "Yaqeen Capital", ar: "يقين كابيتال", bps: 10.5, status: "ceiling", note: "noRate" },
-  ];
-  // US equities via Saudi brokers, one row per plan. perShare and min in USD.
+    { en: "SNB Capital", ar: "الأهلي المالية", bps: CAP_BPS, src: null },
+    { en: "Al Rajhi Capital", ar: "الراجحي المالية", bps: CAP_BPS, src: null },
+    { en: "Derayah Financial", ar: "دراية المالية", bps: 0, src: "terms", note: "derayah", url: "https://web.derayah.com/en/prices-fees/" },
+    { en: "AlJazira Capital", ar: "الجزيرة كابيتال", bps: CAP_BPS, src: null },
+    { en: "Riyad Capital", ar: "الرياض المالية", bps: CAP_BPS, src: "terms", note: "full", url: "https://riyadcapital.com/local-trading" },
+    { en: "Alinma Capital", ar: "الإنماء للاستثمار", bps: CAP_BPS, src: "terms", note: "full", url: "https://alinmacapital.com/tadawul-fees" },
+    { en: "Sahm Capital", ar: "سهم كابيتال", bps: 0, src: "promo", note: "sahm", url: "https://www.sahmcapital.com/ar-sa/support/detail/saudi-arabia-stock-fees-schedule" },
+    { en: "Saudi Fransi Capital", ar: "السعودي الفرنسي كابيتال", bps: CAP_BPS, src: null },
+    { en: "ANB Capital", ar: "العربي المالية", bps: CAP_BPS, src: null },
+    { en: "Alistithmar Capital", ar: "الاستثمار كابيتال", bps: CAP_BPS, src: null },
+    { en: "SAB Invest", ar: "ساب إنفست", bps: CAP_BPS, src: "terms", note: "full", url: "https://sabinvest.com/en/sab-invest/brokerage/commissions" },
+    { en: "Albilad Capital", ar: "البلاد المالية", bps: CAP_BPS, src: null },
+    { en: "Musharaka Capital", ar: "مشاركة المالية", bps: CAP_BPS, src: null },
+    { en: "HSBC Saudi Arabia", ar: "إتش إس بي سي العربية السعودية", bps: CAP_BPS, src: null },
+    { en: "Emirates NBD Capital KSA", ar: "الإمارات دبي الوطني كابيتال السعودية", bps: CAP_BPS, src: null },
+    { en: "Jadwa Investment", ar: "جدوى للاستثمار", bps: CAP_BPS, src: null },
+    { en: "Awaed", ar: "عوائد", bps: 0, src: "promo", note: "awaed", url: "https://awaed.capital/en" },
+    { en: "Yaqeen Capital", ar: "يقين كابيتال", bps: CAP_BPS, src: null },
+    { en: "AlKhabeer Capital", ar: "الخبير المالية", bps: CAP_BPS, src: "terms", note: "khabeer", url: "https://www.alkhabeer.com/brokerage/" },
+    { en: "GIB Capital", ar: "جي آي بي كابيتال", bps: CAP_BPS, src: null },
+    { en: "SICO Capital", ar: "سيكو المالية", bps: CAP_BPS, src: null },
+    { en: "Arbah Capital", ar: "أرباح المالية", bps: CAP_BPS, src: null },
+    { en: "Al-Khair Capital", ar: "الخير كابيتال", bps: CAP_BPS, src: null },
+    { en: "Al Nefaie Investment Group", ar: "مجموعة النفيعي للاستثمار", bps: CAP_BPS, src: null },
+    { en: "EFG Hermes KSA", ar: "إي إف جي هيرميس السعودية", bps: CAP_BPS, src: null },
+    { en: "Dinar Investment", ar: "دينار للاستثمار", bps: CAP_BPS, src: null },
+    { en: "Osool & Bakheet", ar: "أصول وبخيت للاستثمار", bps: CAP_BPS, src: null },
+  ].map((b, i) => Object.assign({ order: i }, b));
+
+  // US equities via Saudi brokers, one row per published plan. perShare and min in USD.
   const US_BROKERS = [
     { en: "Awaed", ar: "عوائد", perShare: 0, min: () => 0, note: "zeroUs", url: "https://awaed.capital/en/faqs" },
     { en: "Derayah Financial · Lite", ar: "دراية المالية · لايت", perShare: 0, min: () => 0, note: "lite", url: "https://web.derayah.com/en/platforms/derayah-global/" },
     { en: "Riyad Capital · free plan", ar: "الرياض المالية · الباقة المجانية", perShare: 0, min: () => 0, note: "riyadFree", url: "https://riyadcapital.com/us-market" },
     { en: "SNB Capital · Lite", ar: "الأهلي المالية · لايت", perShare: 0, min: () => 0, note: "snbLite", url: "https://snbcapital.com/global-trading" },
+    { en: "AlKhabeer Capital", ar: "الخبير المالية", perShare: 0.014, min: p => (p < 1 ? 25 : 0), perOrderUnder1: true, note: "khabeerUs", url: "https://www.alkhabeer.com/brokerage/" },
     { en: "SNB Capital · Pro", ar: "الأهلي المالية · برو", perShare: 0.015, min: () => 1.25, note: "snbPro", url: "https://snbcapital.com/global-trading" },
     { en: "Riyad Capital · per share plan", ar: "الرياض المالية · باقة السهم", perShare: 0.01, min: () => 1.99, note: "riyadPaid", url: "https://riyadcapital.com/us-market" },
     { en: "Sahm Capital", ar: "سهم كابيتال", perShare: 0.015, min: p => (p <= 5 ? 0.49 : 1.99), note: "sahmUs", url: "https://www.sahmcapital.com/pricing" },
     { en: "Derayah Financial · Pro or Plus", ar: "دراية المالية · برو أو بلس", perShare: 0.0199, min: () => 1.99, note: "derayahPro", url: "https://web.derayah.com/en/platforms/derayah-global/" },
-  ].map(b => Object.assign({ status: "ok" }, b));
+  ].map((b, i) => Object.assign({ order: i, src: "terms" }, b));
 
   const STR = {
     en: {
-      docTitle: "Saudi Broker Fee Calculator: true cost of a Tadawul trade",
-      docDesc: "Free calculator that compares the real cost of a Tadawul trade at Saudi brokers, with exchange fees, the CMA fee, 15% VAT and US order minimums. In English and Arabic.",
-      titleSub: "حاسبة عمولات الوساطة في السوق السعودية", langBtn: "العربية",
+      docTitle: "Which Saudi Broker is Cheapest? Tadawul trading fees compared",
+      docDesc: "Free calculator that compares the full cost of a Tadawul trade at all 27 Saudi online brokers, with exchange fees, the CMA fee and 15% VAT. In English and Arabic.",
+      titleSub: "أي وسيط سعودي هو الأرخص؟", langBtn: "العربية",
       nWork: "Work", nStory: "Story", nLabs: "Labs", chat: "Let's chat",
-      back: "← Labs", exchange: "Saudi Exchange", checked: "Rates checked 4 Nov 2026", title: "Saudi broker fee calculator",
-      lede: "The headline commission is only part of what you pay. Every Tadawul trade also pays exchange and clearing fees, a CMA fee, and 15% VAT on most of that, even at brokers that charge no commission. Enter a trade to see the full bill at each broker.",
-      trade: "Trade", market: "Market", summary: "Summary", tabSa: "Saudi stocks", tabUs: "US stocks via Saudi brokers",
+      back: "← Labs", exchange: "Saudi Stock Exchange", checked: "Rates checked 5 Nov 2026", title: "Which Saudi Broker is Cheapest?",
+      lede: "Commission is only part of the bill. Every trade also pays the exchange, the regulator and VAT, even at brokers that charge no commission. Enter a trade to see the full cost at each broker.",
+      flowAria: "Where your trading fees go", flowCap: "Every order splits into up to four charges. Only the broker's share can be zero. Amounts update with your trade value.",
+      fYou: "Your order", fBroker: "Your broker", fBrokerR: (a, b) => "0 to 10.5 bps · SAR " + a + " to " + b,
+      fMarket: "Saudi Exchange, Muqassa, Edaa", fMarketR: a => "2.0 bps · SAR " + a,
+      fCma: "Capital Market Authority", fCmaR: a => "3.0 bps · SAR " + a + " · no VAT",
+      fVat: "ZATCA (VAT)", fVatR: (a, b) => "15% of broker + exchange · SAR " + a + " to " + b, fVatRm: (a, b) => "15% · SAR " + a + " to " + b,
+      trade: "Trade", market: "Market", summary: "Summary", tabSa: "Saudi stocks", tabUs: "US stocks",
+      quickVal: "Quick trade values", quickPrice: "Quick share prices", quickQty: "Quick share counts",
       value: "Trade value", sar: "SAR", one: "Buy or sell", round: "Round trip", freq: "Orders per month", perMonth: "per month",
       price: "Share price", qty: "Shares", shares: "shares", fx: "FX spread your broker charges", eachWay: "% each way",
-      customSum: "Compare your own rate", cBps: "Broker commission", bps: "bps", cMin: "Minimum per order", cPs: "Per share",
-      customNote: "Your rate joins the ranking above as \"Your rate\". One basis point (bp) is 0.01% of the trade value.",
       whereH: "Where the 0.155% goes",
       whereP: "The CMA caps the total commission on Saudi equities at 15.5 basis points (0.155%) of the trade value, charged on both the buy and the sell. Only the broker's share can be discounted. The rest goes to the market and the regulator on every trade, even at a zero commission broker. There has been no fixed minimum per order on Tadawul since July 2016.",
       thShare: "Share", thWho: "Who gets it", thRate: "Rate", thOn: "On SAR 10,000", thVat: "VAT",
@@ -441,43 +484,51 @@ tbody tr:last-child td { border-bottom: 0; }
       r3a: "Regulatory fee", r3b: "Capital Market Authority", r3c: "3.0 bps", none: "None",
       r4a: "Total before VAT", r4c: "5.0 to 15.5 bps", r4d: "5.00 to 15.50",
       usH: "Why small US orders can cost more",
-      usP: "Several Saudi brokers now offer free US trading, often on a basic plan. Paid plans charge per share with a minimum per order, so a small order pays the minimum and its cost as a share of the trade climbs fast. 15% VAT applies on top of any commission. Converting riyals to dollars may carry an FX spread that brokers don't publish clearly, so enter your own. US sell orders also pay small SEC and FINRA fees, which are not included here.",
-      howP: "<strong>How the calculator works.</strong> For a Saudi stock order it takes the trade value and adds four parts: the broker's commission at its published rate, the 2.0 basis point levy that goes to the Saudi Exchange, Muqassa and Edaa, the 3.0 basis point CMA fee, and 15% VAT on the commission and the levy. The CMA fee carries no VAT. A round trip counts the buy and the sell. The yearly gap multiplies the difference between the cheapest and the most expensive broker by the number of orders you place each month. For US stocks it uses each plan's per share rate and minimum per order, adds 15% VAT on the commission, converts at the fixed rate of 3.75 riyals to the dollar, and adds any FX spread you enter. Everything runs in your browser and nothing you type is sent anywhere.",
-      srcP: "<strong>Rates last checked 4 November 2026.</strong> Sources: <a href=\"https://cma.gov.sa/en/MediaCenter/PR/Pages/SaleCommissions.aspx\" target=\"_blank\" rel=\"noopener\">CMA commission ruling</a>, <a href=\"https://www.argaam.com/en/article/articledetail/id/1546615\" target=\"_blank\" rel=\"noopener\">Tadawul Group fee structure</a>, <a href=\"https://www.sahmcapital.com/ar-sa/support/detail/saudi-arabia-stock-fees-schedule\" target=\"_blank\" rel=\"noopener\">a broker's itemised fee schedule</a>, and each broker's fee page linked in its row.",
-      unconfP: "<strong>Ceiling rate</strong> means the broker hasn't published a rate we could find, so the tool assumes the full 0.155% cap. The same applies to any broker not listed here. Many brokers give discounts on request or through their apps. Ask yours, then enter it under \"Compare your own rate\".",
+      usP: "Several Saudi brokers now offer free US trading, often on a basic plan. Paid plans charge per share, usually with a minimum per order, so a small order pays the minimum and its cost as a share of the trade climbs fast. 15% VAT applies on top of any commission. Converting riyals to dollars may carry an FX spread that brokers don't publish clearly, so enter your own. US sell orders also pay small SEC and FINRA fees, which are not included here.",
+      howP: "<strong>How the calculator works.</strong> For a Saudi stock order it takes the trade value and adds four parts: the broker's commission, the 2.0 basis point levy that goes to the Saudi Exchange, Muqassa and Edaa, the 3.0 basis point CMA fee, and 15% VAT on the commission and the levy. The CMA fee carries no VAT. A round trip counts the buy and the sell. The yearly gap multiplies the difference between the cheapest and the most expensive broker by the number of orders you place each month. For US stocks it uses each plan's per share rate and minimum per order, adds 15% VAT on the commission, converts at the fixed rate of 3.75 riyals to the dollar, and adds any FX spread you enter. Everything runs in your browser and nothing you type is sent anywhere.",
+      srcP: "<strong>Sources, checked 5 November 2026.</strong> The broker list is the 27 members with internet trading in the Saudi Exchange's Members Trading Activity report for October 2026. Each broker's rate is taken from its own fee page, terms or promotion, linked in its row. Where a broker publishes no rate, it is shown at the standard 15.5 bps, the maximum the <a href=\"https://cma.gov.sa/en/MediaCenter/PR/Pages/SaleCommissions.aspx\" target=\"_blank\" rel=\"noopener\">CMA allows</a>. The exchange levy follows the <a href=\"https://www.argaam.com/en/article/articledetail/id/1546615\" target=\"_blank\" rel=\"noopener\">Tadawul Group fee structure</a>.",
       moreP: "More tools: the <a href=\"/labs/tadawul-dividends/\">Tadawul dividend calendar</a> and <a href=\"https://shariah.rafkhan.com\" target=\"_blank\" rel=\"noopener\">Halal Screen</a>. <a href=\"/#labs\">See all Labs tools</a>.",
-      advP: "For information only, not financial advice. Brokers change prices and run promotions, so confirm with yours before trading.",
+      advP: "For information only, not financial advice. Brokers change prices and run promotions, and many give discounts on request, so confirm with yours before trading.",
       footName: "Rafay Khan · Riyadh", footBack: "Back to Labs",
       listRound: "Cost per round trip, cheapest first", listOne: "Cost per order, cheapest first",
       cheapest: u => "Cheapest " + u, unitRound: "round trip", unitOne: "order", mostExp: "Most expensive", allSame: "Every listed broker costs the same at this size",
-      everyBroker: "Several brokers tie", ofTrade: "of the trade", yearly: "Yearly gap", yearlySub: n => "At " + n + " orders a month, cheapest against most expensive",
+      nTie: n => n + " brokers tie", ofTrade: "of the trade", yearly: "Yearly gap", yearlySub: n => "At " + n + " orders a month, cheapest against most expensive",
       breakEven: "Break-even move", breakEvenSub: "How far the price must rise before the cheapest round trip makes money",
       segBroker: "Broker", segMarket: "Exchange and clearing", segCma: "CMA", segVat: "VAT", segComm: "Commission", segFx: "FX spread",
       bBroker: "Broker commission", bMarket: "Exchange, clearing and settlement (2.0 bps)", bCma: "CMA fee (3.0 bps, no VAT)", bVat: "VAT at 15%", bComm: "Commission", bFx: "FX spread", bVatComm: "VAT at 15% on commission",
       perOrder: "Per order", roundTotal: "Round trip, buy and sell", breakdown: "Breakdown in SAR",
-      published: "Published rate", ceiling: "Ceiling rate", yours: "Yours", yourRate: "Your rate", fromInputs: "From your inputs below", feePage: "fee page", minApplies: "minimum applies",
+      tagTerms: "Published rate", tagPromo: "Promotion", tagStd: "15.5 bps (standard)",
+      linkTerms: "fee terms", linkPromo: "promotion", minApplies: "minimum applies",
+      stdNote: "No published rate found, shown at the standard 15.5 bps",
       notes: {
-        zeroSa: "Zero commission on Saudi stocks; exchange and CMA fees still apply",
-        sahmSa: "Lifetime zero commission offer for new sign-ups; standard rate 0.105%",
-        full: "Publishes the full 0.155%", noRate: "No rate published",
+        derayah: "Zero commission on Saudi stocks and Nomu; exchange and CMA fees still apply",
+        sahm: "Lifetime zero commission offer for new sign-ups; standard rate 0.105%",
+        awaed: "Advertises commission-free Saudi trading",
+        full: "Publishes the full 0.155%",
+        khabeer: "Publishes 0.155% with no minimum; also advertises an 80% discount on Saudi commissions",
         zeroUs: "Zero commission on US stocks", lite: "Free on the Lite account, individuals only",
         riyadFree: "Free on digital channels during market hours", riyadPaid: "USD 0.01 a share, minimum USD 1.99",
         snbLite: "Free during market hours", snbPro: "USD 0.015 a share, minimum USD 1.25",
+        khabeerUs: "USD 0.014 a share, no minimum; USD 25 an order under $1 a share",
         sahmUs: "USD 0.015 a share, minimum USD 0.49 up to $5 a share, else USD 1.99", derayahPro: "USD 0.0199 a share, minimum USD 1.99",
       },
     },
     ar: {
-      docTitle: "حاسبة عمولات الوساطة في السوق السعودية: التكلفة الحقيقية لصفقة في تداول",
-      docDesc: "حاسبة مجانية تقارن التكلفة الحقيقية لصفقة في تداول لدى شركات الوساطة السعودية، مع رسوم السوق ورسوم الهيئة وضريبة القيمة المضافة 15% والحد الأدنى للأوامر الأمريكية.",
-      titleSub: "Saudi broker fee calculator", langBtn: "English",
+      docTitle: "أي وسيط سعودي هو الأرخص؟ مقارنة رسوم التداول في تداول",
+      docDesc: "حاسبة مجانية تقارن التكلفة الكاملة لصفقة في تداول لدى 27 وسيطًا سعوديًا يقدمون التداول الإلكتروني، مع رسوم السوق ورسوم الهيئة وضريبة القيمة المضافة 15%.",
+      titleSub: "Which Saudi Broker is Cheapest?", langBtn: "English",
       nWork: "الأعمال", nStory: "القصة", nLabs: "المختبر", chat: "تواصل معي",
-      back: "→ المختبر", exchange: "السوق المالية السعودية", checked: "تم التحقق من الأسعار في 4 نوفمبر 2026", title: "حاسبة عمولات الوساطة",
-      lede: "العمولة المعلنة جزء فقط مما تدفعه. كل صفقة في تداول تدفع أيضًا رسوم السوق والمقاصة ورسوم هيئة السوق المالية، وضريبة قيمة مضافة 15% على معظمها، حتى لدى الوسطاء الذين لا يأخذون عمولة. أدخل صفقتك لترى التكلفة الكاملة لدى كل وسيط.",
-      trade: "تفاصيل الصفقة", market: "السوق", summary: "الملخص", tabSa: "الأسهم السعودية", tabUs: "الأسهم الأمريكية عبر وسطاء سعوديين",
+      back: "→ المختبر", exchange: "السوق المالية السعودية", checked: "تم التحقق من الأسعار في 5 نوفمبر 2026", title: "أي وسيط سعودي هو الأرخص؟",
+      lede: "العمولة جزء فقط من التكلفة. كل صفقة تدفع أيضًا للسوق والهيئة وضريبة القيمة المضافة، حتى لدى الوسطاء الذين لا يأخذون عمولة. أدخل صفقتك لترى التكلفة الكاملة لدى كل وسيط.",
+      flowAria: "أين تذهب رسوم تداولك", flowCap: "كل أمر ينقسم إلى أربع رسوم كحد أقصى، وحصة الوسيط وحدها يمكن أن تكون صفرًا. تتغير المبالغ مع قيمة صفقتك.",
+      fYou: "أمرك", fBroker: "وسيطك", fBrokerR: (a, b) => "من 0 إلى 10.5 نقطة · من " + a + " إلى " + b + " ريال",
+      fMarket: "تداول السعودية ومقاصة وإيداع", fMarketR: a => "2.0 نقطة · " + a + " ريال",
+      fCma: "هيئة السوق المالية", fCmaR: a => "3.0 نقطة · " + a + " ريال · بلا ضريبة",
+      fVat: "هيئة الزكاة والضريبة والجمارك", fVatR: (a, b) => "15% من الوسيط والسوق · من " + a + " إلى " + b + " ريال", fVatRm: (a, b) => "15% · من " + a + " إلى " + b + " ريال",
+      trade: "نوع الصفقة", market: "السوق", summary: "الملخص", tabSa: "الأسهم السعودية", tabUs: "الأسهم الأمريكية",
+      quickVal: "قيم سريعة للصفقة", quickPrice: "أسعار سريعة للسهم", quickQty: "أعداد سريعة للأسهم",
       value: "قيمة الصفقة", sar: "ريال", one: "شراء أو بيع", round: "شراء وبيع", freq: "عدد الأوامر شهريًا", perMonth: "شهريًا",
       price: "سعر السهم", qty: "عدد الأسهم", shares: "سهم", fx: "فرق صرف العملة لدى وسيطك", eachWay: "% لكل تحويل",
-      customSum: "قارن عمولتك الخاصة", cBps: "عمولة الوسيط", bps: "نقطة أساس", cMin: "الحد الأدنى للأمر", cPs: "لكل سهم",
-      customNote: "تظهر عمولتك في الترتيب أعلاه باسم \"عمولتك\". نقطة الأساس تساوي 0.01% من قيمة الصفقة.",
       whereH: "أين تذهب نسبة 0.155%",
       whereP: "تحدد هيئة السوق المالية سقف العمولة على الأسهم السعودية بـ 15.5 نقطة أساس (0.155%) من قيمة الصفقة، تُحتسب على الشراء وعلى البيع. حصة الوسيط وحدها قابلة للخصم، أما الباقي فيذهب إلى السوق والهيئة في كل صفقة حتى لدى الوسيط الذي لا يأخذ عمولة. ولا يوجد حد أدنى ثابت للأمر في تداول منذ يوليو 2016.",
       thShare: "الحصة", thWho: "المستفيد", thRate: "النسبة", thOn: "على 10,000 ريال", thVat: "الضريبة",
@@ -486,28 +537,32 @@ tbody tr:last-child td { border-bottom: 0; }
       r3a: "رسوم الهيئة", r3b: "هيئة السوق المالية", r3c: "3.0 نقطة", none: "لا يوجد",
       r4a: "الإجمالي قبل الضريبة", r4c: "من 5.0 إلى 15.5 نقطة", r4d: "من 5.00 إلى 15.50",
       usH: "لماذا قد تكلف الأوامر الأمريكية الصغيرة أكثر",
-      usP: "عدد من الوسطاء السعوديين يقدمون الآن تداولًا مجانيًا في الأسهم الأمريكية، غالبًا عبر باقة أساسية. أما الباقات المدفوعة فتحسب عمولة لكل سهم مع حد أدنى للأمر، فيدفع الأمر الصغير الحد الأدنى وترتفع تكلفته كنسبة من الصفقة. تُضاف ضريبة 15% على أي عمولة. وقد يحمل تحويل الريال إلى الدولار فرق صرف لا يعلنه الوسطاء بوضوح، فأدخل النسبة التي تعرفها. أوامر البيع الأمريكية تدفع أيضًا رسومًا صغيرة لهيئة SEC وFINRA غير مشمولة هنا.",
-      howP: "<strong>طريقة الحساب.</strong> للأسهم السعودية تأخذ الحاسبة قيمة الصفقة وتضيف أربعة أجزاء: عمولة الوسيط حسب سعره المعلن، ورسم 2.0 نقطة أساس يذهب إلى تداول السعودية ومقاصة وإيداع، ورسم هيئة السوق المالية 3.0 نقطة أساس، وضريبة القيمة المضافة 15% على العمولة ورسم السوق. رسم الهيئة لا تُفرض عليه ضريبة. صفقة الشراء والبيع تحسب الطرفين معًا. والفرق السنوي يضرب الفرق بين أرخص وأغلى وسيط في عدد أوامرك الشهرية. وللأسهم الأمريكية تستخدم الحاسبة عمولة كل باقة لكل سهم والحد الأدنى للأمر، وتضيف ضريبة 15% على العمولة، وتحوّل بسعر ثابت 3.75 ريال للدولار، ثم تضيف فرق الصرف الذي تدخله. كل الحسابات تجري في متصفحك ولا يُرسل شيء مما تكتبه.",
-      srcP: "<strong>آخر تحقق من الأسعار: 4 نوفمبر 2026.</strong> المصادر: <a href=\"https://cma.gov.sa/en/MediaCenter/PR/Pages/SaleCommissions.aspx\" target=\"_blank\" rel=\"noopener\">قرار هيئة السوق المالية بشأن العمولة</a>، و<a href=\"https://www.argaam.com/en/article/articledetail/id/1546615\" target=\"_blank\" rel=\"noopener\">هيكل رسوم مجموعة تداول</a>، و<a href=\"https://www.sahmcapital.com/ar-sa/support/detail/saudi-arabia-stock-fees-schedule\" target=\"_blank\" rel=\"noopener\">جدول رسوم مفصل لدى أحد الوسطاء</a>، وصفحة رسوم كل وسيط في صفه.",
-      unconfP: "<strong>سعر السقف</strong> يعني أن الوسيط لم ينشر سعرًا استطعنا العثور عليه، فتفترض الحاسبة السقف الكامل 0.155%، وينطبق ذلك على أي وسيط غير مدرج هنا. كثير من الوسطاء يمنحون خصومات عند الطلب أو عبر تطبيقاتهم. اسأل وسيطك ثم أدخل عمولتك في \"قارن عمولتك الخاصة\".",
+      usP: "عدد من الوسطاء السعوديين يقدمون الآن تداولًا مجانيًا في الأسهم الأمريكية، غالبًا عبر باقة أساسية. أما الباقات المدفوعة فتحسب عمولة لكل سهم، غالبًا مع حد أدنى للأمر، فيدفع الأمر الصغير الحد الأدنى وترتفع تكلفته كنسبة من الصفقة. تُضاف ضريبة 15% على أي عمولة. وقد يحمل تحويل الريال إلى الدولار فرق صرف لا يعلنه الوسطاء بوضوح، فأدخل النسبة التي تعرفها. أوامر البيع الأمريكية تدفع أيضًا رسومًا صغيرة لهيئة SEC وFINRA غير مشمولة هنا.",
+      howP: "<strong>طريقة الحساب.</strong> للأسهم السعودية تأخذ الحاسبة قيمة الصفقة وتضيف أربعة أجزاء: عمولة الوسيط، ورسم 2.0 نقطة أساس يذهب إلى تداول السعودية ومقاصة وإيداع، ورسم هيئة السوق المالية 3.0 نقطة أساس، وضريبة القيمة المضافة 15% على العمولة ورسم السوق. رسم الهيئة لا تُفرض عليه ضريبة. صفقة الشراء والبيع تحسب الطرفين معًا. والفرق السنوي يضرب الفرق بين أرخص وأغلى وسيط في عدد أوامرك الشهرية. وللأسهم الأمريكية تستخدم الحاسبة عمولة كل باقة لكل سهم والحد الأدنى للأمر، وتضيف ضريبة 15% على العمولة، وتحوّل بسعر ثابت 3.75 ريال للدولار، ثم تضيف فرق الصرف الذي تدخله. كل الحسابات تجري في متصفحك ولا يُرسل شيء مما تكتبه.",
+      srcP: "<strong>المصادر، تم التحقق في 5 نوفمبر 2026.</strong> قائمة الوسطاء هي الأعضاء الـ 27 الذين لديهم تداول إلكتروني في تقرير نشاط تداول الأعضاء الصادر عن تداول السعودية لشهر أكتوبر 2026. سعر كل وسيط مأخوذ من صفحة رسومه أو شروطه أو عروضه، والرابط في صفه. وإذا لم ينشر الوسيط سعرًا يظهر بالسعر المعتاد 15.5 نقطة أساس، وهو الحد الأعلى الذي <a href=\"https://cma.gov.sa/en/MediaCenter/PR/Pages/SaleCommissions.aspx\" target=\"_blank\" rel=\"noopener\">تسمح به الهيئة</a>. ورسم السوق وفق <a href=\"https://www.argaam.com/en/article/articledetail/id/1546615\" target=\"_blank\" rel=\"noopener\">هيكل رسوم مجموعة تداول</a>.",
       moreP: "أدوات أخرى: <a href=\"/labs/tadawul-dividends/?lang=ar\">تقويم توزيعات الأرباح في تداول</a> و<a href=\"https://shariah.rafkhan.com\" target=\"_blank\" rel=\"noopener\">Halal Screen</a>. <a href=\"/#labs\">كل أدوات المختبر</a>.",
-      advP: "للمعلومة فقط وليست نصيحة مالية. الوسطاء يغيرون أسعارهم ويطلقون عروضًا، فتأكد من وسيطك قبل التداول.",
+      advP: "للمعلومة فقط وليست نصيحة مالية. الوسطاء يغيرون أسعارهم ويطلقون عروضًا، وكثير منهم يمنح خصمًا عند الطلب، فتأكد من وسيطك قبل التداول.",
       footName: "Rafay Khan · الرياض", footBack: "العودة إلى المختبر",
       listRound: "تكلفة صفقة الشراء والبيع، من الأرخص", listOne: "تكلفة الأمر الواحد، من الأرخص",
       cheapest: u => "الأرخص لكل " + u, unitRound: "صفقة شراء وبيع", unitOne: "أمر", mostExp: "الأغلى", allSame: "كل الوسطاء المدرجين بالتكلفة نفسها عند هذا الحجم",
-      everyBroker: "أكثر من وسيط بالتكلفة نفسها", ofTrade: "من الصفقة", yearly: "الفرق السنوي", yearlySub: n => "عند " + n + " أوامر شهريًا، بين الأرخص والأغلى",
+      nTie: n => n + (n <= 10 ? " وسطاء" : " وسيطًا") + " بالتكلفة نفسها", ofTrade: "من الصفقة", yearly: "الفرق السنوي", yearlySub: n => "عند " + n + " أوامر شهريًا، بين الأرخص والأغلى",
       breakEven: "نقطة التعادل", breakEvenSub: "مقدار ارتفاع السعر اللازم قبل أن تربح صفقة الشراء والبيع الأرخص",
       segBroker: "الوسيط", segMarket: "السوق والمقاصة", segCma: "الهيئة", segVat: "الضريبة", segComm: "العمولة", segFx: "فرق الصرف",
       bBroker: "عمولة الوسيط", bMarket: "التداول والمقاصة والتسوية (2.0 نقطة)", bCma: "رسم الهيئة (3.0 نقطة، بلا ضريبة)", bVat: "ضريبة 15%", bComm: "العمولة", bFx: "فرق الصرف", bVatComm: "ضريبة 15% على العمولة",
       perOrder: "للأمر الواحد", roundTotal: "شراء وبيع", breakdown: "التفاصيل بالريال",
-      published: "سعر معلن", ceiling: "سعر السقف", yours: "عمولتك", yourRate: "عمولتك", fromInputs: "من مدخلاتك أدناه", feePage: "صفحة الرسوم", minApplies: "يُطبق الحد الأدنى",
+      tagTerms: "سعر معلن", tagPromo: "عرض ترويجي", tagStd: "15.5 نقطة (المعتاد)",
+      linkTerms: "شروط الرسوم", linkPromo: "العرض", minApplies: "يُطبق الحد الأدنى",
+      stdNote: "لم نجد سعرًا منشورًا، فيظهر بالسعر المعتاد 15.5 نقطة أساس",
       notes: {
-        zeroSa: "بدون عمولة على الأسهم السعودية، وتبقى رسوم السوق والهيئة",
-        sahmSa: "عرض عمولة صفرية مدى الحياة للمسجلين الجدد، والسعر المعتاد 0.105%",
-        full: "يعلن 0.155% كاملة", noRate: "لا يوجد سعر معلن",
+        derayah: "بدون عمولة على الأسهم السعودية ونمو، وتبقى رسوم السوق والهيئة",
+        sahm: "عرض عمولة صفرية مدى الحياة للمسجلين الجدد، والسعر المعتاد 0.105%",
+        awaed: "يعلن عن تداول الأسهم السعودية بدون عمولة",
+        full: "يعلن 0.155% كاملة",
+        khabeer: "يعلن 0.155% بلا حد أدنى، ويعلن أيضًا عن خصم 80% على عمولة السوق السعودي",
         zeroUs: "بدون عمولة على الأسهم الأمريكية", lite: "مجانًا في حساب لايت، للأفراد فقط",
         riyadFree: "مجانًا عبر القنوات الرقمية خلال ساعات السوق", riyadPaid: "0.01 دولار للسهم، بحد أدنى 1.99 دولار",
         snbLite: "مجانًا خلال ساعات السوق", snbPro: "0.015 دولار للسهم، بحد أدنى 1.25 دولار",
+        khabeerUs: "0.014 دولار للسهم بلا حد أدنى، و25 دولارًا للأمر إذا كان سعر السهم أقل من دولار",
         sahmUs: "0.015 دولار للسهم، بحد أدنى 0.49 دولار حتى 5 دولارات للسهم، وإلا 1.99 دولار", derayahPro: "0.0199 دولار للسهم، بحد أدنى 1.99 دولار",
       },
     },
@@ -527,47 +582,99 @@ tbody tr:last-child td { border-bottom: 0; }
   const num = id => { const v = parseFloat($(id).value); return isFinite(v) && v > 0 ? v : 0; };
   const sar = v => (lang === "ar" ? fmt(v) + " ريال" : "SAR " + fmt(v));
   const sar0 = v => (lang === "ar" ? fmt(v, 0) + " ريال" : "SAR " + fmt(v, 0));
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
   function saCost(b, value) {
-    const broker = value > 0 ? Math.max(value * b.bps / 1e4, b.min || 0) : 0;
+    const broker = value * b.bps / 1e4;
     const market = value * MARKET_BPS / 1e4, cma = value * CMA_BPS / 1e4;
     const vat = VAT * (broker + market);
     return { broker, market, cma, vat, total: broker + market + cma + vat };
   }
   function usCost(b, price, qty, fxPct) {
-    const commUsd = qty > 0 ? Math.max(qty * b.perShare, b.min(price)) : 0;
+    const commUsd = qty > 0 ? (b.perOrderUnder1 && price < 1 ? b.min(price) : Math.max(qty * b.perShare, b.min(price))) : 0;
     const broker = commUsd * USD_SAR, vat = VAT * broker, fx = price * qty * USD_SAR * fxPct / 100;
-    return { broker, fx, vat, total: broker + fx + vat, minHit: qty > 0 && b.min(price) > 0 && qty * b.perShare < b.min(price) };
+    return { broker, fx, vat, total: broker + fx + vat, minHit: qty > 0 && !b.perOrderUnder1 && b.min(price) > 0 && qty * b.perShare < b.min(price) };
   }
   const stat = (k, v, s) => `<div><span class="k">${k}</span><span class="v num">${v}</span><span class="s">${s}</span></div>`;
   const nm = b => lang === "ar" ? b.ar : b.en;
+
+  // ---------- Fee flow graphic ----------
+  const SVGNS = "http://www.w3.org/2000/svg";
+  const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function flowNodes(t, v) {
+    const f = x => fmt(x);
+    const m = v * MARKET_BPS / 1e4, c = v * CMA_BPS / 1e4, bmax = v * CAP_BPS / 1e4;
+    return [
+      { name: t.fBroker, rate: t.fBrokerR(f(0), f(bmax)), color: "var(--seg-broker)" },
+      { name: t.fMarket, rate: t.fMarketR(f(m)), color: "var(--seg-market)" },
+      { name: t.fCma, rate: t.fCmaR(f(c)), color: "var(--seg-cma)" },
+      { name: t.fVat, rate: t.fVatR(f(VAT * m), f(VAT * (m + bmax))), rateM: t.fVatRm(f(VAT * m), f(VAT * (m + bmax))), color: "var(--seg-vat)" },
+    ];
+  }
+  function drawFlow() {
+    const t = T(), v = num("sa-value"), rtl = lang === "ar", nodes = flowNodes(t, v);
+    const srcLine = rtl ? fmt(v, 0) + " ريال" : "SAR " + fmt(v, 0);
+    // Desktop: order on one side, four parties on the other, curved wires between.
+    const W = 1000;
+    const mx = (x, w) => rtl ? W - x - w : x;
+    let d = `<svg class="fl-d" viewBox="0 0 ${W} 320" role="img" aria-label="${esc(t.flowAria)}">`;
+    const sx = mx(0, 250), sy = 120;
+    nodes.forEach((n, i) => {
+      const cy = 40 + i * 80, x0 = rtl ? W - 250 : 250, x1 = rtl ? W - 620 : 620;
+      const p = `M${x0},160 C${(x0 + x1) / 2},160 ${(x0 + x1) / 2},${cy} ${x1},${cy}`;
+      d += `<path class="wire" id="w${i}" d="${p}"/>`;
+      if (!reduce) for (let k = 0; k < 2; k++) d += `<circle class="dot" r="5" style="fill:${n.color}"><animateMotion dur="2.8s" begin="-${(i * 0.35 + k * 1.4 + 0.1).toFixed(2)}s" repeatCount="indefinite" path="${p}"/></circle>`;
+      const bx = mx(620, 380);
+      d += `<rect class="node" x="${bx}" y="${cy - 32}" width="380" height="64" rx="12"/>`;
+      d += `<rect x="${rtl ? bx + 380 - 6 : bx}" y="${cy - 32}" width="6" height="64" rx="3" style="fill:${n.color}"/>`;
+      const tx = rtl ? bx + 380 - 22 : bx + 22, an = "start";
+      d += `<text class="t1" x="${tx}" y="${cy - 6}" text-anchor="${an}">${esc(n.name)}</text><text class="t2" x="${tx}" y="${cy + 16}" text-anchor="${an}">${esc(n.rate)}</text>`;
+    });
+    d += `<rect class="node src" x="${sx}" y="${sy}" width="250" height="80" rx="14"/>`;
+    const stx = rtl ? sx + 250 - 22 : sx + 22, san = "start";
+    d += `<text class="src-t1" x="${stx}" y="${sy + 34}" text-anchor="${san}">${esc(t.fYou)}</text><text class="src-t2" x="${stx}" y="${sy + 58}" text-anchor="${san}">${esc(srcLine)}</text></svg>`;
+    // Phone: order on top, a trunk down one side, a branch into each party.
+    const MW = 360, trunk = rtl ? MW - 16 : 16, bx = rtl ? 0 : 40, bw = 320;
+    let m = `<svg class="fl-m" viewBox="0 0 ${MW} 392" role="img" aria-label="${esc(t.flowAria)}">`;
+    nodes.forEach((n, i) => {
+      const cy = 112 + i * 76, p = `M${trunk},60 V${cy} H${rtl ? bw : bx}`;
+      m += `<path class="wire" d="${p}"/>`;
+      if (!reduce) m += `<circle class="dot" r="4.5" style="fill:${n.color}"><animateMotion dur="2.4s" begin="-${(i * 0.4 + 0.1).toFixed(2)}s" repeatCount="indefinite" path="${p}"/></circle>`;
+      m += `<rect class="node" x="${bx}" y="${cy - 32}" width="${bw}" height="64" rx="12"/>`;
+      m += `<rect x="${rtl ? bx + bw - 6 : bx}" y="${cy - 32}" width="6" height="64" rx="3" style="fill:${n.color}"/>`;
+      const tx = rtl ? bx + bw - 18 : bx + 18, an = "start";
+      m += `<text class="t1" x="${tx}" y="${cy - 6}" text-anchor="${an}" style="font-size:14px">${esc(n.name)}</text><text class="t2" x="${tx}" y="${cy + 15}" text-anchor="${an}" style="font-size:11.5px">${esc(n.rateM || n.rate)}</text>`;
+    });
+    m += `<rect class="node src" x="0" y="0" width="${MW}" height="60" rx="12"/>`;
+    const mtx = rtl ? MW - 18 : 18, man = "start", mtx2 = rtl ? 18 : MW - 18, man2 = "end";
+    m += `<text class="src-t1" x="${mtx}" y="36" text-anchor="${man}">${esc(t.fYou)}</text><text class="src-t2" x="${mtx2}" y="36" text-anchor="${man2}">${esc(srcLine)}</text></svg>`;
+    $("flow").innerHTML = d + m;
+  }
 
   function render() {
     const t = T(), sa = state.market === "sa", legs = state.legs, freq = num("sa-freq");
     let value, rows;
     if (sa) {
       value = num("sa-value");
-      const list = SA_BROKERS.concat([{ en: t.yourRate, ar: t.yourRate, bps: Math.min(num("c-bps"), 10.5), min: num("c-min"), status: "custom" }]);
-      rows = list.map(b => { const c = saCost(b, value); return { b, c, total: c.total * legs }; });
+      rows = SA_BROKERS.map(b => { const c = saCost(b, value); return { b, c, total: c.total * legs }; });
     } else {
       const price = num("us-price"), qty = Math.floor(num("us-qty")), fx = num("us-fx");
       value = price * qty * USD_SAR;
-      const list = US_BROKERS.concat([{ en: t.yourRate, ar: t.yourRate, perShare: num("c-ps"), min: () => num("c-umin"), status: "custom" }]);
-      rows = list.map(b => { const c = usCost(b, price, qty, fx); return { b, c, total: c.total * legs }; });
+      rows = US_BROKERS.map(b => { const c = usCost(b, price, qty, fx); return { b, c, total: c.total * legs }; });
     }
-    rows.sort((a, z) => a.total - z.total || (a.b.status === "custom") - (z.b.status === "custom"));
-    const real = rows.filter(r => r.b.status !== "custom");
-    const best = real[0], worst = real[real.length - 1];
-    const ties = real.filter(r => Math.abs(r.total - best.total) < 0.005).length;
-    const wties = real.filter(r => Math.abs(r.total - worst.total) < 0.005).length;
+    // Cheapest first; ties keep the report order (largest internet market share first).
+    rows.sort((a, z) => (a.total - z.total) || (a.b.order - z.b.order));
+    const best = rows[0], worst = rows[rows.length - 1];
+    const ties = rows.filter(r => Math.abs(r.total - best.total) < 0.005).length;
+    const wties = rows.filter(r => Math.abs(r.total - worst.total) < 0.005).length;
     const unit = legs === 2 ? t.unitRound : t.unitOne;
     $("list-title").textContent = legs === 2 ? t.listRound : t.listOne;
     const pct = v => value > 0 ? v / value * 100 : 0;
     const allTie = Math.abs(worst.total - best.total) < 0.005;
     const yearly = (worst.total - best.total) * (legs === 2 ? freq / 2 : freq) * 12;
     $("summary").innerHTML =
-      stat(t.cheapest(unit), sar(best.total), (ties > 1 ? t.everyBroker : nm(best.b)) + " · " + fmt(pct(best.total), 3) + "% " + t.ofTrade) +
-      stat(t.mostExp, sar(worst.total), allTie ? t.allSame : (wties > 1 ? t.everyBroker : nm(worst.b)) + " · " + fmt(pct(worst.total), 3) + "%") +
+      stat(t.cheapest(unit), sar(best.total), (ties > 1 ? t.nTie(ties) : nm(best.b)) + " · " + fmt(pct(best.total), 3) + "% " + t.ofTrade) +
+      stat(t.mostExp, sar(worst.total), allTie ? t.allSame : (wties > 1 ? t.nTie(wties) : nm(worst.b)) + " · " + fmt(pct(worst.total), 3) + "%") +
       (sa ? stat(t.yearly, sar0(yearly), t.yearlySub(freq))
           : stat(t.breakEven, fmt(pct(best.total * (legs === 2 ? 1 : 2)), 2) + "%", t.breakEvenSub));
 
@@ -577,22 +684,30 @@ tbody tr:last-child td { border-bottom: 0; }
 
     const max = Math.max(...rows.map(r => r.total), 0.0001);
     $("rows").innerHTML = rows.map((r, i) => {
-      const c = r.c, L = legs;
+      const c = r.c, L = legs, b = r.b;
       const parts = sa ? [[c.broker, "--seg-broker", t.bBroker], [c.market, "--seg-market", t.bMarket], [c.cma, "--seg-cma", t.bCma], [c.vat, "--seg-vat", t.bVat]]
                        : [[c.broker, "--seg-broker", t.bComm], [c.fx, "--seg-market", t.bFx], [c.vat, "--seg-vat", t.bVatComm]];
       const bar = parts.map(p => `<i style="width:${(p[0] * L / max * 100).toFixed(2)}%;background:var(${p[1]})"></i>`).join("");
-      const tag = r.b.status === "ok" ? `<span class="pill ok">${t.published}</span>` : r.b.status === "ceiling" ? `<span class="pill warn">${t.ceiling}</span>` : `<span class="pill ok">${t.yours}</span>`;
-      const note = r.b.status === "custom" ? t.fromInputs : t.notes[r.b.note];
-      const link = r.b.url ? ` · <a href="${r.b.url}" target="_blank" rel="noopener">${t.feePage}</a>` : "";
+      const tag = b.src === "terms" ? `<span class="pill ok">${t.tagTerms}</span>` : b.src === "promo" ? `<span class="pill ok">${t.tagPromo}</span>` : `<span class="pill warn">${t.tagStd}</span>`;
+      const note = b.src ? t.notes[b.note] : t.stdNote;
+      const link = b.url ? ` · <a href="${b.url}" target="_blank" rel="noopener">${b.src === "promo" ? t.linkPromo : t.linkTerms}</a>` : "";
       const lines = parts.map(p => `<span class="k">${p[2]}</span><span class="v">${fmt(p[0])}</span>`).join("");
-      return `<article class="brow${i === 0 ? " best" : ""}">
+      return `<article class="brow${i < ties ? " best" : ""}">
         <div class="rtop"><span class="rank">${i + 1}</span>
-          <div class="name"><span class="n">${nm(r.b)}</span>${tag}<div class="d">${note}${c.minHit ? ` · <strong>${t.minApplies}</strong>` : ""}${link}</div></div>
+          <div class="name"><span class="n">${esc(nm(b))}</span>${tag}<div class="d">${note}${c.minHit ? ` · <strong>${t.minApplies}</strong>` : ""}${link}</div></div>
           <div class="total"><b>${sar(r.total)}</b><span>${fmt(pct(r.total), 3)}%</span></div></div>
         <div class="meter" aria-hidden="true">${bar}</div>
         <details><summary>${t.breakdown}</summary><div class="breakdown">${lines}<span class="k t">${t.perOrder}</span><span class="v t">${fmt(c.total)}</span>${L === 2 ? `<span class="k">${t.roundTotal}</span><span class="v">${fmt(r.total)}</span>` : ""}</div></details>
       </article>`;
     }).join("");
+    markQuick();
+  }
+
+  function markQuick() {
+    document.querySelectorAll(".quick").forEach(q => {
+      const v = parseFloat($(q.dataset.for).value);
+      q.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", parseFloat(b.dataset.v) === v));
+    });
   }
 
   function applyLang() {
@@ -608,15 +723,15 @@ tbody tr:last-child td { border-bottom: 0; }
     document.querySelectorAll("[data-i-aria]").forEach(el => { const v = t[el.dataset.iAria]; if (typeof v === "string") el.setAttribute("aria-label", v); });
     $("titleSub").textContent = t.titleSub; $("titleSub").lang = lang === "ar" ? "en" : "ar";
     $("langBtn").textContent = t.langBtn; $("langBtn").lang = lang === "ar" ? "en" : "ar";
-    render();
+    drawFlow(); render();
   }
 
   function setMarket(m) {
     state.market = m;
     $("tab-sa").setAttribute("aria-pressed", m === "sa"); $("tab-us").setAttribute("aria-pressed", m === "us");
-    ["fields-us", "custom-us", "explain-us"].forEach(id => $(id).hidden = m !== "us");
-    ["fields-sa", "custom-sa", "explain-sa"].forEach(id => $(id).hidden = m !== "sa");
-    // Both markets share the buy/sell toggle; it lives in whichever field group is showing.
+    ["fields-us", "explain-us"].forEach(id => $(id).hidden = m !== "us");
+    ["fields-sa", "explain-sa"].forEach(id => $(id).hidden = m !== "sa");
+    // Both markets share the buy/sell switch; it lives in whichever field group is showing.
     (m === "sa" ? $("fields-sa") : $("fields-us")).insertBefore($("side-field"), m === "sa" ? $("freq-field") : null);
     store.set("bf-market", m);
     render();
@@ -629,11 +744,17 @@ tbody tr:last-child td { border-bottom: 0; }
     $("side").querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b));
     render();
   });
-  document.querySelectorAll(".chips").forEach(ch => ch.addEventListener("click", e => {
+  document.querySelectorAll(".quick").forEach(q => q.addEventListener("click", e => {
     const b = e.target.closest("button"); if (!b) return;
-    $(ch.dataset.for).value = b.dataset.v; render();
+    $(q.dataset.for).value = b.dataset.v;
+    if (q.dataset.for === "sa-value") drawFlow();
+    render();
   }));
-  document.addEventListener("input", e => { if (e.target.matches("input")) render(); });
+  document.addEventListener("input", e => {
+    if (!e.target.matches("input")) return;
+    if (e.target.id === "sa-value") drawFlow();
+    render();
+  });
   $("langBtn").addEventListener("click", () => {
     lang = lang === "ar" ? "en" : "ar"; store.set("bf-lang", lang);
     try { const u = new URL(location.href); u.searchParams.set("lang", lang); history.replaceState(null, "", u); } catch (e) {}
