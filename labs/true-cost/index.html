@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27%23181818%27/%3E%3Ctext x=%2732%27 y=%2742%27 font-family=%27Arial%27 font-weight=%27700%27 font-size=%2728%27 fill=%27%2330d158%27 text-anchor=%27middle%27%3ERK%3C/text%3E%3C/svg%3E">
+<title>BNPL and Credit Card Cost Calculator: late fees and APR</title>
+<meta name="description" content="Free BNPL and credit card cost calculator. See what late fees and minimum-only payments really cost as a yearly rate, in SAR or any currency.">
+<link rel="canonical" href="https://rafkhan.com/labs/true-cost/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rafay Khan">
+<meta property="og:title" content="The true cost of BNPL and credit cards">
+<meta property="og:description" content="What a late BNPL payment and minimum-only card payments really cost, as a yearly rate and in years of payments.">
+<meta property="og:url" content="https://rafkhan.com/labs/true-cost/">
+<meta property="og:image" content="https://rafkhan.com/og/true-cost.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="True cost of BNPL and credit cards, a free calculator by Rafay Khan">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "True Cost of BNPL and Credit Cards", "alternateName": "التكلفة الحقيقية للشراء الآن والدفع لاحقًا وبطاقات الائتمان", "url": "https://rafkhan.com/labs/true-cost/", "description": "A calculator that turns buy now, pay later late fees into a yearly rate and shows how long minimum-only credit card payments take and how much interest they cost.", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "inLanguage": "en", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "SAR"}, "author": {"@type": "Person", "name": "Rafay Khan", "url": "https://rafkhan.com/", "sameAs": ["https://www.linkedin.com/in/rafekhan"]}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Rafay Khan", "item": "https://rafkhan.com/"}, {"@type": "ListItem", "position": 2, "name": "Labs", "item": "https://rafkhan.com/#labs"}, {"@type": "ListItem", "position": 3, "name": "True Cost of BNPL and Credit Cards", "item": "https://rafkhan.com/labs/true-cost/"}]}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"></noscript>
+<style>
+/* Fallback sized like Geist so text does not reflow when the web font arrives. */
+@font-face { font-family: "Geist Fallback"; src: local("Arial"), local("Liberation Sans"), local("Helvetica"); size-adjust: 102.6%; }
+/* Layout: same drafting board as rafkhan.com. Grid paper ground, one framed 1200px column ruled into bands with corner ticks, serif display over Geist, glossy black controls. */
+:root {
+  --bg: #fafaf9; --paper-line: #efefed; --surface: #ffffff; --raised: #f2f2f0;
+  --ink: #111111; --muted: #565656; --line: #dcdcd8; --grid: #ececea;
+  --accent: #1f7d37; --accent-soft: #e6f6ea;
+  --bad: #b3261e; --bad-soft: #fbeceb; --warn: #8a5a12; --warn-soft: #f1ece1;
+  --s-plan: #248a3d; --s-min: #9a4fc2;
+  --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font: "Geist", "Geist Fallback", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --frame: 1200px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131313; --paper-line: #1c1c1c; --surface: #1f1f1f; --raised: #272727; --ink: #f4f4f4; --muted: #a3a3a3; --line: #313131; --grid: #2a2a2a;
+    --accent: #30d158; --accent-soft: #1d2a20; --bad: #ff8a80; --bad-soft: #2c1d1c; --warn: #e0ae55; --warn-soft: #24211b;
+    --s-plan: #2a9e46; --s-min: #a970d0; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131313; --paper-line: #1c1c1c; --surface: #1f1f1f; --raised: #272727; --ink: #f4f4f4; --muted: #a3a3a3; --line: #313131; --grid: #2a2a2a;
+  --accent: #30d158; --accent-soft: #1d2a20; --bad: #ff8a80; --bad-soft: #2c1d1c; --warn: #e0ae55; --warn-soft: #24211b;
+  --s-plan: #2a9e46; --s-min: #a970d0; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background-color: var(--bg); background-image: linear-gradient(var(--paper-line) 1px, transparent 1px), linear-gradient(90deg, var(--paper-line) 1px, transparent 1px); background-size: 16px 16px;
+  color: var(--ink); font: 400 16px/24px var(--font); -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+h1, h2, h3 { text-wrap: balance; }
+a { color: var(--accent); text-underline-offset: 4px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+.ico { width: 16px; height: 16px; flex: none; }
+b { font-weight: 600; }
+
+/* framed column, ruled bands, corner ticks */
+.band { border-bottom: 1px solid var(--line); }
+.col { max-width: var(--frame); margin: 0 auto; border-left: 1px solid var(--line); border-right: 1px solid var(--line); position: relative; background-color: var(--bg); }
+.band > .col::before, .band > .col::after { content: ""; position: absolute; bottom: -5px; width: 8px; height: 8px; border: 1px solid var(--line); background: var(--bg); z-index: 2; }
+.band > .col::before { left: -5px; } .band > .col::after { right: -5px; }
+.pad { padding: 24px; }
+@media (max-width: 1232px) { .col { margin: 0 16px; } }
+@media (max-width: 480px) { .col { margin: 0 8px; } .pad { padding: 16px; } }
+
+/* glossy controls */
+.gloss { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px; border-radius: 8px; font: 500 14px/20px var(--font); color: #ffffff; text-decoration: none; cursor: pointer;
+  background: linear-gradient(#3b3b3b, #0b0b0b); border: 1px solid #000000;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -1px 0 rgba(255,255,255,0.06), 0 2px 4px rgba(0,0,0,0.28), 0 8px 16px rgba(0,0,0,0.12);
+  transition: transform 300ms var(--ease), box-shadow 300ms var(--ease); }
+.gloss:hover { transform: translateY(-2px); }
+
+/* top bar, same as the home page */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.bar .col { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; padding: 8px 16px; background: transparent; }
+.seg { display: inline-flex; gap: 4px; padding: 2px; border-radius: 8px; border: 1px solid var(--line); background: var(--raised); justify-self: start; }
+.seg a, .seg button { display: inline-flex; align-items: center; justify-content: center; gap: 4px; padding: 2px 8px; border-radius: 8px; border: 0; background: transparent; font: 500 14px/20px var(--font); color: var(--muted); text-decoration: none; cursor: pointer; transition: color 300ms var(--ease); }
+.seg a:hover, .seg button:hover { color: var(--ink); }
+.seg a[aria-current="true"], .seg button[aria-pressed="true"] { color: #ffffff; background: linear-gradient(#3b3b3b, #0b0b0b); box-shadow: 0 0 0 2px var(--accent), inset 0 1px 0 rgba(255,255,255,0.25); }
+.seg .ico { width: 12px; height: 12px; }
+.brand { font: 400 20px/28px var(--font); color: var(--ink); text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; }
+.right { justify-self: end; display: flex; gap: 8px; align-items: center; }
+@media (max-width: 480px) { .seg .ico { display: none; } .seg a { padding: 2px 6px; } .bar .brand { display: none; } .bar .col { grid-template-columns: 1fr auto; } }
+@media (max-width: 560px) { .brand { font-size: 16px; line-height: 24px; } .bar .col { gap: 8px; padding: 8px; } }
+
+/* hero */
+.hero .col { padding: 64px 24px 48px; display: grid; gap: 16px; overflow: hidden; }
+.hero .col > .glow { position: absolute; inset: 0 0 auto 0; height: 280px; pointer-events: none; background: radial-gradient(ellipse 60% 100% at 50% 0%, rgba(48, 209, 88, 0.22), transparent 70%); }
+.eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; font: 400 14px/20px var(--mono); color: var(--muted); position: relative; }
+.back { color: var(--muted); text-decoration: none; } .back:hover { color: var(--ink); }
+h1 { margin: 0; font: 400 60px/1 var(--serif); letter-spacing: -0.02em; position: relative; }
+.lede { margin: 0; max-width: 600px; color: var(--muted); font-size: 18px; line-height: 28px; position: relative; }
+@media (max-width: 860px) { .hero .col { padding: 48px 16px 32px; } h1 { font-size: 44px; } }
+
+/* product switch */
+.switch .col { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
+.switch .seg button { padding: 6px 14px; }
+.cur { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); }
+select { font: 500 14px/20px var(--mono); padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); }
+
+/* inputs */
+.fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+.field { display: grid; gap: 8px; min-width: 0; align-content: start; }
+.field label, .lbl { font: 500 14px/20px var(--font); color: var(--muted); }
+.input { display: flex; align-items: center; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); padding: 0 12px; box-shadow: 0 1px 2px rgba(0,0,0,0.06); transition: border-color 300ms var(--ease); }
+.input:focus-within { border-color: var(--accent); }
+.input span { color: var(--muted); font: 400 13px/20px var(--mono); white-space: nowrap; }
+.input input { flex: 1; width: 100%; min-width: 0; border: 0; background: transparent; color: var(--ink); font: 500 18px/24px var(--mono); letter-spacing: -0.02em; padding: 10px 8px; outline: none; font-variant-numeric: tabular-nums; }
+.hint { font-size: 13px; line-height: 18px; color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips button { font: 400 12px/16px var(--mono); border: 1px solid var(--line); background: var(--surface); color: var(--muted); border-radius: 9999px; padding: 3px 10px; cursor: pointer; transition: transform 300ms var(--ease), color 300ms var(--ease); }
+.chips button:hover { color: var(--ink); transform: translateY(-1px); }
+.field .seg { display: flex; justify-self: stretch; }
+.field .seg button { flex: 1; padding: 8px; }
+.inputs { display: grid; gap: 24px; }
+
+/* headline result */
+.headline { display: grid; gap: 8px; }
+.headline .lbl { font: 400 14px/20px var(--mono); }
+.headline .big { font: 400 64px/1 var(--serif); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.headline .big.bad { color: var(--bad); }
+.headline .big.good { color: var(--accent); }
+.headline p { margin: 0; max-width: 640px; color: var(--muted); font-size: 18px; line-height: 28px; }
+.headline p b { color: var(--ink); }
+@media (max-width: 860px) { .headline .big { font-size: 44px; } }
+
+/* summary cells */
+.summary { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.summary .stat { padding: 24px; display: grid; gap: 4px; align-content: start; min-width: 0; }
+.summary .stat + .stat { border-left: 1px solid var(--line); }
+.summary .lbl { font: 500 14px/20px var(--font); color: var(--muted); }
+.summary .v { font: 400 32px/40px var(--serif); letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+.summary .v.bad { color: var(--bad); }
+.summary .v.good { color: var(--accent); }
+.summary .s { font-size: 14px; line-height: 20px; color: var(--muted); overflow-wrap: anywhere; }
+@media (max-width: 960px) {
+  .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .summary .stat:nth-child(3) { border-left: 0; }
+  .summary .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+}
+@media (max-width: 520px) {
+  .summary { grid-template-columns: minmax(0, 1fr); }
+  .summary .stat { padding: 16px; }
+  .summary .stat + .stat { border-left: 0; border-top: 1px solid var(--line); }
+}
+
+.note { background: var(--warn-soft); color: var(--warn); border-radius: 12px; padding: 12px 16px; font-size: 14px; line-height: 20px; }
+
+/* BNPL schedule: a receipt */
+.sched { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--surface); box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+.sched .r { display: grid; grid-template-columns: 1fr auto auto; gap: 16px; padding: 14px 24px; align-items: baseline; font-variant-numeric: tabular-nums; }
+.sched .r + .r { border-top: 1px solid var(--line); }
+.sched .r.h { font: 500 12px/16px var(--mono); color: var(--muted); background: var(--raised); }
+.sched .r.t { font-weight: 600; background: var(--raised); }
+.sched .when { color: var(--muted); font-size: 14px; margin-left: 6px; }
+.sched .fee { color: var(--bad); font-family: var(--mono); min-width: 96px; text-align: right; }
+.sched .amt { font-family: var(--mono); min-width: 112px; text-align: right; }
+.tag { display: inline-block; font: 500 12px/16px var(--font); border-radius: 9999px; padding: 2px 8px; margin-left: 8px; background: var(--warn-soft); color: var(--warn); }
+@media (max-width: 560px) {
+  .sched .r { grid-template-columns: 1fr auto; padding: 12px 16px; gap: 4px 12px; }
+  .sched .r .fee { grid-column: 2; grid-row: 2; min-width: 0; }
+  .sched .r.h .fee { display: none; }
+  .sched .amt { min-width: 0; }
+}
+.stack { display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: 24px; align-items: start; }
+.stack p { margin: 0; color: var(--muted); font-size: 16px; line-height: 26px; max-width: 640px; }
+.stack p b { color: var(--ink); }
+@media (max-width: 640px) { .stack { grid-template-columns: minmax(0, 1fr); } }
+h2.sec { margin: 0; font: 400 30px/36px var(--serif); letter-spacing: -0.01em; }
+
+/* chart */
+.chart { display: grid; gap: 12px; }
+.legend { display: flex; flex-wrap: wrap; gap: 16px; font-size: 14px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.legend i { display: inline-block; width: 18px; height: 0; border-top: 2px solid; }
+.legend i.min { border-top-style: dashed; }
+.plot { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px 12px 8px; }
+.plot svg { display: block; width: 100%; height: auto; overflow: visible; }
+.plot .gl { stroke: var(--grid); stroke-width: 1; }
+.plot .ax { fill: var(--muted); font-size: 11px; font-family: var(--mono); }
+.plot .dl { font-size: 12px; font-weight: 600; fill: var(--ink); font-family: var(--font); paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
+.plot .xh { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 2 3; }
+.tip { position: absolute; pointer-events: none; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font-size: 12px; line-height: 18px; box-shadow: 0 8px 24px rgba(0,0,0,.12); white-space: nowrap; font-variant-numeric: tabular-nums; display: grid; gap: 2px; }
+.tip i { display: inline-block; width: 10px; height: 0; border-top: 2px solid; margin-right: 6px; vertical-align: 3px; }
+details.tbl summary { cursor: pointer; font-size: 14px; color: var(--muted); }
+details.tbl table { width: 100%; border-collapse: collapse; font: 400 14px/20px var(--mono); margin-top: 8px; }
+details.tbl th, details.tbl td { text-align: right; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+details.tbl th { font-family: var(--font); font-weight: 500; color: var(--muted); }
+details.tbl th:first-child, details.tbl td:first-child { text-align: left; }
+
+/* reserve space for content the script fills in, so nothing shifts */
+.headline { min-height: 196px; }
+.summary { min-height: 125px; }
+.plot { min-height: 296px; }
+#b-stack { min-height: 78px; }
+#c-fixed-chips { min-height: 24px; }
+@media (max-width: 960px) { .summary { min-height: 270px; } }
+@media (max-width: 860px) { .headline { min-height: 184px; } }
+@media (max-width: 520px) { .headline { min-height: 240px; } .summary { min-height: 480px; } .plot { min-height: 230px; } }
+
+/* notes and footer */
+.notes { display: grid; gap: 12px; max-width: 760px; font-size: 14px; line-height: 22px; color: var(--muted); }
+.notes p { margin: 0; }
+.notes strong { color: var(--ink); font-weight: 600; }
+.notes code { font-family: var(--mono); font-size: 13px; background: var(--raised); padding: 1px 6px; border-radius: 6px; color: var(--ink); }
+.fine .col { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding: 16px 24px; color: var(--muted); font-size: 14px; line-height: 20px; }
+.fine a { color: var(--muted); text-decoration: none; } .fine a:hover { color: var(--ink); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<script src="/analytics.js" defer></script>
+</head>
+<body>
+<header class="bar band">
+  <div class="col">
+    <nav class="seg" aria-label="Main"><a href="/#work"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M104,40H56A16,16,0,0,0,40,56v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,104,40Zm0,64H56V56h48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm0,64H152V56h48Zm-96,32H56a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,104,136Zm0,64H56V152h48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,200,136Zm0,64H152V152h48Z"/></svg>Work</a><a href="/#story"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M208,24H72A32,32,0,0,0,40,56V224a8,8,0,0,0,8,8H192a8,8,0,0,0,0-16H56a16,16,0,0,1,16-16H208a8,8,0,0,0,8-8V32A8,8,0,0,0,208,24Zm-8,160H72a31.82,31.82,0,0,0-16,4.29V56A16,16,0,0,1,72,40H200Z"/></svg>Story</a><a href="/#labs" aria-current="true"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M221.69,199.77,160,96.92V40h8a8,8,0,0,0,0-16H88a8,8,0,0,0,0,16h8V96.92L34.31,199.77A16,16,0,0,0,48,224H208a16,16,0,0,0,13.72-24.23ZM110.86,103.25A7.93,7.93,0,0,0,112,99.14V40h32V99.14a7.93,7.93,0,0,0,1.14,4.11L183.36,167c-12,2.37-29.07,1.37-51.75-10.11-15.91-8.05-31.05-12.32-45.22-12.81ZM48,208l28.54-47.58c14.25-1.74,30.31,1.85,47.82,10.72,19,9.61,35,12.88,48,12.88a69.89,69.89,0,0,0,19.55-2.7L208,208Z"/></svg>Labs</a></nav>
+    <a class="brand" href="/">Rafay Khan</a>
+    <div class="right"><a class="gloss" href="https://www.linkedin.com/in/rafekhan" target="_blank" rel="noopener">Let's chat</a></div>
+  </div>
+</header>
+<main id="main">
+  <section class="hero band">
+    <div class="col">
+      <div class="glow" aria-hidden="true"></div>
+      <div class="eyebrow"><a class="back" href="/#labs">← Labs</a><span>Borrowing</span><span>Plain maths, no bank data</span></div>
+      <h1>The true cost of BNPL and credit cards</h1>
+      <p class="lede">Buy now, pay later is free until a payment slips. A credit card is cheap until you only pay the minimum. Put in your numbers and see what each one really costs, in money and in time.</p>
+    </div>
+  </section>
+
+  <section class="band switch">
+    <div class="col pad">
+      <div class="seg" role="group" aria-label="Product">
+        <button type="button" id="tab-bnpl" aria-pressed="true">Buy now, pay later</button>
+        <button type="button" id="tab-card" aria-pressed="false">Credit card</button>
+      </div>
+      <label class="cur">Currency
+        <select id="cur"><option>SAR</option><option>AED</option><option>USD</option><option>GBP</option><option>EUR</option></select>
+      </label>
+    </div>
+  </section>
+
+  <!-- ============ BNPL ============ -->
+  <div id="view-bnpl">
+    <section class="band" aria-label="Your plan">
+      <div class="col pad inputs">
+        <div class="fields">
+          <div class="field">
+            <label for="b-price">Purchase price</label>
+            <div class="input"><span class="cu">SAR</span><input id="b-price" type="number" inputmode="decimal" min="0" step="any" value="2000"></div>
+            <div class="chips" data-for="b-price"><button type="button" data-v="500">500</button><button type="button" data-v="2000">2,000</button><button type="button" data-v="5000">5,000</button></div>
+          </div>
+          <div class="field">
+            <span class="lbl" id="b-n-l">Split into</span>
+            <div class="seg" id="b-n" role="group" aria-labelledby="b-n-l">
+              <button type="button" data-v="3" aria-pressed="false">3</button>
+              <button type="button" data-v="4" aria-pressed="true">4</button>
+              <button type="button" data-v="6" aria-pressed="false">6</button>
+            </div>
+            <span class="hint">First payment at checkout.</span>
+          </div>
+          <div class="field">
+            <span class="lbl" id="b-int-l">Payment every</span>
+            <div class="seg" id="b-int" role="group" aria-labelledby="b-int-l">
+              <button type="button" data-v="14" aria-pressed="false">2 weeks</button>
+              <button type="button" data-v="30" aria-pressed="true">Month</button>
+            </div>
+          </div>
+        </div>
+        <div class="fields">
+          <div class="field">
+            <label for="b-miss">Payments missed</label>
+            <div class="input"><input id="b-miss" type="number" inputmode="numeric" min="0" step="1" value="1"><span>of <b id="b-miss-max">3</b></span></div>
+          </div>
+          <div class="field">
+            <label for="b-fee">Late fee each time</label>
+            <div class="input"><span class="cu">SAR</span><input id="b-fee" type="number" inputmode="decimal" min="0" step="any" value="50"></div>
+            <span class="hint">Check your provider’s terms.</span>
+          </div>
+          <div class="field">
+            <label for="b-late">Days late</label>
+            <div class="input"><input id="b-late" type="number" inputmode="numeric" min="1" step="1" value="7"><span>days</span></div>
+          </div>
+          <div class="field">
+            <label for="b-cap">Fee cap per order</label>
+            <div class="input"><span class="cu">SAR</span><input id="b-cap" type="number" inputmode="decimal" min="0" step="any" value="0"></div>
+            <span class="hint">0 means no cap.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="band" aria-label="Result">
+      <div class="col pad headline" id="b-head" aria-live="polite"></div>
+    </section>
+    <section class="band" aria-label="Summary">
+      <div class="col summary" id="b-stats"></div>
+    </section>
+    <section class="band" aria-label="Payment schedule">
+      <div class="col pad" style="display:grid;gap:16px">
+        <h2 class="sec">Payment by payment</h2>
+        <div class="sched" id="b-sched" role="table" aria-label="Payment schedule"></div>
+      </div>
+    </section>
+    <section class="band" aria-label="Stacking plans">
+      <div class="col pad stack">
+        <div class="field">
+          <label for="b-plans">Plans running at once</label>
+          <div class="input"><input id="b-plans" type="number" inputmode="numeric" min="1" step="1" value="3"><span>plans</span></div>
+          <span class="hint">Similar size, staggered start dates.</span>
+        </div>
+        <p id="b-stack"></p>
+      </div>
+    </section>
+    <section class="band">
+      <div class="col pad">
+        <div class="notes">
+          <h2 class="sec">How the BNPL maths works</h2>
+          <p>Each instalment is <code>price ÷ number of payments</code>. The first is paid at checkout and the rest on schedule. A missed payment adds the late fee and is paid the number of days late you set. Fees stop at the cap if your plan has one.</p>
+          <p><strong>The headline rate</strong> looks only at the late payment: <code>late fee ÷ instalment × 365 ÷ days late</code>. That is what the fee charges you for those few extra days.</p>
+          <p><strong>The whole-plan APR</strong> treats the purchase as a loan and finds the yearly rate that makes what you paid, on the days you paid it, equal to the price. It is the same idea as the APR quoted on a loan. Without late fees it is 0%. The cost is entirely in the slips.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ CARD ============ -->
+  <div id="view-card" hidden>
+    <section class="band" aria-label="Your card">
+      <div class="col pad inputs">
+        <div class="fields">
+          <div class="field">
+            <label for="c-bal">Card balance</label>
+            <div class="input"><span class="cu">SAR</span><input id="c-bal" type="number" inputmode="decimal" min="0" step="any" value="10000"></div>
+            <div class="chips" data-for="c-bal"><button type="button" data-v="3000">3,000</button><button type="button" data-v="10000">10,000</button><button type="button" data-v="25000">25,000</button></div>
+          </div>
+          <div class="field">
+            <label for="c-apr">Yearly rate (APR)</label>
+            <div class="input"><input id="c-apr" type="number" inputmode="decimal" min="0" step="any" value="30"><span>% a year</span></div>
+            <div class="chips" data-for="c-apr"><button type="button" data-v="20">20%</button><button type="button" data-v="30">30%</button><button type="button" data-v="40">40%</button></div>
+            <span class="hint" id="c-apr-m"></span>
+          </div>
+        </div>
+        <div class="fields">
+          <div class="field">
+            <label for="c-pct">Minimum payment</label>
+            <div class="input"><input id="c-pct" type="number" inputmode="decimal" min="0.1" step="any" value="5"><span>% of balance</span></div>
+          </div>
+          <div class="field">
+            <label for="c-floor">…but at least</label>
+            <div class="input"><span class="cu">SAR</span><input id="c-floor" type="number" inputmode="decimal" min="0" step="any" value="100"></div>
+          </div>
+          <div class="field">
+            <label for="c-fixed">Or pay a fixed monthly</label>
+            <div class="input"><span class="cu">SAR</span><input id="c-fixed" type="number" inputmode="decimal" min="0" step="any" value="750"></div>
+            <div class="chips" id="c-fixed-chips" data-for="c-fixed"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="band" aria-label="Result">
+      <div class="col pad headline" id="c-head" aria-live="polite"></div>
+    </section>
+    <section class="band" aria-label="Summary">
+      <div class="col summary" id="c-stats"></div>
+    </section>
+    <section class="band" aria-label="Balance over time">
+      <div class="col pad chart">
+        <div class="note" id="c-note" hidden></div>
+        <h2 class="sec">Balance left over time</h2>
+        <div class="legend" aria-hidden="true">
+          <span><i class="min" style="border-color:var(--s-min)"></i>Minimum only</span>
+          <span><i style="border-color:var(--s-plan)"></i>Fixed payment</span>
+        </div>
+        <div class="plot" id="plot"></div>
+        <details class="tbl"><summary>Show as a table (yearly)</summary><div id="c-table"></div></details>
+      </div>
+    </section>
+    <section class="band">
+      <div class="col pad">
+        <div class="notes">
+          <h2 class="sec">How the card maths works</h2>
+          <p>Each month, interest is <code>balance × APR ÷ 12</code>, added before you pay. The minimum is the larger of the % of balance and the floor, so it shrinks as the balance shrinks. That is why minimum-only payoff drags on for years.</p>
+          <p><strong>Islamic cards.</strong> If your card charges a fixed monthly fee instead of interest, turn it into a rate with <code>monthly fee ÷ balance × 12 × 100</code> and enter that as the APR.</p>
+          <p>This assumes no new spending, no late fees and no rate changes. Any of those make it worse.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="band">
+    <div class="col pad">
+      <div class="notes"><p>Plain maths on the numbers you enter, checked November 2026. There is no bank or provider data behind it, so it works for any BNPL plan or card. Not financial advice. Nothing you type leaves your browser.</p><p>More from <a href="/#labs">Labs</a>: the <a href="/labs/tadawul-dividends/">Tadawul dividend calendar</a>.</p></div>
+    </div>
+  </section>
+</main>
+<footer class="fine"><div class="col"><span>© 2026 Rafay Khan · Riyadh</span><a href="/#labs">Back to Labs</a></div></footer>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const num = id => { const v = parseFloat($(id).value); return isFinite(v) ? v : 0; };
+  let cur = "SAR";
+  const fmt = (v, d = 0) => v.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
+  const money = (v, d) => `${cur} ${fmt(v, d === undefined ? (Math.abs(v) < 100 && v % 1 ? 2 : 0) : d)}`;
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const plural = (n, w) => `${fmt(n)} ${w}${n === 1 ? "" : "s"}`;
+  function duration(months) {
+    const y = Math.floor(months / 12), m = months % 12;
+    if (!y) return plural(m, "month");
+    return m ? `${plural(y, "year")} ${plural(m, "month")}` : plural(y, "year");
+  }
+  const state = { n: 4, interval: 30, tab: "bnpl" };
+
+  // ---------- BNPL ----------
+  // Annual rate implied by cash flows (day, amount); + is money you received.
+  function annualRate(flows) {
+    const npv = r => flows.reduce((s, f) => s + f.a / Math.pow(1 + r, f.d), 0);
+    if (npv(0) >= -1e-9) return 0;
+    let lo = 0, hi = 0.05; // daily rate
+    while (npv(hi) < 0 && hi < 10) hi *= 2;
+    if (npv(hi) < 0) return Infinity;
+    for (let i = 0; i < 100; i++) { const mid = (lo + hi) / 2; npv(mid) < 0 ? lo = mid : hi = mid; }
+    return lo * 365;
+  }
+  const pctTxt = r => !isFinite(r) || r > 99.99 ? "over 9,999%" : `${fmt(r * 100, r < 0.1 ? 1 : 0)}%`;
+
+  function renderBNPL() {
+    const P = Math.max(0, num("b-price")), n = state.n, gap = state.interval;
+    const maxMiss = n - 1;
+    $("b-miss-max").textContent = maxMiss; $("b-miss").max = maxMiss;
+    const miss = Math.min(maxMiss, Math.max(0, Math.round(num("b-miss"))));
+    const F = Math.max(0, num("b-fee")), late = Math.max(1, Math.round(num("b-late"))), cap = Math.max(0, num("b-cap"));
+    const inst = P / n;
+    const flows = [{ d: 0, a: P }], rows = [];
+    let feesLeft = cap > 0 ? cap : Infinity, totalFees = 0;
+    for (let i = 0; i < n; i++) {
+      const due = i * gap, missed = i >= 1 && i <= miss;
+      const fee = missed ? Math.min(F, feesLeft) : 0;
+      feesLeft -= fee; totalFees += fee;
+      const paidOn = missed ? due + late : due;
+      flows.push({ d: paidOn, a: -(inst + fee) });
+      rows.push({ i, due, paidOn, missed, fee });
+    }
+    const rate = annualRate(flows);
+    const total = P + totalFees;
+    const pctOfPrice = P ? totalFees / P : 0;
+
+    const head = $("b-head");
+    if (!totalFees) {
+      head.innerHTML = `<span class="lbl">Extra cost</span><span class="big good">${money(0)}</span><p>Paid on time, this plan costs exactly the price. <b>The risk is the slip.</b> Try adding a missed payment above.</p>`;
+    } else {
+      const f1 = rows.find(r => r.fee > 0).fee, delayRate = (f1 / inst) * (365 / late);
+      head.innerHTML = `<span class="lbl">Paying ${money(inst)} ${plural(late, "day")} late cost ${money(f1)}. As a loan, that is</span><span class="big bad">${pctTxt(delayRate)} a year</span><p>Over the whole plan you pay <b>${money(totalFees)}</b> extra on a <b>${money(P)}</b> purchase (${fmt(pctOfPrice * 100, 1)}% of the price), which works out to <b>${pctTxt(rate)} a year</b> across everything you borrowed.</p>`;
+    }
+    $("b-stats").innerHTML = [
+      stat("You pay in total", money(total), `${plural(n, "payment")} of ${money(inst, 2)}`),
+      stat("Late fees", money(totalFees), miss ? `${plural(miss, "missed payment")}${cap && totalFees >= cap ? " (capped)" : ""}` : "None", totalFees ? "bad" : "good"),
+      stat("Whole plan as APR", totalFees ? pctTxt(rate) : "0%", "Comparable to a loan rate", totalFees ? "bad" : "good"),
+      stat("Last payment", `Day ${fmt(Math.max(...rows.map(r => r.paidOn)))}`, `from checkout`)
+    ].join("");
+    const when = d => d === 0 ? "At checkout" : `Day ${fmt(d)}`;
+    $("b-sched").innerHTML =
+      `<div class="r h" role="row"><span role="columnheader">Payment</span><span class="fee" role="columnheader">Late fee</span><span class="amt" role="columnheader">Amount</span></div>` +
+      rows.map(r => `<div class="r" role="row"><span role="cell">#${r.i + 1} <span class="when">${when(r.paidOn)}</span>${r.missed ? `<span class="tag">${plural(late, "day")} late</span>` : ""}</span><span class="fee" role="cell">${r.fee ? "+ " + money(r.fee) : ""}</span><span class="amt" role="cell">${money(inst + r.fee, 2)}</span></div>`).join("") +
+      `<div class="r t" role="row"><span role="cell">Total</span><span class="fee" role="cell">${totalFees ? "+ " + money(totalFees) : ""}</span><span class="amt" role="cell">${money(total, 2)}</span></div>`;
+
+    // Stacking: k similar plans, staggered by gap/k days. Busiest pay date and monthly outflow.
+    const k = Math.max(1, Math.round(num("b-plans")));
+    const perMonth = inst * k * (30 / gap);
+    $("b-stack").innerHTML = k === 1
+      ? `One plan means <b>${money(inst, 2)}</b> every ${gap === 30 ? "month" : "2 weeks"}. Easy to track.`
+      : `With ${fmt(k)} plans like this, about <b>${money(perMonth)}</b> leaves your account each month, across <b>${fmt(Math.round(k * 30 / gap))} separate due dates</b>. More dates means more chances to miss one, and ${fmt(k)} missed payments would cost <b>${money(Math.min(F, cap || Infinity) * k)}</b> in fees.`;
+  }
+
+  // ---------- Card ----------
+  function simulate(B, apr, payFn) {
+    const r = apr / 100 / 12, bal = [B];
+    let b = B, interest = 0, paid = 0, m = 0, stuck = false;
+    while (b > 0.005 && m < 1200) {
+      const i = b * r; b += i; interest += i;
+      const p = Math.min(b, payFn(b - i, i));
+      if (p <= i + 1e-9 && p < b) { stuck = true; break; }
+      b -= p; paid += p; m++; bal.push(b);
+    }
+    return { months: m, interest, paid, bal, stuck: stuck || m >= 1200 };
+  }
+
+  function renderCard() {
+    const B = Math.max(0, num("c-bal")), apr = Math.max(0, num("c-apr"));
+    const pct = Math.max(0.1, num("c-pct")) / 100, floor = Math.max(0, num("c-floor"));
+    let fixed = Math.max(0, num("c-fixed"));
+    $("c-apr-m").textContent = `That is ${fmt(apr / 12, 2)}% a month.`;
+    // Minimum is set on the statement balance (after interest).
+    const minPay = (prev, i) => Math.max((prev + i) * pct, floor);
+    const firstMin = Math.max(B * (1 + apr / 1200) * pct, floor);
+    const chips = [1.5, 2, 3].map(x => Math.ceil(firstMin * x / 50) * 50);
+    $("c-fixed-chips").innerHTML = chips.map(v => `<button type="button" data-v="${v}">${fmt(v)}</button>`).join("");
+
+    const mn = simulate(B, apr, minPay);
+    const fx = simulate(B, apr, () => fixed);
+    const head = $("c-head"), note = $("c-note");
+    note.hidden = true;
+
+    if (B <= 0) { head.innerHTML = `<span class="lbl">Nothing owed</span><span class="big good">${money(0)}</span><p>Enter a balance to see the cost.</p>`; $("c-stats").innerHTML = ""; $("plot").innerHTML = ""; $("c-table").innerHTML = ""; return; }
+
+    if (mn.stuck) {
+      head.innerHTML = `<span class="lbl">Paying only the minimum</span><span class="big bad">Never paid off</span><p>At ${fmt(pct * 100, 1)}% of the balance, the minimum doesn’t even cover the ${fmt(apr / 12, 2)}% monthly interest. The balance never goes down.</p>`;
+    } else {
+      head.innerHTML = `<span class="lbl">Paying only the minimum costs you</span><span class="big bad">${money(mn.interest)} in interest</span><p>It takes <b>${duration(mn.months)}</b> to clear ${money(B)}. You end up paying <b>${money(mn.paid)}</b>, which is ${fmt(mn.paid / B, 2)}× what you owed.</p>`;
+    }
+    const fxOk = !fx.stuck && fixed > 0;
+    const saved = fxOk && !mn.stuck ? mn.interest - fx.interest : null;
+    $("c-stats").innerHTML = [
+      stat("Minimum only", mn.stuck ? "Never" : duration(mn.months), mn.stuck ? "Interest outpaces payment" : `${money(mn.interest)} interest`, "bad"),
+      stat(`${money(fixed)} a month`, fxOk ? duration(fx.months) : "Never", fxOk ? `${money(fx.interest)} interest` : "Too low to beat the interest", fxOk ? "good" : "bad"),
+      stat("You’d save", saved !== null ? money(saved) : "–", saved !== null ? `and ${duration(Math.max(0, mn.months - fx.months))} sooner` : "Raise the fixed payment", saved !== null && saved > 0 ? "good" : ""),
+      stat("First minimum", money(firstMin), `then it shrinks with the balance`)
+    ].join("");
+    if (!fxOk && fixed > 0) { note.hidden = false; note.innerHTML = `<b>${money(fixed)} a month is less than the interest.</b> The first month’s interest is about ${money(B * apr / 1200)}. Pay more than that to make progress.`; }
+
+    drawChart(mn.stuck ? null : mn.bal, fxOk ? fx.bal : null, B);
+    // Table, yearly.
+    const yrs = Math.ceil(Math.max(mn.stuck ? 0 : mn.months, fxOk ? fx.months : 0) / 12);
+    let t = `<table><thead><tr><th>After</th><th>Minimum only</th><th>Fixed ${esc(money(fixed))}</th></tr></thead><tbody>`;
+    for (let y = 1; y <= yrs; y++) {
+      const a = mn.stuck ? "–" : money(mn.bal[Math.min(y * 12, mn.bal.length - 1)]);
+      const b = fxOk ? money(fx.bal[Math.min(y * 12, fx.bal.length - 1)]) : "–";
+      t += `<tr><td>${plural(y, "year")}</td><td>${a}</td><td>${b}</td></tr>`;
+    }
+    $("c-table").innerHTML = t + "</tbody></table>";
+  }
+
+  // Line chart: balance by month, one y-axis, two series. Crosshair tooltip.
+  function drawChart(a, b, B) {
+    const el = $("plot");
+    const W = Math.max(300, el.clientWidth || 800), H = W < 500 ? 220 : 280;
+    const pad = { l: 56, r: 16, t: 10, b: 26 };
+    const maxM = Math.max(a ? a.length - 1 : 0, b ? b.length - 1 : 0, 1);
+    const x = m => pad.l + (m / maxM) * (W - pad.l - pad.r);
+    const y = v => pad.t + (1 - v / B) * (H - pad.t - pad.b);
+    const yTicks = [0, .25, .5, .75, 1].map(f => f * B);
+    const xStep = maxM <= 24 ? 6 : maxM <= 60 ? 12 : maxM <= 180 ? 24 : 60;
+    let g = "";
+    yTicks.forEach(v => g += `<line class="gl" x1="${pad.l}" x2="${W - pad.r}" y1="${y(v)}" y2="${y(v)}"/><text class="ax" x="${pad.l - 8}" y="${y(v) + 4}" text-anchor="end">${short(v)}</text>`);
+    for (let m = 0; m <= maxM; m += xStep) g += `<text class="ax" x="${x(m)}" y="${H - 6}" text-anchor="middle">${m === 0 ? "0" : m % 12 === 0 ? (m / 12) + "y" : m + "m"}</text>`;
+    const path = s => s.map((v, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join("");
+    let lines = "";
+    if (a) lines += `<path d="${path(a)}" fill="none" stroke="var(--s-min)" stroke-width="2" stroke-dasharray="6 4" stroke-linejoin="round"/>`;
+    if (b) lines += `<path d="${path(b)}" fill="none" stroke="var(--s-plan)" stroke-width="2" stroke-linejoin="round"/>`;
+    // Direct labels at each line's end (wide screens only; legend covers narrow).
+    if (W >= 500) {
+      const lab = [];
+      if (a) lab.push({ m: a.length - 1, t: "Minimum", c: "var(--s-min)" });
+      if (b) lab.push({ m: b.length - 1, t: "Fixed", c: "var(--s-plan)" });
+      lab.forEach(l => lines += `<circle cx="${x(l.m)}" cy="${y(0)}" r="4" fill="${l.c}" stroke="var(--surface)" stroke-width="2"/>`);
+      if (a) { const ax = x(a.length - 1), endA = ax + 190 > W; lines += `<text class="dl" x="${endA ? ax - 4 : ax + 8}" y="${y(0) - 12}" ${endA ? 'text-anchor="end"' : ""}>Minimum: ${duration(a.length - 1)}</text>`; }
+      if (b) { const bx = x(b.length - 1), endB = bx + 170 > W, near = a && Math.abs(x(a.length - 1) - bx) < 200; lines += `<text class="dl" x="${endB ? bx - 4 : bx + 8}" y="${y(0) - (near ? 30 : 12)}" ${endB ? 'text-anchor="end"' : ""}>Fixed: ${duration(b.length - 1)}</text>`; }
+    }
+    el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Balance over time. Minimum only ${a ? "clears in " + duration(a.length - 1) : "never clears"}. Fixed payment ${b ? "clears in " + duration(b.length - 1) : "never clears"}.">${g}${lines}<line class="xh" id="xh" y1="${pad.t}" y2="${H - pad.b}" visibility="hidden"/><rect x="${pad.l}" y="0" width="${W - pad.l - pad.r}" height="${H}" fill="transparent" id="hit"/></svg><div class="tip" id="tip" hidden></div>`;
+    const hit = el.querySelector("#hit"), xh = el.querySelector("#xh"), tip = el.querySelector("#tip");
+    const show = ev => {
+      const r = el.querySelector("svg").getBoundingClientRect(), sx = (ev.clientX - r.left) * (W / r.width);
+      const m = Math.max(0, Math.min(maxM, Math.round((sx - pad.l) / (W - pad.l - pad.r) * maxM)));
+      xh.setAttribute("x1", x(m)); xh.setAttribute("x2", x(m)); xh.setAttribute("visibility", "visible");
+      const v = s => s ? money(s[Math.min(m, s.length - 1)]) : "–";
+      tip.innerHTML = `<b>${m === 0 ? "Today" : "After " + duration(m)}</b><span><i style="border-color:var(--s-min);border-top-style:dashed"></i>Minimum: ${v(a)}</span><span><i style="border-color:var(--s-plan)"></i>Fixed: ${v(b)}</span>`;
+      tip.hidden = false;
+      const px = x(m) * (r.width / W), tw = tip.offsetWidth;
+      tip.style.left = (px + 12 + tw > r.width ? px - tw - 12 : px + 12) + "px"; tip.style.top = "8px";
+    };
+    hit.addEventListener("pointermove", show); hit.addEventListener("pointerdown", show);
+    hit.addEventListener("pointerleave", () => { tip.hidden = true; xh.setAttribute("visibility", "hidden"); });
+  }
+  function short(v) { return v >= 1e6 ? fmt(v / 1e6, 1) + "M" : v >= 1e3 ? fmt(v / 1e3, v % 1000 ? 1 : 0) + "k" : fmt(v); }
+  function stat(k, v, s, cls) { return `<div class="stat"><span class="lbl">${k}</span><span class="v${cls ? " " + cls : ""}">${v}</span><span class="s">${s}</span></div>`; }
+
+  // ---------- Wiring ----------
+  const render = () => state.tab === "bnpl" ? renderBNPL() : renderCard();
+  function setTab(t) {
+    state.tab = t;
+    $("tab-bnpl").setAttribute("aria-pressed", t === "bnpl"); $("tab-card").setAttribute("aria-pressed", t === "card");
+    $("view-bnpl").hidden = t !== "bnpl"; $("view-card").hidden = t !== "card";
+    try { localStorage.setItem("tc-tab", t); } catch (e) {}
+    render();
+  }
+  $("tab-bnpl").onclick = () => setTab("bnpl");
+  $("tab-card").onclick = () => setTab("card");
+  function seg(id, key) {
+    $(id).addEventListener("click", e => {
+      const b = e.target.closest("button"); if (!b) return;
+      state[key] = +b.dataset.v;
+      $(id).querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b));
+      render();
+    });
+  }
+  seg("b-n", "n"); seg("b-int", "interval");
+  document.addEventListener("click", e => {
+    const b = e.target.closest(".chips button"); if (!b) return;
+    $(b.parentElement.dataset.for).value = b.dataset.v; render();
+  });
+  document.addEventListener("input", e => { if (e.target.matches("input")) render(); });
+  $("cur").addEventListener("change", e => {
+    cur = e.target.value;
+    document.querySelectorAll(".cu").forEach(s => s.textContent = cur);
+    try { localStorage.setItem("tc-cur", cur); } catch (err) {}
+    render();
+  });
+  let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => state.tab === "card" && renderCard(), 120); });
+  try { const c = localStorage.getItem("tc-cur"); if (c) { $("cur").value = c; cur = $("cur").value; document.querySelectorAll(".cu").forEach(s => s.textContent = cur); } } catch (e) {}
+  let start = "bnpl"; try { start = localStorage.getItem("tc-tab") || "bnpl"; } catch (e) {}
+  setTab(start === "card" ? "card" : "bnpl");
+})();
+</script>
+</body>
+</html>
