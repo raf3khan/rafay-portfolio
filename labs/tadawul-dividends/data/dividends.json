@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-06",
+  "updated": "2026-11-08",
   "sample": false,
   "source": "Compiled from company dividend announcements on Saudi Exchange, cross-checked with broker dividend calendars. Prices are the latest close on file and can lag by a few days.",
   "sourceAr": "جُمعت من إعلانات توزيع الأرباح المنشورة على موقع السوق المالية السعودية، ورُوجعت مع تقاويم التوزيعات لدى الوسطاء. الأسعار هي آخر إغلاق متوفر وقد تتأخر بضعة أيام.",
@@ -12,7 +12,7 @@
       "sector": "Financial Services",
       "dps": 0.3,
       "annualDps": 0.8,
-      "price": 7.9,
+      "price": 7.84,
       "recordDate": "2026-10-18"
     },
     {
@@ -32,7 +32,7 @@
       "sector": "REITs",
       "dps": 0.2,
       "annualDps": 0.8,
-      "price": 7.68,
+      "price": 7.69,
       "recordDate": "2026-10-28"
     },
     {
@@ -42,7 +42,7 @@
       "sector": "REITs",
       "dps": 0.08,
       "annualDps": 0.32,
-      "price": 3.87,
+      "price": 3.89,
       "recordDate": "2026-10-29"
     },
     {
@@ -73,7 +73,7 @@
       "annualDps": 2.2,
       "recordDate": "2026-11-02",
       "payDate": "2026-11-19",
-      "price": 41.59
+      "price": 41.2
     },
     {
       "ticker": "1830",
@@ -83,7 +83,7 @@
       "recordDate": "2026-11-03",
       "nameAr": "لجام للرياضة",
       "payDate": "2026-11-15",
-      "price": 74.94,
+      "price": 75.48,
       "annualDps": 3.17
     },
     {
@@ -94,7 +94,7 @@
       "dps": 0.25,
       "recordDate": "2026-11-04",
       "payDate": "2026-11-18",
-      "price": 21.68,
+      "price": 21.31,
       "annualDps": 0.75
     },
     {
@@ -130,8 +130,30 @@
       "recordDate": "2026-11-09",
       "nameAr": "دله الصحية",
       "payDate": "2026-11-29",
-      "price": 58.82,
+      "price": 58.65,
       "annualDps": 2.0
+    },
+    {
+      "ticker": "4263",
+      "name": "SAL",
+      "sector": "Transportation",
+      "dps": 2.17,
+      "recordDate": "2026-11-09",
+      "nameAr": "سال",
+      "payDate": "2026-11-24",
+      "price": 161.56,
+      "annualDps": 6.85
+    },
+    {
+      "ticker": "2050",
+      "name": "Savola Group",
+      "sector": "Food & Beverages",
+      "dps": 0.7,
+      "recordDate": "2026-11-10",
+      "nameAr": "مجموعة صافولا",
+      "payDate": "2026-11-25",
+      "price": 23.1,
+      "annualDps": 1.7
     },
     {
       "ticker": "4163",
@@ -141,8 +163,26 @@
       "recordDate": "2026-11-10",
       "nameAr": "الدواء",
       "payDate": "2026-11-25",
-      "price": 37.39,
+      "price": 38.18,
       "annualDps": 2.52
+    },
+    {
+      "ticker": "4703",
+      "name": "SEDCO Multi Asset",
+      "sector": "Other",
+      "dps": 0.12,
+      "recordDate": "2026-11-10",
+      "nameAr": "سدكو متعدد الأصول"
+    },
+    {
+      "ticker": "4348",
+      "name": "Alkhabeer REIT",
+      "sector": "REITs",
+      "dps": 0.11,
+      "recordDate": "2026-11-11",
+      "nameAr": "الخبير ريت",
+      "price": 5.24,
+      "annualDps": 0.42
     },
     {
       "ticker": "4018",
@@ -152,8 +192,18 @@
       "recordDate": "2026-11-12",
       "nameAr": "الموسى",
       "payDate": "2026-11-26",
-      "price": 106.19,
+      "price": 104.35,
       "annualDps": 1.2
+    },
+    {
+      "ticker": "2320",
+      "name": "Albabtain",
+      "sector": "Materials",
+      "dps": 0.5,
+      "recordDate": "2026-11-15",
+      "nameAr": "البابطين",
+      "price": 48.43,
+      "annualDps": 2.0
     },
     {
       "ticker": "4348",
@@ -162,8 +212,43 @@
       "sector": "REITs",
       "dps": 0.105,
       "annualDps": 0.42,
-      "price": 5.22,
+      "price": 5.24,
       "recordDate": "2026-11-15"
+    },
+    {
+      "ticker": "9521",
+      "name": "Inmar",
+      "sector": "Nomu",
+      "dps": 0.8,
+      "recordDate": "2026-11-15",
+      "nameAr": "إنمار"
+    },
+    {
+      "ticker": "9622",
+      "name": "SMC",
+      "sector": "Nomu",
+      "dps": 0.6,
+      "recordDate": "2026-11-15",
+      "nameAr": "شموع الماضي",
+      "payDate": "2026-11-26"
+    },
+    {
+      "ticker": "4190",
+      "name": "Jarir",
+      "sector": "Retail",
+      "dps": 0.3,
+      "recordDate": "2026-11-16",
+      "price": 16.93,
+      "annualDps": 0.95
+    },
+    {
+      "ticker": "6014",
+      "name": "Alamar",
+      "sector": "Other",
+      "dps": 0.6,
+      "recordDate": "2026-11-25",
+      "price": 46.22,
+      "annualDps": 2.2
     },
     {
       "ticker": "2288",
@@ -171,7 +256,7 @@
       "sector": "Food & Beverages",
       "dps": 0.05,
       "recordDate": "2026-12-02",
-      "price": 6.0,
+      "price": 5.98,
       "annualDps": 0.26
     },
     {
@@ -180,7 +265,7 @@
       "sector": "Other",
       "dps": 0.07,
       "recordDate": "2026-12-31",
-      "price": 12.17,
+      "price": 12.39,
       "annualDps": 0.55
     },
     {
