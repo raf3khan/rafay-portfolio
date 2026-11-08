@@ -2,38 +2,70 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://rafkhan.com/</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-08</lastmod>
   </url>
   <url>
     <loc>https://rafkhan.com/labs/broker-fees/</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://rafkhan.com/labs/broker-fees/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://rafkhan.com/labs/broker-fees/?lang=ar"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://rafkhan.com/labs/broker-fees/"/>
   </url>
   <url>
     <loc>https://rafkhan.com/labs/broker-fees/?lang=ar</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://rafkhan.com/labs/broker-fees/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://rafkhan.com/labs/broker-fees/?lang=ar"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://rafkhan.com/labs/broker-fees/"/>
+  </url>
+  <url>
+    <loc>https://rafkhan.com/labs/kafalah-check/</loc>
+    <lastmod>2026-11-08</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rafkhan.com/labs/kafalah-check/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://rafkhan.com/labs/kafalah-check/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rafkhan.com/labs/kafalah-check/"/>
+  </url>
+  <url>
+    <loc>https://rafkhan.com/labs/kafalah-check/?lang=ar</loc>
+    <lastmod>2026-11-08</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rafkhan.com/labs/kafalah-check/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://rafkhan.com/labs/kafalah-check/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rafkhan.com/labs/kafalah-check/"/>
   </url>
   <url>
     <loc>https://rafkhan.com/labs/saudi-ipo-tracker/</loc>
     <lastmod>2026-11-04</lastmod>
   </url>
   <url>
-    <loc>https://rafkhan.com/labs/tadawul-dividends/</loc>
+    <loc>https://rafkhan.com/labs/shariah-compliant/</loc>
     <lastmod>2026-11-04</lastmod>
+  </url>
+  <url>
+    <loc>https://rafkhan.com/labs/tadawul-dividends/</loc>
+    <lastmod>2026-11-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://rafkhan.com/labs/tadawul-dividends/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://rafkhan.com/labs/tadawul-dividends/?lang=ar"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://rafkhan.com/labs/tadawul-dividends/"/>
   </url>
   <url>
     <loc>https://rafkhan.com/labs/tadawul-dividends/?lang=ar</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://rafkhan.com/labs/tadawul-dividends/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://rafkhan.com/labs/tadawul-dividends/?lang=ar"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://rafkhan.com/labs/tadawul-dividends/"/>
+  </url>
+  <url>
+    <loc>https://rafkhan.com/labs/tadawul-explained/</loc>
+    <lastmod>2026-11-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rafkhan.com/labs/tadawul-explained/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://rafkhan.com/labs/tadawul-explained/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rafkhan.com/labs/tadawul-explained/"/>
+  </url>
+  <url>
+    <loc>https://rafkhan.com/labs/tadawul-explained/?lang=ar</loc>
+    <lastmod>2026-11-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rafkhan.com/labs/tadawul-explained/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://rafkhan.com/labs/tadawul-explained/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rafkhan.com/labs/tadawul-explained/"/>
   </url>
 </urlset>

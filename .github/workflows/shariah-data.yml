@@ -1,0 +1,44 @@
+name: Update Shariah screener data
+
+# Rebuilds labs/shariah-compliant/data/us.json from SEC EDGAR filings and daily prices.
+on:
+  schedule:
+    - cron: "30 22 * * 1-5" # weekdays after the US market closes
+  workflow_dispatch:
+  push:
+    branches: ["claude/**"]
+    paths:
+      - "tools/shariah/**"
+      - "labs/shariah-compliant/data/universe-us.txt"
+      - "labs/shariah-compliant/data/overrides-us.json"
+      - ".github/workflows/shariah-data.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shariah-data-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build screening data
+        env:
+          SEC_USER_AGENT: ${{ vars.SEC_USER_AGENT }}
+        run: python3 tools/shariah/build_us.py
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add labs/shariah-compliant/data/us.json
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "Update Shariah screener data"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
