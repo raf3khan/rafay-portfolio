@@ -1,12 +1,12 @@
 {
-  "updated": "2026-11-03",
+  "updated": "2026-11-08",
   "source": "Prices and ratios from StockAnalysis (delayed quotes). Announcements from company filings as listed by StockAnalysis and Argaam. Plain-language summaries written with AI from these figures and checked by hand.",
   "sourceAr": "الأسعار والنسب من موقع StockAnalysis (أسعار متأخرة). الإعلانات من إفصاحات الشركات كما يعرضها StockAnalysis وأرقام. الملخصات المبسطة مكتوبة بالذكاء الاصطناعي من هذه الأرقام ومراجعة يدويًا.",
   "companies": [
     {
       "code": "2222", "name": "Saudi Aramco", "nameAr": "أرامكو السعودية", "aka": ["aramco", "saudi arabian oil"],
       "sector": "Energy", "asOf": "2026-10-15", "price": 25.28, "low52": 23.29, "high52": 27.96,
-      "marketCap": 6120, "pe": 15.03, "dps": 1.33, "yield": 5.27, "netIncome": null, "niChange": null,
+      "marketCap": 6120, "pe": 15.03, "dps": 1.33, "yield": 5.27, "netIncome": 408.37, "niChange": 11.7,
       "summary": [
         "Aramco is the state-controlled oil and gas company and by far the largest business on Tadawul. It finds and pumps crude oil and gas, refines it, and makes chemicals through its stake in SABIC.",
         "The share price tends to follow oil prices and sits in the lower half of its range for the past year. Most people hold it for the dividend: about 5.3% a year at this price, paid every quarter."
@@ -16,6 +16,9 @@
         "يتحرك سعر السهم غالبًا مع أسعار النفط، وهو حاليًا في النصف الأدنى من نطاقه خلال العام الماضي. يملكه أغلب المستثمرين من أجل التوزيعات: نحو 5.3٪ سنويًا بهذا السعر، تُدفع كل ربع سنة."
       ],
       "events": [
+        { "date": "2026-11", "kind": "results", "title": "Q3 2026 results released", "titleAr": "إعلان نتائج الربع الثالث 2026",
+          "plain": "Aramco published its July to September numbers. Sales in its upstream business, which finds and produces oil and gas, rose 6% to SAR 283.3 billion.", "plainAr": "نشرت أرامكو نتائج الفترة من يوليو إلى سبتمبر. ارتفعت مبيعات قطاع التنقيب والإنتاج 6٪ إلى 283.3 مليار ريال.",
+          "src": "Argaam", "url": "https://www.argaam.com/en/article/articledetail/id/1951413" },
         { "date": "2026-11-03", "kind": "dividend", "title": "Q3 2026 dividend of SAR 0.34 a share", "titleAr": "توزيع الربع الثالث 2026 بقيمة 0.34 ريال للسهم",
           "plain": "Aramco is paying SAR 0.34 for every share you own for the third quarter. That keeps the regular quarterly payout going.", "plainAr": "ستدفع أرامكو 0.34 ريال عن كل سهم تملكه عن الربع الثالث، لتستمر التوزيعات الربعية المعتادة.",
           "src": "Argaam", "url": "https://www.argaam.com/en" }
@@ -105,16 +108,13 @@
       "marketCap": 114.93, "pe": 71.84, "dps": 0.46, "yield": 0.31, "netIncome": 1.60, "niChange": -8.2,
       "summary": [
         "ACWA Power builds and runs power plants, water desalination plants and green hydrogen projects in Saudi Arabia and across the Middle East, Asia and Africa.",
-        "Investors pay about 72 riyals for every riyal of yearly profit, which means they are betting on a lot of future growth. The price has fallen about 40% from its high of the past year and pays almost no dividend. Its next results are due on 5 November."
+        "Investors pay about 72 riyals for every riyal of yearly profit, which means they are betting on a lot of future growth. The price has fallen about 40% from its high of the past year and pays almost no dividend."
       ],
       "summaryAr": [
         "أكوا باور تبني وتشغّل محطات الكهرباء وتحلية المياه ومشاريع الهيدروجين الأخضر في المملكة والشرق الأوسط وآسيا وأفريقيا.",
-        "يدفع المستثمرون نحو 72 ريالًا مقابل كل ريال من الربح السنوي، أي أنهم يراهنون على نمو كبير مستقبلًا. انخفض السعر نحو 40٪ عن أعلى مستوى له خلال العام، والتوزيعات شبه معدومة. النتائج القادمة متوقعة في 5 نوفمبر."
+        "يدفع المستثمرون نحو 72 ريالًا مقابل كل ريال من الربح السنوي، أي أنهم يراهنون على نمو كبير مستقبلًا. انخفض السعر نحو 40٪ عن أعلى مستوى له خلال العام، والتوزيعات شبه معدومة."
       ],
       "events": [
-        { "date": "2026-11-05", "kind": "upcoming", "title": "Q3 2026 results expected", "titleAr": "نتائج الربع الثالث 2026 متوقعة",
-          "plain": "The company is expected to report its July to September numbers.", "plainAr": "من المتوقع أن تعلن الشركة نتائج الفترة من يوليو إلى سبتمبر.",
-          "src": "StockAnalysis", "url": "https://stockanalysis.com/quote/tadawul/2082/" },
         { "date": "2026-08", "kind": "results", "title": "Q2 2026 results released", "titleAr": "إعلان نتائج الربع الثاني 2026",
           "plain": "The company published its April to June numbers and held a call with analysts.", "plainAr": "نشرت الشركة نتائج الفترة من أبريل إلى يونيو وعقدت مؤتمرًا مع المحللين.",
           "src": "StockAnalysis", "url": "https://stockanalysis.com/quote/tadawul/2082/" }
@@ -133,6 +133,9 @@
         "ارتفع الربح في آخر اثني عشر شهرًا بنحو 77٪. يدفع المستثمرون سعرًا مرتفعًا مقابل هذا النمو، نحو 33 ضعف الربح السنوي، ولا توزّع الشركة أرباحًا حاليًا."
       ],
       "events": [
+        { "date": "2026-11-09", "kind": "upcoming", "title": "Q3 2026 results expected", "titleAr": "نتائج الربع الثالث 2026 متوقعة",
+          "plain": "The company is expected to report its July to September numbers.", "plainAr": "من المتوقع أن تعلن الشركة نتائج الفترة من يوليو إلى سبتمبر.",
+          "src": "StockAnalysis", "url": "https://stockanalysis.com/quote/tadawul/1211/" },
         { "date": "2026-08", "kind": "deal", "title": "Mineral exploration venture with Aramco", "titleAr": "مشروع مشترك مع أرامكو لاستكشاف المعادن",
           "plain": "Ma'aden and Aramco plan a joint company to search for minerals in Saudi Arabia, combining Aramco's exploration know-how with Ma'aden's mining.", "plainAr": "تخطط معادن وأرامكو لتأسيس شركة مشتركة للبحث عن المعادن في المملكة، تجمع خبرة أرامكو في الاستكشاف مع خبرة معادن في التعدين.",
           "src": "Reuters", "url": "https://stockanalysis.com/quote/tadawul/1211/" },
@@ -144,7 +147,7 @@
     {
       "code": "2280", "name": "Almarai", "nameAr": "المراعي", "aka": ["almarai", "al marai", "المراعي"],
       "sector": "Food", "asOf": "2026-08-13", "price": 48.20, "low52": 38.18, "high52": 54.05,
-      "marketCap": 48.2, "pe": 19.84, "dps": 1.15, "yield": 2.39, "netIncome": 2.45, "niChange": 2.8,
+      "marketCap": 48.6, "pe": 19.84, "dps": 1.15, "yield": 2.39, "netIncome": 2.45, "niChange": 2.8,
       "summary": [
         "Almarai is the Gulf's biggest food company. It makes milk, laban, juice, cheese, bread and poultry and sells them across the region.",
         "This is a steady business: revenue grew about 7% and profit about 3% over the last twelve months. The dividend is modest at about 2.4%, and the shares trade at about 20 times yearly profit."
