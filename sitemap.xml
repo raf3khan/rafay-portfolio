@@ -19,6 +19,10 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://rafkhan.com/labs/broker-fees/"/>
   </url>
   <url>
+    <loc>https://rafkhan.com/labs/debt-payoff/</loc>
+    <lastmod>2026-11-08</lastmod>
+  </url>
+  <url>
     <loc>https://rafkhan.com/labs/kafalah-check/</loc>
     <lastmod>2026-11-08</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://rafkhan.com/labs/kafalah-check/"/>
@@ -38,7 +42,7 @@
   </url>
   <url>
     <loc>https://rafkhan.com/labs/shariah-compliant/</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-08</lastmod>
   </url>
   <url>
     <loc>https://rafkhan.com/labs/tadawul-dividends/</loc>
