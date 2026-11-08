@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://*.g.doubleclick.net https://*.google.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://*.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Rafay Khan · Product design and AI for finance</title>
 <link rel="canonical" href="https://rafkhan.com/">
 <meta name="description" content="Rafay Khan is a product designer and product manager in Riyadh who designs and ships AI products for banking and capital markets.">
@@ -589,7 +591,7 @@ a.lab:hover .go .ico { transform: translate(2px, -2px); }
   <div class="fine"><div class="col"><span>© <span id="year">2026</span> Rafay Khan · Riyadh</span><a href="#top">Back to top</a></div></div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="/vendor/lenis.min.js"></script>
 <script>
 (function () {
   document.getElementById('year').textContent = new Date().getFullYear();
