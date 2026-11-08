@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://*.g.doubleclick.net https://*.google.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://*.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Free tools for Saudi investors and borrowers | Rafay Khan Labs</title>
+<meta name="description" content="Free calculators and trackers for the Saudi market: dividend calendar, IPO tracker, broker fees, halal stock screener, debt payoff and Kafalah. In English and Arabic.">
+<link rel="alternate" hreflang="en" href="https://rafkhan.com/labs/">
+<link rel="alternate" hreflang="ar" href="https://rafkhan.com/labs/?lang=ar">
+<link rel="alternate" hreflang="x-default" href="https://rafkhan.com/labs/">
+<script>(function(){var ar=/[?&]lang=ar\b/.test(location.search);var l=document.createElement("link");l.rel="canonical";l.href="https://rafkhan.com/labs/"+(ar?"?lang=ar":"");document.head.appendChild(l);})();</script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rafay Khan">
+<meta property="og:title" content="Free tools for Saudi investors">
+<meta property="og:description" content="Dividend calendar, IPO tracker, broker fees, halal stock screener, debt payoff and Kafalah check. Free, private and in English and Arabic.">
+<meta property="og:url" content="https://rafkhan.com/labs/">
+<meta property="og:image" content="https://rafkhan.com/og/labs.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Labs: free tools for Saudi investors, by Rafay Khan">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ar_SA">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "CollectionPage", "name": "Free tools for Saudi investors", "alternateName": "أدوات مجانية للمستثمر السعودي", "url": "https://rafkhan.com/labs/", "description": "Free calculators and trackers for the Saudi market: dividend calendar, IPO tracker, broker fees, halal stock screener, debt payoff and Kafalah. In English and Arabic.", "inLanguage": ["en", "ar"], "isPartOf": {"@id": "https://rafkhan.com/#site"}, "author": {"@type": "Person", "name": "Rafay Khan", "url": "https://rafkhan.com/"}, "mainEntity": {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://rafkhan.com/labs/tadawul-dividends/", "name": "Tadawul Dividend Calendar"}, {"@type": "ListItem", "position": 2, "url": "https://rafkhan.com/labs/saudi-ipo-tracker/", "name": "Saudi IPO Tracker"}, {"@type": "ListItem", "position": 3, "url": "https://rafkhan.com/labs/broker-fees/", "name": "Saudi Broker Fee Calculator"}, {"@type": "ListItem", "position": 4, "url": "https://rafkhan.com/labs/tadawul-explained/", "name": "Tadawul Explained"}, {"@type": "ListItem", "position": 5, "url": "https://rafkhan.com/labs/shariah-compliant/", "name": "Halal Stock Screener"}, {"@type": "ListItem", "position": 6, "url": "https://rafkhan.com/labs/debt-payoff/", "name": "Debt Payoff Planner"}, {"@type": "ListItem", "position": 7, "url": "https://rafkhan.com/labs/kafalah-check/", "name": "Kafalah Readiness Check"}]}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Rafay Khan", "item": "https://rafkhan.com/"}, {"@type": "ListItem", "position": 2, "name": "Labs", "item": "https://rafkhan.com/labs/"}]}]}
+</script>
+<link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+/* Fallback sized like Geist so text does not reflow when the web font arrives. */
+@font-face { font-family: "Geist Fallback"; src: local("Arial"), local("Liberation Sans"), local("Helvetica"); size-adjust: 102.6%; }
+/* Layout: same drafting board as rafkhan.com, built from the Rafay Portfolio design system. Grid paper ground, one framed 1200px column ruled into bands. Quiz in three steps, a verdict with four figures, then what stands out beside the documents to prepare. */
+:root {
+  --bg: #fafaf9; --paper-line: #efefed; --surface: #ffffff; --raised: #f2f2f0;
+  --ink: #111111; --muted: #565656; --line: #dcdcd8;
+  --accent: #1f7d37; --accent-soft: #e6f6ea; --go: #30d158; --go-ink: #0b2b14;
+  --pay: #8a5a12; --pay-soft: #f1ece1; --weekend: #f2f2f0;
+  --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font: "Geist", "Geist Fallback", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --arabic: "IBM Plex Sans Arabic", "Geist", system-ui, sans-serif;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --frame: 1200px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131313; --paper-line: #1c1c1c; --surface: #1f1f1f; --raised: #272727; --ink: #f4f4f4; --muted: #a3a3a3; --line: #313131;
+    --accent: #30d158; --accent-soft: #1d2a20; --pay: #e0ae55; --pay-soft: #24211b; --weekend: #181818; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131313; --paper-line: #1c1c1c; --surface: #1f1f1f; --raised: #272727; --ink: #f4f4f4; --muted: #a3a3a3; --line: #313131;
+  --accent: #30d158; --accent-soft: #1d2a20; --pay: #e0ae55; --pay-soft: #24211b; --weekend: #181818; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background-color: var(--bg); background-image: linear-gradient(var(--paper-line) 1px, transparent 1px), linear-gradient(90deg, var(--paper-line) 1px, transparent 1px); background-size: 16px 16px;
+  color: var(--ink); font: 400 16px/24px var(--font); -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+[dir="rtl"] body { font-family: var(--arabic); }
+h1, h2, h3 { text-wrap: balance; }
+a { color: var(--accent); text-underline-offset: 4px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+.ico { width: 16px; height: 16px; flex: none; }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* framed column, ruled bands, corner ticks */
+.band { border-bottom: 1px solid var(--line); }
+.col { max-width: var(--frame); margin: 0 auto; border-left: 1px solid var(--line); border-right: 1px solid var(--line); position: relative; background-color: var(--bg); }
+.band > .col::before, .band > .col::after { content: ""; position: absolute; bottom: -5px; width: 8px; height: 8px; border: 1px solid var(--line); background: var(--bg); z-index: 2; }
+.band > .col::before { left: -5px; } .band > .col::after { right: -5px; }
+.pad { padding: 24px; }
+@media (max-width: 1232px) { .col { margin: 0 16px; } }
+@media (max-width: 480px) { .col { margin: 0 8px; } .pad { padding: 16px; } }
+
+/* glossy controls */
+.gloss { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px; border-radius: 8px; font: 500 14px/20px var(--font); color: #ffffff; text-decoration: none; cursor: pointer;
+  background: linear-gradient(#3b3b3b, #0b0b0b); border: 1px solid #000000;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -1px 0 rgba(255,255,255,0.06), 0 2px 4px rgba(0,0,0,0.28), 0 8px 16px rgba(0,0,0,0.12);
+  transition: transform 300ms var(--ease), box-shadow 300ms var(--ease); }
+.gloss:hover { transform: translateY(-2px); }
+.chipbtn { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-decoration: none; font: 500 14px/20px var(--font); cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06); transition: transform 300ms var(--ease), border-color 300ms var(--ease); }
+.chipbtn:hover { transform: translateY(-2px); border-color: var(--muted); }
+[dir="rtl"] .chipbtn, [dir="rtl"] .gloss { font-family: var(--arabic); }
+
+/* top bar, same as the home page */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.bar .col { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; padding: 8px 16px; background: transparent; }
+.seg { display: inline-flex; gap: 4px; padding: 2px; border-radius: 8px; border: 1px solid var(--line); background: var(--raised); justify-self: start; }
+.seg a, .seg button { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 8px; border: 0; background: transparent; font: 500 14px/20px var(--font); color: var(--muted); text-decoration: none; cursor: pointer; transition: color 300ms var(--ease); }
+[dir="rtl"] .seg a, [dir="rtl"] .seg button { font-family: var(--arabic); }
+.seg a:hover, .seg button:hover { color: var(--ink); }
+.seg a[aria-current="true"], .seg button[aria-pressed="true"] { color: #ffffff; background: linear-gradient(#3b3b3b, #0b0b0b); box-shadow: 0 0 0 2px var(--accent), inset 0 1px 0 rgba(255,255,255,0.25); }
+.seg .ico { width: 12px; height: 12px; }
+.brand { font: 400 20px/28px var(--font); color: var(--ink); text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; }
+.right { justify-self: end; display: flex; gap: 8px; align-items: center; }
+@media (max-width: 480px) { .seg .ico { display: none; } .seg a { padding: 2px 6px; } .bar .brand { display: none; } .bar .col { grid-template-columns: 1fr auto; } }
+@media (max-width: 560px) { .brand { font-size: 16px; line-height: 24px; } .bar .col { gap: 8px; padding: 8px; } .right .gloss { display: none; } }
+
+/* hero */
+.hero .col { padding: 64px 24px 48px; display: grid; gap: 16px; overflow: hidden; }
+.hero .col > .glow { position: absolute; inset: 0 0 auto 0; height: 280px; pointer-events: none; background: radial-gradient(ellipse 60% 100% at 50% 0%, rgba(48, 209, 88, 0.22), transparent 70%); }
+.eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; font: 400 14px/20px var(--mono); color: var(--muted); position: relative; }
+[dir="rtl"] .eyebrow { font-family: var(--arabic); }
+.back { color: var(--muted); text-decoration: none; } .back:hover { color: var(--ink); }
+.badge { font: 500 12px/16px var(--font); padding: 2px 8px; border-radius: 9999px; background: var(--pay-soft); color: var(--pay); }
+h1 { margin: 0; font: 400 60px/1 var(--serif); letter-spacing: -0.02em; position: relative; }
+h1 .sub { display: block; margin-top: 12px; font: 400 24px/32px var(--arabic); letter-spacing: 0; color: var(--muted); }
+[dir="rtl"] h1 { font: 500 52px/1.2 var(--arabic); letter-spacing: 0; }
+[dir="rtl"] h1 .sub { font: 400 24px/32px var(--serif); }
+.lede { margin: 0; max-width: 600px; color: var(--muted); font-size: 18px; line-height: 28px; position: relative; }
+@media (max-width: 860px) { .hero .col { padding: 48px 16px 32px; } h1 { font-size: 44px; } [dir="rtl"] h1 { font-size: 38px; } }
+
+
+/* tool groups, cards as on the home page */
+.group .col { display: grid; }
+.ghead { padding: 32px 24px 24px; display: grid; gap: 4px; }
+.ghead h2 { margin: 0; font: 400 32px/40px var(--serif); letter-spacing: -0.01em; }
+[dir="rtl"] .ghead h2 { font: 500 28px/40px var(--arabic); }
+.ghead p { margin: 0; color: var(--muted); }
+.labs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+.lab { display: flex; gap: 16px; padding: 24px; color: inherit; text-decoration: none; border-bottom: 1px solid var(--line); transition: background-color 300ms var(--ease); }
+.lab:nth-child(odd) { border-inline-end: 1px solid var(--line); }
+.lab:last-child:nth-child(odd) { grid-column: 1 / -1; border-right: 0; }
+.labs > :nth-last-child(-n+2):not(:last-child:nth-child(odd)):nth-child(odd), .labs > :last-child { border-bottom: 0; }
+a.lab:hover { background-color: var(--raised); }
+a.lab:hover .go .ico { transform: translate(2px, -2px); }
+.li { flex: none; width: 64px; height: 64px; border-radius: 16px; display: grid; place-items: center; }
+.li svg { width: 40px; height: 40px; }
+.li.ta { background: var(--tint-a); } .li.tb { background: var(--tint-b); } .li.tc { background: var(--tint-c); } .li.td { background: var(--tint-d); }
+.lt { display: grid; gap: 8px; align-content: start; min-width: 0; }
+.lh { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.lab h3 { margin: 0; font: 400 24px/32px var(--serif); }
+.lab p { margin: 0; color: var(--muted); }
+.st { font: 500 12px/16px var(--font); padding: 2px 8px; border-radius: 9999px; border: 1px solid var(--line); color: var(--muted); }
+.st.live { border-color: transparent; background: var(--accent-soft); color: var(--accent); }
+.go { display: inline-flex; align-items: center; gap: 4px; font: 500 14px/20px var(--font); color: var(--ink); }
+.go .ico { width: 12px; height: 12px; transition: transform 300ms var(--ease); }
+@media (max-width: 760px) { .labs { grid-template-columns: minmax(0, 1fr); } .lab, .lab:nth-child(odd) { border-inline-end: 0; border-bottom: 1px solid var(--line); } .labs > :last-child { border-bottom: 0; } .lab { padding: 16px; } .li { width: 48px; height: 48px; border-radius: 12px; } .li svg { width: 32px; height: 32px; } }
+.go { font-family: var(--mono); font-size: 13px; }
+[dir="rtl"] .lab h3 { font: 500 22px/32px var(--arabic); }
+[dir="rtl"] .go .ico { transform: scaleX(-1); }
+.about .col { padding: 32px 24px; display: grid; gap: 12px; max-width: var(--frame); }
+.about h2 { margin: 0; font: 400 32px/40px var(--serif); }
+[dir="rtl"] .about h2 { font: 500 28px/40px var(--arabic); }
+.about p { margin: 0; max-width: 720px; color: var(--muted); }
+@media (max-width: 480px) { .go .dom { display: none; } }
+@media (max-width: 480px) { .ghead, .about .col { padding-left: 16px; padding-right: 16px; } }
+.fine .col { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding: 16px 24px; color: var(--muted); font-size: 14px; line-height: 20px; }
+.fine a { color: var(--muted); text-decoration: none; } .fine a:hover { color: var(--ink); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<script src="/analytics.js" defer></script>
+</head>
+<body>
+<header class="bar band">
+  <div class="col">
+    <nav class="seg" aria-label="Main"><a href="/#work"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M104,40H56A16,16,0,0,0,40,56v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,104,40Zm0,64H56V56h48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm0,64H152V56h48Zm-96,32H56a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,104,136Zm0,64H56V152h48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,200,136Zm0,64H152V152h48Z"/></svg><span data-i="nWork">Work</span></a><a href="/#story"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M208,24H72A32,32,0,0,0,40,56V224a8,8,0,0,0,8,8H192a8,8,0,0,0,0-16H56a16,16,0,0,1,16-16H208a8,8,0,0,0,8-8V32A8,8,0,0,0,208,24Zm-8,160H72a31.82,31.82,0,0,0-16,4.29V56A16,16,0,0,1,72,40H200Z"/></svg><span data-i="nStory">Story</span></a><a href="/labs/" aria-current="true"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M221.69,199.77,160,96.92V40h8a8,8,0,0,0,0-16H88a8,8,0,0,0,0,16h8V96.92L34.31,199.77A16,16,0,0,0,48,224H208a16,16,0,0,0,13.72-24.23ZM110.86,103.25A7.93,7.93,0,0,0,112,99.14V40h32V99.14a7.93,7.93,0,0,0,1.14,4.11L183.36,167c-12,2.37-29.07,1.37-51.75-10.11-15.91-8.05-31.05-12.32-45.22-12.81ZM48,208l28.54-47.58c14.25-1.74,30.31,1.85,47.82,10.72,19,9.61,35,12.88,48,12.88a69.89,69.89,0,0,0,19.55-2.7L208,208Z"/></svg><span data-i="nLabs">Labs</span></a></nav>
+    <a class="brand" href="/">Rafay Khan</a>
+    <div class="right"><button class="chipbtn" id="langBtn" type="button" lang="ar">العربية</button><a class="gloss" href="https://www.linkedin.com/in/rafekhan" target="_blank" rel="noopener" data-i="chat">Let's chat</a></div>
+  </div>
+</header>
+<main id="main">
+  <section class="hero band">
+    <div class="col">
+      <div class="glow" aria-hidden="true"></div>
+      <div class="eyebrow"><a class="back" href="/" data-i="back">← Home</a><span data-i="kicker">Labs</span><span data-i="count">7 free tools</span></div>
+      <h1><span data-i="title">Free tools for Saudi investors</span> <span class="sub" id="titleSub" lang="ar">أدوات مجانية للمستثمر السعودي</span></h1>
+      <p class="lede" data-i="lede">Small, focused tools for people investing or borrowing in Saudi Arabia. They're free, need no sign-up, and run in your browser, so your numbers stay on your device.</p>
+    </div>
+  </section>
+
+  <section class="band group" aria-labelledby="hInv">
+    <div class="col">
+      <div class="ghead"><h2 id="hInv" data-i="hInv">Investing on Tadawul</h2><p data-i="pInv">Dividends, IPOs, trading costs, company basics and Shariah screening.</p></div>
+      <div class="labs">
+        <a class="lab" href="/labs/tadawul-dividends/" data-bi="1"><div class="li td" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="10" y="12" width="28" height="26" rx="4" fill="none" stroke="var(--muted)" stroke-width="3"/><rect x="10" y="12" width="28" height="7" rx="3" fill="var(--muted)"/><circle cx="18" cy="27" r="2.5" fill="var(--line)"/><circle cx="24" cy="27" r="2.5" fill="var(--accent)"/><circle cx="30" cy="27" r="2.5" fill="var(--line)"/><circle cx="18" cy="33" r="2.5" fill="var(--line)"/></svg></div><div class="lt"><div class="lh"><h3 data-i="n_tadawul-dividends">Tadawul Dividend Calendar</h3></div><p data-i="d_tadawul-dividends">Upcoming Saudi dividends with the last day to buy, ex-dividend and payment dates, and yields. Updated every trading day.</p><span class="go" dir="ltr"><span class="dom">rafkhan.com</span>/labs/tadawul-dividends <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></span></div></a>
+        <a class="lab" href="/labs/saudi-ipo-tracker/" data-bi="0"><div class="li tb" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M10 36 H38" stroke="var(--line)" stroke-width="3" stroke-linecap="round"/><rect x="12" y="24" width="6" height="12" rx="2" fill="var(--muted)"/><rect x="21" y="18" width="6" height="18" rx="2" fill="var(--muted)"/><rect x="30" y="10" width="6" height="26" rx="2" fill="var(--accent)"/></svg></div><div class="lt"><div class="lh"><h3 data-i="n_saudi-ipo-tracker">Saudi IPO Tracker</h3><span class="st" data-i="enOnly" hidden>بالإنجليزية</span></div><p data-i="d_saudi-ipo-tracker">Upcoming Saudi IPOs, ETFs and sukuk with retail subscription dates, plus an estimate of your allocation and refund.</p><span class="go" dir="ltr"><span class="dom">rafkhan.com</span>/labs/saudi-ipo-tracker <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></span></div></a>
+        <a class="lab" href="/labs/broker-fees/" data-bi="1"><div class="li tc" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="8" y="12" width="32" height="5" rx="2.5" fill="var(--muted)"/><rect x="8" y="21.5" width="22" height="5" rx="2.5" fill="var(--line)"/><rect x="8" y="31" width="12" height="5" rx="2.5" fill="var(--accent)"/></svg></div><div class="lt"><div class="lh"><h3 data-i="n_broker-fees">Saudi Broker Fee Calculator</h3></div><p data-i="d_broker-fees">The full cost of a trade at every Saudi online broker, with the exchange levy, the CMA fee and VAT added in.</p><span class="go" dir="ltr"><span class="dom">rafkhan.com</span>/labs/broker-fees <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></span></div></a>
+        <a class="lab" href="/labs/tadawul-explained/" data-bi="1"><div class="li ta" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M8 32 L16 24 L22 28 L32 16 L40 20" fill="none" stroke="var(--muted)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M36 30 l2 4 4 2 -4 2 -2 4 -2 -4 -4 -2 4 -2z" fill="var(--accent)"/></svg></div><div class="lt"><div class="lh"><h3 data-i="n_tadawul-explained">Tadawul Explained</h3></div><p data-i="d_tadawul-explained">Look up a Saudi stock and get a plain-language read on the company, its key numbers and recent announcements.</p><span class="go" dir="ltr"><span class="dom">rafkhan.com</span>/labs/tadawul-explained <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></span></div></a>
+        <a class="lab" href="/labs/shariah-compliant/" data-bi="0"><div class="li ta" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="10" y="12" width="28" height="4" rx="2" fill="var(--muted)"/><rect x="10" y="22" width="20" height="4" rx="2" fill="var(--line)"/><rect x="10" y="32" width="24" height="4" rx="2" fill="var(--line)"/><circle cx="38" cy="24" r="4" fill="var(--accent)"/><circle cx="40" cy="34" r="4" fill="var(--accent)"/></svg></div><div class="lt"><div class="lh"><h3 data-i="n_shariah-compliant">Halal Stock Screener</h3><span class="st" data-i="enOnly" hidden>بالإنجليزية</span></div><p data-i="d_shariah-compliant">Check a US stock against AAOIFI Shariah standards from its latest SEC filings, or enter figures for a Tadawul stock. Includes purification.</p><span class="go" dir="ltr"><span class="dom">rafkhan.com</span>/labs/shariah-compliant <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></span></div></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band group" aria-labelledby="hBor">
+    <div class="col">
+      <div class="ghead"><h2 id="hBor" data-i="hBor">Borrowing and debt</h2><p data-i="pBor">Plan your repayments, or check if your business is ready for a guaranteed loan.</p></div>
+      <div class="labs">
+        <a class="lab" href="/labs/debt-payoff/" data-bi="0"><div class="li tb" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="10" y="12" width="6" height="24" rx="3" fill="var(--muted)"/><rect x="21" y="18" width="6" height="18" rx="3" fill="var(--muted)"/><rect x="32" y="26" width="6" height="10" rx="3" fill="var(--accent)"/><rect x="8" y="38" width="32" height="3" rx="1.5" fill="var(--line)"/></svg></div><div class="lt"><div class="lh"><h3 data-i="n_debt-payoff">Debt Payoff Planner</h3><span class="st" data-i="enOnly" hidden>بالإنجليزية</span></div><p data-i="d_debt-payoff">Compare the snowball and avalanche methods across all your loans and cards, with a debt-free date and a payoff timeline.</p><span class="go" dir="ltr"><span class="dom">rafkhan.com</span>/labs/debt-payoff <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></span></div></a>
+        <a class="lab" href="/labs/kafalah-check/" data-bi="1"><div class="li td" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="12" y="8" width="24" height="32" rx="4" fill="none" stroke="var(--muted)" stroke-width="3"/><rect x="17" y="16" width="14" height="3" rx="1.5" fill="var(--line)"/><rect x="17" y="23" width="10" height="3" rx="1.5" fill="var(--line)"/><path d="M28 32 l4 4 8 -9" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="lt"><div class="lh"><h3 data-i="n_kafalah-check">Kafalah Readiness Check</h3></div><p data-i="d_kafalah-check">A short quiz for Saudi SMEs: which Kafalah loan guarantee fits, how much it could cover, and the documents to prepare.</p><span class="go" dir="ltr"><span class="dom">rafkhan.com</span>/labs/kafalah-check <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></span></div></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band about" aria-labelledby="hAbout">
+    <div class="col">
+      <h2 id="hAbout" data-i="hAbout">About these tools</h2>
+      <p data-i="pAbout1">I'm Rafay Khan, a product designer and product manager who builds digital products for banks and capital markets in Riyadh. Labs is where I build the tools I wish existed for investors and borrowers in the region.</p>
+      <p data-i="pAbout2">Each tool says where its data comes from and when it was last checked. Market data comes from public sources such as Saudi Exchange disclosures and SEC filings. Rules come from the official programme or regulator. None of it is investment advice, so always confirm with the company announcement or your bank.</p>
+    </div>
+  </section>
+</main>
+<footer class="fine"><div class="col"><span>© <span id="year">2026</span> <span data-i="footName">Rafay Khan · Riyadh</span></span><a href="/" data-i="footBack">Back to home</a></div></footer>
+<script>
+(function () {
+  const STR = { en: {"docTitle": "Free tools for Saudi investors and borrowers | Rafay Khan Labs", "docDesc": "Free calculators and trackers for the Saudi market: dividend calendar, IPO tracker, broker fees, halal stock screener, debt payoff and Kafalah. In English and Arabic.", "nWork": "Work", "nStory": "Story", "nLabs": "Labs", "chat": "Let's chat", "langBtn": "العربية", "footName": "Rafay Khan · Riyadh", "footBack": "Back to home", "back": "← Home", "kicker": "Labs", "count": "7 free tools", "title": "Free tools for Saudi investors", "titleSub": "أدوات مجانية للمستثمر السعودي", "lede": "Small, focused tools for people investing or borrowing in Saudi Arabia. They're free, need no sign-up, and run in your browser, so your numbers stay on your device.", "hInv": "Investing on Tadawul", "pInv": "Dividends, IPOs, trading costs, company basics and Shariah screening.", "hBor": "Borrowing and debt", "pBor": "Plan your repayments, or check if your business is ready for a guaranteed loan.", "hAbout": "About these tools", "pAbout1": "I'm Rafay Khan, a product designer and product manager who builds digital products for banks and capital markets in Riyadh. Labs is where I build the tools I wish existed for investors and borrowers in the region.", "pAbout2": "Each tool says where its data comes from and when it was last checked. Market data comes from public sources such as Saudi Exchange disclosures and SEC filings. Rules come from the official programme or regulator. None of it is investment advice, so always confirm with the company announcement or your bank.", "enOnly": "", "n_tadawul-dividends": "Tadawul Dividend Calendar", "d_tadawul-dividends": "Upcoming Saudi dividends with the last day to buy, ex-dividend and payment dates, and yields. Updated every trading day.", "n_saudi-ipo-tracker": "Saudi IPO Tracker", "d_saudi-ipo-tracker": "Upcoming Saudi IPOs, ETFs and sukuk with retail subscription dates, plus an estimate of your allocation and refund.", "n_broker-fees": "Saudi Broker Fee Calculator", "d_broker-fees": "The full cost of a trade at every Saudi online broker, with the exchange levy, the CMA fee and VAT added in.", "n_tadawul-explained": "Tadawul Explained", "d_tadawul-explained": "Look up a Saudi stock and get a plain-language read on the company, its key numbers and recent announcements.", "n_shariah-compliant": "Halal Stock Screener", "d_shariah-compliant": "Check a US stock against AAOIFI Shariah standards from its latest SEC filings, or enter figures for a Tadawul stock. Includes purification.", "n_debt-payoff": "Debt Payoff Planner", "d_debt-payoff": "Compare the snowball and avalanche methods across all your loans and cards, with a debt-free date and a payoff timeline.", "n_kafalah-check": "Kafalah Readiness Check", "d_kafalah-check": "A short quiz for Saudi SMEs: which Kafalah loan guarantee fits, how much it could cover, and the documents to prepare."}, ar: {"docTitle": "أدوات مجانية للمستثمر والمقترض في السعودية | Rafay Khan", "docDesc": "حاسبات ومتتبعات مجانية للسوق السعودية: تقويم توزيعات الأرباح، الطروحات العامة، عمولات الوساطة، فحص الأسهم الشرعية، سداد الديون وكفالة. بالعربية والإنجليزية.", "nWork": "الأعمال", "nStory": "القصة", "nLabs": "المختبر", "chat": "تواصل معي", "langBtn": "English", "footName": "Rafay Khan · الرياض", "footBack": "العودة إلى الرئيسية", "back": "→ الرئيسية", "kicker": "المختبر", "count": "7 أدوات مجانية", "title": "أدوات مجانية للمستثمر السعودي", "titleSub": "Free tools for Saudi investors", "lede": "أدوات صغيرة ومركّزة لمن يستثمر أو يقترض في السعودية. مجانية، ولا تحتاج إلى تسجيل، وتعمل في متصفحك، فتبقى أرقامك على جهازك.", "hInv": "الاستثمار في تداول", "pInv": "توزيعات الأرباح، والطروحات العامة، وتكاليف التداول، وأساسيات الشركات، والفحص الشرعي.", "hBor": "الاقتراض والديون", "pBor": "خطّط لسداد ديونك، أو تحقق من جاهزية منشأتك لتمويل مضمون.", "hAbout": "عن هذه الأدوات", "pAbout1": "أنا Rafay Khan، مصمم منتجات ومدير منتجات أبني منتجات رقمية للبنوك وأسواق المال في الرياض. المختبر هو المكان الذي أبني فيه الأدوات التي تمنيت وجودها للمستثمرين والمقترضين في المنطقة.", "pAbout2": "تذكر كل أداة مصدر بياناتها وتاريخ آخر تحقق منها. تأتي بيانات السوق من مصادر عامة مثل إفصاحات السوق المالية السعودية وقوائم هيئة الأوراق المالية الأمريكية، وتأتي القواعد من البرنامج أو الجهة التنظيمية الرسمية. لا شيء منها نصيحة استثمارية، فتحقق دائمًا من إعلان الشركة أو من بنكك.", "enOnly": "بالإنجليزية", "n_tadawul-dividends": "تقويم توزيعات الأرباح في تداول", "d_tadawul-dividends": "توزيعات الأرباح القادمة للشركات السعودية مع آخر يوم للشراء وتواريخ الأحقية والصرف والعائد. تُحدَّث كل يوم تداول.", "n_saudi-ipo-tracker": "متتبع الطروحات العامة السعودية", "d_saudi-ipo-tracker": "الطروحات العامة القادمة في السوق السعودية مع مواعيد اكتتاب الأفراد، وتقدير لعدد الأسهم المخصصة والمبلغ المسترد.", "n_broker-fees": "حاسبة عمولات الوساطة في السوق السعودية", "d_broker-fees": "التكلفة الكاملة لصفقة لدى كل وسيط إلكتروني في السعودية، شاملة رسوم السوق وهيئة السوق المالية وضريبة القيمة المضافة.", "n_tadawul-explained": "تداول بوضوح", "d_tadawul-explained": "ابحث عن سهم سعودي واحصل على شرح مبسّط للشركة وأهم أرقامها وآخر إعلاناتها.", "n_shariah-compliant": "فاحص الأسهم الشرعية", "d_shariah-compliant": "افحص توافق سهم أمريكي مع معايير أيوفي الشرعية من آخر قوائمه المالية، أو أدخل أرقام سهم في تداول. يشمل حاسبة التطهير.", "n_debt-payoff": "مخطط سداد الديون", "d_debt-payoff": "قارن بين طريقتَي كرة الثلج والانهيار لسداد قروضك وبطاقاتك، مع تاريخ التحرر من الدين وجدول زمني للسداد.", "n_kafalah-check": "فحص الجاهزية لبرنامج كفالة", "d_kafalah-check": "اختبار قصير للمنشآت الصغيرة والمتوسطة: أي ضمان من كفالة يناسبك، وكم قد يغطي، وما المستندات المطلوبة."} };
+  const store = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+  let lang = store.get("labs-lang") || ((navigator.language || "").toLowerCase().startsWith("ar") ? "ar" : "en");
+  if (/[?&]lang=ar\b/.test(location.search)) lang = "ar";
+  if (/[?&]lang=en\b/.test(location.search)) lang = "en";
+  const $ = (id) => document.getElementById(id);
+  function applyLang() {
+    const t = STR[lang], root = document.documentElement;
+    root.lang = lang; root.dir = lang === "ar" ? "rtl" : "ltr";
+    document.title = t.docTitle;
+    const md = document.querySelector('meta[name="description"]'); if (md) md.content = t.docDesc;
+    document.querySelectorAll("[data-i]").forEach((el) => { const v = t[el.dataset.i]; if (typeof v === "string") el.textContent = v; });
+    $("titleSub").textContent = t.titleSub; $("titleSub").lang = lang === "ar" ? "en" : "ar";
+    $("langBtn").textContent = t.langBtn; $("langBtn").lang = lang === "ar" ? "en" : "ar";
+    // Bilingual tools open in the same language; English-only ones get a tag in Arabic.
+    document.querySelectorAll("a.lab").forEach((a) => {
+      const base = a.getAttribute("href").split("?")[0];
+      a.setAttribute("href", lang === "ar" && a.dataset.bi === "1" ? base + "?lang=ar" : base);
+      const tag = a.querySelector('[data-i="enOnly"]'); if (tag) tag.hidden = lang !== "ar";
+    });
+  }
+  $("langBtn").addEventListener("click", () => {
+    lang = lang === "ar" ? "en" : "ar"; store.set("labs-lang", lang);
+    try { const u = new URL(location.href); u.searchParams.set("lang", lang); history.replaceState(null, "", u); } catch (e) {}
+    applyLang();
+  });
+  $("year").textContent = new Date().getFullYear();
+  applyLang();
+})();
+</script>
+</body>
+</html>
