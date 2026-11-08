@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27%23181818%27/%3E%3Ctext x=%2732%27 y=%2742%27 font-family=%27Arial%27 font-weight=%27700%27 font-size=%2728%27 fill=%27%2330d158%27 text-anchor=%27middle%27%3ERK%3C/text%3E%3C/svg%3E">
+<title>Tadawul Explained: Saudi stocks in plain English and Arabic</title>
+<meta name="description" content="Look up a Saudi Exchange (Tadawul) stock and get a plain summary of the company, its key numbers and recent announcements. Free, in English and Arabic.">
+<link rel="alternate" hreflang="en" href="https://rafkhan.com/labs/tadawul-explained/">
+<link rel="alternate" hreflang="ar" href="https://rafkhan.com/labs/tadawul-explained/?lang=ar">
+<link rel="alternate" hreflang="x-default" href="https://rafkhan.com/labs/tadawul-explained/">
+<script>
+/* SEO: one canonical per language. ?lang=ar is the Arabic page, everything else is the English page. */
+(function () {
+  var ar = /[?&]lang=ar\b/.test(location.search);
+  var l = document.createElement("link");
+  l.rel = "canonical";
+  l.href = "https://rafkhan.com/labs/tadawul-explained/" + (ar ? "?lang=ar" : "");
+  document.head.appendChild(l);
+})();
+</script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rafay Khan">
+<meta property="og:title" content="Tadawul Explained">
+<meta property="og:description" content="Saudi stocks in plain words: what the company does, what its key numbers mean and what it announced lately. In English and Arabic.">
+<meta property="og:url" content="https://rafkhan.com/labs/tadawul-explained/">
+<meta property="og:image" content="https://rafkhan.com/og/tadawul-explained.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Tadawul Explained by Rafay Khan">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ar_SA">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"Tadawul Explained","alternateName":"تداول بوضوح","url":"https://rafkhan.com/labs/tadawul-explained/","description":"Plain-language explanations of Saudi Exchange (Tadawul) stocks: what the company does, key ratios explained and recent announcements, in English and Arabic.","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["en","ar"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"SAR"},"author":{"@type":"Person","name":"Rafay Khan","url":"https://rafkhan.com/"}},
+{"@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Rafay Khan","item":"https://rafkhan.com/"},
+{"@type":"ListItem","position":2,"name":"Labs","item":"https://rafkhan.com/#labs"},
+{"@type":"ListItem","position":3,"name":"Tadawul Explained","item":"https://rafkhan.com/labs/tadawul-explained/"}]}
+]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap"></noscript>
+<style>
+@font-face { font-family: "Geist Fallback"; src: local("Arial"), local("Liberation Sans"), local("Helvetica"); size-adjust: 102.6%; }
+/* Layout: same drafting board as rafkhan.com. Grid paper ground, one framed 1200px column ruled into bands with corner ticks, serif display over Geist, glossy black controls. */
+:root {
+  --bg: #fafaf9; --paper-line: #efefed; --surface: #ffffff; --raised: #f2f2f0;
+  --ink: #111111; --muted: #565656; --line: #dcdcd8;
+  --accent: #1f7d37; --accent-soft: #e6f6ea; --go: #30d158; --go-ink: #0b2b14;
+  --pay: #8a5a12; --pay-soft: #f1ece1; --weekend: #f2f2f0;
+  --tint-a: #eef6ef; --tint-b: #f1ece1; --tint-c: #eaeef4; --tint-d: #f3eef2; --glow: rgba(48, 209, 88, 0.42);
+  --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font: "Geist", "Geist Fallback", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --arabic: "IBM Plex Sans Arabic", "Geist", system-ui, sans-serif;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --frame: 1200px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131313; --paper-line: #1c1c1c; --surface: #1f1f1f; --raised: #272727; --ink: #f4f4f4; --muted: #a3a3a3; --line: #313131;
+    --accent: #30d158; --accent-soft: #1d2a20; --pay: #e0ae55; --pay-soft: #24211b; --weekend: #181818; --tint-a: #1b231d; --tint-b: #24211b; --tint-c: #1c2027; --tint-d: #241e23; --glow: rgba(48, 209, 88, 0.22); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131313; --paper-line: #1c1c1c; --surface: #1f1f1f; --raised: #272727; --ink: #f4f4f4; --muted: #a3a3a3; --line: #313131;
+  --accent: #30d158; --accent-soft: #1d2a20; --pay: #e0ae55; --pay-soft: #24211b; --weekend: #181818; --tint-a: #1b231d; --tint-b: #24211b; --tint-c: #1c2027; --tint-d: #241e23; --glow: rgba(48, 209, 88, 0.22); color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background-color: var(--bg); background-image: linear-gradient(var(--paper-line) 1px, transparent 1px), linear-gradient(90deg, var(--paper-line) 1px, transparent 1px); background-size: 16px 16px;
+  color: var(--ink); font: 400 16px/24px var(--font); -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+[dir="rtl"] body { font-family: var(--arabic); }
+h1, h2, h3 { text-wrap: balance; }
+a { color: var(--accent); text-underline-offset: 4px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+.ico { width: 16px; height: 16px; flex: none; }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* framed column, ruled bands, corner ticks */
+.band { border-bottom: 1px solid var(--line); }
+.col { max-width: var(--frame); margin: 0 auto; border-left: 1px solid var(--line); border-right: 1px solid var(--line); position: relative; background-color: var(--bg); }
+.band > .col::before, .band > .col::after { content: ""; position: absolute; bottom: -5px; width: 8px; height: 8px; border: 1px solid var(--line); background: var(--bg); z-index: 2; }
+.band > .col::before { left: -5px; } .band > .col::after { right: -5px; }
+.pad { padding: 24px; }
+@media (max-width: 1232px) { .col { margin: 0 16px; } }
+@media (max-width: 480px) { .col { margin: 0 8px; } .pad { padding: 16px; } }
+
+/* glossy controls */
+.gloss { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px; border-radius: 8px; font: 500 14px/20px var(--font); color: #ffffff; text-decoration: none; cursor: pointer;
+  background: linear-gradient(#3b3b3b, #0b0b0b); border: 1px solid #000000;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -1px 0 rgba(255,255,255,0.06), 0 2px 4px rgba(0,0,0,0.28), 0 8px 16px rgba(0,0,0,0.12);
+  transition: transform 300ms var(--ease), box-shadow 300ms var(--ease); }
+.gloss:hover { transform: translateY(-2px); }
+.chipbtn { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-decoration: none; font: 500 14px/20px var(--font); cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06); transition: transform 300ms var(--ease), border-color 300ms var(--ease); }
+.chipbtn:hover { transform: translateY(-2px); border-color: var(--muted); }
+[dir="rtl"] .chipbtn, [dir="rtl"] .gloss { font-family: var(--arabic); }
+
+/* top bar, same as the home page */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.bar .col { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; padding: 8px 16px; background: transparent; }
+.seg { display: inline-flex; gap: 4px; padding: 2px; border-radius: 8px; border: 1px solid var(--line); background: var(--raised); justify-self: start; }
+.seg a, .seg button { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 8px; border: 0; background: transparent; font: 500 14px/20px var(--font); color: var(--muted); text-decoration: none; cursor: pointer; transition: color 300ms var(--ease); }
+[dir="rtl"] .seg a, [dir="rtl"] .seg button { font-family: var(--arabic); }
+.seg a:hover, .seg button:hover { color: var(--ink); }
+.seg a[aria-current="true"], .seg button[aria-pressed="true"] { color: #ffffff; background: linear-gradient(#3b3b3b, #0b0b0b); box-shadow: 0 0 0 2px var(--accent), inset 0 1px 0 rgba(255,255,255,0.25); }
+.seg .ico { width: 12px; height: 12px; }
+.brand { font: 400 20px/28px var(--font); color: var(--ink); text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; }
+.right { justify-self: end; display: flex; gap: 8px; align-items: center; }
+@media (max-width: 480px) { .seg .ico { display: none; } .seg a { padding: 2px 6px; } .bar .brand { display: none; } .bar .col { grid-template-columns: 1fr auto; } }
+@media (max-width: 560px) { .brand { font-size: 16px; line-height: 24px; } .bar .col { gap: 8px; padding: 8px; } .right .gloss { display: none; } }
+
+/* hero */
+.hero .col { padding: 64px 24px 48px; display: grid; gap: 16px; overflow: hidden; }
+.hero .col > .glow { position: absolute; inset: 0 0 auto 0; height: 360px; pointer-events: none; background: radial-gradient(ellipse 60% 100% at 50% 0%, var(--glow), transparent 70%); }
+.eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; font: 400 14px/20px var(--mono); color: var(--muted); position: relative; }
+[dir="rtl"] .eyebrow { font-family: var(--arabic); }
+.back { color: var(--muted); text-decoration: none; } .back:hover { color: var(--ink); }
+.badge { font: 500 12px/16px var(--font); padding: 2px 8px; border-radius: 9999px; background: var(--pay-soft); color: var(--pay); }
+h1 { margin: 0; font: 400 60px/1 var(--serif); letter-spacing: -0.02em; position: relative; }
+h1 .sub { display: block; margin-top: 12px; font: 400 24px/32px var(--arabic); letter-spacing: 0; color: var(--muted); }
+[dir="rtl"] h1 { font: 500 52px/1.2 var(--arabic); letter-spacing: 0; }
+[dir="rtl"] h1 .sub { font: 400 24px/32px var(--serif); }
+.lede { margin: 0; max-width: 600px; color: var(--muted); font-size: 18px; line-height: 28px; position: relative; }
+@media (max-width: 860px) { .hero .col { padding: 48px 16px 32px; } h1 { font-size: 44px; } [dir="rtl"] h1 { font-size: 38px; } }
+
+
+/* room for content the script fills in, so the page does not jump when data loads */
+#result:empty { min-height: 960px; }
+@media (max-width: 860px) { #result:empty { min-height: 1600px; } }
+.chips { min-height: 72px; }
+@media (max-width: 520px) { .eyebrow { min-height: 48px; align-content: flex-start; } .chips { min-height: 152px; } }
+/* finder */
+.hero .col { grid-template-columns: minmax(0, 1fr); }
+.hero .col > * { min-width: 0; }
+@media (max-width: 480px) { .finder form input { flex-basis: 100%; } }
+.finder { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; position: relative; max-width: 760px; }
+.finder form { display: flex; gap: 8px; flex-wrap: wrap; }
+.finder input { flex: 1 1 260px; min-width: 0; font: 400 18px/28px var(--font); padding: 8px 16px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
+[dir="rtl"] .finder input { font-family: var(--arabic); }
+.finder .gloss { padding: 8px 16px; font: 500 16px/24px var(--font); }
+[dir="rtl"] .finder .gloss { font-family: var(--arabic); }
+.finder .gloss .ico { width: 12px; height: 12px; opacity: 0.8; }
+[dir="rtl"] .finder .gloss .ico { transform: scaleX(-1); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip b { font: 500 13px/20px var(--mono); color: var(--accent); }
+.chip[aria-pressed="true"] { color: #ffffff; background: linear-gradient(#3b3b3b, #0b0b0b); border-color: #000000; box-shadow: 0 0 0 2px var(--accent), inset 0 1px 0 rgba(255,255,255,0.25); }
+.chip[aria-pressed="true"] b { color: var(--go); }
+
+/* result: two column masonry of framed cards, like the work section */
+.masonry { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.stack { display: grid; gap: 16px; min-width: 0; }
+.stack.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 860px) { .masonry { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 420px) { .stack.two { grid-template-columns: minmax(0, 1fr); } }
+.wcard { border: 1px solid var(--line); border-radius: 24px; background: var(--surface); padding: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition: transform 500ms var(--ease), box-shadow 500ms var(--ease); min-width: 0; }
+.wcard:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(0,0,0,0.08); }
+.shot { position: relative; border-radius: 16px; overflow: hidden; display: grid; place-items: center; padding: 48px 24px 72px; min-height: 400px; }
+.ta { background: var(--tint-a); } .tb { background: var(--tint-b); } .tc { background: var(--tint-c); } .td { background: var(--tint-d); }
+.tags { position: absolute; inset-inline-start: 12px; bottom: 12px; display: flex; flex-wrap: wrap; gap: 4px; }
+.tags span { font: 500 14px/20px var(--font); padding: 2px 8px; border-radius: 8px; background: #2b2b2b; color: #ffffff; border: 1px solid #000000; box-shadow: inset 0 1px 0 rgba(255,255,255,0.15); }
+.tags .t1 { background: #ffffff; color: #111111; border-color: var(--line); font-family: var(--mono); }
+[dir="rtl"] .tags span:not(.t1) { font-family: var(--arabic); }
+.cap { padding: 16px 12px 8px; display: grid; gap: 12px; }
+.cap h2 { margin: 0; font: 400 30px/36px var(--serif); letter-spacing: -0.01em; }
+[dir="rtl"] .cap h2 { font: 600 26px/36px var(--arabic); letter-spacing: 0; }
+.cap .alt { margin-top: -8px; color: var(--muted); font-family: var(--arabic); }
+[dir="rtl"] .cap .alt { font-family: var(--serif); font-size: 18px; }
+.cap p { margin: 0; }
+.cap .lead { color: var(--muted); }
+.aitag { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; line-height: 20px; color: var(--muted); }
+.aitag i { width: 8px; height: 8px; border-radius: 9999px; background: var(--go); }
+@media (prefers-reduced-motion: no-preference) { .aitag i { animation: pulse 1600ms var(--ease) infinite; } }
+@keyframes pulse { 50% { opacity: 0.35; } }
+.cap details summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: var(--ink); padding-top: 4px; }
+.cap details summary::-webkit-details-marker { display: none; }
+.cap details summary .ico { transition: transform 500ms var(--ease); }
+.cap details[open] summary .ico { transform: rotate(45deg); }
+.cs { margin: 16px 0 0; display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 8px 16px; }
+.cs dt { font: 400 14px/24px var(--mono); color: var(--muted); }
+.cs dd { margin: 0 0 8px; display: grid; gap: 4px; }
+.cs dd b { font-weight: 600; }
+.cs dd span { color: var(--muted); }
+.cs dd a { font-size: 14px; line-height: 20px; }
+.cs .kind { font: 500 12px/16px var(--font); padding: 2px 8px; border-radius: 9999px; background: var(--accent-soft); color: var(--accent); margin-inline-start: 8px; white-space: nowrap; }
+.cs .kind.upcoming { background: var(--pay-soft); color: var(--pay); }
+[dir="rtl"] .cs dt, [dir="rtl"] .cs .kind { font-family: var(--arabic); }
+@media (max-width: 480px) { .cs { grid-template-columns: minmax(0, 1fr); gap: 0; } }
+
+/* phone mockup inside the shot: the quote screen */
+.m-phone { width: 264px; max-width: 100%; border-radius: 40px; border: 8px solid #111111; background: #fafafa; color: #111111; padding: 24px 16px 16px; display: grid; gap: 12px; box-shadow: 0 32px 64px rgba(0,0,0,0.25); transform: rotate(-4deg); direction: ltr; }
+.m-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 12px; line-height: 16px; color: #6b6b6b; }
+.m-row b { font: 500 12px/16px var(--mono); color: #111111; }
+.m-big { font: 500 28px/32px var(--mono); letter-spacing: -0.02em; }
+.m-big small { font-size: 13px; color: #6b6b6b; margin-left: 4px; letter-spacing: 0; }
+.m-range { position: relative; height: 8px; border-radius: 4px; background: #ececec; margin-top: 4px; }
+.m-range i { position: absolute; top: 50%; width: 14px; height: 14px; margin-left: -7px; border-radius: 9999px; background: #111111; transform: translateY(-50%); box-shadow: 0 0 0 3px #30d158; }
+.m-ends { display: flex; justify-content: space-between; font: 400 11px/16px var(--mono); color: #6b6b6b; }
+.m-pills { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.m-pill { border-radius: 9999px; padding: 8px 10px; text-align: center; font: 600 12px/16px var(--font); background: #ececec; }
+.m-pill.go { background: #30d158; color: #0b2b14; }
+.m-note { font-size: 11px; line-height: 16px; color: #666666; text-align: center; }
+
+/* number cards, like the curiosity cards */
+.ncard { border: 1px solid var(--line); border-radius: 24px; background: var(--surface); padding: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition: transform 500ms var(--ease), box-shadow 500ms var(--ease); min-width: 0; }
+.ncard:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(0,0,0,0.08); }
+.ncard .face { border-radius: 16px; padding: 24px; min-height: 216px; display: flex; flex-direction: column; gap: 8px; }
+.ncard .big { font: 500 40px/1 var(--mono); letter-spacing: -0.04em; margin-bottom: auto; overflow-wrap: anywhere; }
+.ncard .big small { font-size: 16px; letter-spacing: 0; color: var(--muted); margin-inline-start: 4px; }
+.ncard h3 { margin: 16px 0 0; font: 400 24px/32px var(--serif); }
+[dir="rtl"] .ncard h3 { font: 600 18px/28px var(--arabic); }
+.ncard p { margin: 0; font-size: 14px; line-height: 20px; color: var(--muted); }
+.ncard .delta { font: 500 12px/16px var(--mono); }
+.ncard .delta.up { color: var(--accent); } .ncard .delta.dn { color: var(--muted); }
+@media (max-width: 480px) { .ncard .face { min-height: 0; padding: 16px; } .ncard .big { font-size: 32px; } }
+.empty { padding: 48px 24px; text-align: center; color: var(--muted); background: var(--surface); border: 1px dashed var(--line); border-radius: 24px; }
+
+/* big serif section heads and the faq */
+.head { padding: 64px 24px 48px; }
+.head h2 { margin: 0; max-width: 760px; font: 400 60px/1 var(--serif); letter-spacing: -0.02em; }
+[dir="rtl"] .head h2 { font: 500 44px/1.25 var(--arabic); letter-spacing: 0; }
+.head p { margin: 16px 0 0; max-width: 560px; color: var(--muted); font-size: 18px; line-height: 28px; }
+@media (max-width: 860px) { .head { padding: 48px 16px 32px; } .head h2 { font-size: 44px; } [dir="rtl"] .head h2 { font-size: 34px; } }
+.inner { padding: 48px 24px 64px; border-top: 1px solid var(--line); }
+@media (max-width: 480px) { .inner { padding: 32px 16px 48px; } }
+.faq { display: grid; gap: 8px; max-width: 800px; }
+.faq details { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 24px; font: 600 16px/24px var(--font); border-radius: 12px; }
+[dir="rtl"] .faq summary { font-family: var(--arabic); }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary .ico { transition: transform 500ms var(--ease); color: var(--muted); }
+.faq details[open] summary .ico { transform: rotate(45deg); }
+.faq details p { margin: 0; padding: 0 24px 16px; color: var(--muted); max-width: 680px; }
+.related { margin: 24px 0 0; color: var(--muted); }
+
+/* footer */
+.fine .col { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding: 16px 24px; color: var(--muted); font-size: 14px; line-height: 20px; }
+.fine a { color: var(--muted); text-decoration: none; } .fine a:hover { color: var(--ink); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } .wcard:hover, .ncard:hover, .gloss:hover, .chipbtn:hover { transform: none; } }
+</style>
+<script src="/analytics.js" defer></script>
+</head>
+<body>
+
+<header class="bar band">
+  <div class="col">
+    <nav class="seg" aria-label="Main"><a href="/#work"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M104,40H56A16,16,0,0,0,40,56v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,104,40Zm0,64H56V56h48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm0,64H152V56h48Zm-96,32H56a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,104,136Zm0,64H56V152h48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,200,136Zm0,64H152V152h48Z"/></svg><span data-i="nWork">Work</span></a><a href="/#story"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M208,24H72A32,32,0,0,0,40,56V224a8,8,0,0,0,8,8H192a8,8,0,0,0,0-16H56a16,16,0,0,1,16-16H208a8,8,0,0,0,8-8V32A8,8,0,0,0,208,24Zm-8,160H72a31.82,31.82,0,0,0-16,4.29V56A16,16,0,0,1,72,40H200Z"/></svg><span data-i="nStory">Story</span></a><a href="/#labs" aria-current="true"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M221.69,199.77,160,96.92V40h8a8,8,0,0,0,0-16H88a8,8,0,0,0,0,16h8V96.92L34.31,199.77A16,16,0,0,0,48,224H208a16,16,0,0,0,13.72-24.23ZM110.86,103.25A7.93,7.93,0,0,0,112,99.14V40h32V99.14a7.93,7.93,0,0,0,1.14,4.11L183.36,167c-12,2.37-29.07,1.37-51.75-10.11-15.91-8.05-31.05-12.32-45.22-12.81ZM48,208l28.54-47.58c14.25-1.74,30.31,1.85,47.82,10.72,19,9.61,35,12.88,48,12.88a69.89,69.89,0,0,0,19.55-2.7L208,208Z"/></svg><span data-i="nLabs">Labs</span></a></nav>
+    <a class="brand" href="/">Rafay Khan</a>
+    <div class="right"><button class="chipbtn" id="langBtn" type="button" lang="ar">العربية</button><a class="gloss" href="https://www.linkedin.com/in/rafekhan" target="_blank" rel="noopener" data-i="chat">Let's chat</a></div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero band">
+    <div class="col">
+      <div class="glow" aria-hidden="true"></div>
+      <div class="eyebrow"><a class="back" href="/#labs" data-i="back">← Labs</a><span data-i="exchange">Saudi Exchange</span><span id="updated">Loading…</span></div>
+      <h1><span data-i="title">Tadawul Explained</span> <span class="sub" id="titleSub" lang="ar">تداول بوضوح</span></h1>
+      <p class="lede" data-i="lede">Type a Saudi stock code or company name. Get a plain-language read on what the company does, where the price sits, what its key numbers mean and what it has announced lately.</p>
+      <div class="finder">
+        <form id="f" role="search">
+          <input id="q" type="search" autocomplete="off" placeholder="2222 or Aramco" aria-label="Stock code or company name">
+          <button class="gloss" type="submit"><span data-i="go">Explain</span><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M181.66,133.66l-80,80A8,8,0,0,1,88,208V48a8,8,0,0,1,13.66-5.66l80,80A8,8,0,0,1,181.66,133.66Z"/></svg></button>
+        </form>
+        <div class="chips" id="chips" role="group" aria-label="Companies"></div>
+      </div>
+    </div>
+  </section>
+
+  <div id="result" aria-live="polite"></div>
+
+  <section class="band" id="how">
+    <div class="col">
+      <div class="head"><h2 data-i="hHow">How Tadawul Explained works</h2><p data-i="hHowP">Plain answers to what people ask first.</p></div>
+      <div class="inner">
+        <div class="faq">
+          <details><summary><span data-i="q1"></span><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg></summary><p data-i="a1"></p></details>
+          <details><summary><span data-i="q2"></span><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg></summary><p data-i="a2"></p></details>
+          <details><summary><span data-i="q3"></span><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg></summary><p data-i="a3"></p></details>
+          <details><summary><span data-i="q4"></span><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg></summary><p data-i="a4"></p></details>
+        </div>
+        <p class="related" data-i="fRelated" data-html="1"></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="fine"><div class="col"><span>© <span id="year">2026</span> <span data-i="footName">Rafay Khan · Riyadh</span></span><a href="/#labs" data-i="footBack">Back to Labs</a></div></footer>
+
+<script>
+(function () {
+  const STR = {
+    en: {
+      docTitle: "Tadawul Explained: Saudi stocks in plain English and Arabic",
+      docDesc: "Look up a Saudi Exchange (Tadawul) stock and get a plain summary of the company, its key numbers and recent announcements. Free, in English and Arabic.",
+      back: "← Labs", exchange: "Saudi Exchange", nWork: "Work", nStory: "Story", nLabs: "Labs", chat: "Let's chat", footName: "Rafay Khan · Riyadh", footBack: "Back to Labs", langBtn: "العربية",
+      title: "Tadawul Explained", titleSub: "تداول بوضوح",
+      lede: "Type a Saudi stock code or company name. Get a plain-language read on what the company does, where the price sits, what its key numbers mean and what it has announced lately.",
+      go: "Explain", ph: "2222 or Aramco", updated: d => "Updated " + d, loading: "Loading…",
+      noMatch: q => `No company matches “${q}” yet. This first version covers the eight largest names below. Try a 4-digit code like 1120 or a name like Almarai.`,
+      loadErr: "The company data didn't load. Refresh the page to try again.",
+      asOf: d => "Delayed price as of " + d, stale: "Older snapshot, refreshed weekly",
+      inPlain: "In plain words", aiTag: "Written with AI from the figures on this page", r52: "52-week range", peS: "P/E", yS: "Yield", tags: "Tadawul", readAnn: "Recent announcements",
+      range: "Where the price sits in its 52-week range", rangeCap: p => `${p}% of the way from the year's low to its high`,
+      nums: "Key numbers, explained", recent: "Recent announcements", source: "Source",
+      pe: "P/E ratio", peX: "How many riyals you pay for each riyal of yearly profit. Lower can mean cheaper, or that the market expects less growth.",
+      peNone: "No P/E", peNoneX: "The company made a loss over the last twelve months, so there is no profit to compare the price with.",
+      dy: "Dividend yield", dyX: d => `Cash paid to shareholders over the past year (SAR ${d} a share) as a share of today's price.`, dyNone: "No dividend", dyNoneX: "The company has not paid a dividend over the past year.",
+      mc: "Market value", mcX: "What the whole company is worth at this price.",
+      ni: "Profit, last 12 months", niX: c => c == null ? "Net income over the last four reported quarters." : `${c > 0 ? "Up" : "Down"} ${Math.abs(c)}% on the twelve months before.`,
+      bn: "bn", tn: "tn", sar: "SAR",
+      kinds: { results: "Results", dividend: "Dividend", deal: "Deal", upcoming: "Coming up" },
+      sectors: { Energy: "Energy", Banks: "Banks", Telecom: "Telecom", Materials: "Materials", Utilities: "Utilities", Food: "Food" },
+      hHow: "How Tadawul Explained works",
+      fHow: "<strong>Where the numbers come from.</strong> Prices, ratios and announcements are collected from public sources for the largest companies on the Saudi Exchange. An AI model then rewrites them in plain English and Arabic, and every summary is checked against the figures shown on the page. Each announcement links to where it came from, so you can read the original filing.",
+      fRead: "<strong>How to read a company page.</strong> The 52-week range shows whether the price is near its high or low for the past year. The P/E ratio tells you how many riyals investors pay for each riyal of yearly profit. The dividend yield is the cash paid out over the past year as a share of today's price. Market value is what the whole company is worth at this price, and profit over the last twelve months shows whether the business is growing or shrinking. Prices are delayed, and each company shows the date of its snapshot.",
+      hHowP: "Plain answers to what people ask first.",
+      q1: "Where do the numbers come from?",
+      q2: "How do I read a company page?",
+      q3: "How fresh is the data?",
+      q4: "Is this investment advice?",
+      a1: "Prices, ratios and announcements are collected from public sources for the largest companies on the Saudi Exchange. An AI model then rewrites them in plain English and Arabic, and every summary is checked against the figures shown on the page. Each announcement links to where it came from, so you can read the original filing.",
+      a2: "The 52-week range shows whether the price is near its high or low for the past year. The P/E ratio tells you how many riyals investors pay for each riyal of yearly profit. The dividend yield is the cash paid out over the past year as a share of today's price. Market value is what the whole company is worth at this price, and profit over the last twelve months shows whether the business is growing or shrinking. Prices are delayed, and each company shows the date of its snapshot.",
+      a3: "Prices are delayed quotes and are refreshed weekly. Each company shows the date of its price, and older snapshots are marked. Announcements link to the original source.",
+      a4: "This is general information to help you understand a company. It is not investment advice or a recommendation to buy or sell.",
+      fRelated: "More free tools: the <a href=\"/labs/tadawul-dividends/\">Tadawul Dividend Calendar</a> for upcoming payouts, or <a href=\"/#labs\">everything in Labs</a>.",
+      fAdvice: "This is general information to help you understand a company. It is not investment advice or a recommendation to buy or sell."
+    },
+    ar: {
+      docTitle: "تداول بوضوح: أسهم السوق السعودية بلغة مبسطة",
+      docDesc: "ابحث عن أي سهم في السوق المالية السعودية (تداول) واحصل على ملخص مبسط للشركة وأهم أرقامها وآخر إعلاناتها. مجاني بالعربية والإنجليزية.",
+      back: "→ المختبر", exchange: "السوق المالية السعودية", nWork: "الأعمال", nStory: "القصة", nLabs: "المختبر", chat: "تواصل معي", footName: "Rafay Khan · الرياض", footBack: "العودة إلى المختبر", langBtn: "English",
+      title: "تداول بوضوح", titleSub: "Tadawul Explained",
+      lede: "اكتب رمز السهم أو اسم الشركة، واحصل على شرح مبسّط لنشاط الشركة وموقع السعر وما تعنيه أهم أرقامها وآخر ما أعلنته.",
+      go: "اشرح", ph: "2222 أو أرامكو", updated: d => "آخر تحديث " + d, loading: "جارٍ التحميل…",
+      noMatch: q => `لا توجد شركة تطابق «${q}» حتى الآن. تغطي هذه النسخة الأولى أكبر ثماني شركات أدناه. جرّب رمزًا من 4 أرقام مثل 1120 أو اسمًا مثل المراعي.`,
+      loadErr: "لم يتم تحميل بيانات الشركات. حدّث الصفحة وحاول مرة أخرى.",
+      asOf: d => "سعر متأخر بتاريخ " + d, stale: "لقطة أقدم، تُحدَّث أسبوعيًا",
+      inPlain: "باختصار", aiTag: "مكتوب بالذكاء الاصطناعي من الأرقام في هذه الصفحة", r52: "نطاق 52 أسبوعًا", peS: "P/E", yS: "Yield", tags: "تداول", readAnn: "آخر الإعلانات",
+      range: "موقع السعر ضمن نطاق 52 أسبوعًا", rangeCap: p => `عند ${p}٪ من المسافة بين أدنى سعر وأعلى سعر خلال العام`,
+      nums: "أهم الأرقام وماذا تعني", recent: "آخر الإعلانات", source: "المصدر",
+      pe: "مكرر الربحية", peX: "عدد الريالات التي تدفعها مقابل كل ريال من الربح السنوي. الرقم الأقل قد يعني سعرًا أرخص أو توقعات نمو أقل.",
+      peNone: "لا يوجد مكرر", peNoneX: "سجلت الشركة خسارة في آخر اثني عشر شهرًا، فلا يوجد ربح لمقارنته بالسعر.",
+      dy: "عائد التوزيعات", dyX: d => `النقد الموزّع على المساهمين خلال العام الماضي (${d} ريال للسهم) كنسبة من سعر اليوم.`, dyNone: "لا توجد توزيعات", dyNoneX: "لم توزّع الشركة أرباحًا خلال العام الماضي.",
+      mc: "القيمة السوقية", mcX: "قيمة الشركة كاملة بهذا السعر.",
+      ni: "الربح في آخر 12 شهرًا", niX: c => c == null ? "صافي الربح في آخر أربعة أرباع معلنة." : `${c > 0 ? "ارتفاع" : "انخفاض"} بنسبة ${Math.abs(c)}٪ عن الاثني عشر شهرًا السابقة.`,
+      bn: "مليار", tn: "تريليون", sar: "ر.س",
+      kinds: { results: "نتائج", dividend: "توزيعات", deal: "صفقة", upcoming: "قادم" },
+      sectors: { Energy: "الطاقة", Banks: "البنوك", Telecom: "الاتصالات", Materials: "المواد الأساسية", Utilities: "المرافق العامة", Food: "الأغذية" },
+      hHow: "كيف تعمل صفحة تداول بوضوح",
+      fHow: "<strong>من أين تأتي الأرقام.</strong> تُجمع الأسعار والنسب والإعلانات من مصادر عامة لأكبر الشركات في السوق المالية السعودية، ثم يعيد نموذج ذكاء اصطناعي صياغتها بلغة مبسطة بالعربية والإنجليزية، ويُراجع كل ملخص مقابل الأرقام المعروضة في الصفحة. كل إعلان مرتبط بمصدره لتقرأ الإفصاح الأصلي.",
+      fRead: "<strong>كيف تقرأ صفحة الشركة.</strong> يوضح نطاق 52 أسبوعًا إن كان السعر قريبًا من أعلى أو أدنى مستوى له خلال العام. ويبيّن مكرر الربحية كم ريالًا يدفعه المستثمرون مقابل كل ريال من الربح السنوي. وعائد التوزيعات هو النقد الموزّع خلال العام الماضي كنسبة من سعر اليوم. والقيمة السوقية هي قيمة الشركة كاملة بهذا السعر، ويُظهر ربح آخر اثني عشر شهرًا إن كان النشاط ينمو أو يتراجع. الأسعار متأخرة، وتعرض كل شركة تاريخ بياناتها.",
+      hHowP: "إجابات مبسطة لأكثر ما يسأل عنه الناس.",
+      q1: "من أين تأتي الأرقام؟",
+      q2: "كيف أقرأ صفحة الشركة؟",
+      q3: "ما مدى حداثة البيانات؟",
+      q4: "هل هذه نصيحة استثمارية؟",
+      a1: "تُجمع الأسعار والنسب والإعلانات من مصادر عامة لأكبر الشركات في السوق المالية السعودية، ثم يعيد نموذج ذكاء اصطناعي صياغتها بلغة مبسطة بالعربية والإنجليزية، ويُراجع كل ملخص مقابل الأرقام المعروضة في الصفحة. كل إعلان مرتبط بمصدره لتقرأ الإفصاح الأصلي.",
+      a2: "يوضح نطاق 52 أسبوعًا إن كان السعر قريبًا من أعلى أو أدنى مستوى له خلال العام. ويبيّن مكرر الربحية كم ريالًا يدفعه المستثمرون مقابل كل ريال من الربح السنوي. وعائد التوزيعات هو النقد الموزّع خلال العام الماضي كنسبة من سعر اليوم. والقيمة السوقية هي قيمة الشركة كاملة بهذا السعر، ويُظهر ربح آخر اثني عشر شهرًا إن كان النشاط ينمو أو يتراجع. الأسعار متأخرة، وتعرض كل شركة تاريخ بياناتها.",
+      a3: "الأسعار متأخرة وتُحدَّث أسبوعيًا. تعرض كل شركة تاريخ سعرها، وتُميَّز البيانات الأقدم. وكل إعلان مرتبط بمصدره الأصلي.",
+      a4: "هذه معلومات عامة لمساعدتك على فهم الشركة، وليست نصيحة استثمارية أو توصية بالشراء أو البيع.",
+      fRelated: "أدوات مجانية أخرى: <a href=\"/labs/tadawul-dividends/?lang=ar\">تقويم توزيعات الأرباح في تداول</a> للتوزيعات القادمة، أو <a href=\"/#labs\">كل أدوات المختبر</a>.",
+      fAdvice: "هذه معلومات عامة لمساعدتك على فهم الشركة، وليست نصيحة استثمارية أو توصية بالشراء أو البيع."
+    }
+  };
+
+  const $ = id => document.getElementById(id);
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  };
+  const params = new URLSearchParams(location.search);
+  let lang = store.get("tx-lang") || ((navigator.language || "").toLowerCase().startsWith("ar") ? "ar" : "en");
+  if (params.get("lang") === "ar" || params.get("lang") === "en") lang = params.get("lang");
+  const T = () => STR[lang];
+  let data = null, cur = null, missQ = "";
+
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const loc = () => lang === "ar" ? "ar-SA-u-nu-latn" : "en-GB";
+  const num = (v, d = 2) => v.toLocaleString(loc(), { minimumFractionDigits: d, maximumFractionDigits: d });
+  function fmtDate(s) {
+    const p = s.split("-").map(Number);
+    const opt = p.length === 3 ? { day: "numeric", month: "short", year: "numeric" } : { month: "short", year: "numeric" };
+    return new Intl.DateTimeFormat(lang === "ar" ? "ar-SA-u-ca-gregory-nu-latn" : "en-GB", opt).format(new Date(p[0], p[1] - 1, p[2] || 1));
+  }
+  const nm = c => lang === "ar" ? c.nameAr : c.name;
+  const big = bn => bn >= 1000 ? num(bn / 1000, 2) + " " + T().tn : num(bn, bn >= 100 ? 0 : 1) + " " + T().bn;
+  const norm = s => s.toLowerCase().replace(/[ً-ْ]/g, "").replace(/[أإآ]/g, "ا").replace(/[^a-z0-9؀-ۿ]/g, "");
+
+  function find(q) {
+    const n = norm(q);
+    if (!n) return null;
+    const list = data.companies;
+    return list.find(c => c.code === n)
+      || list.find(c => [c.name, c.nameAr, ...(c.aka || [])].some(k => norm(k) === n))
+      || list.find(c => [c.name, c.nameAr, ...(c.aka || [])].some(k => { const m = norm(k); return m.includes(n) || (n.length > 3 && n.includes(m)); }))
+      || null;
+  }
+
+  function renderChips() {
+    if (!data || !data.companies) { $("chips").innerHTML = ""; return; }
+    $("chips").innerHTML = data.companies.map(c =>
+      `<button type="button" class="chipbtn chip" data-c="${c.code}" aria-pressed="${cur && cur.code === c.code}"><b>${c.code}</b> ${esc(nm(c))}</button>`).join("");
+  }
+
+  function render() {
+    const t = T(), out = $("result");
+    if (!data) { out.innerHTML = ""; return; }
+    const wrap = h => `<section class="band"><div class="col pad">${h}</div></section>`;
+    if (data.error) { out.innerHTML = wrap(`<div class="empty">${t.loadErr}</div>`); return; }
+    if (!cur) { out.innerHTML = wrap(`<div class="empty">${esc(t.noMatch(missQ))}</div>`); return; }
+    const c = cur;
+    const days = (Date.now() - new Date(c.asOf + "T12:00:00").getTime()) / 864e5;
+    const pos = Math.max(0, Math.min(100, Math.round((c.price - c.low52) / (c.high52 - c.low52) * 100)));
+    const tint = { Energy: "tb", Banks: "ta", Telecom: "tc", Materials: "tb", Utilities: "ta", Food: "td" }[c.sector] || "ta";
+    const bn = v => { const tn = v >= 1000; return [num(tn ? v / 1000 : v, tn ? 2 : (v >= 100 ? 0 : 1)), (tn ? t.tn : t.bn) + " " + t.sar]; };
+    const cards = [
+      c.pe != null ? { h: t.pe, v: num(c.pe, 1), u: "×", x: t.peX } : { h: t.peNone, v: "–", u: "", x: t.peNoneX },
+      c.yield != null ? { h: t.dy, v: num(c.yield, 1), u: "%", x: t.dyX(num(c.dps, 2)) } : { h: t.dyNone, v: "–", u: "", x: t.dyNoneX },
+      (() => { const [v, u] = bn(c.marketCap); return { h: t.mc, v, u, x: t.mcX }; })()
+    ];
+    if (c.netIncome != null) { const [v, u] = bn(Math.abs(c.netIncome)); cards.push({ h: t.ni, v: (c.netIncome < 0 ? "−" : "") + v, u, x: t.niX(c.niChange), d: c.niChange }); }
+    const tints = ["ta", "tc", "tb", "td"];
+    const story = lang === "ar" ? c.summaryAr : c.summary;
+    const evs = (c.events || []).slice().sort((a, b) => b.date.localeCompare(a.date));
+    const plus = '<svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg>';
+    out.innerHTML = wrap(`
+      <div class="masonry">
+        <article class="wcard">
+          <div class="shot ${tint}">
+            <div class="m-phone" aria-hidden="true">
+              <div class="m-row"><span>TADAWUL</span><b>${c.code}</b></div>
+              <div class="m-big">${num(c.price)}<small>SAR</small></div>
+              <div class="m-row"><span>52W</span><span>${pos}%</span></div>
+              <div class="m-range"><i style="left:${pos}%"></i></div>
+              <div class="m-ends"><span>${num(c.low52)}</span><span>${num(c.high52)}</span></div>
+              <div class="m-pills"><span class="m-pill">${t.peS} ${c.pe != null ? num(c.pe, 1) : "–"}</span><span class="m-pill go">${t.yS} ${c.yield != null ? num(c.yield, 1) + "%" : "–"}</span></div>
+              <div class="m-note">${esc(t.asOf(fmtDate(c.asOf)))}</div>
+            </div>
+            <div class="tags"><span class="t1">${c.code}</span><span>${t.sectors[c.sector] || c.sector}</span><span>${days > 30 ? t.stale : t.tags}</span></div>
+          </div>
+          <div class="cap">
+            <h2>${esc(nm(c))}</h2>
+            <div class="alt" lang="${lang === "ar" ? "en" : "ar"}">${esc(lang === "ar" ? c.name : c.nameAr)}</div>
+            ${story.map((p, k) => `<p${k ? ' class="lead"' : ""}>${esc(p)}</p>`).join("")}
+            <span class="aitag"><i></i>${t.aiTag}</span>
+            <p class="lead">${t.rangeCap(pos)}.</p>
+            <details open><summary>${t.readAnn} ${plus}</summary>
+              <dl class="cs">${evs.map(e => `<dt><time datetime="${e.date}">${fmtDate(e.date)}</time></dt><dd><b>${esc(lang === "ar" ? e.titleAr : e.title)}<span class="kind ${e.kind}">${t.kinds[e.kind] || e.kind}</span></b><span>${esc(lang === "ar" ? e.plainAr : e.plain)}</span><a href="${esc(e.url)}" target="_blank" rel="noopener">${t.source}: ${esc(e.src)}</a></dd>`).join("")}</dl>
+            </details>
+          </div>
+        </article>
+        <div class="stack two" aria-label="${t.nums}">
+          ${cards.map((k, n) => `<article class="ncard"><div class="face ${tints[n % 4]}"><span class="big"><bdi dir="ltr">${k.v}</bdi><small>${k.u}</small></span>${k.d != null ? `<span class="delta ${k.d >= 0 ? "up" : "dn"}" dir="ltr">${k.d >= 0 ? "▲ +" : "▼ "}${num(Math.abs(k.d), 1)}%</span>` : ""}<h3>${k.h}</h3><p>${esc(k.x)}</p></div></article>`).join("")}
+        </div>
+      </div>`);
+  }
+
+  function applyLang() {
+    const t = T(), root = document.documentElement;
+    root.lang = lang; root.dir = lang === "ar" ? "rtl" : "ltr";
+    document.title = t.docTitle;
+    const md = document.querySelector('meta[name="description"]'); if (md) md.content = t.docDesc;
+    document.querySelectorAll("[data-i]").forEach(el => {
+      const v = t[el.dataset.i]; if (typeof v !== "string") return;
+      if (el.dataset.html) el.innerHTML = v; else el.textContent = v;
+    });
+    $("titleSub").textContent = t.titleSub; $("titleSub").lang = lang === "ar" ? "en" : "ar";
+    $("langBtn").textContent = t.langBtn; $("langBtn").lang = lang === "ar" ? "en" : "ar";
+    $("q").placeholder = t.ph;
+    $("updated").textContent = data && data.updated ? t.updated(fmtDate(data.updated)) : (data && data.error ? "" : t.loading);
+    const a3 = document.querySelector('[data-i="a3"]'); if (a3 && data && !data.error) a3.textContent = t.a3 + " " + (lang === "ar" ? data.sourceAr : data.source);
+    renderChips(); render();
+  }
+
+  function select(c, push) {
+    cur = c;
+    if (c) { $("q").value = c.code; const u = new URL(location.href); u.searchParams.set("t", c.code); if (push) history.replaceState(null, "", u); }
+    renderChips(); render();
+  }
+
+  $("f").addEventListener("submit", e => {
+    e.preventDefault();
+    if (!data || data.error) return;
+    missQ = $("q").value.trim();
+    if (!missQ) return;
+    select(find(missQ), true);
+  });
+  $("chips").addEventListener("click", e => { const b = e.target.closest(".chip"); if (b) select(data.companies.find(c => c.code === b.dataset.c), true); });
+  $("langBtn").addEventListener("click", () => {
+    lang = lang === "ar" ? "en" : "ar"; store.set("tx-lang", lang);
+    const u = new URL(location.href); u.searchParams.set("lang", lang); history.replaceState(null, "", u);
+    applyLang();
+  });
+
+  $("year").textContent = new Date().getFullYear();
+  applyLang();
+  fetch("data/companies.json", { cache: "no-store" })
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(json => {
+      data = json;
+      const start = params.get("t") ? find(params.get("t")) : null;
+      cur = start || data.companies[0];
+      if (cur) $("q").value = cur.code;
+      applyLang();
+    })
+    .catch(() => { data = { error: true }; applyLang(); });
+})();
+</script>
+</body>
+</html>

@@ -3,7 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27%23181818%27/%3E%3Ctext x=%2732%27 y=%2742%27 font-family=%27Arial%27 font-weight=%27700%27 font-size=%2728%27 fill=%27%2330d158%27 text-anchor=%27middle%27%3ERK%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Tadawul Dividend Calendar: Saudi ex-dividend dates and yields</title>
 <meta name="description" content="Upcoming Saudi Exchange (Tadawul) dividends: the last day to buy, ex-dividend and payment dates, and yields for every listed company. Free, in English and Arabic.">
 <link rel="alternate" hreflang="en" href="https://rafkhan.com/labs/tadawul-dividends/">
@@ -42,16 +44,19 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap"></noscript>
 <style>
+/* Fallback sized like Geist so text does not reflow when the web font arrives. */
+@font-face { font-family: "Geist Fallback"; src: local("Arial"), local("Liberation Sans"), local("Helvetica"); size-adjust: 102.6%; }
 /* Layout: same drafting board as rafkhan.com. Grid paper ground, one framed 1200px column ruled into bands with corner ticks, serif display over Geist, glossy black controls. */
 :root {
   --bg: #fafaf9; --paper-line: #efefed; --surface: #ffffff; --raised: #f2f2f0;
   --ink: #111111; --muted: #565656; --line: #dcdcd8;
-  --accent: #248a3d; --accent-soft: #e6f6ea; --go: #30d158; --go-ink: #0b2b14;
+  --accent: #1f7d37; --accent-soft: #e6f6ea; --go: #30d158; --go-ink: #0b2b14;
   --pay: #8a5a12; --pay-soft: #f1ece1; --weekend: #f2f2f0;
   --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
-  --font: "Geist", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --font: "Geist", "Geist Fallback", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
   --mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
   --arabic: "IBM Plex Sans Arabic", "Geist", system-ui, sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -118,6 +123,7 @@ a { color: var(--accent); text-underline-offset: 4px; }
 .hero .col > .glow { position: absolute; inset: 0 0 auto 0; height: 280px; pointer-events: none; background: radial-gradient(ellipse 60% 100% at 50% 0%, rgba(48, 209, 88, 0.22), transparent 70%); }
 .eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; font: 400 14px/20px var(--mono); color: var(--muted); position: relative; }
 [dir="rtl"] .eyebrow { font-family: var(--arabic); }
+@media (max-width: 520px) { .eyebrow { min-height: 48px; align-content: flex-start; } } /* room for the date line so the page does not jump when data loads */
 .back { color: var(--muted); text-decoration: none; } .back:hover { color: var(--ink); }
 .badge { font: 500 12px/16px var(--font); padding: 2px 8px; border-radius: 9999px; background: var(--pay-soft); color: var(--pay); }
 h1 { margin: 0; font: 400 60px/1 var(--serif); letter-spacing: -0.02em; position: relative; }
@@ -134,7 +140,7 @@ h1 .sub { display: block; margin-top: 12px; font: 400 24px/32px var(--arabic); l
 .summary .k { font: 500 14px/20px var(--font); color: var(--muted); }
 .summary .v { font: 400 36px/40px var(--serif); letter-spacing: -0.01em; }
 .summary .v.num { font: 500 32px/40px var(--mono); letter-spacing: -0.03em; }
-.summary .s { font-size: 14px; line-height: 20px; color: var(--muted); overflow-wrap: anywhere; }
+.summary .s { font-size: 14px; line-height: 20px; color: var(--muted); overflow-wrap: anywhere; min-height: 20px; }
 [dir="rtl"] .summary .k, [dir="rtl"] .summary .s { font-family: var(--arabic); }
 [dir="rtl"] .summary .v:not(.num) { font: 500 28px/40px var(--arabic); }
 @media (max-width: 760px) {
