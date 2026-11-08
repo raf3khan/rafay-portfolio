@@ -46,5 +46,11 @@
     "ar": "تداول بوضوح",
     "sub": "Saudi stocks in plain words: the company, its key numbers and recent announcements.",
     "url": "rafkhan.com/labs/tadawul-explained"
+  },
+  "debt-payoff": {
+    "kicker": "Labs · Free tool",
+    "title": "Debt Payoff Planner",
+    "sub": "Snowball or avalanche? Compare both across your loans and cards, and see your debt-free date.",
+    "url": "rafkhan.com/labs/debt-payoff"
   }
 }
