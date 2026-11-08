@@ -5,7 +5,7 @@ Every page at `rafkhan.com/labs/<tool>/` should have the items below in its `<he
 
 ## 1. Title and description (the search result snippet)
 - `<title>`: lead with what people search for, then a short benefit. About 50 to 60 characters.
-  Example: `Zakat Calculator for Saudi Investors: stocks, gold and cash`.
+  Example: `Saudi Broker Fee Calculator: the real cost of a Tadawul trade`.
 - `<meta name="description">`: 140 to 160 characters, plain words, say it is free and in which languages.
 - Arabic pages: also set `docTitle` and `docDesc` in the Arabic strings and update both in `applyLang()`
   (`document.title = t.docTitle;` and the `meta[name="description"]` content).
