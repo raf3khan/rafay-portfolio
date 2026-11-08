@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://*.g.doubleclick.net https://*.google.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://*.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Privacy and cookies · Rafay Khan</title>
+<meta name="description" content="How rafkhan.com and its Labs tools handle your data: tool inputs stay in your browser, and Google Analytics only runs if you agree.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://rafkhan.com/privacy/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap"></noscript>
+<style>
+/* Fallback sized like Geist so text does not reflow when the web font arrives. */
+@font-face { font-family: "Geist Fallback"; src: local("Arial"), local("Liberation Sans"), local("Helvetica"); size-adjust: 102.6%; }
+/* Layout: same drafting board as rafkhan.com, built from the Rafay Portfolio design system. Grid paper ground, one framed 1200px column ruled into bands. Quiz in three steps, a verdict with four figures, then what stands out beside the documents to prepare. */
+:root {
+  --bg: #fafaf9; --paper-line: #efefed; --surface: #ffffff; --raised: #f2f2f0;
+  --ink: #111111; --muted: #565656; --line: #dcdcd8;
+  --accent: #1f7d37; --accent-soft: #e6f6ea; --go: #30d158; --go-ink: #0b2b14;
+  --pay: #8a5a12; --pay-soft: #f1ece1; --weekend: #f2f2f0;
+  --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font: "Geist", "Geist Fallback", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --arabic: "IBM Plex Sans Arabic", "Geist", system-ui, sans-serif;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --frame: 1200px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131313; --paper-line: #1c1c1c; --surface: #1f1f1f; --raised: #272727; --ink: #f4f4f4; --muted: #a3a3a3; --line: #313131;
+    --accent: #30d158; --accent-soft: #1d2a20; --pay: #e0ae55; --pay-soft: #24211b; --weekend: #181818; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131313; --paper-line: #1c1c1c; --surface: #1f1f1f; --raised: #272727; --ink: #f4f4f4; --muted: #a3a3a3; --line: #313131;
+  --accent: #30d158; --accent-soft: #1d2a20; --pay: #e0ae55; --pay-soft: #24211b; --weekend: #181818; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background-color: var(--bg); background-image: linear-gradient(var(--paper-line) 1px, transparent 1px), linear-gradient(90deg, var(--paper-line) 1px, transparent 1px); background-size: 16px 16px;
+  color: var(--ink); font: 400 16px/24px var(--font); -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+[dir="rtl"] body { font-family: var(--arabic); }
+h1, h2, h3 { text-wrap: balance; }
+a { color: var(--accent); text-underline-offset: 4px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+.ico { width: 16px; height: 16px; flex: none; }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* framed column, ruled bands, corner ticks */
+.band { border-bottom: 1px solid var(--line); }
+.col { max-width: var(--frame); margin: 0 auto; border-left: 1px solid var(--line); border-right: 1px solid var(--line); position: relative; background-color: var(--bg); }
+.band > .col::before, .band > .col::after { content: ""; position: absolute; bottom: -5px; width: 8px; height: 8px; border: 1px solid var(--line); background: var(--bg); z-index: 2; }
+.band > .col::before { left: -5px; } .band > .col::after { right: -5px; }
+.pad { padding: 24px; }
+@media (max-width: 1232px) { .col { margin: 0 16px; } }
+@media (max-width: 480px) { .col { margin: 0 8px; } .pad { padding: 16px; } }
+
+/* glossy controls */
+.gloss { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px; border-radius: 8px; font: 500 14px/20px var(--font); color: #ffffff; text-decoration: none; cursor: pointer;
+  background: linear-gradient(#3b3b3b, #0b0b0b); border: 1px solid #000000;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -1px 0 rgba(255,255,255,0.06), 0 2px 4px rgba(0,0,0,0.28), 0 8px 16px rgba(0,0,0,0.12);
+  transition: transform 300ms var(--ease), box-shadow 300ms var(--ease); }
+.gloss:hover { transform: translateY(-2px); }
+.chipbtn { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-decoration: none; font: 500 14px/20px var(--font); cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06); transition: transform 300ms var(--ease), border-color 300ms var(--ease); }
+.chipbtn:hover { transform: translateY(-2px); border-color: var(--muted); }
+[dir="rtl"] .chipbtn, [dir="rtl"] .gloss { font-family: var(--arabic); }
+
+/* top bar, same as the home page */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.bar .col { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; padding: 8px 16px; background: transparent; }
+.seg { display: inline-flex; gap: 4px; padding: 2px; border-radius: 8px; border: 1px solid var(--line); background: var(--raised); justify-self: start; }
+.seg a, .seg button { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 8px; border: 0; background: transparent; font: 500 14px/20px var(--font); color: var(--muted); text-decoration: none; cursor: pointer; transition: color 300ms var(--ease); }
+[dir="rtl"] .seg a, [dir="rtl"] .seg button { font-family: var(--arabic); }
+.seg a:hover, .seg button:hover { color: var(--ink); }
+.seg a[aria-current="true"], .seg button[aria-pressed="true"] { color: #ffffff; background: linear-gradient(#3b3b3b, #0b0b0b); box-shadow: 0 0 0 2px var(--accent), inset 0 1px 0 rgba(255,255,255,0.25); }
+.seg .ico { width: 12px; height: 12px; }
+.brand { font: 400 20px/28px var(--font); color: var(--ink); text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; }
+.right { justify-self: end; display: flex; gap: 8px; align-items: center; }
+@media (max-width: 480px) { .seg .ico { display: none; } .seg a { padding: 2px 6px; } .bar .brand { display: none; } .bar .col { grid-template-columns: 1fr auto; } }
+@media (max-width: 560px) { .brand { font-size: 16px; line-height: 24px; } .bar .col { gap: 8px; padding: 8px; } .right .gloss { display: none; } }
+
+/* hero */
+.hero .col { padding: 64px 24px 48px; display: grid; gap: 16px; overflow: hidden; }
+.hero .col > .glow { position: absolute; inset: 0 0 auto 0; height: 280px; pointer-events: none; background: radial-gradient(ellipse 60% 100% at 50% 0%, rgba(48, 209, 88, 0.22), transparent 70%); }
+.eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; font: 400 14px/20px var(--mono); color: var(--muted); position: relative; }
+[dir="rtl"] .eyebrow { font-family: var(--arabic); }
+.back { color: var(--muted); text-decoration: none; } .back:hover { color: var(--ink); }
+.badge { font: 500 12px/16px var(--font); padding: 2px 8px; border-radius: 9999px; background: var(--pay-soft); color: var(--pay); }
+h1 { margin: 0; font: 400 60px/1 var(--serif); letter-spacing: -0.02em; position: relative; }
+h1 .sub { display: block; margin-top: 12px; font: 400 24px/32px var(--arabic); letter-spacing: 0; color: var(--muted); }
+[dir="rtl"] h1 { font: 500 52px/1.2 var(--arabic); letter-spacing: 0; }
+[dir="rtl"] h1 .sub { font: 400 24px/32px var(--serif); }
+.lede { margin: 0; max-width: 600px; color: var(--muted); font-size: 18px; line-height: 28px; position: relative; }
+@media (max-width: 860px) { .hero .col { padding: 48px 16px 32px; } h1 { font-size: 44px; } [dir="rtl"] h1 { font-size: 38px; } }
+/* policy text */
+.policy .col { padding: 40px 24px 56px; }
+.prose { max-width: 720px; display: grid; gap: 16px; }
+.prose h2 { margin: 24px 0 0; font: 400 28px/36px var(--serif); letter-spacing: -0.01em; }
+.prose h2:first-child { margin-top: 0; }
+.prose p { margin: 0; color: var(--muted); font-size: 17px; line-height: 28px; }
+.prose strong { color: var(--ink); font-weight: 600; }
+.prose code { font: 400 14px/20px var(--mono); padding: 1px 6px; border-radius: 6px; background: var(--raised); color: var(--ink); }
+[dir="rtl"] .prose h2 { font: 500 24px/36px var(--arabic); }
+[dir="rtl"] .prose p { font-family: var(--arabic); }
+.choice { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; padding: 16px 24px; margin-top: 8px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
+.choice span { color: var(--muted); font-size: 15px; }
+.choice b { color: var(--ink); font-weight: 600; }
+@media (max-width: 480px) { .policy .col { padding: 32px 16px 40px; } .choice { padding: 16px; } }
+[data-l] { display: none; }
+html[lang="en"] [data-l="en"], html[lang="ar"] [data-l="ar"] { display: block; }
+html[lang="en"] span[data-l="en"], html[lang="ar"] span[data-l="ar"] { display: inline; }
+.fine .col { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding: 16px 24px; color: var(--muted); font-size: 14px; line-height: 20px; }
+.fine a { color: var(--muted); text-decoration: none; } .fine a:hover { color: var(--ink); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<script src="/analytics.js" defer></script>
+</head>
+<body>
+<header class="bar band">
+  <div class="col">
+    <nav class="seg" aria-label="Main"><a href="/#work"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M104,40H56A16,16,0,0,0,40,56v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,104,40Zm0,64H56V56h48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm0,64H152V56h48Zm-96,32H56a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,104,136Zm0,64H56V152h48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,200,136Zm0,64H152V152h48Z"/></svg><span data-i="nWork">Work</span></a><a href="/#story"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M208,24H72A32,32,0,0,0,40,56V224a8,8,0,0,0,8,8H192a8,8,0,0,0,0-16H56a16,16,0,0,1,16-16H208a8,8,0,0,0,8-8V32A8,8,0,0,0,208,24Zm-8,160H72a31.82,31.82,0,0,0-16,4.29V56A16,16,0,0,1,72,40H200Z"/></svg><span data-i="nStory">Story</span></a><a href="/#labs"><svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M221.69,199.77,160,96.92V40h8a8,8,0,0,0,0-16H88a8,8,0,0,0,0,16h8V96.92L34.31,199.77A16,16,0,0,0,48,224H208a16,16,0,0,0,13.72-24.23ZM110.86,103.25A7.93,7.93,0,0,0,112,99.14V40h32V99.14a7.93,7.93,0,0,0,1.14,4.11L183.36,167c-12,2.37-29.07,1.37-51.75-10.11-15.91-8.05-31.05-12.32-45.22-12.81ZM48,208l28.54-47.58c14.25-1.74,30.31,1.85,47.82,10.72,19,9.61,35,12.88,48,12.88a69.89,69.89,0,0,0,19.55-2.7L208,208Z"/></svg><span data-i="nLabs">Labs</span></a></nav>
+    <a class="brand" href="/">Rafay Khan</a>
+    <div class="right"><button class="chipbtn" id="langBtn" type="button" lang="ar">العربية</button><a class="gloss" href="https://www.linkedin.com/in/rafekhan" target="_blank" rel="noopener" data-i="chat">Let's chat</a></div>
+  </div>
+</header>
+<main id="main">
+  <section class="hero band">
+    <div class="col">
+      <div class="glow" aria-hidden="true"></div>
+      <div class="eyebrow"><a class="back" href="/"><span data-l="en">← Home</span><span data-l="ar">→ الرئيسية</span></a><span><span data-l="en">Updated 8 Nov 2026</span><span data-l="ar">آخر تحديث 8 نوفمبر 2026</span></span></div>
+      <h1><span data-l="en">Privacy and cookies</span><span data-l="ar">الخصوصية وملفات تعريف الارتباط</span></h1>
+      <p class="lede"><span data-l="en">The short version: what you type into the tools never leaves your browser, and analytics only runs if you say yes.</span><span data-l="ar">باختصار: ما تكتبه في الأدوات لا يغادر متصفحك، والتحليلات لا تعمل إلا إذا وافقت.</span></p>
+    </div>
+  </section>
+  <section class="policy band">
+    <div class="col">
+      <div class="prose" data-l="en">
+<h2>Who runs this site</h2>
+<p>rafkhan.com is the personal website of Rafay Khan, a product designer and product manager based in Riyadh, Saudi Arabia. I decide how the small amount of data described here is used. To reach me about privacy, send me a message on <a href="https://www.linkedin.com/in/rafekhan" target="_blank" rel="noopener">LinkedIn</a>.</p>
+
+<h2>What you type stays with you</h2>
+<p>There are no accounts, sign ups or forms that send anything to me. The calculators and checks in Labs run entirely in your browser. Some tools remember your last inputs, your language or a filter in your browser's own storage so they are there next time. That stays on your device, is never sent to me, and you can clear it at any time from your browser settings.</p>
+
+<h2>Google Analytics, only if you say yes</h2>
+<p>If you pick <strong>Yes to all</strong>, the site loads Google Analytics 4 so I can see which pages and tools people use. Google then records the pages you view, the Labs tools you open from the home page, the site that sent you, your device and browser type, and your rough location (country and city). Google sets two cookies, <code>_ga</code> and <code>_ga_C37NH6M8LT</code>, which hold a random ID and last up to two years. Google Analytics 4 does not log or store IP addresses.</p>
+<p>Google processes this data for me as a service provider, and it may be handled on Google's servers outside Saudi Arabia and the EU under Google's data protection terms. I only look at totals, never at individual visitors, and reports are kept for at most 14 months.</p>
+<p>If you pick <strong>Only necessary</strong> or <strong>Reject</strong>, Google Analytics never loads and no analytics cookies are set. The site has no other optional cookies, so both choices work the same today. Your choice is saved in your browser for 12 months.</p>
+
+<h2>What the hosting and fonts see</h2>
+<p>Like any website, the services that deliver the pages see your IP address so they can send the page to you. The site is hosted on <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub Pages</a>, which keeps short-lived logs for security. Fonts are loaded from <a href="https://developers.google.com/fonts/faq/privacy" target="_blank" rel="noopener">Google Fonts</a>, which does not set cookies. I don't receive or use this data.</p>
+
+<h2>Your rights</h2>
+<p>Under Saudi Arabia's Personal Data Protection Law (PDPL) and, if you are in the EU or UK, the GDPR, you have the right to know how your data is used, to see it, to have it corrected or deleted, and to withdraw your consent at any time. Withdrawing your consent doesn't affect anything before it. Because analytics data is tied to a random ID and not to your name, I usually can't find "your" data, but message me and I'll help. You can also complain to the Saudi Data and AI Authority (SDAIA) or to your local data protection authority.</p>
+
+<h2>Children</h2>
+<p>This site is not aimed at children under 18, and I don't knowingly collect data about them.</p>
+
+<h2>Changes</h2>
+<p>If this policy changes, I'll update the date at the top of this page. If the change is about cookies, the consent window will ask you again.</p>
+</div>
+      <div class="prose" data-l="ar" lang="ar" dir="rtl">
+<h2>من يدير هذا الموقع</h2>
+<p>موقع rafkhan.com هو الموقع الشخصي لـ <bdi>Rafay Khan</bdi>، مصمم منتجات ومدير منتجات مقيم في الرياض بالمملكة العربية السعودية. أنا من يحدد كيفية استخدام البيانات القليلة الموصوفة هنا. للتواصل معي بشأن الخصوصية، أرسل لي رسالة على <a href="https://www.linkedin.com/in/rafekhan" target="_blank" rel="noopener">LinkedIn</a>.</p>
+
+<h2>ما تكتبه يبقى عندك</h2>
+<p>لا توجد حسابات أو تسجيل أو نماذج ترسل لي أي شيء. الحاسبات والفحوصات في المختبر تعمل بالكامل داخل متصفحك. بعض الأدوات تحفظ آخر ما أدخلته أو لغتك أو أحد الفلاتر في مساحة التخزين الخاصة بمتصفحك لتجدها في زيارتك القادمة. تبقى هذه البيانات على جهازك ولا تُرسل إليّ أبدًا، ويمكنك حذفها في أي وقت من إعدادات المتصفح.</p>
+
+<h2>‏Google Analytics، فقط إذا وافقت</h2>
+<p>إذا اخترت <strong>قبول الكل</strong>، يحمّل الموقع ‏Google Analytics 4 لأعرف الصفحات والأدوات التي يستخدمها الزوار. تسجّل Google عندها الصفحات التي تشاهدها، وأدوات المختبر التي تفتحها من الصفحة الرئيسية، والموقع الذي أحالك، ونوع جهازك ومتصفحك، وموقعك التقريبي (الدولة والمدينة). تضع Google ملفّي تعريف ارتباط هما <code dir="ltr">_ga</code> و<code dir="ltr">_ga_C37NH6M8LT</code>، يحتويان على معرّف عشوائي ويبقيان حتى سنتين. لا يسجّل Google Analytics 4 عناوين IP ولا يحتفظ بها.</p>
+<p>تعالج Google هذه البيانات لصالحي بصفتها مقدّم خدمة، وقد تُعالج على خوادم Google خارج المملكة العربية السعودية والاتحاد الأوروبي وفق شروط حماية البيانات لدى Google. أطّلع على الأرقام الإجمالية فقط ولا أنظر إلى أي زائر بعينه، وتُحفظ التقارير 14 شهرًا كحد أقصى.</p>
+<p>إذا اخترت <strong>الضروري فقط</strong> أو <strong>رفض</strong>، لا يُحمَّل Google Analytics أبدًا ولا توضع أي ملفات تعريف ارتباط للتحليلات. لا يستخدم الموقع أي ملفات تعريف ارتباط اختيارية أخرى، لذلك يعمل الخياران بالطريقة نفسها حاليًا. يُحفظ اختيارك في متصفحك لمدة 12 شهرًا.</p>
+
+<h2>ما تراه خدمات الاستضافة والخطوط</h2>
+<p>كما في أي موقع، ترى الخدمات التي توصل الصفحات عنوان IP الخاص بك لتتمكن من إرسال الصفحة إليك. الموقع مستضاف على <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub Pages</a> التي تحتفظ بسجلات قصيرة المدة لأغراض الأمان. وتُحمَّل الخطوط من <a href="https://developers.google.com/fonts/faq/privacy" target="_blank" rel="noopener">Google Fonts</a> التي لا تضع ملفات تعريف ارتباط. لا أتلقى هذه البيانات ولا أستخدمها.</p>
+
+<h2>حقوقك</h2>
+<p>بموجب نظام حماية البيانات الشخصية في المملكة العربية السعودية، وبموجب اللائحة العامة لحماية البيانات (GDPR) إذا كنت في الاتحاد الأوروبي أو المملكة المتحدة، يحق لك أن تعرف كيف تُستخدم بياناتك، وأن تطّلع عليها، وأن تطلب تصحيحها أو حذفها، وأن تسحب موافقتك في أي وقت. سحب الموافقة لا يؤثر على ما سبقه. ولأن بيانات التحليلات مرتبطة بمعرّف عشوائي وليس باسمك، لا أستطيع عادةً تحديد بياناتك، لكن راسلني وسأساعدك. ويمكنك أيضًا تقديم شكوى إلى الهيئة السعودية للبيانات والذكاء الاصطناعي (سدايا) أو إلى جهة حماية البيانات في بلدك.</p>
+
+<h2>الأطفال</h2>
+<p>هذا الموقع غير موجّه للأطفال دون 18 عامًا، ولا أجمع بياناتهم عن علم.</p>
+
+<h2>التغييرات</h2>
+<p>إذا تغيّرت هذه السياسة، سأحدّث التاريخ في أعلى هذه الصفحة. وإذا كان التغيير متعلقًا بملفات تعريف الارتباط، فستسألك نافذة الموافقة من جديد.</p>
+</div>
+      <div class="prose">
+        <div class="choice" id="choice"><span><span data-l="en">Your current choice: </span><span data-l="ar">اختيارك الحالي: </span><b id="cur"></b></span><button class="chipbtn" type="button" id="change"><span data-l="en">Change cookie settings</span><span data-l="ar">تغيير إعدادات ملفات تعريف الارتباط</span></button></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="fine"><div class="col"><span>© <span id="year">2026</span> <span data-l="en">Rafay Khan · Riyadh</span><span data-l="ar">Rafay Khan · الرياض</span></span><a href="/#labs"><span data-l="en">Back to Labs</span><span data-l="ar">العودة إلى المختبر</span></a></div></footer>
+<script>
+(function () {
+  const $ = id => document.getElementById(id);
+  const root = document.documentElement;
+  $("year").textContent = new Date().getFullYear();
+  const NAV = { en: { nWork: "Work", nStory: "Story", nLabs: "Labs", chat: "Let's chat", langBtn: "العربية" },
+                ar: { nWork: "الأعمال", nStory: "القصة", nLabs: "المختبر", chat: "تواصل معي", langBtn: "English" } };
+  const NAMES = { en: { all: "Yes to all", necessary: "Only necessary", reject: "Reject", none: "Not chosen yet" },
+                  ar: { all: "قبول الكل", necessary: "الضروري فقط", reject: "رفض", none: "لم تختر بعد" } };
+  let lang = /[?&]lang=ar\b/.test(location.search) ? "ar" : "en";
+  function cur() {
+    const c = window.rkConsent && window.rkConsent.get();
+    $("cur").textContent = NAMES[lang][c || "none"];
+  }
+  function apply() {
+    root.lang = lang; root.dir = lang === "ar" ? "rtl" : "ltr";
+    document.title = lang === "ar" ? "الخصوصية وملفات تعريف الارتباط · Rafay Khan" : "Privacy and cookies · Rafay Khan";
+    document.querySelectorAll("[data-i]").forEach(el => { const v = NAV[lang][el.dataset.i]; if (v) el.textContent = v; });
+    $("langBtn").textContent = NAV[lang].langBtn; $("langBtn").lang = lang === "ar" ? "en" : "ar";
+    cur();
+  }
+  $("langBtn").addEventListener("click", () => {
+    lang = lang === "ar" ? "en" : "ar";
+    history.replaceState(null, "", lang === "ar" ? "?lang=ar" : location.pathname);
+    apply();
+  });
+  $("change").addEventListener("click", () => window.rkConsent && window.rkConsent.open());
+  document.addEventListener("rk-consent", cur);
+  apply();
+  window.addEventListener("load", cur);
+})();
+</script>
+</body>
+</html>
