@@ -1,9 +1,9 @@
 /* Cookie consent + Google Analytics 4 for rafkhan.com and every Labs page.
    Add to a page's <head>: <script src="/analytics.js" defer></script>
 
-   Google Analytics only loads after the visitor picks "Yes to all". "Only necessary"
-   and "Reject" both keep it off: the site sets no other optional cookies (tool
-   settings stay in the visitor's own browser storage and are never sent anywhere).
+   Google Analytics only loads after the visitor picks "Accept"; "Decline" keeps it off.
+   The site sets no other optional cookies (tool settings stay in the visitor's own
+   browser storage and are never sent anywhere).
    The choice is kept for 12 months in localStorage under "rk-consent".
    Anywhere on the site, window.rkConsent.open() shows the window again. */
 (function () {
@@ -15,20 +15,18 @@
 
   var TEXT = {
     en: {
-      title: 'Your privacy',
-      body: 'I use Google Analytics to see which tools people open. It only sets cookies if you say yes. The tools work the same either way.',
+      label: 'Cookie consent',
+      body: 'Can I use analytics cookies to see which tools people use?',
       policy: 'Privacy policy',
-      all: 'Yes to all',
-      necessary: 'Only necessary',
-      reject: 'Reject',
+      all: 'Accept',
+      reject: 'Decline',
       footer: 'Privacy and cookies'
     },
     ar: {
-      title: 'خصوصيتك',
-      body: 'أستخدم Google Analytics لأعرف الأدوات التي يفتحها الزوار. لا يضع ملفات تعريف الارتباط إلا إذا وافقت، والأدوات تعمل بالطريقة نفسها في كل الحالات.',
+      label: 'الموافقة على ملفات تعريف الارتباط',
+      body: 'هل تسمح باستخدام ملفات تعريف ارتباط التحليلات لمعرفة الأدوات التي يستخدمها الزوار؟',
       policy: 'سياسة الخصوصية',
-      all: 'قبول الكل',
-      necessary: 'الضروري فقط',
+      all: 'قبول',
       reject: 'رفض',
       footer: 'الخصوصية وملفات تعريف الارتباط'
     }
@@ -88,19 +86,18 @@
 
   // ---------- consent window ----------
   var CSS =
-    '.rkc{position:fixed;right:16px;bottom:16px;z-index:1000;width:min(360px,calc(100vw - 32px));padding:16px;display:grid;gap:12px;' +
+    '.rkc{position:fixed;right:16px;bottom:16px;z-index:1000;width:min(280px,calc(100vw - 32px));padding:12px;display:grid;gap:10px;' +
     'background:var(--surface,#fff);color:var(--ink,#111);border:1px solid var(--line,#dcdcd8);border-radius:16px;' +
-    'box-shadow:0 2px 4px rgba(0,0,0,.08),0 16px 40px rgba(0,0,0,.16);font:400 14px/20px var(--font,system-ui,sans-serif)}' +
+    'box-shadow:0 2px 4px rgba(0,0,0,.08),0 12px 32px rgba(0,0,0,.14);border-radius:12px;font:400 13px/18px var(--font,system-ui,sans-serif)}' +
     '.rkc[dir="rtl"]{font-family:var(--arabic,system-ui,sans-serif)}' +
-    '.rkc h2{margin:0;font-size:16px;line-height:24px;font-weight:600;font-family:inherit}' +
     '.rkc p{margin:0;color:var(--muted,#565656)}' +
     '.rkc p a{color:var(--accent,#1f7d37);text-underline-offset:3px}' +
-    '.rkc .rkc-b{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}' +
-    '.rkc button{min-width:0;min-height:40px;padding:4px 8px;border-radius:8px;cursor:pointer;font-size:13px;line-height:16px;font-weight:500;font-family:inherit;' +
+    '.rkc .rkc-b{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}' +
+    '.rkc button{min-width:0;min-height:32px;padding:4px 8px;border-radius:8px;cursor:pointer;font-size:13px;line-height:16px;font-weight:500;font-family:inherit;' +
     'border:1px solid var(--line,#dcdcd8);background:var(--surface,#fff);color:var(--ink,#111)}' +
     '.rkc button:hover{border-color:var(--muted,#565656)}' +
     '.rkc button:focus-visible{outline:2px solid var(--accent,#1f7d37);outline-offset:2px}' +
-    '@media (max-width:480px){.rkc{right:8px;bottom:8px;width:calc(100vw - 16px)}}' +
+    '@media (max-width:480px){.rkc{right:8px;bottom:8px;width:min(280px,calc(100vw - 16px))}}' +
     '@media (prefers-reduced-motion:no-preference){.rkc{animation:rkc-in .3s cubic-bezier(.22,1,.36,1)}}' +
     '@keyframes rkc-in{from{opacity:0;transform:translateY(8px)}}' +
     '@media print{.rkc{display:none}}';
@@ -111,12 +108,12 @@
     if (!box) return;
     var t = T();
     box.lang = lang(); box.dir = lang() === 'ar' ? 'rtl' : 'ltr';
-    box.querySelector('h2').textContent = t.title;
+    box.setAttribute('aria-label', t.label);
     var p = box.querySelector('p');
     p.textContent = t.body + ' ';
     var a = document.createElement('a'); a.href = policyHref(); a.textContent = t.policy; p.appendChild(a);
     var b = box.querySelectorAll('button');
-    b[0].textContent = t.all; b[1].textContent = t.necessary; b[2].textContent = t.reject;
+    b[0].textContent = t.all; b[1].textContent = t.reject;
   }
   function choose(choice) {
     save(choice);
@@ -132,9 +129,9 @@
     box = document.createElement('section');
     box.className = 'rkc';
     box.setAttribute('role', 'dialog');
-    box.setAttribute('aria-labelledby', 'rkc-h');
-    box.innerHTML = '<h2 id="rkc-h"></h2><p></p><div class="rkc-b">' +
-      '<button type="button" data-c="all"></button><button type="button" data-c="necessary"></button><button type="button" data-c="reject"></button></div>';
+    box.setAttribute('aria-label', T().label);
+    box.innerHTML = '<p></p><div class="rkc-b">' +
+      '<button type="button" data-c="all"></button><button type="button" data-c="reject"></button></div>';
     box.addEventListener('click', function (e) {
       var c = e.target.closest('button[data-c]');
       if (c) choose(c.getAttribute('data-c'));
