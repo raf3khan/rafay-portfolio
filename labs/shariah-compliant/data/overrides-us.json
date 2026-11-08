@@ -1,0 +1,12 @@
+{
+  "LVS":  {"biz": "gambling", "note": "Most revenue comes from casinos in Macau and Singapore."},
+  "WYNN": {"biz": "gambling", "note": "Most revenue comes from casino resorts."},
+  "MGM":  {"biz": "gambling", "note": "Most revenue comes from casino resorts and online betting."},
+  "DKNG": {"biz": "gambling", "note": "Online sports betting and casino games."},
+  "GD":   {"biz": "defense", "note": "Large share of revenue from military vehicles, submarines and munitions."},
+  "RTX":  {"biz": "defense", "note": "Large share of revenue from missiles and defense systems (Raytheon)."},
+  "BA":   {"biz": "review", "note": "Commercial aircraft, but about a third of revenue comes from defense."},
+  "COIN": {"biz": "review", "note": "Crypto exchange; a large share of revenue is interest on stablecoin reserves."},
+  "DIS":  {"biz": "review", "note": "Media and theme parks; some content and alcohol sales at parks may need review."},
+  "NFLX": {"biz": "review", "note": "Streaming entertainment; scholars differ on media content."}
+}
