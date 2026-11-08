@@ -26,6 +26,27 @@
     "sub": "The real cost of a Tadawul trade at each Saudi broker, with exchange fees, the CMA fee and VAT.",
     "url": "rafkhan.com/labs/broker-fees"
   },
+  "shariah-compliant": {
+    "kicker": "Labs · Free tool",
+    "title": "Halal Stock Screener",
+    "ar": "فاحص الأسهم الشرعية",
+    "sub": "Is this stock Shariah compliant? AAOIFI checks for 150+ US stocks from SEC filings, with every ratio explained.",
+    "url": "rafkhan.com/labs/shariah-compliant"
+  },
+  "kafalah-check": {
+    "kicker": "Labs · Free tool",
+    "title": "Kafalah Readiness Check",
+    "ar": "فحص الجاهزية لبرنامج كفالة",
+    "sub": "Is your Saudi SME ready for a Kafalah loan guarantee? Which product fits, how much it covers, and the documents to prepare.",
+    "url": "rafkhan.com/labs/kafalah-check"
+  },
+  "tadawul-explained": {
+    "kicker": "Labs · Free tool",
+    "title": "Tadawul Explained",
+    "ar": "تداول بوضوح",
+    "sub": "Saudi stocks in plain words: the company, its key numbers and recent announcements.",
+    "url": "rafkhan.com/labs/tadawul-explained"
+  },
   "debt-payoff": {
     "kicker": "Labs · Free tool",
     "title": "Debt Payoff Planner",
