@@ -143,7 +143,8 @@
 
   // footer link to the privacy page, in the page's language
   function footerLink() {
-    var col = document.querySelector('footer .col, .fine .col');
+    if (document.querySelector('footer a[href^="/privacy"]:not(.rkc-link)')) return; // page links it already
+    var col = document.querySelector('.fine .col') || document.querySelector('footer .col');
     if (!col || col.querySelector('.rkc-link') || location.pathname.indexOf('/privacy') === 0) return;
     var a = document.createElement('a'); a.className = 'rkc-link'; a.href = policyHref(); a.textContent = T().footer;
     var last = col.lastElementChild;
