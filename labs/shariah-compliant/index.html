@@ -6,18 +6,31 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://*.g.doubleclick.net https://*.google.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://*.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Halal Stock Screener: AAOIFI Shariah Check for US Stocks</title>
-<meta name="description" content="Free halal stock screener. Check if a US or Tadawul stock is Shariah compliant under AAOIFI rules, using SEC filings updated every weekday. In English.">
-<link rel="canonical" href="https://rafkhan.com/labs/shariah-compliant/">
+<meta name="description" content="Free halal stock screener. Check if a US or Tadawul stock is Shariah compliant under AAOIFI rules, using SEC filings updated every weekday. In English and Arabic.">
+<link rel="alternate" hreflang="en" href="https://rafkhan.com/labs/shariah-compliant/">
+<link rel="alternate" hreflang="ar" href="https://rafkhan.com/labs/shariah-compliant/?lang=ar">
+<link rel="alternate" hreflang="x-default" href="https://rafkhan.com/labs/shariah-compliant/">
+<script>
+/* SEO: one canonical per language. ?lang=ar is the Arabic page, everything else is the English page. */
+(function () {
+  var ar = /[?&]lang=ar\b/.test(location.search);
+  var l = document.createElement("link");
+  l.rel = "canonical";
+  l.href = "https://rafkhan.com/labs/shariah-compliant/" + (ar ? "?lang=ar" : "");
+  document.head.appendChild(l);
+})();
+</script>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Rafay Khan">
-<meta property="og:title" content="Halal Stock Screener: is this stock Shariah compliant?">
-<meta property="og:description" content="Check any of 150+ US stocks against the AAOIFI Shariah screens, with every ratio explained and a purification calculator. Free.">
+<meta property="og:title" content="Halal Stock Screener: is this stock Shariah compliant? | فاحص الأسهم الشرعية">
+<meta property="og:description" content="Check any of 150+ US stocks against the AAOIFI Shariah screens, with every ratio explained and a purification calculator. Free. | افحص أكثر من 150 سهمًا أمريكيًا وفق معايير أيوفي الشرعية، مع شرح كل نسبة وحاسبة للتطهير. مجاني، وهو فحص وليس فتوى.">
 <meta property="og:url" content="https://rafkhan.com/labs/shariah-compliant/">
 <meta property="og:image" content="https://rafkhan.com/og/shariah-compliant.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Halal Stock Screener by Rafay Khan: AAOIFI Shariah checks for US stocks">
 <meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ar_SA">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -40,6 +53,7 @@
   --serif:"Newsreader","Iowan Old Style",Georgia,serif;
   --font:"Geist","Geist Fallback",ui-sans-serif,system-ui,"Segoe UI",sans-serif;
   --mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --arabic:"IBM Plex Sans Arabic","Geist",system-ui,sans-serif;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#131313; --paper-line:#1c1c1c; --surface:#1f1f1f; --raised:#272727; --ink:#f4f4f4; --muted:#a3a3a3; --line:#313131;
@@ -126,7 +140,7 @@ legend{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--
 .figure b{color:var(--ink);font-weight:500;font-size:15px}
 .figure b.plain{font-family:var(--font)}
 .meter{position:relative;height:10px;border-radius:5px;background:var(--raised);border:1px solid var(--line)}
-.meter .fill{position:absolute;left:0;top:0;bottom:0;border-radius:5px;max-width:100%}
+.meter .fill{position:absolute;top:0;bottom:0;border-radius:5px;max-width:100%}
 .meter .fill.pass{background:var(--pass)} .meter .fill.fail{background:var(--fail)} .meter .fill.warn{background:var(--warn)}
 .meter .lim{position:absolute;top:-5px;bottom:-5px;width:2px;background:var(--ink)}
 .scale{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--muted)}
@@ -140,6 +154,26 @@ legend{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--
 .foot h2{font-family:var(--serif);font-weight:500;font-size:22px;color:var(--ink);margin:10px 0 0;letter-spacing:-.005em}
 .foot a{color:var(--ink)}
 @media (prefers-reduced-motion:no-preference){.meter .fill{transition:width .35s ease}}
+/* Arabic (?lang=ar): IBM Plex Sans Arabic, right-to-left */
+.crumbrow{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:28px}
+.crumbrow .crumbs{margin-bottom:0}
+.langbtn{font-weight:500}
+.verdict .kind{font-size:13.5px;font-weight:600;color:var(--pass)}
+[dir="rtl"] body,[dir="rtl"] .tab,[dir="rtl"] .chip,[dir="rtl"] .btn,[dir="rtl"] input[type=text],[dir="rtl"] select,[dir="rtl"] .linkbtn{font-family:var(--arabic)}
+[dir="rtl"] h1,[dir="rtl"] .verdict .big,[dir="rtl"] .foot h2,[dir="rtl"] .purify .out{font-family:var(--arabic);letter-spacing:0}
+[dir="rtl"] h1{font-size:clamp(28px,4vw,40px);line-height:1.3}
+[dir="rtl"] .verdict .big{font-size:clamp(26px,4vw,38px);line-height:1.3}
+[dir="rtl"] .std,[dir="rtl"] .panel h2,[dir="rtl"] legend,[dir="rtl"] .pill{letter-spacing:0;text-transform:none;font-family:var(--arabic)}
+[dir="rtl"] .std{font-size:13px}
+[dir="rtl"] .panel h2,[dir="rtl"] legend{font-size:13.5px}
+[dir="rtl"] .pill{font-size:12px}
+[dir="rtl"] .fact span:last-child{text-align:left;font-family:var(--arabic)}
+[dir="rtl"] .purify .figure{font-family:var(--arabic)}
+[dir="rtl"] .figure,[dir="rtl"] .formula,[dir="rtl"] .unit{font-family:var(--arabic)}
+[dir="rtl"] .figure b:not(.plain){font-family:var(--mono)}
+.meter .fill{inset-inline-start:0}
+.langbtn:lang(en){font-family:var(--font)} .langbtn:lang(ar){font-family:var(--arabic)}
+
 </style>
 <script src="/analytics.js" defer></script>
 <link rel="icon" href="/favicon.ico" sizes="48x48">
@@ -148,28 +182,31 @@ legend{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--
 </head>
 <body>
 <div class="wrap">
-  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Rafay Khan</a><span aria-hidden="true">/</span><a href="/#labs">Labs</a><span aria-hidden="true">/</span><span>Halal Screen</span></nav>
+  <div class="crumbrow">
+    <nav class="crumbs" aria-label="Breadcrumb" data-i-aria="crumbsAria"><a href="/" data-i="brand">Rafay Khan</a><span aria-hidden="true">/</span><a href="/#labs" id="labsLink" data-i="labs">Labs</a><span aria-hidden="true">/</span><span data-i="crumb">Halal Screen</span></nav>
+    <button type="button" class="chip langbtn" id="langBtn" lang="ar">العربية</button>
+  </div>
 
   <header class="top">
     <div>
-      <h1>Is this stock Shariah compliant?</h1>
-      <p class="lede">Halal Screen checks a stock against the AAOIFI Shariah screens. Each check shows the number, the limit and why the rule exists. US stocks use the company's latest SEC filings, refreshed every weekday.</p>
+      <h1 data-i="h1">Is this stock Shariah compliant?</h1>
+      <p class="lede" data-i="lede">Halal Screen checks a stock against the AAOIFI Shariah screens. Each check shows the number, the limit and why the rule exists. US stocks use the company's latest SEC filings, refreshed every weekday.</p>
     </div>
-    <div class="std">AAOIFI Shariah Standard No. 21</div>
+    <div class="std" data-i="std">AAOIFI Shariah Standard No. 21</div>
   </header>
 
-  <section class="search" aria-label="Choose a stock">
+  <section class="search" aria-label="Choose a stock" data-i-aria="searchAria">
     <div class="tabs" role="tablist">
-      <button type="button" class="tab" role="tab" id="tab-us" aria-selected="true">US stock lookup</button>
-      <button type="button" class="tab" role="tab" id="tab-manual" aria-selected="false">Tadawul or other stock</button>
+      <button type="button" class="tab" role="tab" id="tab-us" aria-selected="true" data-i="tabUs">US stock lookup</button>
+      <button type="button" class="tab" role="tab" id="tab-manual" aria-selected="false" data-i="tabManual">Tadawul or other stock</button>
     </div>
     <div id="pane-us">
       <form class="find" id="find" autocomplete="off">
         <input id="q" list="tickers" placeholder="Ticker or company, e.g. AAPL or Microsoft" aria-label="Ticker or company name">
         <datalist id="tickers"></datalist>
-        <button class="btn" type="submit">Check</button>
+        <button class="btn" type="submit" data-i="check">Check</button>
       </form>
-      <div class="quick" style="margin-top:10px"><span>Try</span>
+      <div class="quick" style="margin-top:10px"><span data-i="try">Try</span>
         <button type="button" class="chip" data-t="AAPL">AAPL</button>
         <button type="button" class="chip" data-t="NVDA">NVDA</button>
         <button type="button" class="chip" data-t="TSLA">TSLA</button>
@@ -180,12 +217,12 @@ legend{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--
       <div class="status" id="status" role="status" style="margin-top:8px">Loading stock data…</div>
     </div>
     <div id="pane-manual" hidden>
-      <p class="note" style="margin:0">Automatic data covers US stocks for now. For a Tadawul stock, type the figures from its latest annual report into the sheet below. You can also start from an example.</p>
-      <div class="examples" role="group" aria-label="Load an example">
-        <button type="button" class="chip" data-ex="0">Software, passes</button>
-        <button type="button" class="chip" data-ex="1">Petrochemicals, high debt</button>
-        <button type="button" class="chip" data-ex="2">Retailer, interest income</button>
-        <button type="button" class="chip" data-ex="3">Conventional bank</button>
+      <p class="note" style="margin:0" data-i="manualNote">Automatic data covers US stocks for now. For a Tadawul stock, type the figures from its latest annual report into the sheet below. You can also start from an example.</p>
+      <div class="examples" role="group" aria-label="Load an example" data-i-aria="exAria">
+        <button type="button" class="chip" data-ex="0" data-i="ex0">Software, passes</button>
+        <button type="button" class="chip" data-ex="1" data-i="ex1">Petrochemicals, high debt</button>
+        <button type="button" class="chip" data-ex="2" data-i="ex2">Retailer, interest income</button>
+        <button type="button" class="chip" data-ex="3" data-i="ex3">Conventional bank</button>
       </div>
     </div>
   </section>
@@ -194,73 +231,73 @@ legend{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--
     <div>
       <!-- automatic figures -->
       <section class="panel" id="auto">
-        <h2>Figures used</h2>
+        <h2 data-i="figH">Figures used</h2>
         <div class="facts" id="facts"></div>
         <div class="src" id="src"></div>
-        <button type="button" class="linkbtn" id="edit">Adjust these figures</button>
+        <button type="button" class="linkbtn" id="edit" data-i="edit">Adjust these figures</button>
       </section>
 
       <!-- manual sheet -->
       <form class="panel" id="form" autocomplete="off" novalidate hidden>
-        <h2>Company figures</h2>
+        <h2 data-i="formH">Company figures</h2>
         <div class="field">
-          <label for="name">Company</label>
+          <label for="name" data-i="lName">Company</label>
           <input id="name" type="text" placeholder="e.g. Saudi Aramco (2222)">
         </div>
         <div class="row2">
           <div class="field">
-            <label for="market">Currency</label>
-            <select id="market"><option value="SAR">SAR</option><option value="USD">USD</option></select>
+            <label for="market" data-i="lCur">Currency</label>
+            <select id="market"><option value="SAR" data-i="curSAR">SAR</option><option value="USD" data-i="curUSD">USD</option></select>
           </div>
           <div class="field">
-            <label for="mcap">Market cap <span class="unit">M</span></label>
+            <label for="mcap"><span data-i="lMcap">Market cap</span> <span class="unit" data-i="unitM">M</span></label>
             <input id="mcap" type="number" min="0" step="any" inputmode="decimal">
           </div>
         </div>
         <div class="field">
-          <label for="biz">Main business</label>
+          <label for="biz" data-i="lBiz">Main business</label>
           <select id="biz">
-            <option value="ok">Permissible (tech, industry, retail…)</option>
-            <option value="review">Mixed or unclear, needs a closer look</option>
-            <option value="defense">Weapons and defense</option>
-            <option value="finance">Conventional banking, insurance or lending</option>
-            <option value="alcohol">Alcohol</option>
-            <option value="pork">Pork products</option>
-            <option value="gambling">Gambling or casinos</option>
-            <option value="adult">Adult entertainment</option>
-            <option value="tobacco">Tobacco</option>
+            <option value="ok" data-i="bOk">Permissible (tech, industry, retail…)</option>
+            <option value="review" data-i="bReview">Mixed or unclear, needs a closer look</option>
+            <option value="defense" data-i="bDefense">Weapons and defense</option>
+            <option value="finance" data-i="bFinance">Conventional banking, insurance or lending</option>
+            <option value="alcohol" data-i="bAlcohol">Alcohol</option>
+            <option value="pork" data-i="bPork">Pork products</option>
+            <option value="gambling" data-i="bGambling">Gambling or casinos</option>
+            <option value="adult" data-i="bAdult">Adult entertainment</option>
+            <option value="tobacco" data-i="bTobacco">Tobacco</option>
           </select>
         </div>
         <fieldset>
-          <legend>Balance sheet</legend>
+          <legend data-i="lgBal">Balance sheet</legend>
           <div class="field">
-            <label for="debt">Interest-bearing debt <span class="unit">M</span></label>
+            <label for="debt"><span data-i="lDebt">Interest-bearing debt</span> <span class="unit" data-i="unitM">M</span></label>
             <input id="debt" type="number" min="0" step="any" inputmode="decimal">
-            <span class="hint">Conventional loans, bonds and overdrafts.</span>
+            <span class="hint" data-i="hDebt">Conventional loans, bonds and overdrafts.</span>
           </div>
           <div class="field">
-            <label for="cash">Interest-bearing cash and investments <span class="unit">M</span></label>
+            <label for="cash"><span data-i="lCash">Interest-bearing cash and investments</span> <span class="unit" data-i="unitM">M</span></label>
             <input id="cash" type="number" min="0" step="any" inputmode="decimal">
-            <span class="hint">Conventional bank deposits plus short-term interest-bearing securities. If the report doesn't split them, use cash plus short-term investments.</span>
+            <span class="hint" data-i="hCash">Conventional bank deposits plus short-term interest-bearing securities. If the report doesn't split them, use cash plus short-term investments.</span>
           </div>
         </fieldset>
         <fieldset>
-          <legend>Income statement</legend>
+          <legend data-i="lgInc">Income statement</legend>
           <div class="row2">
             <div class="field">
-              <label for="rev">Total revenue <span class="unit">M</span></label>
+              <label for="rev"><span data-i="lRev">Total revenue</span> <span class="unit" data-i="unitM">M</span></label>
               <input id="rev" type="number" min="0" step="any" inputmode="decimal">
             </div>
             <div class="field">
-              <label for="bad">Non-permissible income <span class="unit">M</span></label>
+              <label for="bad"><span data-i="lBad">Non-permissible income</span> <span class="unit" data-i="unitM">M</span></label>
               <input id="bad" type="number" min="0" step="any" inputmode="decimal">
             </div>
           </div>
-          <span class="hint">Interest income plus revenue from any prohibited activity. Look for "finance income" in the notes.</span>
+          <span class="hint" data-i="hBad">Interest income plus revenue from any prohibited activity. Look for "finance income" in the notes.</span>
           <div class="field">
-            <label for="shares">Shares outstanding <span class="unit">M</span></label>
+            <label for="shares"><span data-i="lShares">Shares outstanding</span> <span class="unit" data-i="unitM">M</span></label>
             <input id="shares" type="number" min="0" step="any" inputmode="decimal">
-            <span class="hint">Used only for the purification amount.</span>
+            <span class="hint" data-i="hShares">Used only for the purification amount.</span>
           </div>
         </fieldset>
       </form>
@@ -270,20 +307,21 @@ legend{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--
       <div class="verdict" id="verdict">
         <div class="co" id="vco"></div>
         <div class="big" id="vbig"></div>
+        <div class="kind" id="vkind" hidden></div>
         <p class="sum" id="vsum"></p>
       </div>
       <div class="checks" id="checks"></div>
 
       <div class="panel purify">
-        <h2>Purification</h2>
-        <p class="why">Even a passing stock earns a little non-permissible income. Scholars ask you to give your share of it to charity. Enter how many shares you hold.</p>
+        <h2 data-i="purH">Purification</h2>
+        <p class="why" data-i="purP">Even a passing stock earns a little non-permissible income. Scholars ask you to give your share of it to charity. Enter how many shares you hold.</p>
         <div class="row2">
           <div class="field">
-            <label for="held">Shares you hold</label>
+            <label for="held" data-i="lHeld">Shares you hold</label>
             <input id="held" type="number" min="0" step="any" inputmode="decimal" value="100">
           </div>
           <div class="field">
-            <label>Per share, per year</label>
+            <label data-i="lPer">Per share, per year</label>
             <div class="figure" id="pershare" style="padding-top:8px">–</div>
           </div>
         </div>
@@ -294,97 +332,269 @@ legend{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--
   </div>
 
   <section class="foot" aria-labelledby="how">
-    <h2 id="how">How the halal stock screener works</h2>
-    <p>The screener follows AAOIFI Shariah Standard No. 21 (Financial Papers), the rulebook most Islamic banks and Shariah boards in Saudi Arabia and the Gulf use for shares. A stock passes when its main business is permissible and three ratios stay under their limits: interest-bearing debt under 30% of market value, interest-bearing cash and securities under 30% of market value, and non-permissible income under 5% of total revenue. Other screens, such as some index providers, divide by total assets or use a 33% limit, so their results can differ.</p>
-    <h2>Where the US data comes from</h2>
-    <p>Balance sheet and income figures come from each company's latest 10-K and 10-Q filings in <a href="https://www.sec.gov/edgar/search/" target="_blank" rel="noopener">SEC EDGAR</a>, and are refreshed every weekday after the US market closes. The date of each figure is shown next to the result. Business type comes from the company's SEC industry code, with a few hand-checked corrections. Prices are the latest daily close. All cash is treated as interest-bearing, because filings rarely separate Islamic deposits, so the cash check errs on the strict side. When a filing doesn't show interest income or debt clearly, the check is marked for review instead of guessed. Tadawul stocks are checked from figures you enter from the annual report.</p>
-    <h2>How purification works</h2>
-    <p>Even a compliant company earns a little interest. Scholars ask investors to give their share of that income to charity each year. The calculator divides the company's non-permissible income by its shares outstanding and multiplies by the shares you hold.</p>
-    <p><strong>This is an educational tool, not a fatwa.</strong> Figures can be out of date or misread from filings. Ask a qualified scholar before you invest.</p>
-    <p>More from <a href="/#labs">Rafay Khan Labs</a>: the <a href="/labs/tadawul-dividends/">Tadawul dividend calendar</a>.</p>
-    <p><a href="/privacy/">Privacy and cookies</a></p>
+    <h2 id="how" data-i="fH1">How the halal stock screener works</h2>
+    <p data-i="fP1">The screener follows AAOIFI Shariah Standard No. 21 (Financial Papers), the rulebook most Islamic banks and Shariah boards in Saudi Arabia and the Gulf use for shares. A stock passes when its main business is permissible and three ratios stay under their limits: interest-bearing debt under 30% of market value, interest-bearing cash and securities under 30% of market value, and non-permissible income under 5% of total revenue. Other screens, such as some index providers, divide by total assets or use a 33% limit, so their results can differ.</p>
+    <p data-i="fPure" data-html="1"><strong>Pure and mixed.</strong> A compliant stock is "pure" when the company has no interest-bearing debt or deposits and no non-permissible income at all. Most compliant stocks are "mixed": their main business is permissible, they stay under every limit, and the small non-permissible share is purified.</p>
+    <h2 data-i="fH2">Where the US data comes from</h2>
+    <p data-i="fP2" data-html="1">Balance sheet and income figures come from each company's latest 10-K and 10-Q filings in <a href="https://www.sec.gov/edgar/search/" target="_blank" rel="noopener">SEC EDGAR</a>, and are refreshed every weekday after the US market closes. The date of each figure is shown next to the result. Business type comes from the company's SEC industry code, with a few hand-checked corrections. Prices are the latest daily close. All cash is treated as interest-bearing, because filings rarely separate Islamic deposits, so the cash check errs on the strict side. When a filing doesn't show interest income or debt clearly, the check is marked for review instead of guessed. Tadawul stocks are checked from figures you enter from the annual report.</p>
+    <h2 data-i="fH3">How purification works</h2>
+    <p data-i="fP3">Even a compliant company earns a little interest. Scholars ask investors to give their share of that income to charity each year. The calculator divides the company's non-permissible income by its shares outstanding and multiplies by the shares you hold.</p>
+    <p data-i="fFatwa" data-html="1"><strong>This is screening, not a fatwa.</strong> It is an educational tool that applies published rules to public figures, which can be out of date or misread from filings. Ask a qualified scholar before you invest.</p>
+    <p data-i="fMore" data-html="1">More from <a href="/#labs">Rafay Khan Labs</a>: the <a href="/labs/tadawul-dividends/">Tadawul dividend calendar</a>.</p>
+    <p><span data-i="footName">Rafay Khan · Riyadh</span> · <a href="/privacy/" data-i="privacy">Privacy and cookies</a></p>
   </section>
 </div>
 
 <script>
-const EXAMPLES = [
-  {name:"Example: Najd Cloud Software", market:"SAR", mcap:12000, biz:"ok", debt:600, cash:1400, rev:2500, bad:30, shares:100},
-  {name:"Example: Gulf Polymer Industries", market:"SAR", mcap:20000, biz:"ok", debt:8200, cash:2100, rev:15000, bad:180, shares:400},
-  {name:"Example: Harbor Street Stores", market:"USD", mcap:5000, biz:"ok", debt:900, cash:1100, rev:3000, bad:210, shares:250},
-  {name:"Example: Riyadh Commercial Bank", market:"SAR", mcap:60000, biz:"finance", debt:30000, cash:45000, rev:9000, bad:7200, shares:3000},
-];
-const BIZ = {
-  ok:{s:"pass", t:"Main business is permissible.", d:"The company's core activity is not on the prohibited list, so it moves on to the financial ratios."},
-  review:{s:"warn", t:"Main business needs a closer look.", d:"The company has a mix of activities. Check its segment reporting to make sure prohibited lines are small and not its core business."},
-  defense:{s:"warn", t:"Weapons and defense: scholars differ.", d:"Some scholars allow defense companies that sell to governments for national defense, while others exclude them. Most halal indexes exclude them."},
-  finance:{s:"fail", t:"Conventional finance is not permissible.", d:"Its core income is interest (riba) from lending, card credit or conventional insurance. A company whose main business is prohibited fails regardless of its ratios."},
-  alcohol:{s:"fail", t:"Alcohol is a prohibited business.", d:"Producing or selling alcohol as a core business rules the stock out regardless of its ratios."},
-  pork:{s:"fail", t:"Pork products are a prohibited business.", d:"Producing or selling pork as a core business rules the stock out regardless of its ratios."},
-  gambling:{s:"fail", t:"Gambling is a prohibited business.", d:"Casinos and betting (maysir) are prohibited, so the stock fails regardless of its ratios."},
-  adult:{s:"fail", t:"Adult entertainment is a prohibited business.", d:"This core activity rules the stock out regardless of its ratios."},
-  tobacco:{s:"fail", t:"Tobacco is excluded.", d:"Most contemporary Shariah boards and halal indexes exclude tobacco as harmful, so the stock fails this screen."},
+const store = { get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }, set(k,v){ try { localStorage.setItem(k,v); } catch(e){} } };
+// ?lang=ar is the Arabic page; otherwise the saved choice, then the browser language
+let lang = store.get("halal-lang") || ((navigator.language || "").toLowerCase().startsWith("ar") ? "ar" : "en");
+if (/[?&]lang=ar\b/.test(location.search)) lang = "ar";
+if (/[?&]lang=en\b/.test(location.search)) lang = "en";
+
+const STR = {
+  en: {
+    docTitle: "Halal Stock Screener: AAOIFI Shariah Check for US Stocks",
+    docDesc: "Free halal stock screener. Check if a US or Tadawul stock is Shariah compliant under AAOIFI rules, using SEC filings updated every weekday. In English and Arabic.",
+    langBtn: "العربية", brand: "Rafay Khan", labs: "Labs", crumb: "Halal Screen", crumbsAria: "Breadcrumb",
+    h1: "Is this stock Shariah compliant?",
+    lede: "Halal Screen checks a stock against the AAOIFI Shariah screens. Each check shows the number, the limit and why the rule exists. US stocks use the company's latest SEC filings, refreshed every weekday.",
+    std: "AAOIFI Shariah Standard No. 21", searchAria: "Choose a stock", tabUs: "US stock lookup", tabManual: "Tadawul or other stock",
+    qPh: "Ticker or company, e.g. AAPL or Microsoft", qAria: "Ticker or company name", check: "Check", try: "Try",
+    manualNote: "Automatic data covers US stocks for now. For a Tadawul stock, type the figures from its latest annual report into the sheet below. You can also start from an example.",
+    exAria: "Load an example", ex0: "Software, passes", ex1: "Petrochemicals, high debt", ex2: "Retailer, interest income", ex3: "Conventional bank",
+    figH: "Figures used", edit: "Adjust these figures", formH: "Company figures", lName: "Company", namePh: "e.g. Saudi Aramco (2222)",
+    lCur: "Currency", curSAR: "SAR", curUSD: "USD", lMcap: "Market cap", unitM: "M", lBiz: "Main business",
+    bOk: "Permissible (tech, industry, retail…)", bReview: "Mixed or unclear, needs a closer look", bDefense: "Weapons and defense", bFinance: "Conventional banking, insurance or lending",
+    bAlcohol: "Alcohol", bPork: "Pork products", bGambling: "Gambling or casinos", bAdult: "Adult entertainment", bTobacco: "Tobacco",
+    lgBal: "Balance sheet", lDebt: "Interest-bearing debt", hDebt: "Conventional loans, bonds and overdrafts.",
+    lCash: "Interest-bearing cash and investments", hCash: "Conventional bank deposits plus short-term interest-bearing securities. If the report doesn't split them, use cash plus short-term investments.",
+    lgInc: "Income statement", lRev: "Total revenue", lBad: "Non-permissible income", hBad: "Interest income plus revenue from any prohibited activity. Look for \"finance income\" in the notes.",
+    lShares: "Shares outstanding", hShares: "Used only for the purification amount.",
+    purH: "Purification", purP: "Even a passing stock earns a little non-permissible income. Scholars ask you to give your share of it to charity. Enter how many shares you hold.",
+    lHeld: "Shares you hold", lPer: "Per share, per year",
+    fH1: "How the halal stock screener works",
+    fP1: "The screener follows AAOIFI Shariah Standard No. 21 (Financial Papers), the rulebook most Islamic banks and Shariah boards in Saudi Arabia and the Gulf use for shares. A stock passes when its main business is permissible and three ratios stay under their limits: interest-bearing debt under 30% of market value, interest-bearing cash and securities under 30% of market value, and non-permissible income under 5% of total revenue. Other screens, such as some index providers, divide by total assets or use a 33% limit, so their results can differ.",
+    fPure: "<strong>Pure and mixed.</strong> A compliant stock is \"pure\" when the company has no interest-bearing debt or deposits and no non-permissible income at all. Most compliant stocks are \"mixed\": their main business is permissible, they stay under every limit, and the small non-permissible share is purified.",
+    fH2: "Where the US data comes from",
+    fP2: "Balance sheet and income figures come from each company's latest 10-K and 10-Q filings in <a href=\"https://www.sec.gov/edgar/search/\" target=\"_blank\" rel=\"noopener\">SEC EDGAR</a>, and are refreshed every weekday after the US market closes. The date of each figure is shown next to the result. Business type comes from the company's SEC industry code, with a few hand-checked corrections. Prices are the latest daily close. All cash is treated as interest-bearing, because filings rarely separate Islamic deposits, so the cash check errs on the strict side. When a filing doesn't show interest income or debt clearly, the check is marked for review instead of guessed. Tadawul stocks are checked from figures you enter from the annual report.",
+    fH3: "How purification works",
+    fP3: "Even a compliant company earns a little interest. Scholars ask investors to give their share of that income to charity each year. The calculator divides the company's non-permissible income by its shares outstanding and multiplies by the shares you hold.",
+    fFatwa: "<strong>This is screening, not a fatwa.</strong> It is an educational tool that applies published rules to public figures, which can be out of date or misread from filings. Ask a qualified scholar before you invest.",
+    fMore: "More from <a href=\"/#labs\">Rafay Khan Labs</a>: the <a href=\"/labs/tadawul-dividends/\">Tadawul dividend calendar</a>.",
+    footName: "Rafay Khan · Riyadh", privacy: "Privacy and cookies",
+    loading: "Loading stock data…", unnamed: "Unnamed company",
+    cur: { SAR: "SAR", USD: "USD" },
+    money: (v, unit, cur) => cur + " " + v + unit, units: { T: "T", B: "B", M: "M" },
+    enterBoth: (a, b) => "Enter " + a.toLowerCase() + " and " + b.toLowerCase() + " to run this check.",
+    fig: (r, den, lim) => `<b>${r}</b> of ${den.toLowerCase()} · limit under ${lim}`,
+    caveatMissing: "This company doesn't report interest income as a separate figure in its filing data, so this check can't be run automatically. Look for interest or finance income in the notes to its 10-K.",
+    caveatNet: "Estimated from net interest income, because gross interest income isn't reported separately. The real figure may be a little higher.",
+    caveatUpper: "Interest income isn't reported separately, so this uses all non-operating income, which also includes investment gains and other one-offs. The real non-permissible share is lower than shown.",
+    debtUnreadable: "This company reports its borrowings under its own labels, so its debt can't be read automatically. Check the debt note in its latest 10-K.",
+    secIndustry: s => ` SEC industry: ${s}.`,
+    tBiz: "Business activity", tDebt: "Debt", tCash: "Interest-bearing cash and securities", tBad: "Non-permissible income",
+    nDebt: "Interest-bearing debt", nCash: "Cash and investments", nBad: "Non-permissible income", dMcap: "Market cap", dRev: "Revenue",
+    wDebtP: "The company relies mostly on its own equity. AAOIFI tolerates some conventional borrowing because few companies can avoid it, but caps it at 30% of market value.",
+    wDebtF: "Too much of the company is funded by interest-bearing loans. Above 30% of market value, AAOIFI treats the riba as too large a part of the business to overlook.",
+    wCashP: "The company keeps a modest amount in interest-earning deposits and securities, under the 30% cap.",
+    wCashF: "The company parks too much money in interest-earning deposits or bonds. Above 30% of market value, owning the share starts to look like owning an interest-bearing account.",
+    wBadP: "Under 5% of revenue comes from interest or prohibited activity. That small share is tolerated, and you purify it below.",
+    wBadF: "More than 5% of revenue comes from interest or prohibited activity. At that level the haram income is too large to clean through purification.",
+    wBadSoft: "Non-operating income is above 5% of revenue, but that figure includes more than interest. Check the 10-K notes for the actual interest income before deciding.",
+    asOf: (ex, d) => ` · ${ex} · data as of ${d}`,
+    vPass: "Shariah compliant", vFail: "Not Shariah compliant", vWarn: "Needs review",
+    kPure: "Pure: no interest-bearing debt or deposits and no non-permissible income",
+    kMixed: "Mixed: permissible business, with a small non-permissible share to purify",
+    sFail: (n, list) => `Fails ${n} of 4 checks: ${list}.`,
+    sWarn: (list, n) => `No check fails, but ${list} ${n > 1 ? "need" : "needs"} a closer look before you decide.`,
+    sPass: "Passes all four AAOIFI checks. Remember to purify the small non-permissible share of dividends or gains.",
+    joinFail: l => l.map(x => x.toLowerCase()).join(", "), joinWarn: l => l.map(x => x.toLowerCase()).join(" and "),
+    pPass: "Pass", pFail: "Fail", pMissing: "Missing", pReview: "Review",
+    meterAria: (r, l) => `${r} against a limit of ${l}`, limit: "limit",
+    purNote: (bad, sh) => "Your share of the year's non-permissible income: " + bad + " ÷ " + sh + "M shares × your holding. Give it to charity. It doesn't count as zakat.",
+    purNeeds: "Needs non-permissible income and shares outstanding.",
+    fPrice: "Share price", fMcap: "Market cap", fDebt: "Interest-bearing debt", fCash: "Cash and investments", fRev: "Revenue (fiscal year)", fNonOp: "Non-operating income", fInt: "Interest income",
+    notReadable: "not readable", notReported: "not reported", noneReported: "none reported",
+    srcDates: (b, f, p) => `Balance sheet at ${b}. Revenue and interest income for the year to ${f}. Price close on ${p}.`,
+    srcParts: (d, c) => `Debt is ${d}. Cash is ${c}.`, srcLink: t => `See ${t}'s filings on SEC EDGAR`,
+    notCoveredSkip: (t, why) => `${t} isn't covered yet (${why.charAt(0).toLowerCase() + why.slice(1)}). Use the Tadawul or other stock tab to enter its figures yourself.`,
+    notCovered: (q, n) => `“${q}” isn't in the ${n} US stocks covered yet. Try a ticker like AAPL, or enter the figures yourself.`,
+    covered: (n, d) => `${n} US stocks covered. Updated ${d}.`,
+    loadErr: "Couldn't load the US stock data right now. You can still enter figures yourself.",
+    exNames: ["Example: Najd Cloud Software", "Example: Gulf Polymer Industries", "Example: Harbor Street Stores", "Example: Riyadh Commercial Bank"],
+    BIZ: {
+      ok: ["Main business is permissible.", "The company's core activity is not on the prohibited list, so it moves on to the financial ratios."],
+      review: ["Main business needs a closer look.", "The company has a mix of activities. Check its segment reporting to make sure prohibited lines are small and not its core business."],
+      defense: ["Weapons and defense: scholars differ.", "Some scholars allow defense companies that sell to governments for national defense, while others exclude them. Most halal indexes exclude them."],
+      finance: ["Conventional finance is not permissible.", "Its core income is interest (riba) from lending, card credit or conventional insurance. A company whose main business is prohibited fails regardless of its ratios."],
+      alcohol: ["Alcohol is a prohibited business.", "Producing or selling alcohol as a core business rules the stock out regardless of its ratios."],
+      pork: ["Pork products are a prohibited business.", "Producing or selling pork as a core business rules the stock out regardless of its ratios."],
+      gambling: ["Gambling is a prohibited business.", "Casinos and betting (maysir) are prohibited, so the stock fails regardless of its ratios."],
+      adult: ["Adult entertainment is a prohibited business.", "This core activity rules the stock out regardless of its ratios."],
+      tobacco: ["Tobacco is excluded.", "Most contemporary Shariah boards and halal indexes exclude tobacco as harmful, so the stock fails this screen."]
+    }
+  },
+  ar: {
+    docTitle: "فاحص الأسهم الشرعية: فحص الأسهم الأمريكية وفق معايير أيوفي",
+    docDesc: "فاحص مجاني للأسهم الشرعية. اعرف هل السهم الأمريكي أو سهم تداول متوافق مع الشريعة وفق معايير أيوفي، من القوائم المالية الرسمية المحدثة كل يوم عمل. بالعربية والإنجليزية.",
+    langBtn: "English", brand: "رافع خان", labs: "المختبر", crumb: "فاحص الأسهم الشرعية", crumbsAria: "مسار التنقل",
+    h1: "هل هذا السهم متوافق مع الشريعة؟",
+    lede: "يفحص هذا الفاحص السهم وفق المعايير الشرعية لهيئة المحاسبة والمراجعة للمؤسسات المالية الإسلامية (أيوفي). يعرض كل فحص الرقم والحد المسموح وسبب القاعدة. وتعتمد الأسهم الأمريكية على أحدث قوائم الشركة المالية المقدمة إلى هيئة الأوراق المالية الأمريكية (SEC)، وتُحدَّث كل يوم عمل.",
+    std: "المعيار الشرعي رقم 21 لأيوفي", searchAria: "اختر سهمًا", tabUs: "البحث في الأسهم الأمريكية", tabManual: "سهم في تداول أو غيره",
+    qPh: "الرمز أو اسم الشركة، مثل AAPL أو Microsoft", qAria: "رمز السهم أو اسم الشركة", check: "افحص", try: "جرّب",
+    manualNote: "البيانات التلقائية تغطي الأسهم الأمريكية حاليًا. لسهم في تداول، أدخل الأرقام من آخر تقرير سنوي للشركة في النموذج أدناه، أو ابدأ بأحد الأمثلة.",
+    exAria: "حمّل مثالًا", ex0: "برمجيات، يجتاز", ex1: "بتروكيماويات، ديون مرتفعة", ex2: "تجزئة، دخل فوائد", ex3: "بنك تقليدي",
+    figH: "الأرقام المستخدمة", edit: "عدّل هذه الأرقام", formH: "أرقام الشركة", lName: "الشركة", namePh: "مثل أرامكو السعودية (2222)",
+    lCur: "العملة", curSAR: "ريال", curUSD: "دولار", lMcap: "القيمة السوقية", unitM: "مليون", lBiz: "النشاط الرئيسي",
+    bOk: "مباح (تقنية، صناعة، تجزئة…)", bReview: "مختلط أو غير واضح، يحتاج إلى نظر", bDefense: "الأسلحة والدفاع", bFinance: "بنوك أو تأمين أو إقراض تقليدي",
+    bAlcohol: "الخمور", bPork: "منتجات الخنزير", bGambling: "القمار والكازينوهات", bAdult: "الترفيه الإباحي", bTobacco: "التبغ",
+    lgBal: "قائمة المركز المالي", lDebt: "الديون الربوية", hDebt: "القروض والسندات والسحب على المكشوف التقليدية.",
+    lCash: "النقد والاستثمارات الربوية", hCash: "الودائع البنكية التقليدية والأوراق المالية قصيرة الأجل ذات الفائدة. إذا لم يفصلها التقرير، استخدم النقد والاستثمارات قصيرة الأجل معًا.",
+    lgInc: "قائمة الدخل", lRev: "إجمالي الإيرادات", lBad: "الدخل غير المباح", hBad: "دخل الفوائد مع إيرادات أي نشاط محرم. ابحث عن «إيرادات التمويل» في الإيضاحات.",
+    lShares: "عدد الأسهم المصدرة", hShares: "يُستخدم فقط لحساب مبلغ التطهير.",
+    purH: "التطهير", purP: "حتى السهم المتوافق يكسب قليلًا من الدخل غير المباح، ويطلب العلماء التصدق بنصيبك منه. أدخل عدد الأسهم التي تملكها.",
+    lHeld: "الأسهم التي تملكها", lPer: "للسهم في السنة",
+    fH1: "كيف يعمل فاحص الأسهم الشرعية",
+    fP1: "يتبع الفاحص المعيار الشرعي رقم 21 (الأوراق المالية) الصادر عن أيوفي، وهو المرجع الذي تعتمده أغلب البنوك الإسلامية والهيئات الشرعية في السعودية والخليج للأسهم. يجتاز السهم الفحص إذا كان نشاطه الرئيسي مباحًا وبقيت ثلاث نسب تحت حدودها: الديون الربوية أقل من 30% من القيمة السوقية، والنقد والأوراق المالية الربوية أقل من 30% من القيمة السوقية، والدخل غير المباح أقل من 5% من إجمالي الإيرادات. بعض المعايير الأخرى، مثل بعض مزودي المؤشرات، تقسم على إجمالي الأصول أو تستخدم حد 33%، لذلك قد تختلف نتائجها.",
+    fPure: "<strong>نقي ومختلط.</strong> السهم المتوافق «نقي» إذا لم تكن على الشركة ديون ربوية ولا لديها ودائع ربوية ولا دخل غير مباح أصلًا. وأغلب الأسهم المتوافقة «مختلطة»: نشاطها الرئيسي مباح، وتبقى تحت كل الحدود، ويُطهَّر الجزء الصغير غير المباح.",
+    fH2: "مصدر بيانات الأسهم الأمريكية",
+    fP2: "تأتي أرقام المركز المالي والدخل من أحدث تقارير الشركة السنوية (10-K) والربعية (10-Q) في قاعدة <a href=\"https://www.sec.gov/edgar/search/\" target=\"_blank\" rel=\"noopener\">SEC EDGAR</a>، وتُحدَّث كل يوم عمل بعد إغلاق السوق الأمريكية. يظهر تاريخ كل رقم بجانب النتيجة. ويأتي نوع النشاط من رمز تصنيف الشركة لدى SEC، مع تصحيحات قليلة مراجعة يدويًا. والأسعار هي آخر إغلاق يومي. يُعامَل كل النقد على أنه ربوي، لأن التقارير نادرًا ما تفصل الودائع الإسلامية، فيميل فحص النقد إلى التشدد. وإذا لم يُظهر التقرير دخل الفوائد أو الديون بوضوح، يُعلَّم الفحص للمراجعة بدل التخمين. أما أسهم تداول فتُفحص بالأرقام التي تدخلها من التقرير السنوي.",
+    fH3: "كيف يُحسب التطهير",
+    fP3: "حتى الشركة المتوافقة تكسب قليلًا من الفوائد، ويطلب العلماء من المستثمر التصدق بنصيبه من هذا الدخل كل سنة. تقسم الحاسبة الدخل غير المباح للشركة على عدد أسهمها المصدرة، ثم تضربه في عدد الأسهم التي تملكها.",
+    fFatwa: "<strong>هذا فحص وليس فتوى.</strong> هذه أداة تعليمية تطبّق معايير منشورة على أرقام عامة، وقد تكون الأرقام قديمة أو مقروءة بشكل خاطئ من التقارير. استشر عالمًا مؤهلًا قبل أن تستثمر.",
+    fMore: "المزيد من <a href=\"/labs/?lang=ar\">المختبر</a>: <a href=\"/labs/tadawul-dividends/?lang=ar\">تقويم توزيعات الأرباح في تداول</a>.",
+    footName: "رافع خان · الرياض", privacy: "الخصوصية وملفات تعريف الارتباط",
+    loading: "جارٍ تحميل بيانات الأسهم…", unnamed: "شركة بدون اسم",
+    cur: { SAR: "ريال", USD: "دولار" },
+    money: (v, unit, cur) => v + " " + unit + " " + cur, units: { T: "تريليون", B: "مليار", M: "مليون" },
+    enterBoth: (a, b) => "أدخل " + a + " و" + b + " لإجراء هذا الفحص.",
+    fig: (r, den, lim) => `<b>${r}</b> من ${den} · الحد أقل من ${lim}`,
+    caveatMissing: "لا تُفصح هذه الشركة عن دخل الفوائد كرقم مستقل في بيانات تقاريرها، لذلك لا يمكن إجراء هذا الفحص تلقائيًا. ابحث عن دخل الفوائد أو التمويل في إيضاحات تقريرها السنوي (10-K).",
+    caveatNet: "مقدّر من صافي دخل الفوائد، لأن إجمالي دخل الفوائد غير مفصح عنه بشكل مستقل. قد يكون الرقم الحقيقي أعلى قليلًا.",
+    caveatUpper: "دخل الفوائد غير مفصح عنه بشكل مستقل، لذلك يُستخدم كل الدخل من غير العمليات، وهو يشمل أيضًا أرباح الاستثمار وبنودًا غير متكررة. الحصة الحقيقية غير المباحة أقل مما يظهر.",
+    debtUnreadable: "تُفصح هذه الشركة عن قروضها بمسميات خاصة بها، لذلك لا يمكن قراءة ديونها تلقائيًا. راجع إيضاح الديون في أحدث تقرير سنوي (10-K).",
+    secIndustry: s => ` تصنيف النشاط لدى SEC: ${s}.`,
+    tBiz: "النشاط الرئيسي", tDebt: "الديون الربوية", tCash: "النقد والأوراق المالية الربوية", tBad: "الدخل غير المباح",
+    nDebt: "الديون الربوية", nCash: "النقد والاستثمارات", nBad: "الدخل غير المباح", dMcap: "القيمة السوقية", dRev: "الإيرادات",
+    wDebtP: "تعتمد الشركة في الغالب على حقوق ملكيتها. تتسامح أيوفي مع قدر من الاقتراض التقليدي لأن قلة من الشركات تستطيع تجنبه، لكنها تحده بنسبة 30% من القيمة السوقية.",
+    wDebtF: "يُموَّل جزء كبير جدًا من الشركة بقروض ربوية. فوق 30% من القيمة السوقية تعدّ أيوفي الربا جزءًا أكبر من أن يُتجاوز عنه.",
+    wCashP: "تحتفظ الشركة بمبلغ معتدل في ودائع وأوراق مالية ذات فائدة، تحت حد 30%.",
+    wCashF: "تضع الشركة أموالًا كثيرة في ودائع أو سندات ذات فائدة. فوق 30% من القيمة السوقية يصبح تملك السهم أشبه بتملك حساب بفائدة.",
+    wBadP: "أقل من 5% من الإيرادات يأتي من الفوائد أو من نشاط محرم. هذه الحصة الصغيرة مغتفرة، وتطهّرها في الأسفل.",
+    wBadF: "أكثر من 5% من الإيرادات يأتي من الفوائد أو من نشاط محرم. عند هذا المستوى يكون الدخل المحرم أكبر من أن يُطهَّر.",
+    wBadSoft: "الدخل من غير العمليات أعلى من 5% من الإيرادات، لكنه يشمل أكثر من الفوائد. راجع إيضاحات التقرير السنوي (10-K) لمعرفة دخل الفوائد الفعلي قبل أن تقرر.",
+    asOf: (ex, d) => ` · ${ex} · البيانات بتاريخ ${d}`,
+    vPass: "متوافق مع الشريعة", vFail: "غير متوافق مع الشريعة", vWarn: "يحتاج إلى مراجعة",
+    kPure: "نقي: لا ديون ولا ودائع ربوية ولا دخل غير مباح",
+    kMixed: "مختلط: نشاط مباح مع حصة صغيرة غير مباحة يجب تطهيرها",
+    sFail: (n, list) => `لا يجتاز ${n} من 4 فحوص: ${list}.`,
+    sWarn: (list) => `لا يوجد فحص راسب، لكن ${list} يحتاج إلى نظر قبل أن تقرر.`,
+    sPass: "يجتاز فحوص أيوفي الأربعة. لا تنسَ تطهير الحصة الصغيرة غير المباحة من التوزيعات أو الأرباح.",
+    joinFail: l => l.join("، "), joinWarn: l => l.join(" و"),
+    pPass: "يجتاز", pFail: "لا يجتاز", pMissing: "ناقص", pReview: "مراجعة",
+    meterAria: (r, l) => `${r} مقابل حد ${l}`, limit: "الحد",
+    purNote: (bad, sh) => "نصيبك من الدخل غير المباح للسنة: " + bad + " ÷ " + sh + " مليون سهم × عدد أسهمك. تصدّق به، ولا يُحسب من الزكاة.",
+    purNeeds: "يحتاج إلى الدخل غير المباح وعدد الأسهم المصدرة.",
+    fPrice: "سعر السهم", fMcap: "القيمة السوقية", fDebt: "الديون الربوية", fCash: "النقد والاستثمارات", fRev: "الإيرادات (السنة المالية)", fNonOp: "الدخل من غير العمليات", fInt: "دخل الفوائد",
+    notReadable: "غير مقروء", notReported: "غير مفصح عنه", noneReported: "لا شيء مفصح عنه",
+    srcDates: (b, f, p) => `المركز المالي بتاريخ ${b}. الإيرادات ودخل الفوائد للسنة المنتهية في ${f}. سعر الإغلاق بتاريخ ${p}.`,
+    srcParts: (d, c) => `الديون: ${d}. النقد: ${c}.`, srcLink: t => `تقارير ${t} في SEC EDGAR`,
+    notCoveredSkip: (t) => `السهم ${t} غير مشمول بعد لنقص في بياناته. استخدم تبويب «سهم في تداول أو غيره» لإدخال أرقامه بنفسك.`,
+    notCovered: (q, n) => `«${q}» ليس ضمن ${n} سهمًا أمريكيًا مشمولًا حاليًا. جرّب رمزًا مثل AAPL، أو أدخل الأرقام بنفسك.`,
+    covered: (n, d) => `يشمل ${n} سهمًا أمريكيًا. آخر تحديث ${d}.`,
+    loadErr: "تعذّر تحميل بيانات الأسهم الأمريكية الآن. ما زال بإمكانك إدخال الأرقام بنفسك.",
+    exNames: ["مثال: نجد للبرمجيات السحابية", "مثال: الخليج للبوليمرات", "مثال: متاجر هاربر ستريت", "مثال: بنك الرياض التجاري"],
+    BIZ: {
+      ok: ["النشاط الرئيسي مباح.", "النشاط الأساسي للشركة ليس من الأنشطة المحرمة، فينتقل الفحص إلى النسب المالية."],
+      review: ["النشاط الرئيسي يحتاج إلى نظر.", "للشركة أنشطة مختلطة. راجع تقارير القطاعات للتأكد من أن الأنشطة المحرمة صغيرة وليست نشاطها الأساسي."],
+      defense: ["الأسلحة والدفاع: محل خلاف بين العلماء.", "يجيز بعض العلماء شركات الدفاع التي تبيع للحكومات لأغراض الدفاع الوطني، ويستبعدها آخرون. وأغلب المؤشرات الشرعية تستبعدها."],
+      finance: ["التمويل التقليدي غير مباح.", "دخلها الأساسي من الفوائد (الربا) على القروض أو البطاقات الائتمانية أو التأمين التقليدي. والشركة التي نشاطها الرئيسي محرم لا تجتاز الفحص مهما كانت نسبها."],
+      alcohol: ["الخمور نشاط محرم.", "إنتاج الخمور أو بيعها كنشاط أساسي يُخرج السهم مهما كانت نسبه."],
+      pork: ["منتجات الخنزير نشاط محرم.", "إنتاج لحم الخنزير أو بيعه كنشاط أساسي يُخرج السهم مهما كانت نسبه."],
+      gambling: ["القمار نشاط محرم.", "الكازينوهات والمراهنات (الميسر) محرمة، فلا يجتاز السهم مهما كانت نسبه."],
+      adult: ["الترفيه الإباحي نشاط محرم.", "هذا النشاط الأساسي يُخرج السهم مهما كانت نسبه."],
+      tobacco: ["التبغ مستبعد.", "تستبعد أغلب الهيئات الشرعية المعاصرة والمؤشرات الشرعية التبغ لضرره، فلا يجتاز السهم هذا الفحص."]
+    }
+  }
 };
+const T = () => STR[lang];
+
+const EXAMPLES = [
+  {market:"SAR", mcap:12000, biz:"ok", debt:600, cash:1400, rev:2500, bad:30, shares:100},
+  {market:"SAR", mcap:20000, biz:"ok", debt:8200, cash:2100, rev:15000, bad:180, shares:400},
+  {market:"USD", mcap:5000, biz:"ok", debt:900, cash:1100, rev:3000, bad:210, shares:250},
+  {market:"SAR", mcap:60000, biz:"finance", debt:30000, cash:45000, rev:9000, bad:7200, shares:3000},
+];
+const BIZ_S = {ok:"pass", review:"warn", defense:"warn", finance:"fail", alcohol:"fail", pork:"fail", gambling:"fail", adult:"fail", tobacco:"fail"};
 const $ = id => document.getElementById(id);
-const ids = ["name","market","mcap","biz","debt","cash","rev","bad","shares"];
+const ids = ["market","mcap","biz","debt","cash","rev","bad","shares"];
 const num = id => { const v = parseFloat($(id).value); return isFinite(v) ? v : null; };
 const pct = x => (x*100).toFixed(1) + "%";
-const money = (x, cur) => cur + " " + (Math.abs(x) >= 1e6 ? (x/1e6).toLocaleString("en-US",{maximumFractionDigits:2}) + "T" : Math.abs(x) >= 1000 ? (x/1000).toLocaleString("en-US",{maximumFractionDigits:2}) + "B" : x.toLocaleString("en-US",{maximumFractionDigits:1}) + "M");
-const fmtDate = s => s ? new Date(s + "T00:00:00Z").toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric",timeZone:"UTC"}) : "–";
+// x is in millions
+const money = (x, cur) => {
+  const t = T(), c = t.cur[cur] || cur, a = Math.abs(x);
+  if (a >= 1e6) return t.money((x/1e6).toLocaleString("en-US",{maximumFractionDigits:2}), t.units.T, c);
+  if (a >= 1000) return t.money((x/1000).toLocaleString("en-US",{maximumFractionDigits:2}), t.units.B, c);
+  return t.money(x.toLocaleString("en-US",{maximumFractionDigits:1}), t.units.M, c);
+};
+const curAmt = (cur, v) => lang === "ar" ? v + " " + (T().cur[cur] || cur) : cur + " " + v;
+const LOC = () => lang === "ar" ? "ar-SA-u-ca-gregory-nu-latn" : "en-GB";
+const fmtDate = s => s ? new Date(s + "T00:00:00Z").toLocaleDateString(LOC(),{day:"numeric",month:lang === "ar" ? "long" : "short",year:"numeric",timeZone:"UTC"}) : "–";
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
-let DATA = null, current = null; // current = the US record on screen, if any
+let DATA = null, current = null, exIndex = null, statusKind = "loading", statusArgs = []; // current = the US record on screen, if any
 
 function ratioCheck(title, numer, denom, limit, cur, numLabel, denLabel, why, failWhy, caveat){
-  if (numer == null || denom == null || denom <= 0) return {title, s:"warn", missing:true, why: caveat || ("Enter " + numLabel.toLowerCase() + " and " + denLabel.toLowerCase() + " to run this check.")};
+  const t = T();
+  if (numer == null || denom == null || denom <= 0) return {title, s:"warn", missing:true, why: caveat || t.enterBoth(numLabel, denLabel)};
   const r = numer/denom, s = r < limit ? "pass" : "fail";
   return {title, s, r, limit, caveat,
-    fig: `<b>${pct(r)}</b> of ${denLabel.toLowerCase()} · limit under ${pct(limit).replace(".0","")}`,
+    fig: t.fig(pct(r), denLabel, pct(limit).replace(".0","")),
     formula: `${numLabel} ${money(numer,cur)} ÷ ${denLabel} ${money(denom,cur)} = ${pct(r)}`,
     why: (s==="pass" ? why : failWhy)};
 }
 
 function render(){
-  const cur = $("market").value, name = $("name").value.trim() || "Unnamed company";
+  const t = T();
+  const cur = $("market").value, name = $("name").value.trim() || t.unnamed;
   const mcap=num("mcap"), debt=num("debt"), cash=num("cash"), rev=num("rev"), bad=num("bad"), shares=num("shares");
-  const b = BIZ[$("biz").value];
+  const bk = $("biz").value, b = t.BIZ[bk], bs = BIZ_S[bk];
   const live = current && $("form").hidden;
   let incomeCaveat = null, incomeMissing = false, incomeSoft = false, debtMissing = false;
   const q = live ? current.nonPermissibleQuality : null;
-  if (q === "missing"){ incomeMissing = true; incomeCaveat = "This company doesn't report interest income as a separate figure in its filing data, so this check can't be run automatically. Look for interest or finance income in the notes to its 10-K."; }
-  if (q === "net") incomeCaveat = "Estimated from net interest income, because gross interest income isn't reported separately. The real figure may be a little higher.";
-  if (q === "upper"){ incomeSoft = true; incomeCaveat = "Interest income isn't reported separately, so this uses all non-operating income, which also includes investment gains and other one-offs. The real non-permissible share is lower than shown."; }
+  if (q === "missing"){ incomeMissing = true; incomeCaveat = t.caveatMissing; }
+  if (q === "net") incomeCaveat = t.caveatNet;
+  if (q === "upper"){ incomeSoft = true; incomeCaveat = t.caveatUpper; }
   if (live && current.debtQuality === "missing"){ debtMissing = true; }
   const checks = [
-    {title:"Business activity", s:b.s, fig:`<b class="plain">${b.t}</b>`, why:b.d + (live && current.sicDesc ? ` SEC industry: ${esc(current.sicDesc)}.` : ""), caveat: live && current.bizNote ? esc(current.bizNote) : null},
-    ratioCheck("Debt", debtMissing ? null : debt, mcap, .30, cur, "Interest-bearing debt", "Market cap",
-      "The company relies mostly on its own equity. AAOIFI tolerates some conventional borrowing because few companies can avoid it, but caps it at 30% of market value.",
-      "Too much of the company is funded by interest-bearing loans. Above 30% of market value, AAOIFI treats the riba as too large a part of the business to overlook.",
-      debtMissing ? "This company reports its borrowings under its own labels, so its debt can't be read automatically. Check the debt note in its latest 10-K." : null),
-    ratioCheck("Interest-bearing cash and securities", cash, mcap, .30, cur, "Cash and investments", "Market cap",
-      "The company keeps a modest amount in interest-earning deposits and securities, under the 30% cap.",
-      "The company parks too much money in interest-earning deposits or bonds. Above 30% of market value, owning the share starts to look like owning an interest-bearing account."),
-    ratioCheck("Non-permissible income", incomeMissing ? null : bad, rev, .05, cur, "Non-permissible income", "Revenue",
-      "Under 5% of revenue comes from interest or prohibited activity. That small share is tolerated, and you purify it below.",
-      "More than 5% of revenue comes from interest or prohibited activity. At that level the haram income is too large to clean through purification.", incomeCaveat),
+    {title:t.tBiz, s:bs, fig:`<b class="plain">${b[0]}</b>`, why:b[1] + (live && current.sicDesc ? t.secIndustry(`<span dir="ltr">${esc(current.sicDesc)}</span>`) : ""), caveat: live && current.bizNote && lang === "en" ? esc(current.bizNote) : null},
+    ratioCheck(t.tDebt, debtMissing ? null : debt, mcap, .30, cur, t.nDebt, t.dMcap, t.wDebtP, t.wDebtF, debtMissing ? t.debtUnreadable : null),
+    ratioCheck(t.tCash, cash, mcap, .30, cur, t.nCash, t.dMcap, t.wCashP, t.wCashF),
+    ratioCheck(t.tBad, incomeMissing ? null : bad, rev, .05, cur, t.nBad, t.dRev, t.wBadP, t.wBadF, incomeCaveat),
   ];
-  if (incomeSoft && checks[3].s === "fail"){ checks[3].s = "warn"; checks[3].why = "Non-operating income is above 5% of revenue, but that figure includes more than interest. Check the 10-K notes for the actual interest income before deciding."; }
+  if (incomeSoft && checks[3].s === "fail"){ checks[3].s = "warn"; checks[3].why = t.wBadSoft; }
   const fails = checks.filter(c=>c.s==="fail"), warns = checks.filter(c=>c.s==="warn");
   $("verdict").className = "verdict " + (fails.length ? "fail" : warns.length ? "warn" : "pass");
-  $("vco").textContent = name + (live ? ` · ${current.exchange || "US"} · data as of ${fmtDate(current.priceDate)}` : "");
-  $("vbig").textContent = fails.length ? "Not Shariah compliant" : warns.length ? "Needs review" : "Shariah compliant";
+  $("vco").textContent = name + (live ? t.asOf(current.exchange || "US", fmtDate(current.priceDate)) : "");
+  $("vbig").textContent = fails.length ? t.vFail : warns.length ? t.vWarn : t.vPass;
+  // AAOIFI: a compliant stock is pure (no riba at all) or mixed (permissible business, small purified share)
+  const pure = !fails.length && !warns.length && debt === 0 && cash === 0 && bad === 0;
+  $("vkind").hidden = !!(fails.length || warns.length);
+  $("vkind").textContent = pure ? t.kPure : t.kMixed;
   $("vsum").textContent = fails.length
-    ? `Fails ${fails.length} of 4 checks: ${fails.map(c=>c.title.toLowerCase()).join(", ")}.`
-    : warns.length ? `No check fails, but ${warns.map(c=>c.title.toLowerCase()).join(" and ")} ${warns.length>1?"need":"needs"} a closer look before you decide.`
-    : "Passes all four AAOIFI checks. Remember to purify the small non-permissible share of dividends or gains.";
+    ? t.sFail(fails.length, t.joinFail(fails.map(c=>c.title)))
+    : warns.length ? t.sWarn(t.joinWarn(warns.map(c=>c.title)), warns.length)
+    : t.sPass;
 
   $("checks").innerHTML = checks.map(c => {
-    const label = c.s==="pass" ? "Pass" : c.s==="fail" ? "Fail" : (c.missing ? "Missing" : "Review");
+    const label = c.s==="pass" ? t.pPass : c.s==="fail" ? t.pFail : (c.missing ? t.pMissing : t.pReview);
     let meter = "";
     if (c.r != null){
       const max = c.limit === .05 ? .10 : .60;
       const w = Math.min(c.r/max,1)*100, l = c.limit/max*100;
-      meter = `<div><div class="meter" role="img" aria-label="${pct(c.r)} against a limit of ${pct(c.limit)}"><div class="fill ${c.s}" style="width:${w}%"></div><div class="lim" style="left:calc(${l}% - 1px)"></div></div>
-      <div class="scale"><span>0%</span><span>limit ${pct(c.limit).replace(".0","")}</span><span>${pct(max).replace(".0","")}+</span></div></div>`;
+      meter = `<div><div class="meter" role="img" aria-label="${t.meterAria(pct(c.r), pct(c.limit))}"><div class="fill ${c.s}" style="width:${w}%"></div><div class="lim" style="inset-inline-start:calc(${l}% - 1px)"></div></div>
+      <div class="scale"><span>0%</span><span>${t.limit} ${pct(c.limit).replace(".0","")}</span><span>${pct(max).replace(".0","")}+</span></div></div>`;
     }
     return `<div class="check"><div class="check-head"><h3>${c.title}</h3><span class="pill ${c.s}">${label}</span></div>
       ${c.fig ? `<div class="figure">${c.fig}</div>` : ""}${meter}
@@ -394,53 +604,65 @@ function render(){
   const held = num("held");
   if (bad != null && !incomeMissing && shares > 0){
     const per = bad/shares;
-    $("pershare").textContent = cur + " " + per.toFixed(4);
-    $("purify").textContent = held != null ? cur + " " + (per*held).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2}) : "–";
-    $("purifynote").textContent = "Your share of the year's non-permissible income: " + money(bad,cur) + " ÷ " + (+shares.toFixed(1)).toLocaleString("en-US") + "M shares × your holding. Give it to charity. It doesn't count as zakat.";
-  } else { $("pershare").textContent = "–"; $("purify").textContent = "–"; $("purifynote").textContent = "Needs non-permissible income and shares outstanding."; }
+    $("pershare").textContent = curAmt(cur, per.toFixed(4));
+    $("purify").textContent = held != null ? curAmt(cur, (per*held).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2})) : "–";
+    $("purifynote").textContent = t.purNote(money(bad,cur), (+shares.toFixed(1)).toLocaleString("en-US"));
+  } else { $("pershare").textContent = "–"; $("purify").textContent = "–"; $("purifynote").textContent = t.purNeeds; }
 }
 
 // ---------- US lookup ----------
-function showUS(t){
-  const r = DATA && DATA.stocks[t];
+function factsUS(){
+  const t = T(), r = current, tk = current.ticker;
+  const parts = p => (p||[]).map(([k]) => k.replace(/([a-z])([A-Z])/g,"$1 $2")).join(" + ") || t.noneReported;
+  $("facts").innerHTML = [
+    [t.fPrice, curAmt("USD", r.price.toLocaleString("en-US",{maximumFractionDigits:2}))],
+    [t.fMcap, money(r.marketCap/1e6,"USD")],
+    [t.fDebt, r.debtQuality === "missing" ? t.notReadable : money(r.debt/1e6,"USD")],
+    [t.fCash, money(r.cash/1e6,"USD")],
+    [t.fRev, money(r.revenue/1e6,"USD")],
+    [r.nonPermissibleQuality === "upper" ? t.fNonOp : t.fInt, r.nonPermissible == null ? t.notReported : money(r.nonPermissible/1e6,"USD")],
+  ].map(([k,v]) => `<div class="fact"><span>${k}</span><span>${v}</span></div>`).join("");
+  $("src").innerHTML = `<div>${t.srcDates(fmtDate(r.balanceDate), fmtDate(r.fiscalYearEnd), fmtDate(r.priceDate))}</div>
+    <div>${t.srcParts(`<span dir="ltr">${esc(parts(r.debtParts))}</span>`, `<span dir="ltr">${esc(parts(r.cashParts))}</span>`)}</div>
+    <div><a href="${esc(r.filing)}" target="_blank" rel="noopener">${t.srcLink(esc(tk))}</a></div>`;
+}
+function showUS(tk){
+  const r = DATA && DATA.stocks[tk];
   if (!r) return false;
-  current = Object.assign({ticker:t}, r);
+  current = Object.assign({ticker:tk}, r);
   const M = x => x == null ? "" : +(x/1e6).toFixed(2);
-  $("name").value = `${r.name} (${t})`; $("market").value = "USD";
+  $("name").value = `${r.name} (${tk})`; $("market").value = "USD";
   $("mcap").value = M(r.marketCap); $("biz").value = r.biz; $("debt").value = M(r.debt); $("cash").value = M(r.cash);
   $("rev").value = M(r.revenue); $("bad").value = M(r.nonPermissible); $("shares").value = M(r.shares);
-  const parts = p => (p||[]).map(([k]) => k.replace(/([a-z])([A-Z])/g,"$1 $2")).join(" + ") || "none reported";
-  $("facts").innerHTML = [
-    ["Share price", `USD ${r.price.toLocaleString("en-US",{maximumFractionDigits:2})}`],
-    ["Market cap", money(r.marketCap/1e6,"USD")],
-    ["Interest-bearing debt", r.debtQuality === "missing" ? "not readable" : money(r.debt/1e6,"USD")],
-    ["Cash and investments", money(r.cash/1e6,"USD")],
-    ["Revenue (fiscal year)", money(r.revenue/1e6,"USD")],
-    [r.nonPermissibleQuality === "upper" ? "Non-operating income" : "Interest income", r.nonPermissible == null ? "not reported" : money(r.nonPermissible/1e6,"USD")],
-  ].map(([k,v]) => `<div class="fact"><span>${k}</span><span>${v}</span></div>`).join("");
-  $("src").innerHTML = `<div>Balance sheet at ${fmtDate(r.balanceDate)}. Revenue and interest income for the year to ${fmtDate(r.fiscalYearEnd)}. Price close on ${fmtDate(r.priceDate)}.</div>
-    <div>Debt is ${esc(parts(r.debtParts))}. Cash is ${esc(parts(r.cashParts))}.</div>
-    <div><a href="${esc(r.filing)}" target="_blank" rel="noopener">See ${esc(t)}'s filings on SEC EDGAR</a></div>`;
+  factsUS();
   $("auto").hidden = false; $("form").hidden = true;
-  document.querySelectorAll("[data-t]").forEach(b => b.setAttribute("aria-pressed", b.dataset.t === t));
-  $("status").className = "status"; $("status").textContent = "";
-  try { const u = new URL(location.href); u.searchParams.set("ticker", t); history.replaceState(null, "", u); } catch(_){}
+  document.querySelectorAll("[data-t]").forEach(b => b.setAttribute("aria-pressed", b.dataset.t === tk));
+  setStatus("", []);
+  try { const u = new URL(location.href); u.searchParams.set("ticker", tk); history.replaceState(null, "", u); } catch(_){}
   render();
   return true;
+}
+// Status line is stored as a kind plus arguments so it can be re-rendered when the language changes
+function setStatus(kind, args){
+  statusKind = kind; statusArgs = args || [];
+  const t = T(), el = $("status");
+  el.className = "status" + (["notCovered","notCoveredSkip","loadErr"].includes(kind) ? " err" : "");
+  el.textContent = !kind ? "" : kind === "loading" ? t.loading : kind === "loadErr" ? t.loadErr
+    : kind === "covered" ? t.covered(statusArgs[0], new Date(statusArgs[1]).toLocaleDateString(LOC(),{day:"numeric",month:lang === "ar" ? "long" : "short",year:"numeric"}))
+    : t[kind](...statusArgs);
 }
 function lookup(q){
   q = (q||"").trim(); if (!q || !DATA) return;
   const up = q.toUpperCase().replace(/^\$/,"").replace("-", ".");
-  let t = DATA.stocks[up] ? up : null;
-  if (!t && q.length >= 3 && !(DATA.skipped && DATA.skipped[up])){
+  let tk = DATA.stocks[up] ? up : null;
+  if (!tk && q.length >= 3 && !(DATA.skipped && DATA.skipped[up])){
     const ql = q.toLowerCase(), all = Object.entries(DATA.stocks);
     const m = all.find(([k,r]) => r.name.toLowerCase().startsWith(ql)) || all.find(([k,r]) => r.name.toLowerCase().includes(ql));
-    if (m) t = m[0];
+    if (m) tk = m[0];
   }
-  if (t && showUS(t)) return;
-  $("status").className = "status err";
+  if (tk && showUS(tk)) return;
   const skip = DATA.skipped && DATA.skipped[up];
-  $("status").textContent = skip ? `${up} isn't covered yet (${skip.charAt(0).toLowerCase() + skip.slice(1)}). Use the Tadawul or other stock tab to enter its figures yourself.` : `“${q}” isn't in the ${Object.keys(DATA.stocks).length} US stocks covered yet. Try a ticker like AAPL, or enter the figures yourself.`;
+  if (skip) setStatus("notCoveredSkip", [up, skip]); else setStatus("notCovered", [q, Object.keys(DATA.stocks).length]);
 }
 $("find").addEventListener("submit", e => { e.preventDefault(); lookup($("q").value); });
 $("q").addEventListener("change", () => { if (DATA && DATA.stocks[$("q").value.trim().toUpperCase()]) lookup($("q").value); });
@@ -451,20 +673,46 @@ function setTab(which){
   $("tab-us").setAttribute("aria-selected", which === "us"); $("tab-manual").setAttribute("aria-selected", which === "manual");
   $("pane-us").hidden = which !== "us"; $("pane-manual").hidden = which !== "manual";
   if (which === "manual"){ $("auto").hidden = true; $("form").hidden = false; if (current) { current = null; } loadExample(0); }
-  else if (DATA){ const t = (current && current.ticker) || "AAPL"; showUS(DATA.stocks[t] ? t : Object.keys(DATA.stocks)[0]); }
+  else if (DATA){ const tk = (current && current.ticker) || "AAPL"; showUS(DATA.stocks[tk] ? tk : Object.keys(DATA.stocks)[0]); }
 }
 $("tab-us").addEventListener("click", () => setTab("us"));
 $("tab-manual").addEventListener("click", () => setTab("manual"));
 $("edit").addEventListener("click", () => { $("auto").hidden = true; $("form").hidden = false; current = null; $("name").focus(); render(); });
 function loadExample(i){
-  const e = EXAMPLES[i]; ids.forEach(k => $(k).value = e[k]);
+  const e = EXAMPLES[i]; ids.forEach(k => $(k).value = e[k]); $("name").value = T().exNames[i]; exIndex = i;
   document.querySelectorAll("[data-ex]").forEach(b => b.setAttribute("aria-pressed", b.dataset.ex == i));
   render();
 }
 document.querySelectorAll("[data-ex]").forEach(b => b.addEventListener("click", () => loadExample(+b.dataset.ex)));
-$("form").addEventListener("input", () => { document.querySelectorAll("[data-ex]").forEach(b => b.setAttribute("aria-pressed","false")); render(); });
+$("form").addEventListener("input", () => { exIndex = null; document.querySelectorAll("[data-ex]").forEach(b => b.setAttribute("aria-pressed","false")); render(); });
 $("form").addEventListener("submit", e => e.preventDefault());
 $("held").addEventListener("input", render);
+
+// ---------- language ----------
+function applyLang(){
+  const t = T(), root = document.documentElement;
+  root.lang = lang; root.dir = lang === "ar" ? "rtl" : "ltr";
+  document.title = t.docTitle;
+  const md = document.querySelector('meta[name="description"]'); if (md) md.content = t.docDesc;
+  document.querySelectorAll("[data-i]").forEach(el => {
+    const v = t[el.dataset.i]; if (typeof v !== "string") return;
+    if (el.dataset.html) el.innerHTML = v; else el.textContent = v;
+  });
+  document.querySelectorAll("[data-i-aria]").forEach(el => { const v = t[el.dataset.iAria]; if (typeof v === "string") el.setAttribute("aria-label", v); });
+  $("labsLink").href = lang === "ar" ? "/labs/?lang=ar" : "/#labs";
+  $("q").dir = lang === "ar" ? "rtl" : "ltr"; $("q").placeholder = t.qPh; $("q").setAttribute("aria-label", t.qAria); $("name").placeholder = t.namePh;
+  $("langBtn").textContent = t.langBtn; $("langBtn").lang = lang === "ar" ? "en" : "ar";
+  if (exIndex != null && !$("form").hidden) $("name").value = t.exNames[exIndex];
+  if (current && $("form").hidden) factsUS();
+  setStatus(statusKind, statusArgs);
+  render();
+}
+$("langBtn").addEventListener("click", () => {
+  lang = lang === "ar" ? "en" : "ar"; store.set("halal-lang", lang);
+  try { const u = new URL(location.href); if (lang === "ar") u.searchParams.set("lang", "ar"); else u.searchParams.delete("lang"); history.replaceState(null, "", u); } catch(_){}
+  applyLang();
+});
+applyLang();
 
 // ---------- boot ----------
 fetch("data/us.json", {cache:"no-cache"}).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(d => {
@@ -473,10 +721,9 @@ fetch("data/us.json", {cache:"no-cache"}).then(r => { if (!r.ok) throw new Error
   $("tickers").innerHTML = keys.map(k => `<option value="${k}">${esc(d.stocks[k].name)}</option>`).join("");
   const want = (new URLSearchParams(location.search).get("ticker") || "").toUpperCase();
   if (!showUS(d.stocks[want] ? want : (d.stocks.AAPL ? "AAPL" : keys[0]))) throw new Error("empty");
-  $("status").textContent = `${keys.length} US stocks covered. Updated ${new Date(d.generated).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"})}.`;
+  setStatus("covered", [keys.length, d.generated]);
 }).catch(() => {
-  $("status").className = "status err";
-  $("status").textContent = "Couldn't load the US stock data right now. You can still enter figures yourself.";
+  setStatus("loadErr", []);
   setTab("manual");
 });
 </script>
