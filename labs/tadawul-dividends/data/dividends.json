@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-08",
+  "updated": "2026-11-10",
   "sample": false,
   "source": "Compiled from company dividend announcements on Saudi Exchange, cross-checked with broker dividend calendars. Prices are the latest close on file and can lag by a few days.",
   "sourceAr": "جُمعت من إعلانات توزيع الأرباح المنشورة على موقع السوق المالية السعودية، ورُوجعت مع تقاويم التوزيعات لدى الوسطاء. الأسعار هي آخر إغلاق متوفر وقد تتأخر بضعة أيام.",
@@ -12,7 +12,7 @@
       "sector": "Financial Services",
       "dps": 0.3,
       "annualDps": 0.8,
-      "price": 7.84,
+      "price": 7.85,
       "recordDate": "2026-10-18"
     },
     {
@@ -22,7 +22,7 @@
       "sector": "REITs",
       "dps": 0.1,
       "annualDps": 0.39,
-      "price": 5.0,
+      "price": 5.02,
       "recordDate": "2026-10-25"
     },
     {
@@ -32,7 +32,7 @@
       "sector": "REITs",
       "dps": 0.2,
       "annualDps": 0.8,
-      "price": 7.69,
+      "price": 7.62,
       "recordDate": "2026-10-28"
     },
     {
@@ -42,7 +42,7 @@
       "sector": "REITs",
       "dps": 0.08,
       "annualDps": 0.32,
-      "price": 3.89,
+      "price": 3.87,
       "recordDate": "2026-10-29"
     },
     {
@@ -60,7 +60,7 @@
       "sector": "REITs",
       "dps": 0.18,
       "recordDate": "2026-11-02",
-      "price": 9.93,
+      "price": 10.0,
       "annualDps": 0.71
     },
     {
@@ -73,7 +73,7 @@
       "annualDps": 2.2,
       "recordDate": "2026-11-02",
       "payDate": "2026-11-19",
-      "price": 41.2
+      "price": 41.35
     },
     {
       "ticker": "1830",
@@ -83,7 +83,7 @@
       "recordDate": "2026-11-03",
       "nameAr": "لجام للرياضة",
       "payDate": "2026-11-15",
-      "price": 75.48,
+      "price": 76.57,
       "annualDps": 3.17
     },
     {
@@ -94,7 +94,7 @@
       "dps": 0.25,
       "recordDate": "2026-11-04",
       "payDate": "2026-11-18",
-      "price": 21.31,
+      "price": 21.61,
       "annualDps": 0.75
     },
     {
@@ -130,7 +130,7 @@
       "recordDate": "2026-11-09",
       "nameAr": "دله الصحية",
       "payDate": "2026-11-29",
-      "price": 58.65,
+      "price": 58.48,
       "annualDps": 2.0
     },
     {
@@ -141,8 +141,8 @@
       "recordDate": "2026-11-09",
       "nameAr": "سال",
       "payDate": "2026-11-24",
-      "price": 161.56,
-      "annualDps": 6.85
+      "price": 161.59,
+      "annualDps": 7.32
     },
     {
       "ticker": "2050",
@@ -152,7 +152,7 @@
       "recordDate": "2026-11-10",
       "nameAr": "مجموعة صافولا",
       "payDate": "2026-11-25",
-      "price": 23.1,
+      "price": 22.94,
       "annualDps": 1.7
     },
     {
@@ -163,8 +163,8 @@
       "recordDate": "2026-11-10",
       "nameAr": "الدواء",
       "payDate": "2026-11-25",
-      "price": 38.18,
-      "annualDps": 2.52
+      "price": 38.49,
+      "annualDps": 1.89
     },
     {
       "ticker": "4703",
@@ -181,7 +181,7 @@
       "dps": 0.11,
       "recordDate": "2026-11-11",
       "nameAr": "الخبير ريت",
-      "price": 5.24,
+      "price": 5.26,
       "annualDps": 0.42
     },
     {
@@ -192,8 +192,8 @@
       "recordDate": "2026-11-12",
       "nameAr": "الموسى",
       "payDate": "2026-11-26",
-      "price": 104.35,
-      "annualDps": 1.2
+      "price": 108.97,
+      "annualDps": 0.85
     },
     {
       "ticker": "2320",
@@ -202,7 +202,7 @@
       "dps": 0.5,
       "recordDate": "2026-11-15",
       "nameAr": "البابطين",
-      "price": 48.43,
+      "price": 51.95,
       "annualDps": 2.0
     },
     {
@@ -212,7 +212,7 @@
       "sector": "REITs",
       "dps": 0.105,
       "annualDps": 0.42,
-      "price": 5.24,
+      "price": 5.26,
       "recordDate": "2026-11-15"
     },
     {
@@ -233,13 +233,34 @@
       "payDate": "2026-11-26"
     },
     {
+      "ticker": "4084",
+      "name": "Derayah",
+      "sector": "Financial Services",
+      "dps": 0.33,
+      "recordDate": "2026-11-16",
+      "nameAr": "دراية",
+      "payDate": "2026-11-25",
+      "price": 20.16,
+      "annualDps": 0.99
+    },
+    {
       "ticker": "4190",
       "name": "Jarir",
       "sector": "Retail",
       "dps": 0.3,
       "recordDate": "2026-11-16",
-      "price": 16.93,
-      "annualDps": 0.95
+      "price": 17.34,
+      "annualDps": 0.95,
+      "payDate": "2026-11-25"
+    },
+    {
+      "ticker": "9594",
+      "name": "Almodawat",
+      "sector": "Nomu",
+      "dps": 0.02,
+      "recordDate": "2026-11-16",
+      "nameAr": "المداواة",
+      "payDate": "2026-12-01"
     },
     {
       "ticker": "6014",
@@ -247,7 +268,7 @@
       "sector": "Other",
       "dps": 0.6,
       "recordDate": "2026-11-25",
-      "price": 46.22,
+      "price": 44.27,
       "annualDps": 2.2
     },
     {
@@ -256,7 +277,7 @@
       "sector": "Food & Beverages",
       "dps": 0.05,
       "recordDate": "2026-12-02",
-      "price": 5.98,
+      "price": 5.96,
       "annualDps": 0.26
     },
     {
@@ -265,7 +286,7 @@
       "sector": "Other",
       "dps": 0.07,
       "recordDate": "2026-12-31",
-      "price": 12.39,
+      "price": 12.82,
       "annualDps": 0.55
     },
     {
@@ -274,7 +295,7 @@
       "sector": "Materials",
       "dps": 0.8,
       "recordDate": "2027-01-12",
-      "price": 43.07,
+      "price": 42.95,
       "annualDps": 3.2
     }
   ]
