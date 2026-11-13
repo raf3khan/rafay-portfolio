@@ -22,8 +22,8 @@
 </script>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Rafay Khan">
-<meta property="og:title" content="Tadawul Explained">
-<meta property="og:description" content="Saudi stocks in plain words: what the company does, what its key numbers mean and what it announced lately. In English and Arabic.">
+<meta property="og:title" content="Tadawul Explained | تداول بوضوح">
+<meta property="og:description" content="Saudi stocks in plain words: what the company does, what its key numbers mean and what it announced lately. In English and Arabic. | الأسهم السعودية بكلمات بسيطة: ماذا تفعل الشركة، وماذا تعني أرقامها، وآخر ما أعلنته.">
 <meta property="og:url" content="https://rafkhan.com/labs/tadawul-explained/">
 <meta property="og:image" content="https://rafkhan.com/og/tadawul-explained.png">
 <meta property="og:image:width" content="1200">
@@ -337,21 +337,21 @@ h1 .sub { display: block; margin-top: 12px; font: 400 24px/32px var(--arabic); l
     ar: {
       docTitle: "تداول بوضوح: أسهم السوق السعودية بلغة مبسطة",
       docDesc: "ابحث عن أي سهم في السوق المالية السعودية (تداول) واحصل على ملخص مبسط للشركة وأهم أرقامها وآخر إعلاناتها. مجاني بالعربية والإنجليزية.",
-      back: "→ المختبر", exchange: "السوق المالية السعودية", nWork: "الأعمال", nStory: "القصة", nLabs: "المختبر", chat: "تواصل معي", footName: "Rafay Khan · الرياض", footBack: "العودة إلى المختبر", langBtn: "English",
+      back: "→ المختبر", exchange: "السوق المالية السعودية", nWork: "الأعمال", nStory: "القصة", nLabs: "المختبر", chat: "تواصل معي", footName: "رافع خان · الرياض", footBack: "العودة إلى المختبر", langBtn: "English",
       title: "تداول بوضوح", titleSub: "Tadawul Explained",
       lede: "اكتب رمز السهم أو اسم الشركة، واحصل على شرح مبسّط لنشاط الشركة وموقع السعر وما تعنيه أهم أرقامها وآخر ما أعلنته.",
       go: "اشرح", ph: "2222 أو أرامكو", updated: d => "آخر تحديث " + d, loading: "جارٍ التحميل…",
       noMatch: q => `لا توجد شركة تطابق «${q}» حتى الآن. تغطي هذه النسخة الأولى أكبر ثماني شركات أدناه. جرّب رمزًا من 4 أرقام مثل 1120 أو اسمًا مثل المراعي.`,
       loadErr: "لم يتم تحميل بيانات الشركات. حدّث الصفحة وحاول مرة أخرى.",
       asOf: d => "سعر متأخر بتاريخ " + d, stale: "لقطة أقدم، تُحدَّث أسبوعيًا",
-      inPlain: "باختصار", aiTag: "مكتوب بالذكاء الاصطناعي من الأرقام في هذه الصفحة", r52: "نطاق 52 أسبوعًا", peS: "P/E", yS: "Yield", tags: "تداول", readAnn: "آخر الإعلانات",
-      range: "موقع السعر ضمن نطاق 52 أسبوعًا", rangeCap: p => `عند ${p}٪ من المسافة بين أدنى سعر وأعلى سعر خلال العام`,
+      inPlain: "باختصار", aiTag: "مكتوب بالذكاء الاصطناعي من الأرقام في هذه الصفحة", r52: "نطاق 52 أسبوعًا", peS: "مكرر الربحية", yS: "العائد", tags: "تداول", readAnn: "آخر الإعلانات",
+      range: "موقع السعر ضمن نطاق 52 أسبوعًا", rangeCap: p => `عند ${p}% من المسافة بين أدنى سعر وأعلى سعر خلال العام`,
       nums: "أهم الأرقام وماذا تعني", recent: "آخر الإعلانات", source: "المصدر",
       pe: "مكرر الربحية", peX: "عدد الريالات التي تدفعها مقابل كل ريال من الربح السنوي. الرقم الأقل قد يعني سعرًا أرخص أو توقعات نمو أقل.",
       peNone: "لا يوجد مكرر", peNoneX: "سجلت الشركة خسارة في آخر اثني عشر شهرًا، فلا يوجد ربح لمقارنته بالسعر.",
       dy: "عائد التوزيعات", dyX: d => `النقد الموزّع على المساهمين خلال العام الماضي (${d} ريال للسهم) كنسبة من سعر اليوم.`, dyNone: "لا توجد توزيعات", dyNoneX: "لم توزّع الشركة أرباحًا خلال العام الماضي.",
       mc: "القيمة السوقية", mcX: "قيمة الشركة كاملة بهذا السعر.",
-      ni: "الربح في آخر 12 شهرًا", niX: c => c == null ? "صافي الربح في آخر أربعة أرباع معلنة." : `${c > 0 ? "ارتفاع" : "انخفاض"} بنسبة ${Math.abs(c)}٪ عن الاثني عشر شهرًا السابقة.`,
+      ni: "الربح في آخر 12 شهرًا", niX: c => c == null ? "صافي الربح في آخر أربعة أرباع معلنة." : `${c > 0 ? "ارتفاع" : "انخفاض"} بنسبة ${Math.abs(c)}% عن الاثني عشر شهرًا السابقة.`,
       bn: "مليار", tn: "تريليون", sar: "ر.س",
       kinds: { results: "نتائج", dividend: "توزيعات", deal: "صفقة", upcoming: "قادم" },
       sectors: { Energy: "الطاقة", Banks: "البنوك", Telecom: "الاتصالات", Materials: "المواد الأساسية", Utilities: "المرافق العامة", Food: "الأغذية" },

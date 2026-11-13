@@ -3,30 +3,42 @@
   "sample": false,
   "source": "Offerings and dates from the Saudi Exchange IPO list as of 4 Nov 2026. How to subscribe is from fund manager and company announcements; the prospectus is the final word.",
   "sourceUrl": "https://www.saudiexchange.sa/wps/portal/saudiexchange/listing/ipos",
-  "_fields": "Equity IPOs: type IPO, priceLow, priceHigh, finalPrice, offerShares, retailPct, minShares, bookBuild [start,end], retail [start,end], allocation, listing, receivingEntities [..]. ETFs and sukuk: type ETF or Sukuk, price, offeringSizeText, retail [open,close] or null, subscribeVia. Dates are YYYY-MM-DD.",
+  "_fields": "Equity IPOs: type IPO, priceLow, priceHigh, finalPrice, offerShares, retailPct, minShares, bookBuild [start,end], retail [start,end], allocation, listing, receivingEntities [..]. ETFs and sukuk: type ETF or Sukuk, price, offeringSizeText, retail [open,close] or null, subscribeVia. Dates are YYYY-MM-DD. Arabic: optional nameAr, marketAr, sectorAr, managerAr, offeringSizeTextAr, subscribeViaAr; the page falls back to English when one is missing.",
+  "sourceAr": "الطروحات ومواعيدها من قائمة الاكتتابات في السوق المالية السعودية بتاريخ 4 نوفمبر 2026. طريقة الاكتتاب من إعلانات مديري الصناديق والشركات، والمرجع النهائي هو نشرة الإصدار.",
   "ipos": [
     {
       "name": "WSM For Information Technology Company Sukuk",
+      "nameAr": "صكوك شركة وسم لتقنية المعلومات",
       "type": "Sukuk",
       "market": "Corporate Sukuk",
+      "marketAr": "صكوك الشركات",
       "sector": "Information technology",
+      "sectorAr": "تقنية المعلومات",
       "manager": "Advisor: Impact 46",
+      "managerAr": "المستشار: إمباكت 46",
       "price": 1000,
       "offeringSizeText": "SAR 500M",
+      "offeringSizeTextAr": "500 مليون ريال",
       "retail": null,
       "allocation": null,
       "listing": null,
       "prospectus": "https://www.saudiexchange.sa/Resources/IPO/PDF/IPO_ENG_2026-09-29_11-08-18_1.pdf",
-      "subscribeVia": "Offering dates aren't set yet. Who can subscribe and through which banks or brokers will be in the offering announcement and the prospectus."
+      "subscribeVia": "Offering dates aren't set yet. Who can subscribe and through which banks or brokers will be in the offering announcement and the prospectus.",
+      "subscribeViaAr": "لم تُحدَّد مواعيد الطرح بعد. ستوضح نشرة الإصدار وإعلان الطرح من يحق له الاكتتاب وعبر أي بنوك أو وسطاء."
     },
     {
       "name": "Al Rajhi MSCI Saudi Equity Dividends ETF",
+      "nameAr": "صندوق الراجحي إم إس سي آي للأسهم السعودية ذات التوزيعات المتداول",
       "type": "ETF",
       "market": "Main Market",
+      "marketAr": "السوق الرئيسية",
       "sector": "Saudi dividend stocks",
+      "sectorAr": "أسهم سعودية موزعة للأرباح",
       "manager": "Al Rajhi Capital",
+      "managerAr": "الراجحي المالية",
       "price": 10,
       "offeringSizeText": "Not stated",
+      "offeringSizeTextAr": "غير مذكور",
       "retail": [
         "2026-10-26",
         "2026-12-07"
@@ -34,16 +46,22 @@
       "allocation": null,
       "listing": null,
       "prospectus": "https://www.saudiexchange.sa/Resources/IPO/PDF/IPO_ENG_2026-10-22_14-46-19_1.pdf",
-      "subscribeVia": "Through the fund manager, Al Rajhi Capital. Check the prospectus for the minimum subscription and whether it takes cash or shares."
+      "subscribeVia": "Through the fund manager, Al Rajhi Capital. Check the prospectus for the minimum subscription and whether it takes cash or shares.",
+      "subscribeViaAr": "عبر مدير الصندوق، الراجحي المالية. راجع نشرة الإصدار لمعرفة الحد الأدنى للاكتتاب، وهل يُقبل نقدًا أم بالأسهم."
     },
     {
       "name": "Albilad MSCI Saudi Financials Equity ETF",
+      "nameAr": "صندوق البلاد إم إس سي آي للأسهم السعودية المالية المتداول",
       "type": "ETF",
       "market": "ETF",
+      "marketAr": "صناديق المؤشرات المتداولة",
       "sector": "Financials",
+      "sectorAr": "القطاع المالي",
       "manager": "Albilad Capital",
+      "managerAr": "البلاد المالية",
       "price": 10,
       "offeringSizeText": "2,000,000",
+      "offeringSizeTextAr": "2,000,000",
       "retail": [
         "2026-10-25",
         "2026-12-03"
@@ -51,16 +69,22 @@
       "allocation": null,
       "listing": null,
       "prospectus": "https://www.saudiexchange.sa/Resources/IPO/PDF/IPO_ENG_2026-10-12_14-15-53_1.pdf",
-      "subscribeVia": "Through the fund manager, Albilad Capital. Albilad's earlier ETF offers took in-kind subscriptions (shares you already own), with cash only at the manager's discretion, and a high minimum. Check the prospectus for this fund's minimum and how to pay."
+      "subscribeVia": "Through the fund manager, Albilad Capital. Albilad's earlier ETF offers took in-kind subscriptions (shares you already own), with cash only at the manager's discretion, and a high minimum. Check the prospectus for this fund's minimum and how to pay.",
+      "subscribeViaAr": "عبر مدير الصندوق، البلاد المالية. كانت طروحات صناديق البلاد المتداولة السابقة تقبل الاكتتاب العيني (بأسهم تملكها)، ولا تقبل النقد إلا بتقدير مدير الصندوق، وبحد أدنى مرتفع. راجع نشرة الإصدار لمعرفة الحد الأدنى لهذا الصندوق وطريقة الدفع."
     },
     {
       "name": "Albilad MSCI Saudi Tourism & Its Complementary Activities Equity ETF",
+      "nameAr": "صندوق البلاد إم إس سي آي لأسهم السياحة والأنشطة المكملة لها السعودية المتداول",
       "type": "ETF",
       "market": "ETF",
+      "marketAr": "صناديق المؤشرات المتداولة",
       "sector": "Tourism",
+      "sectorAr": "السياحة",
       "manager": "Albilad Capital",
+      "managerAr": "البلاد المالية",
       "price": 10,
       "offeringSizeText": "2,000,000",
+      "offeringSizeTextAr": "2,000,000",
       "retail": [
         "2026-10-25",
         "2026-12-03"
@@ -68,16 +92,22 @@
       "allocation": null,
       "listing": null,
       "prospectus": "https://www.saudiexchange.sa/Resources/IPO/PDF/IPO_ENG_2026-10-12_14-17-14_1.pdf",
-      "subscribeVia": "Through the fund manager, Albilad Capital. Albilad's earlier ETF offers took in-kind subscriptions (shares you already own), with cash only at the manager's discretion, and a high minimum. Check the prospectus for this fund's minimum and how to pay."
+      "subscribeVia": "Through the fund manager, Albilad Capital. Albilad's earlier ETF offers took in-kind subscriptions (shares you already own), with cash only at the manager's discretion, and a high minimum. Check the prospectus for this fund's minimum and how to pay.",
+      "subscribeViaAr": "عبر مدير الصندوق، البلاد المالية. كانت طروحات صناديق البلاد المتداولة السابقة تقبل الاكتتاب العيني (بأسهم تملكها)، ولا تقبل النقد إلا بتقدير مدير الصندوق، وبحد أدنى مرتفع. راجع نشرة الإصدار لمعرفة الحد الأدنى لهذا الصندوق وطريقة الدفع."
     },
     {
       "name": "Albilad MSCI Saudi Building & Constructions Equity ETF",
+      "nameAr": "صندوق البلاد إم إس سي آي لأسهم البناء والتشييد السعودية المتداول",
       "type": "ETF",
       "market": "ETF",
+      "marketAr": "صناديق المؤشرات المتداولة",
       "sector": "Building and construction",
+      "sectorAr": "البناء والتشييد",
       "manager": "Albilad Capital",
+      "managerAr": "البلاد المالية",
       "price": 10,
       "offeringSizeText": "2,000,000",
+      "offeringSizeTextAr": "2,000,000",
       "retail": [
         "2026-10-25",
         "2026-12-03"
@@ -85,16 +115,22 @@
       "allocation": null,
       "listing": null,
       "prospectus": "https://www.saudiexchange.sa/Resources/IPO/PDF/IPO_ENG_2026-10-12_14-13-15_1.pdf",
-      "subscribeVia": "Through the fund manager, Albilad Capital. Albilad's earlier ETF offers took in-kind subscriptions (shares you already own), with cash only at the manager's discretion, and a high minimum. Check the prospectus for this fund's minimum and how to pay."
+      "subscribeVia": "Through the fund manager, Albilad Capital. Albilad's earlier ETF offers took in-kind subscriptions (shares you already own), with cash only at the manager's discretion, and a high minimum. Check the prospectus for this fund's minimum and how to pay.",
+      "subscribeViaAr": "عبر مدير الصندوق، البلاد المالية. كانت طروحات صناديق البلاد المتداولة السابقة تقبل الاكتتاب العيني (بأسهم تملكها)، ولا تقبل النقد إلا بتقدير مدير الصندوق، وبحد أدنى مرتفع. راجع نشرة الإصدار لمعرفة الحد الأدنى لهذا الصندوق وطريقة الدفع."
     },
     {
       "name": "Albilad MSCI Saudi Consumers Equity ETF",
+      "nameAr": "صندوق البلاد إم إس سي آي لأسهم الاستهلاك السعودية المتداول",
       "type": "ETF",
       "market": "ETF",
+      "marketAr": "صناديق المؤشرات المتداولة",
       "sector": "Consumer",
+      "sectorAr": "الاستهلاك",
       "manager": "Albilad Capital",
+      "managerAr": "البلاد المالية",
       "price": 10,
       "offeringSizeText": "2,000,000",
+      "offeringSizeTextAr": "2,000,000",
       "retail": [
         "2026-10-25",
         "2026-12-03"
@@ -102,16 +138,22 @@
       "allocation": null,
       "listing": null,
       "prospectus": "https://www.saudiexchange.sa/Resources/IPO/PDF/IPO_ENG_2026-10-12_14-14-40_1.pdf",
-      "subscribeVia": "Through the fund manager, Albilad Capital. Albilad's earlier ETF offers took in-kind subscriptions (shares you already own), with cash only at the manager's discretion, and a high minimum. Check the prospectus for this fund's minimum and how to pay."
+      "subscribeVia": "Through the fund manager, Albilad Capital. Albilad's earlier ETF offers took in-kind subscriptions (shares you already own), with cash only at the manager's discretion, and a high minimum. Check the prospectus for this fund's minimum and how to pay.",
+      "subscribeViaAr": "عبر مدير الصندوق، البلاد المالية. كانت طروحات صناديق البلاد المتداولة السابقة تقبل الاكتتاب العيني (بأسهم تملكها)، ولا تقبل النقد إلا بتقدير مدير الصندوق، وبحد أدنى مرتفع. راجع نشرة الإصدار لمعرفة الحد الأدنى لهذا الصندوق وطريقة الدفع."
     },
     {
       "name": "Albilad MSCI Saudi Healthcare Equity ETF",
+      "nameAr": "صندوق البلاد إم إس سي آي لأسهم الرعاية الصحية السعودية المتداول",
       "type": "ETF",
       "market": "ETF",
+      "marketAr": "صناديق المؤشرات المتداولة",
       "sector": "Healthcare",
+      "sectorAr": "الرعاية الصحية",
       "manager": "Albilad Capital",
+      "managerAr": "البلاد المالية",
       "price": 10,
       "offeringSizeText": "2,000,000",
+      "offeringSizeTextAr": "2,000,000",
       "retail": [
         "2026-10-25",
         "2026-12-03"
@@ -119,7 +161,8 @@
       "allocation": null,
       "listing": null,
       "prospectus": "https://www.saudiexchange.sa/Resources/IPO/PDF/IPO_ENG_2026-10-12_14-11-42_1.pdf",
-      "subscribeVia": "Through the fund manager, Albilad Capital. Albilad's earlier ETF offers took in-kind subscriptions (shares you already own), with cash only at the manager's discretion, and a high minimum. Check the prospectus for this fund's minimum and how to pay."
+      "subscribeVia": "Through the fund manager, Albilad Capital. Albilad's earlier ETF offers took in-kind subscriptions (shares you already own), with cash only at the manager's discretion, and a high minimum. Check the prospectus for this fund's minimum and how to pay.",
+      "subscribeViaAr": "عبر مدير الصندوق، البلاد المالية. كانت طروحات صناديق البلاد المتداولة السابقة تقبل الاكتتاب العيني (بأسهم تملكها)، ولا تقبل النقد إلا بتقدير مدير الصندوق، وبحد أدنى مرتفع. راجع نشرة الإصدار لمعرفة الحد الأدنى لهذا الصندوق وطريقة الدفع."
     }
   ]
 }
