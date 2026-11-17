@@ -129,18 +129,22 @@ html.lenis, html.lenis body { height: auto; }
 
 /* hero */
 .hero { overflow: hidden; }
-.hero .col { min-height: 640px; display: flex; flex-direction: column; justify-content: flex-end; gap: 32px; padding: 24px 24px 24px; }
+.hero .col { min-height: max(560px, calc(100vh - var(--bar-h, 49px))); min-height: max(560px, calc(100svh - var(--bar-h, 49px))); display: flex; flex-direction: column; justify-content: flex-end; gap: 32px; padding: 24px 24px 24px; }
 /* space hero: a Milky Way night sky behind the hero in both themes; the sparkling stars sit over it */
 .sky { position: absolute; top: 0; left: 0; right: 0; height: var(--sky-h, 720px); z-index: 0; pointer-events: none; overflow: hidden; background: #03040a; }
 .sky .layer { position: absolute; inset: 0; will-change: transform; }
 .sky .img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: center; }
 .sky::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 50%; background: linear-gradient(rgba(3,4,10,0), rgba(3,4,10,0.55)); }
+/* while the night sky fills the screen, the top bar and consent card go dark too; light mode takes over once you scroll past it */
+html.on-sky .bar, html.on-sky .rkc { --bg: #131313; --ink: #f4f4f4; --muted: #a3a3a3; --line: #313131; --raised: #272727; --surface: #1f1f1f; --accent: #30d158; color-scheme: dark; }
+html.on-sky body::before { background: #131313; }
+.bar { transition: background-color 400ms var(--ease); }
 .hero { --ink: #f4f4f4; --muted: #a3a3a3; --line: rgba(255,255,255,0.14); --surface: #1f1f1f; --bg: #131313; color-scheme: dark; }
 .hello { margin: 0; max-width: 820px; text-shadow: 0 2px 24px rgba(0,0,0,0.55); font: 400 60px/1 var(--serif); letter-spacing: -0.02em; color: var(--ink); position: relative; }
 .hello img { display: inline-block; width: 56px; height: 56px; border-radius: 9999px; object-fit: cover; vertical-align: -6px; border: 2px solid var(--surface); box-shadow: 0 2px 8px rgba(0,0,0,0.2); transform: rotate(-6deg); transition: transform 500ms var(--ease); }
 .hello img:hover { transform: rotate(0deg) scale(1.1); }
 .hero .gloss { align-self: flex-start; position: relative; }
-@media (max-width: 860px) { .hero .col { min-height: 560px; } .hello { font-size: 48px; } .hello img { width: 44px; height: 44px; } }
+@media (max-width: 860px) { .hero .col { min-height: max(520px, calc(100svh - var(--bar-h, 49px))); } .hello { font-size: 48px; } .hello img { width: 44px; height: 44px; } }
 .cred { margin: 0; color: var(--muted); }
 .cred b { color: var(--ink); font-weight: 500; }
 
@@ -345,7 +349,7 @@ a.lab:hover .go .ico { transform: translate(2px, -2px); }
 <body style="margin:0">
 
 <a class="skip" href="#main">Skip to content</a>
-<div class="sky" aria-hidden="true"><div class="layer"><picture><source media="(max-width: 700px)" type="image/avif" srcset="/img/hero/galaxy-mobile.avif"><source media="(max-width: 700px)" type="image/webp" srcset="/img/hero/galaxy-mobile.webp"><source type="image/avif" srcset="/img/hero/galaxy-1920.avif 1x, /img/hero/galaxy-3840.avif 2x"><img class="img" src="/img/hero/galaxy-2560.webp" alt="" width="3840" height="1920" fetchpriority="high"></picture>
+<div class="sky" aria-hidden="true"><div class="layer"><picture><source media="(max-width: 700px)" type="image/avif" srcset="/img/hero/galaxy-mobile.avif"><source media="(max-width: 700px)" type="image/webp" srcset="/img/hero/galaxy-mobile.webp"><source type="image/avif" srcset="/img/hero/galaxy-1920.avif 1x, /img/hero/galaxy-3840.avif 2x"><img class="img" src="/img/hero/galaxy-2560.webp" alt="" width="3840" height="2160" fetchpriority="high"></picture>
 </div></div>
 <canvas id="space" aria-hidden="true"></canvas>
 
@@ -617,7 +621,14 @@ a.lab:hover .go .ico { transform: translate(2px, -2px); }
   (function () {
     var sky = document.querySelector('.sky'), hero = document.getElementById('top'); if (!sky || !hero) return;
     var layer = sky.querySelector('.layer');
-    function size() { window.__skyH = hero.getBoundingClientRect().bottom + (window.scrollY || 0); sky.style.setProperty('--sky-h', window.__skyH + 'px'); }
+    var bar = document.querySelector('.bar'), de = document.documentElement;
+    function size() {
+      if (bar) de.style.setProperty('--bar-h', bar.offsetHeight + 'px');
+      window.__skyH = hero.getBoundingClientRect().bottom + (window.scrollY || 0); sky.style.setProperty('--sky-h', window.__skyH + 'px'); onSky();
+    }
+    // keep the top bar dark while it sits over the sky
+    function onSky() { de.classList.toggle('on-sky', (window.scrollY || 0) + (bar ? bar.offsetHeight : 0) < window.__skyH); }
+    window.addEventListener('scroll', onSky, { passive: true });
     size(); window.addEventListener('resize', size); window.addEventListener('load', size);
     if (reduce) return;
     function drift() { var y = window.scrollY || 0; if (y < window.__skyH) layer.style.transform = 'translate3d(0,' + (y * 0.35).toFixed(1) + 'px,0)'; }
