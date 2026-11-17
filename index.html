@@ -133,7 +133,9 @@ html.lenis, html.lenis body { height: auto; }
 /* space hero: a Milky Way night sky behind the hero in both themes; the sparkling stars sit over it */
 .sky { position: absolute; top: 0; left: 0; right: 0; height: var(--sky-h, 720px); z-index: 0; pointer-events: none; overflow: hidden; background: #03040a; }
 .sky .layer { position: absolute; inset: 0; will-change: transform; }
-.sky .img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: center; }
+.sky .img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: center; transform: scale(1.06); }
+@keyframes sky-drift { from { transform: scale(1.06) rotate(0deg) translate3d(0, 0, 0); } to { transform: scale(1.14) rotate(-1.5deg) translate3d(-1.5%, 1%, 0); } }
+@media (prefers-reduced-motion: no-preference) { .sky .img { animation: sky-drift 70s ease-in-out infinite alternate; } }
 .sky::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 50%; background: linear-gradient(rgba(3,4,10,0), rgba(3,4,10,0.55)); }
 /* while the night sky fills the screen, the top bar and consent card go dark too; light mode takes over once you scroll past it */
 html.on-sky .bar, html.on-sky .rkc { --bg: #131313; --ink: #f4f4f4; --muted: #a3a3a3; --line: #313131; --raised: #272727; --surface: #1f1f1f; --accent: #30d158; color-scheme: dark; }
@@ -635,10 +637,10 @@ a.lab:hover .go .ico { transform: translate(2px, -2px); }
     if (lenis) lenis.on('scroll', drift); else window.addEventListener('scroll', drift, { passive: true });
   })();
 
-  // starfield: fixed stars twinkle softly and sparkle near the pointer
+  // starfield: stars twinkle softly and sparkle near the pointer; over the night sky there are more of them, plus the odd shooting star
   (function () {
     var cv = document.getElementById('space'); if (!cv || !cv.getContext) return;
-    var ctx = cv.getContext('2d'), stars = [], w = 0, h = 0, d = 1, star = '#ffffff', spark = '#30d158', dark = true;
+    var ctx = cv.getContext('2d'), stars = [], dust = [], meteors = [], nextMeteor = 1800, w = 0, h = 0, d = 1, star = '#ffffff', spark = '#30d158', dark = true;
     var mx = -9999, my = -9999;
     function readColors() {
       var cs = getComputedStyle(document.documentElement);
@@ -649,13 +651,16 @@ a.lab:hover .go .ico { transform: translate(2px, -2px); }
     function build() {
       var r = cv.getBoundingClientRect(); w = r.width; h = r.height; d = Math.min(window.devicePixelRatio || 1, 2);
       cv.width = w * d; cv.height = h * d; ctx.setTransform(d, 0, 0, d, 0, 0);
-      var n = Math.round(w * h / 5200); stars = [];
+      var n = Math.round(w * h / 2800); stars = [];
       for (var i = 0; i < n; i++) stars.push({ x: Math.random() * w, y: Math.random() * h, z: 0.2 + Math.random() * 0.8,
-        r: Math.random() < 0.08 ? 1.4 : 0.6 + Math.random() * 0.6, ph: Math.random() * 6.283, sp: 0.6 + Math.random() * 1.6, glow: 0, par: 0.18 });
+        r: Math.random() < 0.08 ? 1.4 : 0.6 + Math.random() * 0.6, ph: Math.random() * 6.283, sp: 0.6 + Math.random() * 1.6, glow: 0, par: 0.18, k: Math.random() });
       // a fainter, slower layer behind: it drifts at a third of the speed, so scrolling reads as depth
-      var m = Math.round(w * h / 3000);
+      var m = Math.round(w * h / 1400);
       for (var j = 0; j < m; j++) stars.push({ x: Math.random() * w, y: Math.random() * h, z: 0.15 + Math.random() * 0.35,
-        r: 0.35 + Math.random() * 0.3, ph: Math.random() * 6.283, sp: 0.3 + Math.random() * 0.8, glow: 0, par: 0.06, far: true });
+        r: 0.35 + Math.random() * 0.3, ph: Math.random() * 6.283, sp: 0.3 + Math.random() * 0.8, glow: 0, par: 0.06, far: true, k: Math.random() });
+      // fine star dust, only drawn over the night sky
+      var q = Math.round(w * h / 650); dust = [];
+      for (var k = 0; k < q; k++) dust.push({ x: Math.random() * w, y: Math.random() * h, a: 0.15 + Math.random() * 0.45, s: Math.random() < 0.85 ? 1 : 1.5 });
     }
     function draw(t) {
       ctx.clearRect(0, 0, w, h);
@@ -664,6 +669,7 @@ a.lab:hover .go .ico { transform: translate(2px, -2px); }
         var s = stars[i];
         var y = reduce ? s.y : ((s.y - sc * s.par) % h + h) % h;
         var inSky = y < sb, col = inSky ? '#ffffff' : star, b = inSky ? 0.85 : base;
+        if (!inSky && s.k > 0.5) continue;
         var dx = s.x - mx, dy = y - my, near = Math.max(0, 1 - Math.sqrt(dx * dx + dy * dy) / 140);
         s.glow = Math.max(s.far ? near * 0.4 : near, s.glow * 0.94);
         var tw = reduce ? 0.7 : 0.55 + 0.45 * Math.sin(t / 1000 * s.sp + s.ph);
@@ -675,7 +681,39 @@ a.lab:hover .go .ico { transform: translate(2px, -2px); }
           ctx.beginPath(); ctx.moveTo(s.x - L, y); ctx.lineTo(s.x + L, y); ctx.moveTo(s.x, y - L); ctx.lineTo(s.x, y + L); ctx.stroke();
         }
       }
+      if (sb > 0) {
+        ctx.save(); ctx.beginPath(); ctx.rect(0, 0, w, Math.min(sb, h)); ctx.clip();
+        ctx.fillStyle = '#ffffff';
+        for (var j = 0; j < dust.length; j++) {
+          var p = dust[j], py = reduce ? p.y : ((p.y - sc * 0.03) % h + h) % h;
+          if (py > sb) continue;
+          ctx.globalAlpha = p.a; ctx.fillRect(p.x, py, p.s, p.s);
+        }
+        if (!reduce) meteorsDraw(t, Math.min(sb, h));
+        ctx.restore();
+      }
       ctx.globalAlpha = 1;
+    }
+    // shooting stars: one every few seconds, a bright head with a fading tail, only over the sky
+    function meteorsDraw(t, sh) {
+      if (t > nextMeteor) {
+        var ang = (18 + Math.random() * 20) * Math.PI / 180, dir = Math.random() < 0.7 ? -1 : 1;
+        meteors.push({ x: w * (0.2 + Math.random() * 0.75), y: sh * (0.04 + Math.random() * 0.45), vx: dir * Math.cos(ang), vy: Math.sin(ang),
+          dist: 260 + Math.random() * 380, len: 120 + Math.random() * 160, t0: t, dur: 650 + Math.random() * 500 });
+        nextMeteor = t + 2200 + Math.random() * 4800;
+      }
+      for (var i = meteors.length - 1; i >= 0; i--) {
+        var m = meteors[i], p = (t - m.t0) / m.dur;
+        if (p >= 1) { meteors.splice(i, 1); continue; }
+        var e = 1 - Math.pow(1 - p, 2), hx = m.x + m.vx * m.dist * e, hy = m.y + m.vy * m.dist * e;
+        var L = m.len * Math.min(1, p * 3), tx = hx - m.vx * L, ty = hy - m.vy * L, a = Math.sin(Math.PI * p);
+        var g = ctx.createLinearGradient(tx, ty, hx, hy);
+        g.addColorStop(0, 'rgba(255,255,255,0)'); g.addColorStop(1, 'rgba(255,255,255,' + (0.9 * a).toFixed(3) + ')');
+        ctx.globalAlpha = 1; ctx.strokeStyle = g; ctx.lineWidth = 1.4; ctx.lineCap = 'round';
+        ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(hx, hy); ctx.stroke();
+        ctx.globalAlpha = a; ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.arc(hx, hy, 1.6, 0, 6.283); ctx.fill();
+        ctx.globalAlpha = a * 0.25; ctx.beginPath(); ctx.arc(hx, hy, 5, 0, 6.283); ctx.fill();
+      }
     }
     readColors(); build(); draw(0);
     window.addEventListener('resize', function () { build(); draw(performance.now()); });
