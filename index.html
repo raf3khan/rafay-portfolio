@@ -20,6 +20,7 @@
 <meta property="og:image:alt" content="Rafay Khan, product design and AI for finance">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/fonts/fonts.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -130,12 +131,44 @@ html.lenis, html.lenis body { height: auto; }
 /* hero */
 .hero { overflow: hidden; }
 .hero .col { min-height: 640px; display: flex; flex-direction: column; justify-content: flex-end; gap: 32px; padding: 24px 24px 24px; }
-.hero .col > .glow { position: absolute; inset: 0 0 auto 0; height: 360px; pointer-events: none; background: radial-gradient(ellipse 60% 100% at 50% 0%, var(--glow), transparent 70%); }
 .hello { margin: 0; max-width: 900px; font: 400 60px/1 var(--serif); letter-spacing: -0.02em; color: var(--ink); position: relative; }
 .hello img { display: inline-block; width: 56px; height: 56px; border-radius: 9999px; object-fit: cover; vertical-align: -6px; border: 2px solid var(--surface); box-shadow: 0 2px 8px rgba(0,0,0,0.2); transform: rotate(-6deg); transition: transform 500ms var(--ease); }
 .hello img:hover { transform: rotate(0deg) scale(1.1); }
 .hero .gloss { align-self: flex-start; position: relative; }
 @media (max-width: 860px) { .hero .col { min-height: 560px; } .hello { font-size: 48px; } .hello img { width: 44px; height: 44px; } }
+/* terminal hero: a build log runs on the right, the headline types in, the cursor leaves a glyph trail */
+.hero .col { min-height: 720px; }
+.hero .who { margin: 0 0 -16px; font: 400 16px/24px var(--mono); color: var(--muted); position: relative; z-index: 1; }
+.hero .who b { color: var(--accent); font-weight: 400; }
+.hero .hello, .hero .gloss { z-index: 1; }
+.hero .feed { position: absolute; inset: 0; pointer-events: none; font: 400 13px/26px var(--mono); color: var(--muted); white-space: pre; }
+.feed .fc { position: absolute; top: 28px; left: 54%; right: 24px; bottom: 24px; overflow: hidden; -webkit-mask-image: linear-gradient(#000 55%, rgba(0,0,0,0.25)); mask-image: linear-gradient(#000 55%, rgba(0,0,0,0.25)); }
+.fc > div { position: absolute; left: 0; right: 0; top: 0; height: 26px; overflow: hidden; animation: feedin 500ms var(--ease) both; transition: transform 400ms var(--ease); }
+.feed .ps, .feed .ok { color: var(--accent); } .feed .k, .feed .new { color: var(--ink); }
+.feed .cur { display: inline-block; width: 0.55em; height: 1.05em; vertical-align: -0.2em; background: var(--accent); animation: blink 1s steps(1) infinite; }
+@keyframes feedin { from { opacity: 0; } }
+@keyframes blink { 50% { opacity: 0; } }
+.hello .ghost { color: transparent; }
+.hello .ghost.now { box-shadow: inset 4px 0 0 var(--accent); animation: blinkbar 1s steps(1) infinite; }
+@keyframes blinkbar { 50% { box-shadow: none; } }
+.hello .tcur { display: inline-block; width: 4px; height: 0.82em; vertical-align: -0.06em; margin-left: 6px; background: var(--accent); animation: blink 1s steps(1) infinite; }
+.hello .nw { white-space: nowrap; }
+.hello .pf { display: inline-block; position: relative; vertical-align: -6px; margin-left: 4px; padding: 3px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset, 0 8px 20px rgba(0,0,0,0.10); transform: rotate(-4deg); transition: transform 500ms var(--ease); }
+.hello .pf:hover { transform: rotate(0deg) scale(1.06); }
+.hello .pf img, .hello .pf img:hover { display: block; width: 48px; height: 48px; border-radius: 12px; border: 0; box-shadow: none; transform: none; vertical-align: 0; }
+.hello .pf i { position: absolute; right: -3px; bottom: -3px; width: 14px; height: 14px; border-radius: 9999px; background: var(--accent); border: 3px solid var(--bg); }
+.hello .cash { display: inline-block; width: 0.62em; height: 0.62em; margin-left: 0.14em; vertical-align: 0.02em; color: var(--accent); transform: rotate(-10deg); }
+@media (min-width: 861px) { .hero .col { justify-content: center; } .hero .hello { max-width: min(54%, 660px); } }
+@media (max-width: 860px) {
+  .hero .col { min-height: 760px; padding-top: 210px; justify-content: flex-start; }
+  .hero .feed { font-size: 11px; line-height: 22px; }
+  .feed .fc { left: 16px; right: 16px; top: 16px; bottom: auto; height: 190px; -webkit-mask-image: linear-gradient(#000 40%, transparent); mask-image: linear-gradient(#000 40%, transparent); }
+  .fc > div { height: 22px; }
+  .hero .who { margin: 0 0 -20px; font-size: 14px; }
+  .hello .pf img, .hello .pf img:hover { width: 36px; height: 36px; border-radius: 9px; } .hello .pf { border-radius: 13px; }
+}
+@media (prefers-reduced-motion: reduce) { .fc > div { animation: none; transition: none; } .feed .cur, .hello .tcur, .hello .ghost.now { animation: none; } .hello .pf { transition: none; } }
+
 .cred { margin: 0; color: var(--muted); }
 .cred b { color: var(--ink); font-weight: 500; }
 
@@ -353,8 +386,9 @@ a.lab:hover .go .ico { transform: translate(2px, -2px); }
 <main id="main">
   <section class="hero band" id="top">
     <div class="col">
-      <div class="glow" aria-hidden="true"></div>
-      <h1 class="hello">Hey! I'm Rafay Khan <img src="rafay.jpg" alt="Portrait of Rafay Khan" width="400" height="400"><br>I build AI enabled products that people trust with their money</h1>
+      <div class="feed" aria-hidden="true"><div class="fc" id="feed"></div></div>
+      <p class="who" aria-hidden="true"><b>&gt;</b> whoami</p>
+      <h1 class="hello">Hey! I'm Rafay Khan <span class="pf"><img src="rafay.jpg" alt="Portrait of Rafay Khan" width="400" height="400"><i></i></span><br>I build AI enabled products that people trust with their <span class="nw">money<svg class="cash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2.5"/><circle cx="12" cy="12" r="2.6"/><path d="M6 10v4M18 10v4"/></svg></span></h1>
       <a class="gloss" href="https://www.linkedin.com/in/rafekhan" target="_blank" rel="noopener">Start a conversation <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,128a8,8,0,0,1-3.8,6.8l-112,72A8,8,0,0,1,72,200V56a8,8,0,0,1,12.2-6.8l112,72A8,8,0,0,1,200,128Z"/></svg></a>
     </div>
   </section>
@@ -607,11 +641,10 @@ a.lab:hover .go .ico { transform: translate(2px, -2px); }
     });
   }
 
-  // starfield: fixed stars twinkle softly and sparkle near the pointer
+  // starfield: fixed stars twinkle softly; the pointer leaves a short trail of 0/1, %, $, # and arrows
   (function () {
     var cv = document.getElementById('space'); if (!cv || !cv.getContext) return;
     var ctx = cv.getContext('2d'), stars = [], w = 0, h = 0, d = 1, star = '#ffffff', spark = '#30d158', dark = true;
-    var mx = -9999, my = -9999;
     function readColors() {
       var cs = getComputedStyle(document.documentElement);
       star = cs.getPropertyValue('--ink').trim();
@@ -625,13 +658,20 @@ a.lab:hover .go .ico { transform: translate(2px, -2px); }
       for (var i = 0; i < n; i++) stars.push({ x: Math.random() * w, y: Math.random() * h, z: 0.2 + Math.random() * 0.8,
         r: Math.random() < 0.08 ? 1.4 : 0.6 + Math.random() * 0.6, ph: Math.random() * 6.283, sp: 0.6 + Math.random() * 1.6, glow: 0 });
     }
+    var trail = [], lastX = -99, lastY = -99, GL = '0101101%+$#↑'.split('');
+    window.addEventListener('pointermove', function (e) {
+      if (reduce) return;
+      var dx = e.clientX - lastX, dy = e.clientY - lastY; if (dx * dx + dy * dy < 324) return; lastX = e.clientX; lastY = e.clientY;
+      trail.push({ x: e.clientX + (Math.random() - 0.5) * 12, y: e.clientY + (Math.random() - 0.5) * 12, t: performance.now(), g: GL[(Math.random() * GL.length) | 0], vy: 12 + Math.random() * 22 });
+      if (trail.length > 80) trail.shift();
+    }, { passive: true });
     function draw(t) {
       ctx.clearRect(0, 0, w, h);
       var base = dark ? 0.55 : 0.28;
       for (var i = 0; i < stars.length; i++) {
         var s = stars[i];
         var y = s.y;
-        var dx = s.x - mx, dy = y - my, near = Math.max(0, 1 - Math.sqrt(dx * dx + dy * dy) / 140);
+        var near = 0;
         s.glow = Math.max(near, s.glow * 0.94);
         var tw = reduce ? 0.7 : 0.55 + 0.45 * Math.sin(t / 1000 * s.sp + s.ph);
         var a = Math.min(1, base * s.z * tw + s.glow * 0.9), rad = s.r * (1 + s.glow * 1.2);
@@ -642,6 +682,10 @@ a.lab:hover .go .ico { transform: translate(2px, -2px); }
           ctx.beginPath(); ctx.moveTo(s.x - L, y); ctx.lineTo(s.x + L, y); ctx.moveTo(s.x, y - L); ctx.lineTo(s.x, y + L); ctx.stroke();
         }
       }
+      if (trail.length) {
+        var now = performance.now(); ctx.fillStyle = spark; ctx.font = '500 13px "Geist Mono", ui-monospace, monospace'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        trail = trail.filter(function (p) { var age = (now - p.t) / 1100; if (age >= 1) return false; ctx.globalAlpha = (1 - age) * 0.9; ctx.fillText(p.g, p.x, p.y - age * p.vy); return true; });
+      }
       ctx.globalAlpha = 1;
     }
     readColors(); build(); draw(0);
@@ -649,14 +693,81 @@ a.lab:hover .go .ico { transform: translate(2px, -2px); }
     if (window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () { readColors(); draw(performance.now()); });
     new MutationObserver(function () { readColors(); draw(performance.now()); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
     if (reduce) return;
-    window.addEventListener('pointermove', function (e) { mx = e.clientX; my = e.clientY; }, { passive: true });
-    document.addEventListener('pointerleave', function () { mx = my = -9999; });
     function frame(t) {
       if (document.hidden) return;
       draw(t); requestAnimationFrame(frame);
     }
     document.addEventListener('visibilitychange', function () { if (!document.hidden) requestAnimationFrame(frame); });
     requestAnimationFrame(frame);
+  })();
+
+
+  // terminal hero: the headline types in over text that is already laid out (no reflow, no LCP delay)
+  (function () {
+    var h1 = document.querySelector('.hero .hello'); if (!h1) return;
+    var cur = document.createElement('span'); cur.className = 'tcur'; cur.setAttribute('aria-hidden', 'true');
+    if (reduce) { h1.appendChild(cur); return; }
+    var segs = [];
+    (function walk(p) { Array.prototype.slice.call(p.childNodes).forEach(function (n) {
+      if (n.nodeType === 1 && n.classList.contains('nw')) walk(n);
+      else if (n.nodeType === 3) { var g = document.createElement('span'); g.className = 'ghost'; g.textContent = n.textContent; n.textContent = ''; n.after(g); segs.push({ t: n, g: g }); }
+      else if (n.nodeType === 1 && n.tagName !== 'BR') { n.style.visibility = 'hidden'; segs.push({ el: n }); }
+    }); })(h1);
+    function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+    (async function () {
+      for (var i = 0; i < segs.length; i++) {
+        var sg = segs[i];
+        if (sg.el) { sg.el.style.visibility = ''; continue; }
+        sg.g.classList.add('now');
+        while (sg.g.textContent.length) { var c = sg.g.textContent; sg.t.textContent += c[0]; sg.g.textContent = c.slice(1); await wait(28 + Math.random() * 30); }
+        sg.g.remove();
+      }
+      h1.appendChild(cur);
+    })();
+  })();
+
+  // terminal hero: a build log fills the right side, newest line on top
+  (function () {
+    var feed = document.getElementById('feed'); if (!feed) return;
+    var PH = [['research', ['interviewing retail investors', 'shadowing support calls', 'reading app store reviews', 'mapping the trading journey', 'auditing onboarding drop-off', 'benchmarking brokerage apps', 'talking to SME owners']],
+      ['wireframe', ['sketching the order ticket', 'watchlist, three layouts', 'onboarding flow', 'arabic RTL pass', 'portfolio view', 'empty and error states']],
+      ['prototype', ['clickable order flow', 'AI insight card', 'price alerts', 'instant account opening']],
+      ['test', ['usability sessions', 'A/B portfolio summary', 'accessibility check', 'arabic and english copy']],
+      ['build', ['handoff to engineering', 'API contract review', 'QA on iOS, Android and web']],
+      ['ship', ['staged rollout', 'release to the app store', 'live on web']],
+      ['measure', ['reading the funnel', 'adoption dashboard', 'planning the next iteration']]];
+    var ph = 0, count = 0, last = '';
+    function pad(t, n) { while (t.length < n) t += ' '; return t; }
+    function next() {
+      var p = PH[ph % PH.length], act; count++;
+      if (count >= 2 + ((Math.random() * 2) | 0)) { ph++; count = 0; }
+      do { act = p[1][(Math.random() * p[1].length) | 0]; } while (act === last); last = act;
+      return [p[0], act];
+    }
+    function html(st, txt, tail) { return '<span class="ps">&gt;</span> <span class="k">' + pad(st, 10) + '</span>' + txt + tail; }
+    function lh() { return innerWidth <= 860 ? 22 : 26; }
+    function maxLines() { return Math.ceil(feed.clientHeight / lh()) + 1; }
+    function place() { var h = lh(); for (var k = 0; k < feed.children.length; k++) feed.children[k].style.transform = 'translateY(' + (k * h) + 'px)'; }
+    addEventListener('resize', place);
+    if (reduce) {
+      var out = ''; for (var i = 0; i < 30; i++) { var l = next(); out += '<div>' + html(l[0], l[1], ' <span class="ok">✓</span>') + '</div>'; } feed.innerHTML = out; place(); return;
+    }
+    function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+    var heroBox = document.querySelector('.hero'), onScreen = true;
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { onScreen = e[0].isIntersecting; }).observe(heroBox);
+    (async function run() {
+      await wait(600);
+      for (;;) {
+        if (document.hidden || !onScreen) { await wait(500); continue; }
+        var L = next(), d = document.createElement('div');
+        feed.insertBefore(d, feed.firstChild);
+        while (feed.children.length > maxLines()) feed.lastChild.remove();
+        place();
+        for (var j = 0; j <= L[1].length; j += 2) { d.innerHTML = html(L[0], '<span class="new">' + L[1].slice(0, j) + '</span>', '<span class="cur"></span>'); await wait(15); }
+        d.innerHTML = html(L[0], '<span class="new">' + L[1] + '</span>', ''); await wait(170);
+        d.innerHTML = html(L[0], L[1], ' <span class="ok">✓</span>'); await wait(160 + Math.random() * 200);
+      }
+    })();
   })();
 
   // hero market line: draws in, then ticks forward; static when motion is reduced
